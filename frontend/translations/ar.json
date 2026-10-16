@@ -1,0 +1,775 @@
+{
+  "fb-locale": "ar",
+  "translations": {
+    "f4Snd3h1kYhxcxdwF/7sfw==": {
+      "description": "Sample result sentence for the Moda neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "هادئ، مقاهي كثيرة، المترو في أقل من 10 دقائق.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sTJaJiKsOKaBHReEGJG7zQ==": {
+      "description": "Sample result sentence for the Cihangir neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "نشيطة ليلاً، وصلها ممتاز، ومساحات خضراء متوسطة.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "IAz9bhQBNgXYJ4IK5FAIog==": {
+      "description": "Sample result sentence for the Yeldeğirmeni neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "سكني وشعبي، مقاهيه في ازدياد، المترو بعيد قليلاً.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RhKKygaH4G/v+0eDciNiKg==": {
+      "description": "Lens filter category: mobility",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التنقل",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "E0VtZmvDKoWI/1At1hCjwg==": {
+      "description": "Lens filter category: local life",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الحياة المحلية",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6RY/SWc3y5TuHG4gwxHjYg==": {
+      "description": "Lens filter category: nature",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الطبيعة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KIQ12L1WCVj/uT2kMmZxKA==": {
+      "description": "Lens filter category: services",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الخدمات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Ev6SgGb6AhY/aydwJ0aLaw==": {
+      "description": "Lens layer: metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المترو",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z2lriz15KkNPSWvxfHXU1w==": {
+      "description": "Lens layer: parks",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الحدائق",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4S96U+dLdyKaqVrzR0ETpQ==": {
+      "description": "Lens layer: isochrone",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الأيزوكرون",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8DOPvWJKUvedj3D+yBhqEQ==": {
+      "description": "Title of the sample ranking on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "أفضل 3 حسب معاييرك",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HpPgpLng+C4a0ZCpnrRt+g==": {
+      "description": "Title of the lens panel on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "العدسة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EWOQTKKuZoEdeLmooEIl4w==": {
+      "description": "Placeholder shown while the map is not loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ستظهر الخريطة هنا — أساس بوسيترون (OpenFreeMap)",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "XPtPjqJ91MUIOIjsi2+Y7Q==": {
+      "description": "Toggle showing the sample ranking",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الترتيب",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J7oEcLGjwH8eGxkQ4hiDTQ==": {
+      "description": "Toggle showing the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "العدسة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rr0l9mCnt8NTwNfmMrgqzA==": {
+      "description": "Label of the city field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المدينة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KlaJ0PxFct/htjCZo79G+g==": {
+      "description": "Note explaining that no sample data has a time dimension",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الفترة مخفية: لا توجد بيانات حالية ذات بُعد زمني",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HS8ubz9BcGaKlUt8ng5+cg==": {
+      "description": "Legend of the category filter group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الفئات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ewI+AXQaV1H+04F/0IJEZw==": {
+      "description": "Label of the saved selection field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التحديد",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J/9TW2ZIJMzA3PNDs9TFjg==": {
+      "description": "Empty state of the saved selection in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا يوجد حي محفوظ حتى الآن",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "R56DH+uA4v3NOU5K0JdzBg==": {
+      "description": "Legend of the basemap style group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الأساس",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7O+xvX1MIhjJQNhoOjXSyw==": {
+      "description": "Legend of the layer group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الطبقات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7IKaZK88KVLe3WDGLbUfiA==": {
+      "description": "Low end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "منخفض",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8kW+AkhR64BD8RSqXwdxgA==": {
+      "description": "High end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مرتفع",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7N8K0r3NSotrI3syB0h3Gw==": {
+      "description": "Legend label for neighborhoods without data",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا توجد بيانات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BJ/be6N/ugWqRZrcCTP4Pw==": {
+      "description": "Basemap and data attribution shown on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الأساس: OpenFreeMap · البيانات © OpenStreetMap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KBHUqy+CZ1/3kPlQKHva0g==": {
+      "description": "Alt text of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "آيا صوفيا محاطة بورود وردية تحت سماء زرقاء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xNleLHuZTf3gLxNP1p+XIQ==": {
+      "description": "Caption of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "آيا صوفيا",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CkmebRku3FLkwyzbVrhO7g==": {
+      "description": "Alt text of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "بوابة قصر دولمة بهجة تطل على البوسفور",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BlbhwacvST+ImXuqqlG73g==": {
+      "description": "Caption of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "دولمة بهجة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9Drt6KOhYcJwhitMME7vWQ==": {
+      "description": "Alt text of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "بانوراما البوسفور وجسره من المرتفعات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXzvmtlyC5Or4itRRvwe1Q==": {
+      "description": "Caption of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "فوق البوسفور",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "hmj++EBiWQmV8NTY2zy/0g==": {
+      "description": "Title of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الدردشة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VCZX7qnWz2d80qLA8VCIwA==": {
+      "description": "Title of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+SjfJaO2HumKZZtE7QoGBQ==": {
+      "description": "Title of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "البيانات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ThsQMZIVbJpv7wwGOSKoJA==": {
+      "description": "Description of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اكتب ما تبحث عنه واحصل على اقتراحات مُفصّحة.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DSx+lhDiROLLSOj6vmoqZQ==": {
+      "description": "Description of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "أحياء ملوّنة وفق معاييرك الخاصة.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dzEPxORh2kpnwmjCocbMHg==": {
+      "description": "Description of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "قيم خام ووحدات ومصادر، عموداً بعد عمود.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "isOK3HU85VpYUjq2jS9XTg==": {
+      "description": "Headline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اعثر على الحي الذي يناسبك.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0dukMej1a6AF98+c+G6IQg==": {
+      "description": "Subline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "خريطة ومعاييرك وبيانات مفتوحة — لاستكشاف الأحياء التركية دون تقييم عالمي.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6Jcj3bSdJYpLZodU6hcQgQ==": {
+      "description": "Call to action opening the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "استكشف الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9LlIuJmHsbfjXSDHJDlxAQ==": {
+      "description": "Call to action opening the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "صف ما نبحث عنه",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zMZLinNitZ+JlmBvBAUx6w==": {
+      "description": "Title of the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "القيم الخام",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2jkvby7kc9oKmMDfhn1H+w==": {
+      "description": "Subtitle of the data view, with the year and the raw-value promise",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إصدار 2024 · قيم خام بوحداتها، دون تقييم مركب",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0KkpLNCYqZCQwzgc7AH3GA==": {
+      "description": "Column header of the neighborhood name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الحي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "T150YTHTRegXDT0WB8hLHA==": {
+      "description": "Column header of the district name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المنطقة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2EActZ3eg3Li7Y9CLuH4ew==": {
+      "description": "Column header of the cafés per square kilometer",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مقاهي / كم²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zBo4aaR+KHHvIsOmhz5H6Q==": {
+      "description": "Column header of the walking distance to the metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المترو سيراً",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AuiGZ9KZG79XBfDahxW+gQ==": {
+      "description": "Column header of the green cover",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المساحات الخضراء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wdWYCZdzZXWclvibTOgrBg==": {
+      "description": "Accessible column header of the map action",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YouxXrTs+wXbwjB7MrrMUg==": {
+      "description": "Button opening the map view from a data row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اعرضها على الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "f3Shm3jobSPjE8Y38RF9iQ==": {
+      "description": "Sample search criterion chip: quietness",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "هدوء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kCPlq36Zm85nwi/tBe4f/g==": {
+      "description": "Sample search criterion chip: cafés",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المقاهي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "yqZZXGSWo3OP45Qoo4NeCw==": {
+      "description": "Sample search criterion chip: nearby metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "قريب من المترو",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FN+wqTB8/wsgiZf05cKS2A==": {
+      "description": "Label of the café density stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مقاهي / كم²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gq5Hd6vksdAdU1FqO/LFyA==": {
+      "description": "Label of the walking distance to the metro stat",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المترو سيراً",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vqF1S1fLWN03MZzaYmQN8g==": {
+      "description": "Label of the green cover stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المساحات الخضراء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5wPEsJbU9GcH6560K/tSvQ==": {
+      "description": "Title of the chat view, above the input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "صف الحي الذي تبحث عنه",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KbUJEGx+mAOVwyxXOw8Ggw==": {
+      "description": "Placeholder of the chat input, with an example search",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مثال: حي هادئ ومقاهيه قريبة من المترو",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SHbUe1fn5fdYZSxh5wWqiA==": {
+      "description": "Label of the chat send button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إرسال",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzspTH7fsLv/QzftLVs03A==": {
+      "description": "Note explaining that the chat input will be wired to the preference engine",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "معاينة التصميم: سيتم ربط الإدخال بمحرك التفضيلات. بدون الذكاء الاصطناعي، تتكفل المعايير اليدوية والبحث بالاسم.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iuT1Klvd9NBGTDvgYSvpPw==": {
+      "description": "Badge shown on the first sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "أفضل نتيجة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EInlNtTZ/atO0WMeOSqfRw==": {
+      "description": "Button opening the map view for a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اعرضها على الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ssypMErUeSDYBtYyIZ4ksg==": {
+      "description": "Navigation label for the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الدردشة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "NAlSczr65Ze7pVaFP29/9Q==": {
+      "description": "Navigation label for the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الخريطة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z6XwkFyPvbdcnhCq6YT55g==": {
+      "description": "Navigation label for the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "البيانات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "thjXmjKZP628PUxN/V3vlg==": {
+      "description": "Product name shown in the header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood Explorer",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "m2em2yjGamqEz/3/62hJaQ==": {
+      "description": "Accessibility label for the main navigation",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التنقل الرئيسي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "o2fM2ya6wKpG8xHSFPdvSQ==": {
+      "description": "Accessibility label for the theme picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "سمة الواجهة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WY9Wmxzz/yu+eu1OvLwyHA==": {
+      "description": "Accessibility label for the language picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لغة الواجهة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    }
+  }
+}

@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{F5746613-52D7-463C-AAAB-93CD0AD6F014}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Etl", "src\Etl\Etl.csproj", "{40D37683-031F-4E38-BEC8-BF201DD53A1C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Tests", "tests\Api.Tests\Api.Tests.csproj", "{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|x64.Build.0 = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Debug|x86.Build.0 = Debug|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|x64.ActiveCfg = Release|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|x64.Build.0 = Release|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|x86.ActiveCfg = Release|Any CPU
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014}.Release|x86.Build.0 = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|x64.Build.0 = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Debug|x86.Build.0 = Debug|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|x64.ActiveCfg = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|x64.Build.0 = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|x86.ActiveCfg = Release|Any CPU
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C}.Release|x86.Build.0 = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|x64.Build.0 = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Debug|x86.Build.0 = Debug|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|x64.ActiveCfg = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|x64.Build.0 = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|x86.ActiveCfg = Release|Any CPU
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F5746613-52D7-463C-AAAB-93CD0AD6F014} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{40D37683-031F-4E38-BEC8-BF201DD53A1C} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+		{93C6C570-2CF8-4940-8A40-8E9C1AC5DE82} = {827E0CD3-B72D-47B6-A68D-7590B98EB39B}
+	EndGlobalSection
+EndGlobal

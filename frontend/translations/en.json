@@ -1,0 +1,775 @@
+{
+  "fb-locale": "en",
+  "translations": {
+    "f4Snd3h1kYhxcxdwF/7sfw==": {
+      "description": "Sample result sentence for the Moda neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Quiet, plenty of cafés, metro within 10 minutes.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sTJaJiKsOKaBHReEGJG7zQ==": {
+      "description": "Sample result sentence for the Cihangir neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Lively at night, very well connected, average greenery.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "IAz9bhQBNgXYJ4IK5FAIog==": {
+      "description": "Sample result sentence for the Yeldeğirmeni neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Residential and popular, growing café scene, metro a little far.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RhKKygaH4G/v+0eDciNiKg==": {
+      "description": "Lens filter category: mobility",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mobility",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "E0VtZmvDKoWI/1At1hCjwg==": {
+      "description": "Lens filter category: local life",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Local life",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6RY/SWc3y5TuHG4gwxHjYg==": {
+      "description": "Lens filter category: nature",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Nature",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KIQ12L1WCVj/uT2kMmZxKA==": {
+      "description": "Lens filter category: services",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Services",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Ev6SgGb6AhY/aydwJ0aLaw==": {
+      "description": "Lens layer: metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z2lriz15KkNPSWvxfHXU1w==": {
+      "description": "Lens layer: parks",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parks",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4S96U+dLdyKaqVrzR0ETpQ==": {
+      "description": "Lens layer: isochrone",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Isochrone",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8DOPvWJKUvedj3D+yBhqEQ==": {
+      "description": "Title of the sample ranking on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Top 3 for your criteria",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HpPgpLng+C4a0ZCpnrRt+g==": {
+      "description": "Title of the lens panel on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The lens",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EWOQTKKuZoEdeLmooEIl4w==": {
+      "description": "Placeholder shown while the map is not loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The map will appear here — Positron basemap (OpenFreeMap)",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "XPtPjqJ91MUIOIjsi2+Y7Q==": {
+      "description": "Toggle showing the sample ranking",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ranking",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J7oEcLGjwH8eGxkQ4hiDTQ==": {
+      "description": "Toggle showing the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The lens",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rr0l9mCnt8NTwNfmMrgqzA==": {
+      "description": "Label of the city field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "City",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KlaJ0PxFct/htjCZo79G+g==": {
+      "description": "Note explaining that no sample data has a time dimension",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Period hidden: no current data has a time dimension",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HS8ubz9BcGaKlUt8ng5+cg==": {
+      "description": "Legend of the category filter group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Categories",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ewI+AXQaV1H+04F/0IJEZw==": {
+      "description": "Label of the saved selection field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Selection",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J/9TW2ZIJMzA3PNDs9TFjg==": {
+      "description": "Empty state of the saved selection in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No saved neighbourhood yet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "R56DH+uA4v3NOU5K0JdzBg==": {
+      "description": "Legend of the basemap style group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Basemap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7O+xvX1MIhjJQNhoOjXSyw==": {
+      "description": "Legend of the layer group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Layers",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7IKaZK88KVLe3WDGLbUfiA==": {
+      "description": "Low end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Low",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8kW+AkhR64BD8RSqXwdxgA==": {
+      "description": "High end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "High",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7N8K0r3NSotrI3syB0h3Gw==": {
+      "description": "Legend label for neighborhoods without data",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No data",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BJ/be6N/ugWqRZrcCTP4Pw==": {
+      "description": "Basemap and data attribution shown on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Basemap: OpenFreeMap · Data © OpenStreetMap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KBHUqy+CZ1/3kPlQKHva0g==": {
+      "description": "Alt text of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hagia Sophia framed by pink flowers, under a blue sky",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xNleLHuZTf3gLxNP1p+XIQ==": {
+      "description": "Caption of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hagia Sophia",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CkmebRku3FLkwyzbVrhO7g==": {
+      "description": "Alt text of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The gate of the Dolmabahçe palace opens onto a view of the Bosphorus",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BlbhwacvST+ImXuqqlG73g==": {
+      "description": "Caption of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Dolmabahçe",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9Drt6KOhYcJwhitMME7vWQ==": {
+      "description": "Alt text of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Panorama of the Bosphorus and its bridge, from the heights",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXzvmtlyC5Or4itRRvwe1Q==": {
+      "description": "Caption of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Above the Bosphorus",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "hmj++EBiWQmV8NTY2zy/0g==": {
+      "description": "Title of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Chat",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VCZX7qnWz2d80qLA8VCIwA==": {
+      "description": "Title of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+SjfJaO2HumKZZtE7QoGBQ==": {
+      "description": "Title of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Data",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ThsQMZIVbJpv7wwGOSKoJA==": {
+      "description": "Description of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Write what you are looking for, get explained leads.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DSx+lhDiROLLSOj6vmoqZQ==": {
+      "description": "Description of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhoods coloured by your own criteria.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dzEPxORh2kpnwmjCocbMHg==": {
+      "description": "Description of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw values, units and sources, column by column.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "isOK3HU85VpYUjq2jS9XTg==": {
+      "description": "Headline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Find the neighbourhood that fits you.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0dukMej1a6AF98+c+G6IQg==": {
+      "description": "Subline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "A map, your criteria, open data — to explore Turkey's mahalles without a universal score.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6Jcj3bSdJYpLZodU6hcQgQ==": {
+      "description": "Call to action opening the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Explore the map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9LlIuJmHsbfjXSDHJDlxAQ==": {
+      "description": "Call to action opening the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Describe what you are looking for",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zMZLinNitZ+JlmBvBAUx6w==": {
+      "description": "Title of the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw values",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2jkvby7kc9oKmMDfhn1H+w==": {
+      "description": "Subtitle of the data view, with the year and the raw-value promise",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "2024 edition · raw values with units, no composite score",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0KkpLNCYqZCQwzgc7AH3GA==": {
+      "description": "Column header of the neighborhood name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighborhood",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "T150YTHTRegXDT0WB8hLHA==": {
+      "description": "Column header of the district name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "District",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2EActZ3eg3Li7Y9CLuH4ew==": {
+      "description": "Column header of the cafés per square kilometer",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Cafés / km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zBo4aaR+KHHvIsOmhz5H6Q==": {
+      "description": "Column header of the walking distance to the metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metro on foot",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AuiGZ9KZG79XBfDahxW+gQ==": {
+      "description": "Column header of the green cover",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Greenery",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wdWYCZdzZXWclvibTOgrBg==": {
+      "description": "Accessible column header of the map action",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YouxXrTs+wXbwjB7MrrMUg==": {
+      "description": "Button opening the map view from a data row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "See on the map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "f3Shm3jobSPjE8Y38RF9iQ==": {
+      "description": "Sample search criterion chip: quietness",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Quiet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kCPlq36Zm85nwi/tBe4f/g==": {
+      "description": "Sample search criterion chip: cafés",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Cafés",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "yqZZXGSWo3OP45Qoo4NeCw==": {
+      "description": "Sample search criterion chip: nearby metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Close to the metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FN+wqTB8/wsgiZf05cKS2A==": {
+      "description": "Label of the café density stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Cafés / km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gq5Hd6vksdAdU1FqO/LFyA==": {
+      "description": "Label of the walking distance to the metro stat",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metro on foot",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vqF1S1fLWN03MZzaYmQN8g==": {
+      "description": "Label of the green cover stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Greenery",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5wPEsJbU9GcH6560K/tSvQ==": {
+      "description": "Title of the chat view, above the input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Describe the neighbourhood you are looking for",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KbUJEGx+mAOVwyxXOw8Ggw==": {
+      "description": "Placeholder of the chat input, with an example search",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E.g. a quiet neighbourhood with cafés, close to the metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SHbUe1fn5fdYZSxh5wWqiA==": {
+      "description": "Label of the chat send button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Send",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzspTH7fsLv/QzftLVs03A==": {
+      "description": "Note explaining that the chat input will be wired to the preference engine",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Theme preview: the input will be wired to the preference engine. Without AI, manual criteria and name search take over.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iuT1Klvd9NBGTDvgYSvpPw==": {
+      "description": "Badge shown on the first sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Best result",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EInlNtTZ/atO0WMeOSqfRw==": {
+      "description": "Button opening the map view for a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "See on the map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ssypMErUeSDYBtYyIZ4ksg==": {
+      "description": "Navigation label for the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Chat",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "NAlSczr65Ze7pVaFP29/9Q==": {
+      "description": "Navigation label for the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z6XwkFyPvbdcnhCq6YT55g==": {
+      "description": "Navigation label for the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Data",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "thjXmjKZP628PUxN/V3vlg==": {
+      "description": "Product name shown in the header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood Explorer",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "m2em2yjGamqEz/3/62hJaQ==": {
+      "description": "Accessibility label for the main navigation",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Main navigation",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "o2fM2ya6wKpG8xHSFPdvSQ==": {
+      "description": "Accessibility label for the theme picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Interface theme",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WY9Wmxzz/yu+eu1OvLwyHA==": {
+      "description": "Accessibility label for the language picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Interface language",
+          "variations": {}
+        }
+      ],
+      "types": []
+    }
+  }
+}

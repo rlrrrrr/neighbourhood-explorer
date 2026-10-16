@@ -1,0 +1,54 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Neighbourhood Explorer API",
+    "version": "1.0.0",
+    "description": "Contrat d'API versionné (source de vérité). Le frontend génère ses types depuis ce fichier."
+  },
+  "servers": [
+    { "url": "http://localhost:5080", "description": "API locale (dotnet run)" },
+    { "url": "http://localhost:5080", "description": "API conteneurisée (docker compose, port hôte 5080)" }
+  ],
+  "paths": {
+    "/api/v1/health": {
+      "get": {
+        "operationId": "getHealth",
+        "summary": "Santé du service : base, version des données, état de l'IA",
+        "responses": {
+          "200": {
+            "description": "État courant du service",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthResponse": {
+        "type": "object",
+        "required": ["database", "ai"],
+        "properties": {
+          "database": {
+            "type": "string",
+            "enum": ["ok", "unavailable"],
+            "description": "État de la base PostgreSQL/PostGIS"
+          },
+          "dataVersion": {
+            "type": ["string", "null"],
+            "description": "Version des données chargées par l'ETL, null tant que rien n'est chargé"
+          },
+          "ai": {
+            "type": "string",
+            "enum": ["disabled", "warming", "ready", "unavailable"],
+            "description": "État du modèle de décision (disabled quand AI_ENABLED est désactivé)"
+          }
+        }
+      }
+    }
+  }
+}

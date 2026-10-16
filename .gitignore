@@ -1,0 +1,33 @@
+# Environnement local (jamais commité ; modèle : .env.example)
+.env
+mise.local.toml
+
+# .NET
+backend/**/bin/
+backend/**/obj/
+*.user
+*.suo
+.vs/
+
+# Frontend
+node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Données ETL : hors Git sauf les manifestes de data/sources/
+data/raw/*
+data/processed/*
+data/normalized/*
+!data/**/.gitkeep
+
+# Divers
+docs/
+*.log
+.DS_Store
+Thumbs.db

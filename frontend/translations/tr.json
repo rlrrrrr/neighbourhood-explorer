@@ -1,0 +1,775 @@
+{
+  "fb-locale": "tr",
+  "translations": {
+    "f4Snd3h1kYhxcxdwF/7sfw==": {
+      "description": "Sample result sentence for the Moda neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sakin, bol kafeli, metro 10 dakikadan yakın.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sTJaJiKsOKaBHReEGJG7zQ==": {
+      "description": "Sample result sentence for the Cihangir neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Geceleri canlı, çok iyi ulaşım bağlantıları, ortalama yeşil alan.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "IAz9bhQBNgXYJ4IK5FAIog==": {
+      "description": "Sample result sentence for the Yeldeğirmeni neighborhood",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sakin ve popüler, kafe sayısı artıyor, metro biraz uzak.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RhKKygaH4G/v+0eDciNiKg==": {
+      "description": "Lens filter category: mobility",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ulaşım",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "E0VtZmvDKoWI/1At1hCjwg==": {
+      "description": "Lens filter category: local life",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yerel yaşam",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6RY/SWc3y5TuHG4gwxHjYg==": {
+      "description": "Lens filter category: nature",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Doğa",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KIQ12L1WCVj/uT2kMmZxKA==": {
+      "description": "Lens filter category: services",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hizmetler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Ev6SgGb6AhY/aydwJ0aLaw==": {
+      "description": "Lens layer: metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z2lriz15KkNPSWvxfHXU1w==": {
+      "description": "Lens layer: parks",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parklar",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4S96U+dLdyKaqVrzR0ETpQ==": {
+      "description": "Lens layer: isochrone",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İzokron",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8DOPvWJKUvedj3D+yBhqEQ==": {
+      "description": "Title of the sample ranking on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kriterlerine göre ilk 3",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HpPgpLng+C4a0ZCpnrRt+g==": {
+      "description": "Title of the lens panel on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mercek",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EWOQTKKuZoEdeLmooEIl4w==": {
+      "description": "Placeholder shown while the map is not loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita burada görünecek — Positron altlığı (OpenFreeMap)",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "XPtPjqJ91MUIOIjsi2+Y7Q==": {
+      "description": "Toggle showing the sample ranking",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sıralama",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J7oEcLGjwH8eGxkQ4hiDTQ==": {
+      "description": "Toggle showing the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mercek",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rr0l9mCnt8NTwNfmMrgqzA==": {
+      "description": "Label of the city field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Şehir",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KlaJ0PxFct/htjCZo79G+g==": {
+      "description": "Note explaining that no sample data has a time dimension",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Dönem gizli: güncel verilerin hiçbiri zaman boyutuna sahip değil",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HS8ubz9BcGaKlUt8ng5+cg==": {
+      "description": "Legend of the category filter group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kategoriler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ewI+AXQaV1H+04F/0IJEZw==": {
+      "description": "Label of the saved selection field in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Seçim",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "J/9TW2ZIJMzA3PNDs9TFjg==": {
+      "description": "Empty state of the saved selection in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz kayıtlı mahalle yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "R56DH+uA4v3NOU5K0JdzBg==": {
+      "description": "Legend of the basemap style group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Altlık",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7O+xvX1MIhjJQNhoOjXSyw==": {
+      "description": "Legend of the layer group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Katmanlar",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7IKaZK88KVLe3WDGLbUfiA==": {
+      "description": "Low end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Düşük",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8kW+AkhR64BD8RSqXwdxgA==": {
+      "description": "High end of the score ramp legend",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yüksek",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7N8K0r3NSotrI3syB0h3Gw==": {
+      "description": "Legend label for neighborhoods without data",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BJ/be6N/ugWqRZrcCTP4Pw==": {
+      "description": "Basemap and data attribution shown on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Altlık: OpenFreeMap · Veriler © OpenStreetMap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KBHUqy+CZ1/3kPlQKHva0g==": {
+      "description": "Alt text of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mavi gökyüzü altında, pembe çiçekler arasında Ayasofya",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xNleLHuZTf3gLxNP1p+XIQ==": {
+      "description": "Caption of the Ayasofya photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ayasofya",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CkmebRku3FLkwyzbVrhO7g==": {
+      "description": "Alt text of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Dolmabahçe Sarayı'nın kapısı Boğaz'a açılan bir manzara sunuyor",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BlbhwacvST+ImXuqqlG73g==": {
+      "description": "Caption of the Dolmabahçe photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Dolmabahçe",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9Drt6KOhYcJwhitMME7vWQ==": {
+      "description": "Alt text of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yükseklerden Boğaziçi'nin ve köprüsünün panoraması",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXzvmtlyC5Or4itRRvwe1Q==": {
+      "description": "Caption of the Bosphore photo on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Boğaziçi'nin üzerinde",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "hmj++EBiWQmV8NTY2zy/0g==": {
+      "description": "Title of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sohbet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VCZX7qnWz2d80qLA8VCIwA==": {
+      "description": "Title of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+SjfJaO2HumKZZtE7QoGBQ==": {
+      "description": "Title of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ThsQMZIVbJpv7wwGOSKoJA==": {
+      "description": "Description of the chat entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ne aradığını yaz, açıklamalı öneriler al.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DSx+lhDiROLLSOj6vmoqZQ==": {
+      "description": "Description of the map entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kendi kriterlerine göre renklendirilmiş mahalleler.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dzEPxORh2kpnwmjCocbMHg==": {
+      "description": "Description of the data entry card on the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ham değerler, birimler ve kaynaklar, sütun sütun.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "isOK3HU85VpYUjq2jS9XTg==": {
+      "description": "Headline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sana uyan mahalleyi bul.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0dukMej1a6AF98+c+G6IQg==": {
+      "description": "Subline of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bir harita, senin kriterlerin, açık veriler — Türkiye mahallelerini evrensel bir puan olmadan keşfetmek için.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6Jcj3bSdJYpLZodU6hcQgQ==": {
+      "description": "Call to action opening the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritayı keşfet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9LlIuJmHsbfjXSDHJDlxAQ==": {
+      "description": "Call to action opening the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ne aradığımızı tarif et",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zMZLinNitZ+JlmBvBAUx6w==": {
+      "description": "Title of the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ham değerler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2jkvby7kc9oKmMDfhn1H+w==": {
+      "description": "Subtitle of the data view, with the year and the raw-value promise",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "2024 dönemi · birimli ham değerler, bileşik puan yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0KkpLNCYqZCQwzgc7AH3GA==": {
+      "description": "Column header of the neighborhood name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "T150YTHTRegXDT0WB8hLHA==": {
+      "description": "Column header of the district name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçe",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2EActZ3eg3Li7Y9CLuH4ew==": {
+      "description": "Column header of the cafés per square kilometer",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kafe / km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zBo4aaR+KHHvIsOmhz5H6Q==": {
+      "description": "Column header of the walking distance to the metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yürüyerek metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AuiGZ9KZG79XBfDahxW+gQ==": {
+      "description": "Column header of the green cover",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yeşil alan",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wdWYCZdzZXWclvibTOgrBg==": {
+      "description": "Accessible column header of the map action",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YouxXrTs+wXbwjB7MrrMUg==": {
+      "description": "Button opening the map view from a data row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritada gör",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "f3Shm3jobSPjE8Y38RF9iQ==": {
+      "description": "Sample search criterion chip: quietness",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sakin",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kCPlq36Zm85nwi/tBe4f/g==": {
+      "description": "Sample search criterion chip: cafés",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kafeler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "yqZZXGSWo3OP45Qoo4NeCw==": {
+      "description": "Sample search criterion chip: nearby metro",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yakın metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FN+wqTB8/wsgiZf05cKS2A==": {
+      "description": "Label of the café density stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kafe / km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gq5Hd6vksdAdU1FqO/LFyA==": {
+      "description": "Label of the walking distance to the metro stat",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yürüyerek metro",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vqF1S1fLWN03MZzaYmQN8g==": {
+      "description": "Label of the green cover stat on a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yeşil alan",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5wPEsJbU9GcH6560K/tSvQ==": {
+      "description": "Title of the chat view, above the input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Aradığın mahalleyi tarif et",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KbUJEGx+mAOVwyxXOw8Ggw==": {
+      "description": "Placeholder of the chat input, with an example search",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Örn. metro yakınında kafeleri olan sessiz bir mahalle",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SHbUe1fn5fdYZSxh5wWqiA==": {
+      "description": "Label of the chat send button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gönder",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzspTH7fsLv/QzftLVs03A==": {
+      "description": "Note explaining that the chat input will be wired to the preference engine",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tema önizlemesi: giriş tercih motoruna bağlanacak. Yapay zeka olmadan elle seçilen kriterler ve ada göre arama devreye girer.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iuT1Klvd9NBGTDvgYSvpPw==": {
+      "description": "Badge shown on the first sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "En iyi sonuç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EInlNtTZ/atO0WMeOSqfRw==": {
+      "description": "Button opening the map view for a sample result",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritada gör",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ssypMErUeSDYBtYyIZ4ksg==": {
+      "description": "Navigation label for the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sohbet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "NAlSczr65Ze7pVaFP29/9Q==": {
+      "description": "Navigation label for the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z6XwkFyPvbdcnhCq6YT55g==": {
+      "description": "Navigation label for the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "thjXmjKZP628PUxN/V3vlg==": {
+      "description": "Product name shown in the header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood Explorer",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "m2em2yjGamqEz/3/62hJaQ==": {
+      "description": "Accessibility label for the main navigation",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ana gezinme",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "o2fM2ya6wKpG8xHSFPdvSQ==": {
+      "description": "Accessibility label for the theme picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Arayüz teması",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WY9Wmxzz/yu+eu1OvLwyHA==": {
+      "description": "Accessibility label for the language picker group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Arayüz dili",
+          "variations": {}
+        }
+      ],
+      "types": []
+    }
+  }
+}

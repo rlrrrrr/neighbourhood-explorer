@@ -1,0 +1,104 @@
+[tools]
+node = "22"
+dotnet = "9.0.319"
+python = "3.11"
+vp = "1.2.0"
+
+[env]
+_.file = [".env"]
+DOTNET_NOLOGO = "1"
+DOTNET_CLI_TELEMETRY_OPTOUT = "1"
+
+[tasks.bootstrap]
+description = "Restaurer les dépendances backend et installer les dépendances frontend"
+depends = ["bootstrap:backend", "bootstrap:frontend"]
+
+[tasks."bootstrap:backend"]
+description = "dotnet restore"
+dir = "backend"
+run = "dotnet restore"
+
+[tasks."bootstrap:frontend"]
+description = "vp install"
+dir = "frontend"
+run = "vp install"
+
+[tasks.start]
+description = "Démarrer la stack Docker (db + api)"
+run = "docker compose up -d --build"
+
+[tasks.stop]
+description = "Arrêter la stack Docker"
+run = "docker compose down"
+
+[tasks.etl]
+description = "Exécuter l'ETL (profil etl) : data/ vers PostGIS"
+run = "docker compose --profile etl run --rm etl"
+
+[tasks.clef]
+description = "CLEF-Flash seul (profil ai) ; premier démarrage : téléchargement du modèle"
+run = "docker compose --profile ai up -d clef"
+
+[tasks."dev:web"]
+description = "Serveur de dev frontend"
+dir = "frontend"
+run = "vp dev"
+
+[tasks."dev:api"]
+description = "API en local dotnet (nécessite la db : mise start)"
+dir = "backend"
+run = "dotnet run --project src/Api/Api.csproj"
+
+[tasks.check]
+description = "Format + lint frontend, vérification de format backend"
+depends = ["check:frontend", "check:backend"]
+
+[tasks."check:frontend"]
+description = "vp check"
+dir = "frontend"
+run = "vp check"
+
+[tasks."check:backend"]
+description = "dotnet format --verify-no-changes"
+dir = "backend"
+run = "dotnet format --verify-no-changes"
+
+[tasks.test]
+description = "Toutes les suites de tests (frontend + backend)"
+depends = ["test:frontend", "test:backend"]
+
+[tasks."test:frontend"]
+description = "vp test"
+dir = "frontend"
+run = "vp test"
+
+[tasks."test:backend"]
+description = "dotnet test"
+dir = "backend"
+run = "dotnet test"
+
+[tasks.build]
+description = "Builds de production (frontend + backend)"
+depends = ["build:frontend", "build:backend"]
+
+[tasks."build:frontend"]
+description = "vp build"
+dir = "frontend"
+run = "vp build"
+
+[tasks."build:backend"]
+description = "dotnet build"
+dir = "backend"
+run = "dotnet build"
+
+[tasks.smoke]
+description = "Smoke test CLEF sur /v1/systemone (CLEF_URL pour changer l'adresse)"
+run = "python benchmarks/clef/smoke-test.py"
+
+[tasks.i18n]
+description = "fbtee : collecter les chaînes source puis compiler les catalogues de traduction"
+dir = "frontend"
+run = [
+  "vp exec fbtee collect --src src --include-default-strings=false",
+  "vp exec fbtee translate",
+]

@@ -1,0 +1,2035 @@
+{
+  "childParentMappings": {},
+  "phrases": [
+    {
+      "hashToLeaf": {
+        "f4Snd3h1kYhxcxdwF/7sfw==": {
+          "desc": "Sample result sentence for the Moda neighborhood",
+          "text": "Calme, beaucoup de cafés, métro à moins de 10 minutes."
+        }
+      },
+      "filename": "src\\features\\neighborhood-detail\\sample-neighborhoods.ts",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 6,
+          "index": 415
+        },
+        "end": {
+          "line": 23,
+          "column": 7,
+          "index": 553
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample result sentence for the Moda neighborhood",
+          "text": "Calme, beaucoup de cafés, métro à moins de 10 minutes."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "sTJaJiKsOKaBHReEGJG7zQ==": {
+          "desc": "Sample result sentence for the Cihangir neighborhood",
+          "text": "Animé le soir, très bien desservi, verdure moyenne."
+        }
+      },
+      "filename": "src\\features\\neighborhood-detail\\sample-neighborhoods.ts",
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 6,
+          "index": 695
+        },
+        "end": {
+          "line": 35,
+          "column": 7,
+          "index": 834
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample result sentence for the Cihangir neighborhood",
+          "text": "Animé le soir, très bien desservi, verdure moyenne."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "IAz9bhQBNgXYJ4IK5FAIog==": {
+          "desc": "Sample result sentence for the Yeldeğirmeni neighborhood",
+          "text": "Résidentiel et populaire, cafés en hausse, métro un peu loin."
+        }
+      },
+      "filename": "src\\features\\neighborhood-detail\\sample-neighborhoods.ts",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 6,
+          "index": 981
+        },
+        "end": {
+          "line": 47,
+          "column": 7,
+          "index": 1134
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample result sentence for the Yeldeğirmeni neighborhood",
+          "text": "Résidentiel et populaire, cafés en hausse, métro un peu loin."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RhKKygaH4G/v+0eDciNiKg==": {
+          "desc": "Lens filter category: mobility",
+          "text": "Mobilité"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 34,
+          "index": 365
+        },
+        "end": {
+          "line": 11,
+          "column": 83,
+          "index": 414
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens filter category: mobility",
+          "text": "Mobilité"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "E0VtZmvDKoWI/1At1hCjwg==": {
+          "desc": "Lens filter category: local life",
+          "text": "Vie locale"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 36,
+          "index": 454
+        },
+        "end": {
+          "line": 12,
+          "column": 89,
+          "index": 507
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens filter category: local life",
+          "text": "Vie locale"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6RY/SWc3y5TuHG4gwxHjYg==": {
+          "desc": "Lens filter category: nature",
+          "text": "Nature"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 32,
+          "index": 543
+        },
+        "end": {
+          "line": 13,
+          "column": 77,
+          "index": 588
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens filter category: nature",
+          "text": "Nature"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "KIQ12L1WCVj/uT2kMmZxKA==": {
+          "desc": "Lens filter category: services",
+          "text": "Services"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 34,
+          "index": 626
+        },
+        "end": {
+          "line": 14,
+          "column": 83,
+          "index": 675
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens filter category: services",
+          "text": "Services"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Ev6SgGb6AhY/aydwJ0aLaw==": {
+          "desc": "Lens layer: metro",
+          "text": "Métro"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 18,
+          "column": 31,
+          "index": 736
+        },
+        "end": {
+          "line": 18,
+          "column": 64,
+          "index": 769
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens layer: metro",
+          "text": "Métro"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Z2lriz15KkNPSWvxfHXU1w==": {
+          "desc": "Lens layer: parks",
+          "text": "Parcs"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 31,
+          "index": 804
+        },
+        "end": {
+          "line": 19,
+          "column": 64,
+          "index": 837
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens layer: parks",
+          "text": "Parcs"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "4S96U+dLdyKaqVrzR0ETpQ==": {
+          "desc": "Lens layer: isochrone",
+          "text": "Isochrone"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 35,
+          "index": 876
+        },
+        "end": {
+          "line": 20,
+          "column": 76,
+          "index": 917
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Lens layer: isochrone",
+          "text": "Isochrone"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "8DOPvWJKUvedj3D+yBhqEQ==": {
+          "desc": "Title of the sample ranking on the map",
+          "text": "Top 3 pour tes critères"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 23,
+          "index": 1083
+        },
+        "end": {
+          "line": 26,
+          "column": 95,
+          "index": 1155
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the sample ranking on the map",
+          "text": "Top 3 pour tes critères"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "HpPgpLng+C4a0ZCpnrRt+g==": {
+          "desc": "Title of the lens panel on the map",
+          "text": "La lentille"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 20,
+          "index": 1177
+        },
+        "end": {
+          "line": 27,
+          "column": 76,
+          "index": 1233
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the lens panel on the map",
+          "text": "La lentille"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "EWOQTKKuZoEdeLmooEIl4w==": {
+          "desc": "Placeholder shown while the map is not loaded",
+          "text": "La carte s'affichera ici — fond Positron (OpenFreeMap)"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 10,
+          "index": 1432
+        },
+        "end": {
+          "line": 35,
+          "column": 16,
+          "index": 1574
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Placeholder shown while the map is not loaded",
+          "text": "La carte s'affichera ici — fond Positron (OpenFreeMap)"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "XPtPjqJ91MUIOIjsi2+Y7Q==": {
+          "desc": "Toggle showing the sample ranking",
+          "text": "Classement"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 46,
+          "column": 10,
+          "index": 1866
+        },
+        "end": {
+          "line": 46,
+          "column": 72,
+          "index": 1928
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Toggle showing the sample ranking",
+          "text": "Classement"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "J7oEcLGjwH8eGxkQ4hiDTQ==": {
+          "desc": "Toggle showing the lens panel",
+          "text": "La lentille"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 54,
+          "column": 10,
+          "index": 2145
+        },
+        "end": {
+          "line": 54,
+          "column": 69,
+          "index": 2204
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Toggle showing the lens panel",
+          "text": "La lentille"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "rr0l9mCnt8NTwNfmMrgqzA==": {
+          "desc": "Label of the city field in the lens panel",
+          "text": "Ville"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 87,
+          "column": 14,
+          "index": 3618
+        },
+        "end": {
+          "line": 87,
+          "column": 79,
+          "index": 3683
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the city field in the lens panel",
+          "text": "Ville"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "KlaJ0PxFct/htjCZo79G+g==": {
+          "desc": "Note explaining that no sample data has a time dimension",
+          "text": "Période masquée : aucune donnée en cours n'a de dimension temporelle"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 92,
+          "column": 12,
+          "index": 3865
+        },
+        "end": {
+          "line": 94,
+          "column": 18,
+          "index": 4036
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Note explaining that no sample data has a time dimension",
+          "text": "Période masquée : aucune donnée en cours n'a de dimension temporelle"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "HS8ubz9BcGaKlUt8ng5+cg==": {
+          "desc": "Legend of the category filter group in the lens panel",
+          "text": "Catégories"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 99,
+          "column": 14,
+          "index": 4180
+        },
+        "end": {
+          "line": 99,
+          "column": 96,
+          "index": 4262
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the category filter group in the lens panel",
+          "text": "Catégories"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ewI+AXQaV1H+04F/0IJEZw==": {
+          "desc": "Label of the saved selection field in the lens panel",
+          "text": "Sélection"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 116,
+          "column": 14,
+          "index": 4864
+        },
+        "end": {
+          "line": 116,
+          "column": 94,
+          "index": 4944
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the saved selection field in the lens panel",
+          "text": "Sélection"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "J/9TW2ZIJMzA3PNDs9TFjg==": {
+          "desc": "Empty state of the saved selection in the lens panel",
+          "text": "Aucun quartier enregistré pour l'instant"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 119,
+          "column": 14,
+          "index": 5040
+        },
+        "end": {
+          "line": 121,
+          "column": 20,
+          "index": 5183
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Empty state of the saved selection in the lens panel",
+          "text": "Aucun quartier enregistré pour l'instant"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "R56DH+uA4v3NOU5K0JdzBg==": {
+          "desc": "Legend of the basemap style group in the lens panel",
+          "text": "Fond de carte"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 127,
+          "column": 14,
+          "index": 5346
+        },
+        "end": {
+          "line": 127,
+          "column": 97,
+          "index": 5429
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the basemap style group in the lens panel",
+          "text": "Fond de carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7O+xvX1MIhjJQNhoOjXSyw==": {
+          "desc": "Legend of the layer group in the lens panel",
+          "text": "Couches"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 144,
+          "column": 14,
+          "index": 6071
+        },
+        "end": {
+          "line": 144,
+          "column": 83,
+          "index": 6140
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the layer group in the lens panel",
+          "text": "Couches"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7IKaZK88KVLe3WDGLbUfiA==": {
+          "desc": "Low end of the score ramp legend",
+          "text": "Faible"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 163,
+          "column": 10,
+          "index": 6811
+        },
+        "end": {
+          "line": 163,
+          "column": 67,
+          "index": 6868
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Low end of the score ramp legend",
+          "text": "Faible"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "8kW+AkhR64BD8RSqXwdxgA==": {
+          "desc": "High end of the score ramp legend",
+          "text": "Élevé"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 171,
+          "column": 10,
+          "index": 7200
+        },
+        "end": {
+          "line": 171,
+          "column": 67,
+          "index": 7257
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "High end of the score ramp legend",
+          "text": "Élevé"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7N8K0r3NSotrI3syB0h3Gw==": {
+          "desc": "Legend label for neighborhoods without data",
+          "text": "Pas de donnée"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 175,
+          "column": 10,
+          "index": 7363
+        },
+        "end": {
+          "line": 175,
+          "column": 85,
+          "index": 7438
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend label for neighborhoods without data",
+          "text": "Pas de donnée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "BJ/be6N/ugWqRZrcCTP4Pw==": {
+          "desc": "Basemap and data attribution shown on the map",
+          "text": "Fond de carte : OpenFreeMap · Données © OpenStreetMap"
+        }
+      },
+      "filename": "src\\features\\map-view\\map-view.tsx",
+      "loc": {
+        "start": {
+          "line": 180,
+          "column": 8,
+          "index": 7553
+        },
+        "end": {
+          "line": 182,
+          "column": 14,
+          "index": 7690
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Basemap and data attribution shown on the map",
+          "text": "Fond de carte : OpenFreeMap · Données © OpenStreetMap"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "KBHUqy+CZ1/3kPlQKHva0g==": {
+          "desc": "Alt text of the Ayasofya photo on the home page",
+          "text": "Ayasofya encadrée par des fleurs roses, sous un ciel bleu"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 6,
+          "index": 384
+        },
+        "end": {
+          "line": 19,
+          "column": 7,
+          "index": 524
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Alt text of the Ayasofya photo on the home page",
+          "text": "Ayasofya encadrée par des fleurs roses, sous un ciel bleu"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xNleLHuZTf3gLxNP1p+XIQ==": {
+          "desc": "Caption of the Ayasofya photo on the home page",
+          "text": "Ayasofya"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 19,
+          "index": 545
+        },
+        "end": {
+          "line": 20,
+          "column": 84,
+          "index": 610
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Caption of the Ayasofya photo on the home page",
+          "text": "Ayasofya"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "CkmebRku3FLkwyzbVrhO7g==": {
+          "desc": "Alt text of the Dolmabahçe photo on the home page",
+          "text": "Le portail du palais de Dolmabahçe ouvre une vue sur le Bosphore"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 6,
+          "index": 753
+        },
+        "end": {
+          "line": 30,
+          "column": 7,
+          "index": 902
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Alt text of the Dolmabahçe photo on the home page",
+          "text": "Le portail du palais de Dolmabahçe ouvre une vue sur le Bosphore"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "BlbhwacvST+ImXuqqlG73g==": {
+          "desc": "Caption of the Dolmabahçe photo on the home page",
+          "text": "Dolmabahçe"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 19,
+          "index": 923
+        },
+        "end": {
+          "line": 31,
+          "column": 88,
+          "index": 992
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Caption of the Dolmabahçe photo on the home page",
+          "text": "Dolmabahçe"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "9Drt6KOhYcJwhitMME7vWQ==": {
+          "desc": "Alt text of the Bosphore photo on the home page",
+          "text": "Panorama du Bosphore et de son pont, depuis les hauteurs"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 38,
+          "column": 6,
+          "index": 1138
+        },
+        "end": {
+          "line": 41,
+          "column": 7,
+          "index": 1277
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Alt text of the Bosphore photo on the home page",
+          "text": "Panorama du Bosphore et de son pont, depuis les hauteurs"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xXzvmtlyC5Or4itRRvwe1Q==": {
+          "desc": "Caption of the Bosphore photo on the home page",
+          "text": "Au-dessus du Bosphore"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 19,
+          "index": 1298
+        },
+        "end": {
+          "line": 42,
+          "column": 97,
+          "index": 1376
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Caption of the Bosphore photo on the home page",
+          "text": "Au-dessus du Bosphore"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "hmj++EBiWQmV8NTY2zy/0g==": {
+          "desc": "Title of the chat entry card on the home page",
+          "text": "Chat"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 13,
+          "index": 1574
+        },
+        "end": {
+          "line": 51,
+          "column": 73,
+          "index": 1634
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the chat entry card on the home page",
+          "text": "Chat"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "VCZX7qnWz2d80qLA8VCIwA==": {
+          "desc": "Title of the map entry card on the home page",
+          "text": "Carte"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 53,
+          "column": 13,
+          "index": 1665
+        },
+        "end": {
+          "line": 53,
+          "column": 73,
+          "index": 1725
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the map entry card on the home page",
+          "text": "Carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+SjfJaO2HumKZZtE7QoGBQ==": {
+          "desc": "Title of the data entry card on the home page",
+          "text": "Données"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 13,
+          "index": 1757
+        },
+        "end": {
+          "line": 55,
+          "column": 76,
+          "index": 1820
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the data entry card on the home page",
+          "text": "Données"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ThsQMZIVbJpv7wwGOSKoJA==": {
+          "desc": "Description of the chat entry card on the home page",
+          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 62,
+          "column": 13,
+          "index": 1940
+        },
+        "end": {
+          "line": 65,
+          "column": 7,
+          "index": 2082
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the chat entry card on the home page",
+          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "DSx+lhDiROLLSOj6vmoqZQ==": {
+          "desc": "Description of the map entry card on the home page",
+          "text": "Les quartiers colorés selon tes propres critères."
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 13,
+          "index": 2113
+        },
+        "end": {
+          "line": 70,
+          "column": 7,
+          "index": 2248
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the map entry card on the home page",
+          "text": "Les quartiers colorés selon tes propres critères."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "dzEPxORh2kpnwmjCocbMHg==": {
+          "desc": "Description of the data entry card on the home page",
+          "text": "Valeurs brutes, unités et sources, colonne par colonne."
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 72,
+          "column": 13,
+          "index": 2280
+        },
+        "end": {
+          "line": 75,
+          "column": 7,
+          "index": 2422
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the data entry card on the home page",
+          "text": "Valeurs brutes, unités et sources, colonne par colonne."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "isOK3HU85VpYUjq2jS9XTg==": {
+          "desc": "Headline of the home page",
+          "text": "Trouve le quartier qui te ressemble."
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 8,
+          "index": 2727
+        },
+        "end": {
+          "line": 83,
+          "column": 88,
+          "index": 2807
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Headline of the home page",
+          "text": "Trouve le quartier qui te ressemble."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "0dukMej1a6AF98+c+G6IQg==": {
+          "desc": "Subline of the home page",
+          "text": "Une carte, tes critères, des données ouvertes — pour explorer les mahalles de Turquie sans score universel."
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 86,
+          "column": 8,
+          "index": 2917
+        },
+        "end": {
+          "line": 89,
+          "column": 14,
+          "index": 3097
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subline of the home page",
+          "text": "Une carte, tes critères, des données ouvertes — pour explorer les mahalles de Turquie sans score universel."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6Jcj3bSdJYpLZodU6hcQgQ==": {
+          "desc": "Call to action opening the map view",
+          "text": "Explorer la carte"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 10,
+          "index": 3246
+        },
+        "end": {
+          "line": 93,
+          "column": 81,
+          "index": 3317
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Call to action opening the map view",
+          "text": "Explorer la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "9LlIuJmHsbfjXSDHJDlxAQ==": {
+          "desc": "Call to action opening the chat view",
+          "text": "Décrire ce qu'on cherche"
+        }
+      },
+      "filename": "src\\features\\home-view\\home-view.tsx",
+      "loc": {
+        "start": {
+          "line": 96,
+          "column": 10,
+          "index": 3426
+        },
+        "end": {
+          "line": 96,
+          "column": 89,
+          "index": 3505
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Call to action opening the chat view",
+          "text": "Décrire ce qu'on cherche"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "zMZLinNitZ+JlmBvBAUx6w==": {
+          "desc": "Title of the data view",
+          "text": "Valeurs brutes"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 8,
+          "index": 402
+        },
+        "end": {
+          "line": 12,
+          "column": 63,
+          "index": 457
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the data view",
+          "text": "Valeurs brutes"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2jkvby7kc9oKmMDfhn1H+w==": {
+          "desc": "Subtitle of the data view, with the year and the raw-value promise",
+          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 8,
+          "index": 533
+        },
+        "end": {
+          "line": 17,
+          "column": 14,
+          "index": 702
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the data view, with the year and the raw-value promise",
+          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "0KkpLNCYqZCQwzgc7AH3GA==": {
+          "desc": "Column header of the neighborhood name",
+          "text": "Quartier"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 16,
+          "index": 1032
+        },
+        "end": {
+          "line": 24,
+          "column": 81,
+          "index": 1097
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Column header of the neighborhood name",
+          "text": "Quartier"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "T150YTHTRegXDT0WB8hLHA==": {
+          "desc": "Column header of the district name",
+          "text": "District"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 16,
+          "index": 1187
+        },
+        "end": {
+          "line": 27,
+          "column": 77,
+          "index": 1248
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Column header of the district name",
+          "text": "District"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2EActZ3eg3Li7Y9CLuH4ew==": {
+          "desc": "Column header of the cafés per square kilometer",
+          "text": "Cafés / km²"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 16,
+          "index": 1349
+        },
+        "end": {
+          "line": 30,
+          "column": 93,
+          "index": 1426
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Column header of the cafés per square kilometer",
+          "text": "Cafés / km²"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "zBo4aaR+KHHvIsOmhz5H6Q==": {
+          "desc": "Column header of the walking distance to the metro",
+          "text": "Métro à pied"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 16,
+          "index": 1527
+        },
+        "end": {
+          "line": 33,
+          "column": 97,
+          "index": 1608
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Column header of the walking distance to the metro",
+          "text": "Métro à pied"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "AuiGZ9KZG79XBfDahxW+gQ==": {
+          "desc": "Column header of the green cover",
+          "text": "Verdure"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 16,
+          "index": 1709
+        },
+        "end": {
+          "line": 36,
+          "column": 74,
+          "index": 1767
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Column header of the green cover",
+          "text": "Verdure"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "wdWYCZdzZXWclvibTOgrBg==": {
+          "desc": "Accessible column header of the map action",
+          "text": "Carte"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 18,
+          "index": 1902
+        },
+        "end": {
+          "line": 40,
+          "column": 84,
+          "index": 1968
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible column header of the map action",
+          "text": "Carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "YouxXrTs+wXbwjB7MrrMUg==": {
+          "desc": "Button opening the map view from a data row",
+          "text": "Voir sur la carte"
+        }
+      },
+      "filename": "src\\features\\data-view\\data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 57,
+          "column": 20,
+          "index": 2834
+        },
+        "end": {
+          "line": 57,
+          "column": 99,
+          "index": 2913
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the map view from a data row",
+          "text": "Voir sur la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "f3Shm3jobSPjE8Y38RF9iQ==": {
+          "desc": "Sample search criterion chip: quietness",
+          "text": "Calme"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 31,
+          "index": 338
+        },
+        "end": {
+          "line": 13,
+          "column": 86,
+          "index": 393
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: quietness",
+          "text": "Calme"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "kCPlq36Zm85nwi/tBe4f/g==": {
+          "desc": "Sample search criterion chip: cafés",
+          "text": "Cafés"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 31,
+          "index": 428
+        },
+        "end": {
+          "line": 14,
+          "column": 82,
+          "index": 479
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: cafés",
+          "text": "Cafés"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "yqZZXGSWo3OP45Qoo4NeCw==": {
+          "desc": "Sample search criterion chip: nearby metro",
+          "text": "Métro proche"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 31,
+          "index": 514
+        },
+        "end": {
+          "line": 15,
+          "column": 96,
+          "index": 579
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: nearby metro",
+          "text": "Métro proche"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "FN+wqTB8/wsgiZf05cKS2A==": {
+          "desc": "Label of the café density stat on a sample result",
+          "text": "Cafés / km²"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 13,
+          "index": 763
+        },
+        "end": {
+          "line": 24,
+          "column": 84,
+          "index": 834
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the café density stat on a sample result",
+          "text": "Cafés / km²"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "gq5Hd6vksdAdU1FqO/LFyA==": {
+          "desc": "Label of the walking distance to the metro stat",
+          "text": "Métro à pied"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 13,
+          "index": 915
+        },
+        "end": {
+          "line": 29,
+          "column": 83,
+          "index": 985
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the walking distance to the metro stat",
+          "text": "Métro à pied"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "vqF1S1fLWN03MZzaYmQN8g==": {
+          "desc": "Label of the green cover stat on a sample result",
+          "text": "Verdure"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 13,
+          "index": 1066
+        },
+        "end": {
+          "line": 34,
+          "column": 79,
+          "index": 1132
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the green cover stat on a sample result",
+          "text": "Verdure"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "5wPEsJbU9GcH6560K/tSvQ==": {
+          "desc": "Title of the chat view, above the input",
+          "text": "Décris le quartier que tu cherches"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 8,
+          "index": 1417
+        },
+        "end": {
+          "line": 44,
+          "column": 100,
+          "index": 1509
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the chat view, above the input",
+          "text": "Décris le quartier que tu cherches"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "KbUJEGx+mAOVwyxXOw8Ggw==": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 23,
+          "index": 1843
+        },
+        "end": {
+          "line": 54,
+          "column": 11,
+          "index": 1995
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "SHbUe1fn5fdYZSxh5wWqiA==": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 57,
+          "column": 10,
+          "index": 2049
+        },
+        "end": {
+          "line": 57,
+          "column": 65,
+          "index": 2104
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "PzspTH7fsLv/QzftLVs03A==": {
+          "desc": "Note explaining that the chat input will be wired to the preference engine",
+          "text": "Aperçu du thème : la saisie sera reliée au moteur de préférences. Sans IA, les critères manuels et la recherche par nom prennent le relais."
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 71,
+          "column": 8,
+          "index": 2547
+        },
+        "end": {
+          "line": 74,
+          "column": 14,
+          "index": 2809
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Note explaining that the chat input will be wired to the preference engine",
+          "text": "Aperçu du thème : la saisie sera reliée au moteur de préférences. Sans IA, les critères manuels et la recherche par nom prennent le relais."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "iuT1Klvd9NBGTDvgYSvpPw==": {
+          "desc": "Badge shown on the first sample result",
+          "text": "Meilleur résultat"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 92,
+          "column": 18,
+          "index": 3589
+        },
+        "end": {
+          "line": 92,
+          "column": 92,
+          "index": 3663
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Badge shown on the first sample result",
+          "text": "Meilleur résultat"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "EInlNtTZ/atO0WMeOSqfRw==": {
+          "desc": "Button opening the map view for a sample result",
+          "text": "Voir sur la carte"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 106,
+          "column": 14,
+          "index": 4325
+        },
+        "end": {
+          "line": 106,
+          "column": 97,
+          "index": 4408
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the map view for a sample result",
+          "text": "Voir sur la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ssypMErUeSDYBtYyIZ4ksg==": {
+          "desc": "Navigation label for the chat view",
+          "text": "Chat"
+        }
+      },
+      "filename": "src\\app\\app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 13,
+          "index": 853
+        },
+        "end": {
+          "line": 20,
+          "column": 62,
+          "index": 902
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Navigation label for the chat view",
+          "text": "Chat"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "NAlSczr65Ze7pVaFP29/9Q==": {
+          "desc": "Navigation label for the map view",
+          "text": "Carte"
+        }
+      },
+      "filename": "src\\app\\app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 13,
+          "index": 933
+        },
+        "end": {
+          "line": 22,
+          "column": 62,
+          "index": 982
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Navigation label for the map view",
+          "text": "Carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Z6XwkFyPvbdcnhCq6YT55g==": {
+          "desc": "Navigation label for the data view",
+          "text": "Données"
+        }
+      },
+      "filename": "src\\app\\app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 13,
+          "index": 1014
+        },
+        "end": {
+          "line": 24,
+          "column": 65,
+          "index": 1066
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Navigation label for the data view",
+          "text": "Données"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "thjXmjKZP628PUxN/V3vlg==": {
+          "desc": "Product name shown in the header",
+          "text": "Neighbourhood Explorer"
+        }
+      },
+      "filename": "src\\app\\app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 10,
+          "index": 1783
+        },
+        "end": {
+          "line": 44,
+          "column": 83,
+          "index": 1856
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Product name shown in the header",
+          "text": "Neighbourhood Explorer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "m2em2yjGamqEz/3/62hJaQ==": {
+          "desc": "Accessibility label for the main navigation",
+          "text": "Navigation principale"
+        }
+      },
+      "filename": "src\\app\\app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 47,
+          "column": 22,
+          "index": 1910
+        },
+        "end": {
+          "line": 47,
+          "column": 97,
+          "index": 1985
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessibility label for the main navigation",
+          "text": "Navigation principale"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "WY9Wmxzz/yu+eu1OvLwyHA==": {
+          "desc": "Accessibility label for the language picker group",
+          "text": "Langue de l'interface"
+        }
+      },
+      "filename": "src\\app\\language-switcher.tsx",
+      "loc": {
+        "start": {
+          "line": 52,
+          "column": 22,
+          "index": 1719
+        },
+        "end": {
+          "line": 52,
+          "column": 103,
+          "index": 1800
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessibility label for the language picker group",
+          "text": "Langue de l'interface"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "o2fM2ya6wKpG8xHSFPdvSQ==": {
+          "desc": "Accessibility label for the theme picker group",
+          "text": "Thème de l'interface"
+        }
+      },
+      "filename": "src\\app\\theme-switcher.tsx",
+      "loc": {
+        "start": {
+          "line": 57,
+          "column": 22,
+          "index": 1856
+        },
+        "end": {
+          "line": 57,
+          "column": 99,
+          "index": 1933
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessibility label for the theme picker group",
+          "text": "Thème de l'interface"
+        }
+      }
+    }
+  ]
+}
