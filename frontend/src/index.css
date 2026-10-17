@@ -68,21 +68,23 @@ body::before {
   pointer-events: none;
 }
 
-:where(.grain) {
-  position: relative;
-  isolation: isolate;
-}
+@layer components {
+  :where(.grain) {
+    position: relative;
+    isolation: isolate;
+  }
 
-.grain::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  background-image: var(--grain-image);
-  background-size: 200px 200px;
-  opacity: var(--grain-opacity);
-  pointer-events: none;
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background-image: var(--grain-image);
+    background-size: 200px 200px;
+    opacity: var(--grain-opacity);
+    pointer-events: none;
+  }
 }
 
 [data-theme="moda"],
