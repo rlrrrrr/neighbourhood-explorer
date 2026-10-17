@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Activity, useState } from "react";
 import { fbt } from "fbtee";
 import { tv } from "tailwind-variants";
 import { Button } from "../../components/ui/button";
@@ -108,13 +108,13 @@ export function MapView({
         </aside>
       )}
 
-      {showLens && (
+      <Activity mode={showLens ? "visible" : "hidden"}>
         <LensPanel
           criteria={criteria}
           onRemoveCriterion={onRemoveCriterion}
           onClose={() => setShowLens(false)}
         />
-      )}
+      </Activity>
 
       <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 p-3 sm:p-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border bg-panel-bg px-3 py-2 text-xs backdrop-blur">
