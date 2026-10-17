@@ -770,6 +770,28 @@
         }
       ],
       "types": []
+    },
+    "/FJk/ygboVjnCum+t/tiOQ==": {
+      "description": "Product name shown in the footer",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood Explorer",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "aeZG3nRXrzjBFOjI0+vVLg==": {
+      "description": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التدرّج : Dia gradient، من تصميم",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

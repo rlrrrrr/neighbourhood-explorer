@@ -3,6 +3,7 @@ import { fbs, fbt, type TranslatedString } from "fbtee";
 import { applyTheme, readStoredTheme, type ThemeName } from "./theme";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
+import { SiteFooter } from "./site-footer";
 import { Button } from "../components/ui/button";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
