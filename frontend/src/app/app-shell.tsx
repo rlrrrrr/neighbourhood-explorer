@@ -35,7 +35,7 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
   }, [theme]);
 
   return (
-    <div className="flex min-h-screen flex-col text-text">
+    <div className="interface-enter flex min-h-screen flex-col text-text">
       <header className="grain sticky top-0 z-10 border-b border-border bg-panel-bg backdrop-blur">
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-center gap-x-2 gap-y-2 px-3 py-2 sm:grid-cols-[auto_1fr_auto] sm:gap-4 sm:px-8 sm:py-3">
           <button

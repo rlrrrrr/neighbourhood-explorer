@@ -50,4 +50,10 @@ describe("app shell", () => {
     expect(mapMarkup.match(/aria-current="page"/g)).toHaveLength(1);
     expect(mapMarkup).toMatch(/aria-current="page"[^>]*>Carte</);
   });
+
+  it("wraps the whole interface in the fade used when a language change remounts it", () => {
+    expect(renderShell("home")).toContain(
+      'class="interface-enter flex min-h-screen flex-col text-text"',
+    );
+  });
 });

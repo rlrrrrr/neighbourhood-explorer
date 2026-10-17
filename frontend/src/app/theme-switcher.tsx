@@ -56,7 +56,7 @@ export function ThemeSwitcher({ theme, onChange }: ThemeSwitcherProps) {
           id="theme-picker"
           role="group"
           aria-label={fbs("Thème de l'interface", "Accessibility label for the theme picker group")}
-          className="absolute end-0 z-20 mt-2 grid w-64 grid-cols-2 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
+          className="anchored-panel absolute end-0 z-20 mt-2 grid w-64 grid-cols-2 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
         >
           {ALL_THEME_NAMES.map((option) => (
             <button

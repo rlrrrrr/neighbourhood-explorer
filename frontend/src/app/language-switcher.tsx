@@ -54,7 +54,7 @@ export function LanguageSwitcher() {
             "Langue de l'interface",
             "Accessibility label for the language picker group",
           )}
-          className="absolute end-0 z-20 mt-2 grid w-44 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
+          className="anchored-panel absolute end-0 z-20 mt-2 grid w-44 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
         >
           {[...AVAILABLE_LANGUAGES].map(([language, label]) => (
             <button

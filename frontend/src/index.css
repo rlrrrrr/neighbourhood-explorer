@@ -2,6 +2,10 @@
 @import "tailwindcss";
 @import "./design-tokens/themes.css";
 
+@theme {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 @theme inline {
   --font-sans: "Plus Jakarta Sans Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-bg: var(--bg);
@@ -114,6 +118,58 @@ body::before {
 
 [dir="rtl"] .scroll-fade-inline-end {
   background-image: linear-gradient(to left, transparent, var(--bg));
+}
+
+/* Panneau attaché à son déclencheur : il grandit depuis le coin de la barre qui l'ouvre. */
+.anchored-panel {
+  --panel-enter-scale: 0.95;
+  transform-origin: top right;
+  transition:
+    opacity 150ms var(--ease-out),
+    transform 150ms var(--ease-out);
+}
+
+[dir="rtl"] .anchored-panel {
+  transform-origin: top left;
+}
+
+@starting-style {
+  .anchored-panel {
+    opacity: 0;
+    transform: scale(var(--panel-enter-scale));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchored-panel {
+    --panel-enter-scale: 1;
+    transition: opacity 150ms var(--ease-out);
+  }
+}
+
+/* Changement de langue : fbtee remonte tout son sous-arbre, le texte serait remplacé
+   d'un coup. L'écran reparaît en fondu et se pose d'un léger recul (origine en haut,
+   pour ne pas décoller la barre haute collante). */
+.interface-enter {
+  --interface-enter-scale: 0.98;
+  transform-origin: top center;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+@starting-style {
+  .interface-enter {
+    opacity: 0;
+    transform: scale(var(--interface-enter-scale));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interface-enter {
+    --interface-enter-scale: 1;
+    transition: opacity 150ms var(--ease-out);
+  }
 }
 
 .skeleton {
