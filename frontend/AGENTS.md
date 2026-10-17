@@ -33,7 +33,7 @@ Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le qua
 | Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod         |
 | Tests                | Vitest (tests de rendu en SSR via `renderToStaticMarkup`) ; Testing Library et fast-check **non installés**, décision reportée |
 
-Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; la validation d'entrée est dans `app/url-state.ts`.
+Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; `app/url-state.ts` porte le contrat : validation d'entrée, chemins, et l'analyse stricte de la requête (`parseSearchString` / `stringifySearchObject` — toute valeur reste une chaîne, encodage de formulaire UTF-8) branchée sur le routeur.
 
 ## Structure : un dossier par fonctionnalité
 

@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vite-plus/test";
 import {
+  parseSearchString,
   searchWithNeighborhood,
   searchWithTableSort,
+  stringifySearchObject,
   tableSortFromSearch,
   validateSearch,
   viewForPath,
@@ -28,6 +30,59 @@ describe("view paths", () => {
   it("falls back to the home view on an unknown path", () => {
     expect(viewForPath("/inconnu")).toBe("home");
     expect(viewForPath("/chat/")).toBe("home");
+  });
+});
+
+describe("query string codec", () => {
+  it("keeps every value a string, including digits", () => {
+    expect(parseSearchString("?neighborhood=12345")).toEqual({ neighborhood: "12345" });
+    expect(parseSearchString("?neighborhood=true")).toEqual({ neighborhood: "true" });
+    expect(parseSearchString("")).toEqual({});
+    expect(parseSearchString("?")).toEqual({});
+  });
+
+  it("decodes form encoding, plus signs and UTF-8", () => {
+    expect(parseSearchString("?neighborhood=Moda+Merkez")).toEqual({
+      neighborhood: "Moda Merkez",
+    });
+    expect(parseSearchString("?neighborhood=Yelde%C4%9Firmeni")).toEqual({
+      neighborhood: "Yeldeğirmeni",
+    });
+    expect(parseSearchString("?neighborhood=A%26B%3DC")).toEqual({ neighborhood: "A&B=C" });
+  });
+
+  it("encodes reserved characters and keeps the separators readable", () => {
+    expect(
+      stringifySearchObject({ neighborhood: "Moda Merkez", sort: "green", order: "desc" }),
+    ).toBe("?neighborhood=Moda+Merkez&sort=green&order=desc");
+    expect(stringifySearchObject({ neighborhood: "A&B=C" })).toBe("?neighborhood=A%26B%3DC");
+    expect(stringifySearchObject({ neighborhood: "Yeldeğirmeni" })).toBe(
+      "?neighborhood=Yelde%C4%9Firmeni",
+    );
+    expect(stringifySearchObject({})).toBe("");
+    expect(stringifySearchObject({ neighborhood: undefined })).toBe("");
+  });
+
+  it("rebuilds the same state through the whole URL round trip", () => {
+    const states: UrlSearch[] = [
+      {},
+      { neighborhood: "Cihangir" },
+      { neighborhood: "Yeldeğirmeni", sort: "cafes", order: "asc" },
+      { neighborhood: "Moda Merkez", sort: "green", order: "desc" },
+      { neighborhood: "A&B=C ?" },
+      { sort: "metro", order: "desc" },
+    ];
+
+    for (const state of states) {
+      const decoded = validateSearch(parseSearchString(stringifySearchObject(state)));
+      expect(decoded).toEqual(state);
+    }
+  });
+
+  it("drops what the schema does not accept", () => {
+    const decoded = validateSearch(parseSearchString("?neighborhood=&sort=Caf%C3%A9s&inconnu=1"));
+
+    expect(decoded).toEqual({});
   });
 });
 

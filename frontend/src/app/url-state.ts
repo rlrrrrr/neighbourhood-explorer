@@ -33,6 +33,21 @@ export function viewPath(view: ViewName): ViewPath {
   return VIEW_PATHS[view];
 }
 
+export function parseSearchString(searchString: string): Record<string, unknown> {
+  return Object.fromEntries(new URLSearchParams(searchString.replace(/^\?/, "")));
+}
+
+export function stringifySearchObject(search: UrlSearch): string {
+  const parameters = new URLSearchParams();
+  for (const [key, value] of Object.entries(search)) {
+    if (value !== undefined) {
+      parameters.set(key, value);
+    }
+  }
+  const query = parameters.toString();
+  return query.length > 0 ? `?${query}` : "";
+}
+
 export function viewForPath(pathname: string): ViewName {
   const entry = (Object.entries(VIEW_PATHS) as Array<[ViewName, ViewPath]>).find(
     ([, path]) => path === pathname,

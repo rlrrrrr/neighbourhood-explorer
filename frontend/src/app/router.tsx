@@ -1,6 +1,6 @@
 import { createRootRoute, createRoute, createRouter } from "@tanstack/react-router";
 import { AppLayout, ChatRoute, DataRoute, HomeRoute, MapRoute, UnknownPageView } from "./routes";
-import { validateSearch } from "./url-state";
+import { parseSearchString, stringifySearchObject, validateSearch } from "./url-state";
 
 const rootRoute = createRootRoute({
   validateSearch,
@@ -31,7 +31,11 @@ const dataRoute = createRoute({
 
 const routeTree = rootRoute.addChildren([homeRoute, chatRoute, mapRoute, dataRoute]);
 
-export const router = createRouter({ routeTree });
+export const router = createRouter({
+  routeTree,
+  parseSearch: parseSearchString,
+  stringifySearch: stringifySearchObject,
+});
 
 declare module "@tanstack/react-router" {
   interface Register {
