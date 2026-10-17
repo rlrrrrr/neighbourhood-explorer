@@ -770,6 +770,17 @@
         }
       ],
       "types": []
+    },
+    "0tLNynzA3Y7aprM/EdAkeA==": {
+      "description": "Close button of the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Lens panelini kapat",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }
