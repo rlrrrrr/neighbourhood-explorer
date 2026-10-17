@@ -6,10 +6,12 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Neighbourhood Explorer</title>
     <script>
-      const storedTheme = window.localStorage.getItem("theme");
-      if (storedTheme && /^[a-z]+$/.test(storedTheme)) {
-        document.documentElement.dataset.theme = storedTheme;
-      }
+      try {
+        const storedTheme = window.localStorage.getItem("theme:v1");
+        if (storedTheme && /^[a-z]+$/.test(storedTheme)) {
+          document.documentElement.dataset.theme = storedTheme;
+        }
+      } catch {}
     </script>
   </head>
   <body>

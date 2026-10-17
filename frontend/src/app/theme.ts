@@ -28,7 +28,7 @@ export const THEME_DISPLAY_NAMES: Record<ThemeName, string> = {
   gece: "Gece",
 };
 
-const THEME_STORAGE_KEY = "theme";
+const THEME_STORAGE_KEY = "theme:v1";
 
 function isThemeName(value: string | null): value is ThemeName {
   return ALL_THEME_NAMES.includes(value as ThemeName);
@@ -38,15 +38,24 @@ export function readStoredTheme(): ThemeName {
   if (typeof window === "undefined") {
     return "moda";
   }
-  const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
-  return isThemeName(stored) ? stored : "moda";
+  try {
+    const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+    return isThemeName(stored) ? stored : "moda";
+  } catch {
+    // `localStorage` peut lever (navigation privée, stockage désactivé) : on retombe sur le thème par défaut.
+    return "moda";
+  }
 }
 
 export function applyTheme(theme: ThemeName): void {
   const root = document.documentElement;
   root.classList.add("theme-switching");
   root.dataset.theme = theme;
-  window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  try {
+    window.localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // Même raison : le thème s'applique quand même pour la session en cours.
+  }
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
       root.classList.remove("theme-switching");
