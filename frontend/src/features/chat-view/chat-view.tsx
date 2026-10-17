@@ -1,5 +1,6 @@
-import { fbs, fbt, type TranslatedString } from "fbtee";
+import { fbt, type TranslatedString } from "fbtee";
 import { Button } from "../../components/ui/button";
+import { ChatComposer } from "./chat-composer";
 import {
   SAMPLE_NEIGHBORHOODS,
   type SampleNeighborhood,
@@ -43,19 +44,8 @@ export function ChatView({ onShowOnMap }: ChatViewProps) {
       <h1 className="text-2xl font-bold tracking-tight text-balance">
         <fbt desc="Title of the chat view, above the input">Décris le quartier que tu cherches</fbt>
       </h1>
-      <div className="mt-6 flex gap-2">
-        <input
-          id="chat-command"
-          className="min-h-11 flex-1 rounded-full border border-border bg-surface px-5 text-sm outline-none focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-          type="text"
-          placeholder={fbs(
-            "Ex. un quartier calme avec des cafés, près du métro",
-            "Placeholder of the chat input, with an example search",
-          )}
-        />
-        <Button type="button">
-          <fbt desc="Label of the chat send button">Envoyer</fbt>
-        </Button>
+      <div className="mt-6">
+        <ChatComposer />
       </div>
       <ul className="mt-4 flex flex-wrap gap-2">
         {SAMPLE_CRITERIA.map((criterion) => (

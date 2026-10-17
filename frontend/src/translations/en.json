@@ -52,6 +52,8 @@
     "4RW4d": "Greenery",
     "3qV7cj": "Map",
     "2bxYVO": "See on the map",
+    "3atXrM": "E.g. a quiet neighbourhood with cafés, close to the metro",
+    "1xqeuP": "Send",
     "2qxXwz": "Quiet",
     "1klktp": "Cafés",
     "381TDG": "Close to the metro",
@@ -59,8 +61,6 @@
     "UhpBh": "Metro on foot",
     "227mTW": "Greenery",
     "wvp8r": "Describe the neighbourhood you are looking for",
-    "3atXrM": "E.g. a quiet neighbourhood with cafés, close to the metro",
-    "1xqeuP": "Send",
     "2JnN1V": "Theme preview: the input will be wired to the preference engine. Without AI, manual criteria and name search take over.",
     "29aAC8": "Best result",
     "3cl0gi": "See on the map",
@@ -70,6 +70,8 @@
     "v11nV": "Neighbourhood Explorer",
     "4vtvXk": "Main navigation",
     "2zFbAk": "Interface language",
+    "1AKB5f": "Neighbourhood Explorer",
+    "1tmq3l": "Gradient: Dia gradient, designed by",
     "1DGjXL": "Interface theme"
   }
 }

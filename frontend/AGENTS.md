@@ -36,7 +36,7 @@ Noms de fichiers explicites en **kebab-case**, **aucun barrel file** (pas de `in
 
 ```
 src/
-├── app/                      # coque : barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher)
+├── app/                      # coque : barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher), pied de page (site-footer, dia-gradient)
 ├── features/
 │   ├── criteria/             # état des critères partagé, encodage dans l'URL
 │   ├── chat-view/            # vue Chat
@@ -118,6 +118,8 @@ TanStack Charts est pré-alpha : version épinglée, tout l'usage dans `features
 Les composants ne contiennent **aucune couleur en dur** : ils utilisent des jetons nommés par **rôle** (`--color-text`, `--color-surface`, `--color-action`, `--color-accent`…). **Onze thèmes** dérivés de combinaisons précises de `colors.json` (Sanzo Wada) sur fonds blanc/noir — clairs : Moda (défaut), Güneş, Lale, Gül, Sabah, Kandil, Çarşı, Yeditepe ; sombres : Fener, Sis, Gece — chacun un jeu complet de jetons, catalogués avec leurs contrastes dans `../docs/product-direction.md` §3. Le sélecteur (`app/theme-switcher.tsx`) affiche nom + pastilles d'aperçu via `--preview-bg` / `--preview-action` / `--preview-highlight` (blocs `[data-theme-preview]` dans `themes.css`, valeurs hors thème actif). Ids de thème : `ALL_THEME_NAMES` dans `app/theme.ts` — toute nouvelle paire `[data-theme]` / `[data-theme-preview]` doit y être ajoutée (avec son nom dans `THEME_DISPLAY_NAMES` du même fichier). Les valeurs hex viennent du fichier `colors.json` de Sanzo Wada ; ne pas en inventer. Contraste minimal : 4,5 pour le texte courant, 3 pour les grands éléments. Une couleur d'accent claire (ex. Sulpher Yellow, Seashell Pink) ne sert **jamais** de texte : uniquement en aplat avec libellé sombre.
 
 **Profondeur** : les cartes et panneaux portent les jetons d'ombre en couches `--elevated` / `--elevated-hover` (utilités `shadow-elevated`, `shadow-elevated-hover`) plutôt que des bordures ; les commandes (champs, chips, légende) gardent `--border` à 3:1. Le grain de film (tuile SVG 200 px dans `index.css`, `--grain-image`) est **quasi invisible** (`--grain-opacity: 0,04`) : un réglage unique, jamais une texture marquée — sans `mix-blend-mode` (annulé sur blanc/noir purs) et jamais sur un conteneur défilant (le `::after` défilerait avec le contenu).
+
+**Images** : passer par `components/ui/feathered-image.tsx` (`FeatheredImage`) plutôt qu'un `<img>` nu. Il combine un skeleton à sheen pendant le chargement, un reveal `blur-[6px]` → net en 500 ms, et une lisière organique (masque SVG turbulence + flou, `--feathered-image-mask` dans `index.css`) qui fait fondre le bord de l'image dans le fond — CSS pur, jamais de WebGL ; transitions neutralisées sous `prefers-reduced-motion`.
 
 Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la rampe reste discernable sur le fond de Positron (les crans actuels vont de 1,23 à 1,9 sur blanc : contour sur les polygones obligatoire ; à retester sur la vraie carte).
 

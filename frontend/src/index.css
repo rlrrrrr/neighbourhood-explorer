@@ -41,6 +41,8 @@ body {
   color-scheme: light;
   --grain-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='g' x='0' y='0' width='100%25' height='100%25'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
   --grain-opacity: 0.04;
+  /* Lisière ondulante : turbulence + flou font fondre le bord de l'image dans le fond, sans WebGL. */
+  --feathered-image-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 360 160' preserveAspectRatio='none'%3E%3Cfilter id='f' x='-8%25' y='-15%25' width='116%25' height='130%25' color-interpolation-filters='sRGB'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.02 0.045' numOctaves='2' seed='7' result='n'/%3E%3CfeDisplacementMap in='SourceGraphic' in2='n' scale='10' xChannelSelector='R' yChannelSelector='G' result='d'/%3E%3CfeGaussianBlur in='d' stdDeviation='4'/%3E%3C/filter%3E%3Crect x='8' y='8' width='344' height='144' rx='14' fill='white' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 html {
@@ -84,6 +86,42 @@ body::before {
     background-size: 200px 200px;
     opacity: var(--grain-opacity);
     pointer-events: none;
+  }
+}
+
+.feathered-image {
+  -webkit-mask-image: var(--feathered-image-mask);
+  mask-image: var(--feathered-image-mask);
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+}
+
+.skeleton {
+  background-color: var(--surface);
+  background-image: linear-gradient(
+    100deg,
+    transparent 30%,
+    color-mix(in oklab, var(--text) 8%, transparent) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  animation: 1.6s ease-in-out infinite skeleton-sheen;
+}
+
+@keyframes skeleton-sheen {
+  0% {
+    background-position: 150% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
   }
 }
 

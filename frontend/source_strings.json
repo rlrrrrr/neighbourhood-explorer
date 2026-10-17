@@ -13,12 +13,12 @@
         "start": {
           "line": 20,
           "column": 6,
-          "index": 434
+          "index": 415
         },
         "end": {
           "line": 23,
           "column": 7,
-          "index": 575
+          "index": 553
         }
       },
       "project": "",
@@ -42,12 +42,12 @@
         "start": {
           "line": 32,
           "column": 6,
-          "index": 726
+          "index": 695
         },
         "end": {
           "line": 35,
           "column": 7,
-          "index": 868
+          "index": 834
         }
       },
       "project": "",
@@ -71,12 +71,12 @@
         "start": {
           "line": 44,
           "column": 6,
-          "index": 1024
+          "index": 981
         },
         "end": {
           "line": 47,
           "column": 7,
-          "index": 1180
+          "index": 1134
         }
       },
       "project": "",
@@ -100,12 +100,12 @@
         "start": {
           "line": 21,
           "column": 34,
-          "index": 796
+          "index": 816
         },
         "end": {
           "line": 21,
           "column": 83,
-          "index": 845
+          "index": 865
         }
       },
       "project": "",
@@ -129,12 +129,12 @@
         "start": {
           "line": 22,
           "column": 36,
-          "index": 885
+          "index": 906
         },
         "end": {
           "line": 22,
           "column": 89,
-          "index": 938
+          "index": 959
         }
       },
       "project": "",
@@ -158,12 +158,12 @@
         "start": {
           "line": 23,
           "column": 32,
-          "index": 974
+          "index": 996
         },
         "end": {
           "line": 23,
           "column": 77,
-          "index": 1019
+          "index": 1041
         }
       },
       "project": "",
@@ -187,12 +187,12 @@
         "start": {
           "line": 24,
           "column": 34,
-          "index": 1057
+          "index": 1080
         },
         "end": {
           "line": 24,
           "column": 83,
-          "index": 1106
+          "index": 1129
         }
       },
       "project": "",
@@ -216,12 +216,12 @@
         "start": {
           "line": 28,
           "column": 31,
-          "index": 1167
+          "index": 1194
         },
         "end": {
           "line": 28,
           "column": 64,
-          "index": 1200
+          "index": 1227
         }
       },
       "project": "",
@@ -245,12 +245,12 @@
         "start": {
           "line": 29,
           "column": 31,
-          "index": 1235
+          "index": 1263
         },
         "end": {
           "line": 29,
           "column": 64,
-          "index": 1268
+          "index": 1296
         }
       },
       "project": "",
@@ -274,12 +274,12 @@
         "start": {
           "line": 30,
           "column": 35,
-          "index": 1307
+          "index": 1336
         },
         "end": {
           "line": 30,
           "column": 76,
-          "index": 1348
+          "index": 1377
         }
       },
       "project": "",
@@ -301,14 +301,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 64,
+          "line": 63,
           "column": 16,
-          "index": 2344
+          "index": 2401
         },
         "end": {
-          "line": 64,
+          "line": 63,
           "column": 72,
-          "index": 2400
+          "index": 2457
         }
       },
       "project": "",
@@ -330,14 +330,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 65,
+          "line": 64,
           "column": 21,
-          "index": 2423
+          "index": 2481
         },
         "end": {
-          "line": 65,
+          "line": 64,
           "column": 94,
-          "index": 2496
+          "index": 2554
         }
       },
       "project": "",
@@ -359,14 +359,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 97,
+          "line": 96,
           "column": 12,
-          "index": 3791
+          "index": 3881
         },
         "end": {
-          "line": 97,
+          "line": 96,
           "column": 77,
-          "index": 3856
+          "index": 3946
         }
       },
       "project": "",
@@ -388,14 +388,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 102,
+          "line": 101,
           "column": 10,
-          "index": 4023
+          "index": 4118
         },
         "end": {
-          "line": 104,
+          "line": 103,
           "column": 16,
-          "index": 4190
+          "index": 4287
         }
       },
       "project": "",
@@ -418,13 +418,13 @@
       "loc": {
         "start": {
           "line": 107,
-          "column": 30,
-          "index": 4235
+          "column": 18,
+          "index": 4346
         },
         "end": {
           "line": 107,
-          "column": 104,
-          "index": 4309
+          "column": 92,
+          "index": 4420
         }
       },
       "project": "",
@@ -446,14 +446,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 129,
           "column": 12,
-          "index": 5052
+          "index": 5270
         },
         "end": {
-          "line": 123,
+          "line": 129,
           "column": 92,
-          "index": 5132
+          "index": 5350
         }
       },
       "project": "",
@@ -475,14 +475,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 126,
+          "line": 132,
           "column": 12,
-          "index": 5252
+          "index": 5473
         },
         "end": {
-          "line": 128,
+          "line": 134,
           "column": 18,
-          "index": 5391
+          "index": 5614
         }
       },
       "project": "",
@@ -504,14 +504,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 132,
-          "column": 30,
-          "index": 5457
+          "line": 139,
+          "column": 18,
+          "index": 5695
         },
         "end": {
-          "line": 132,
-          "column": 105,
-          "index": 5532
+          "line": 139,
+          "column": 93,
+          "index": 5770
         }
       },
       "project": "",
@@ -533,14 +533,14 @@
       "filename": "src\\features\\map-view\\lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 147,
+          "line": 155,
           "column": 30,
-          "index": 6066
+          "index": 6329
         },
         "end": {
-          "line": 147,
+          "line": 155,
           "column": 91,
-          "index": 6127
+          "index": 6390
         }
       },
       "project": "",
@@ -564,12 +564,12 @@
         "start": {
           "line": 10,
           "column": 23,
-          "index": 401
+          "index": 410
         },
         "end": {
           "line": 10,
           "column": 95,
-          "index": 473
+          "index": 482
         }
       },
       "project": "",
@@ -593,12 +593,12 @@
         "start": {
           "line": 16,
           "column": 10,
-          "index": 672
+          "index": 687
         },
         "end": {
           "line": 18,
           "column": 16,
-          "index": 814
+          "index": 831
         }
       },
       "project": "",
@@ -622,12 +622,12 @@
         "start": {
           "line": 29,
           "column": 10,
-          "index": 1106
+          "index": 1134
         },
         "end": {
           "line": 29,
           "column": 72,
-          "index": 1168
+          "index": 1196
         }
       },
       "project": "",
@@ -651,12 +651,12 @@
         "start": {
           "line": 37,
           "column": 10,
-          "index": 1385
+          "index": 1421
         },
         "end": {
           "line": 37,
           "column": 69,
-          "index": 1444
+          "index": 1480
         }
       },
       "project": "",
@@ -680,12 +680,12 @@
         "start": {
           "line": 65,
           "column": 10,
-          "index": 2616
+          "index": 2680
         },
         "end": {
           "line": 65,
           "column": 67,
-          "index": 2673
+          "index": 2737
         }
       },
       "project": "",
@@ -709,12 +709,12 @@
         "start": {
           "line": 73,
           "column": 10,
-          "index": 3005
+          "index": 3077
         },
         "end": {
           "line": 73,
           "column": 67,
-          "index": 3062
+          "index": 3134
         }
       },
       "project": "",
@@ -738,12 +738,12 @@
         "start": {
           "line": 77,
           "column": 10,
-          "index": 3168
+          "index": 3244
         },
         "end": {
           "line": 77,
           "column": 85,
-          "index": 3243
+          "index": 3319
         }
       },
       "project": "",
@@ -767,12 +767,12 @@
         "start": {
           "line": 82,
           "column": 8,
-          "index": 3358
+          "index": 3439
         },
         "end": {
           "line": 84,
           "column": 14,
-          "index": 3495
+          "index": 3578
         }
       },
       "project": "",
@@ -794,14 +794,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 16,
+          "line": 17,
           "column": 6,
-          "index": 399
+          "index": 470
         },
         "end": {
-          "line": 19,
+          "line": 20,
           "column": 7,
-          "index": 542
+          "index": 613
         }
       },
       "project": "",
@@ -823,14 +823,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 21,
           "column": 19,
-          "index": 564
+          "index": 635
         },
         "end": {
-          "line": 20,
+          "line": 21,
           "column": 84,
-          "index": 629
+          "index": 700
         }
       },
       "project": "",
@@ -852,14 +852,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 27,
+          "line": 28,
           "column": 6,
-          "index": 779
+          "index": 850
         },
         "end": {
-          "line": 30,
+          "line": 31,
           "column": 7,
-          "index": 931
+          "index": 1002
         }
       },
       "project": "",
@@ -881,14 +881,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 31,
+          "line": 32,
           "column": 19,
-          "index": 953
+          "index": 1024
         },
         "end": {
-          "line": 31,
+          "line": 32,
           "column": 88,
-          "index": 1022
+          "index": 1093
         }
       },
       "project": "",
@@ -910,14 +910,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 6,
-          "index": 1175
+          "index": 1246
         },
         "end": {
-          "line": 41,
+          "line": 42,
           "column": 7,
-          "index": 1317
+          "index": 1388
         }
       },
       "project": "",
@@ -939,14 +939,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 42,
+          "line": 43,
           "column": 19,
-          "index": 1339
+          "index": 1410
         },
         "end": {
-          "line": 42,
+          "line": 43,
           "column": 97,
-          "index": 1417
+          "index": 1488
         }
       },
       "project": "",
@@ -968,14 +968,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 51,
+          "line": 52,
           "column": 13,
-          "index": 1624
+          "index": 1695
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 73,
-          "index": 1684
+          "index": 1755
         }
       },
       "project": "",
@@ -997,14 +997,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 13,
-          "index": 1717
+          "index": 1788
         },
         "end": {
-          "line": 53,
+          "line": 54,
           "column": 73,
-          "index": 1777
+          "index": 1848
         }
       },
       "project": "",
@@ -1026,14 +1026,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 55,
+          "line": 56,
           "column": 13,
-          "index": 1811
+          "index": 1882
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 76,
-          "index": 1874
+          "index": 1945
         }
       },
       "project": "",
@@ -1055,14 +1055,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 62,
+          "line": 63,
           "column": 13,
-          "index": 2001
+          "index": 2072
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 7,
-          "index": 2146
+          "index": 2217
         }
       },
       "project": "",
@@ -1084,14 +1084,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 13,
-          "index": 2179
+          "index": 2250
         },
         "end": {
-          "line": 70,
+          "line": 71,
           "column": 7,
-          "index": 2317
+          "index": 2388
         }
       },
       "project": "",
@@ -1113,14 +1113,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 72,
+          "line": 73,
           "column": 13,
-          "index": 2351
+          "index": 2422
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 7,
-          "index": 2496
+          "index": 2567
         }
       },
       "project": "",
@@ -1142,14 +1142,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 83,
+          "line": 84,
           "column": 8,
-          "index": 2809
+          "index": 2880
         },
         "end": {
-          "line": 83,
+          "line": 84,
           "column": 88,
-          "index": 2889
+          "index": 2960
         }
       },
       "project": "",
@@ -1171,14 +1171,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 86,
+          "line": 87,
           "column": 8,
-          "index": 3002
+          "index": 3073
         },
         "end": {
-          "line": 89,
+          "line": 90,
           "column": 14,
-          "index": 3185
+          "index": 3256
         }
       },
       "project": "",
@@ -1200,14 +1200,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 93,
+          "line": 94,
           "column": 10,
-          "index": 3338
+          "index": 3409
         },
         "end": {
-          "line": 93,
+          "line": 94,
           "column": 81,
-          "index": 3409
+          "index": 3480
         }
       },
       "project": "",
@@ -1229,14 +1229,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 96,
+          "line": 97,
           "column": 10,
-          "index": 3521
+          "index": 3592
         },
         "end": {
-          "line": 96,
+          "line": 97,
           "column": 89,
-          "index": 3600
+          "index": 3671
         }
       },
       "project": "",
@@ -1260,12 +1260,12 @@
         "start": {
           "line": 12,
           "column": 8,
-          "index": 413
+          "index": 402
         },
         "end": {
           "line": 12,
           "column": 63,
-          "index": 468
+          "index": 457
         }
       },
       "project": "",
@@ -1289,12 +1289,12 @@
         "start": {
           "line": 15,
           "column": 8,
-          "index": 547
+          "index": 533
         },
         "end": {
           "line": 17,
           "column": 14,
-          "index": 718
+          "index": 702
         }
       },
       "project": "",
@@ -1318,12 +1318,12 @@
         "start": {
           "line": 24,
           "column": 16,
-          "index": 1055
+          "index": 1032
         },
         "end": {
           "line": 24,
           "column": 81,
-          "index": 1120
+          "index": 1097
         }
       },
       "project": "",
@@ -1347,12 +1347,12 @@
         "start": {
           "line": 27,
           "column": 16,
-          "index": 1213
+          "index": 1187
         },
         "end": {
           "line": 27,
           "column": 77,
-          "index": 1274
+          "index": 1248
         }
       },
       "project": "",
@@ -1376,12 +1376,12 @@
         "start": {
           "line": 30,
           "column": 16,
-          "index": 1378
+          "index": 1349
         },
         "end": {
           "line": 30,
           "column": 93,
-          "index": 1455
+          "index": 1426
         }
       },
       "project": "",
@@ -1405,12 +1405,12 @@
         "start": {
           "line": 33,
           "column": 16,
-          "index": 1559
+          "index": 1527
         },
         "end": {
           "line": 33,
           "column": 97,
-          "index": 1640
+          "index": 1608
         }
       },
       "project": "",
@@ -1434,12 +1434,12 @@
         "start": {
           "line": 36,
           "column": 16,
-          "index": 1744
+          "index": 1709
         },
         "end": {
           "line": 36,
           "column": 74,
-          "index": 1802
+          "index": 1767
         }
       },
       "project": "",
@@ -1463,12 +1463,12 @@
         "start": {
           "line": 40,
           "column": 18,
-          "index": 1941
+          "index": 1902
         },
         "end": {
           "line": 40,
           "column": 84,
-          "index": 2007
+          "index": 1968
         }
       },
       "project": "",
@@ -1492,12 +1492,12 @@
         "start": {
           "line": 57,
           "column": 20,
-          "index": 2890
+          "index": 2834
         },
         "end": {
           "line": 57,
           "column": 99,
-          "index": 2969
+          "index": 2913
         }
       },
       "project": "",
@@ -1511,6 +1511,64 @@
     },
     {
       "hashToLeaf": {
+        "KbUJEGx+mAOVwyxXOw8Ggw==": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-composer.tsx",
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 21,
+          "index": 1750
+        },
+        "end": {
+          "line": 58,
+          "column": 9,
+          "index": 1899
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "SHbUe1fn5fdYZSxh5wWqiA==": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-composer.tsx",
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 20,
+          "index": 2193
+        },
+        "end": {
+          "line": 65,
+          "column": 67,
+          "index": 2240
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "f3Shm3jobSPjE8Y38RF9iQ==": {
           "desc": "Sample search criterion chip: quietness",
           "text": "Calme"
@@ -1519,14 +1577,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 13,
+          "line": 14,
           "column": 31,
-          "index": 350
+          "index": 394
         },
         "end": {
-          "line": 13,
+          "line": 14,
           "column": 86,
-          "index": 405
+          "index": 449
         }
       },
       "project": "",
@@ -1548,14 +1606,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 14,
+          "line": 15,
           "column": 31,
-          "index": 441
+          "index": 485
         },
         "end": {
-          "line": 14,
+          "line": 15,
           "column": 82,
-          "index": 492
+          "index": 536
         }
       },
       "project": "",
@@ -1577,14 +1635,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 15,
+          "line": 16,
           "column": 31,
-          "index": 528
+          "index": 572
         },
         "end": {
-          "line": 15,
+          "line": 16,
           "column": 96,
-          "index": 593
+          "index": 637
         }
       },
       "project": "",
@@ -1606,14 +1664,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 24,
+          "line": 25,
           "column": 13,
-          "index": 786
+          "index": 830
         },
         "end": {
-          "line": 24,
+          "line": 25,
           "column": 84,
-          "index": 857
+          "index": 901
         }
       },
       "project": "",
@@ -1635,14 +1693,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 29,
+          "line": 30,
           "column": 13,
-          "index": 943
+          "index": 987
         },
         "end": {
-          "line": 29,
+          "line": 30,
           "column": 83,
-          "index": 1013
+          "index": 1057
         }
       },
       "project": "",
@@ -1664,14 +1722,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 13,
-          "index": 1099
+          "index": 1143
         },
         "end": {
-          "line": 34,
+          "line": 35,
           "column": 79,
-          "index": 1165
+          "index": 1209
         }
       },
       "project": "",
@@ -1693,14 +1751,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 8,
-          "index": 1460
+          "index": 1504
         },
         "end": {
-          "line": 44,
+          "line": 45,
           "column": 100,
-          "index": 1552
+          "index": 1596
         }
       },
       "project": "",
@@ -1714,64 +1772,6 @@
     },
     {
       "hashToLeaf": {
-        "KbUJEGx+mAOVwyxXOw8Ggw==": {
-          "desc": "Placeholder of the chat input, with an example search",
-          "text": "Ex. un quartier calme avec des cafés, près du métro"
-        }
-      },
-      "filename": "src\\features\\chat-view\\chat-view.tsx",
-      "loc": {
-        "start": {
-          "line": 51,
-          "column": 23,
-          "index": 1893
-        },
-        "end": {
-          "line": 54,
-          "column": 11,
-          "index": 2048
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Placeholder of the chat input, with an example search",
-          "text": "Ex. un quartier calme avec des cafés, près du métro"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "SHbUe1fn5fdYZSxh5wWqiA==": {
-          "desc": "Label of the chat send button",
-          "text": "Envoyer"
-        }
-      },
-      "filename": "src\\features\\chat-view\\chat-view.tsx",
-      "loc": {
-        "start": {
-          "line": 57,
-          "column": 10,
-          "index": 2105
-        },
-        "end": {
-          "line": 57,
-          "column": 65,
-          "index": 2160
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Label of the chat send button",
-          "text": "Envoyer"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "PzspTH7fsLv/QzftLVs03A==": {
           "desc": "Note explaining that the chat input will be wired to the preference engine",
           "text": "Aperçu du thème : la saisie sera reliée au moteur de préférences. Sans IA, les critères manuels et la recherche par nom prennent le relais."
@@ -1780,14 +1780,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 71,
+          "line": 61,
           "column": 8,
-          "index": 2617
+          "index": 2103
         },
         "end": {
-          "line": 74,
+          "line": 64,
           "column": 14,
-          "index": 2882
+          "index": 2368
         }
       },
       "project": "",
@@ -1809,14 +1809,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 92,
+          "line": 82,
           "column": 18,
-          "index": 3680
+          "index": 3166
         },
         "end": {
-          "line": 92,
+          "line": 82,
           "column": 92,
-          "index": 3754
+          "index": 3240
         }
       },
       "project": "",
@@ -1838,14 +1838,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 106,
+          "line": 96,
           "column": 14,
-          "index": 4430
+          "index": 3916
         },
         "end": {
-          "line": 106,
+          "line": 96,
           "column": 97,
-          "index": 4513
+          "index": 3999
         }
       },
       "project": "",
@@ -1867,14 +1867,14 @@
       "filename": "src\\app\\app-shell.tsx",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 21,
           "column": 13,
-          "index": 872
+          "index": 917
         },
         "end": {
-          "line": 20,
+          "line": 21,
           "column": 62,
-          "index": 921
+          "index": 966
         }
       },
       "project": "",
@@ -1896,14 +1896,14 @@
       "filename": "src\\app\\app-shell.tsx",
       "loc": {
         "start": {
-          "line": 22,
+          "line": 23,
           "column": 13,
-          "index": 954
+          "index": 999
         },
         "end": {
-          "line": 22,
+          "line": 23,
           "column": 62,
-          "index": 1003
+          "index": 1048
         }
       },
       "project": "",
@@ -1925,14 +1925,14 @@
       "filename": "src\\app\\app-shell.tsx",
       "loc": {
         "start": {
-          "line": 24,
+          "line": 25,
           "column": 13,
-          "index": 1037
+          "index": 1082
         },
         "end": {
-          "line": 24,
+          "line": 25,
           "column": 65,
-          "index": 1089
+          "index": 1134
         }
       },
       "project": "",
@@ -1954,14 +1954,14 @@
       "filename": "src\\app\\app-shell.tsx",
       "loc": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 10,
-          "index": 1826
+          "index": 1871
         },
         "end": {
-          "line": 44,
+          "line": 45,
           "column": 83,
-          "index": 1899
+          "index": 1944
         }
       },
       "project": "",
@@ -1983,14 +1983,14 @@
       "filename": "src\\app\\app-shell.tsx",
       "loc": {
         "start": {
-          "line": 47,
+          "line": 48,
           "column": 22,
-          "index": 1956
+          "index": 2001
         },
         "end": {
-          "line": 47,
+          "line": 48,
           "column": 97,
-          "index": 2031
+          "index": 2076
         }
       },
       "project": "",
@@ -2014,12 +2014,12 @@
         "start": {
           "line": 52,
           "column": 22,
-          "index": 1770
+          "index": 1719
         },
         "end": {
           "line": 55,
           "column": 11,
-          "index": 1891
+          "index": 1837
         }
       },
       "project": "",
@@ -2028,6 +2028,64 @@
         "t": {
           "desc": "Accessibility label for the language picker group",
           "text": "Langue de l'interface"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "/FJk/ygboVjnCum+t/tiOQ==": {
+          "desc": "Product name shown in the footer",
+          "text": "Neighbourhood Explorer"
+        }
+      },
+      "filename": "src\\app\\site-footer.tsx",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 17,
+          "index": 503
+        },
+        "end": {
+          "line": 11,
+          "column": 90,
+          "index": 576
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Product name shown in the footer",
+          "text": "Neighbourhood Explorer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "aeZG3nRXrzjBFOjI0+vVLg==": {
+          "desc": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+          "text": "Gradient : Dia gradient, conçu par"
+        }
+      },
+      "filename": "src\\app\\site-footer.tsx",
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 10,
+          "index": 697
+        },
+        "end": {
+          "line": 16,
+          "column": 16,
+          "index": 859
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+          "text": "Gradient : Dia gradient, conçu par"
         }
       }
     },
@@ -2043,12 +2101,12 @@
         "start": {
           "line": 57,
           "column": 22,
-          "index": 1912
+          "index": 1856
         },
         "end": {
           "line": 57,
           "column": 99,
-          "index": 1989
+          "index": 1933
         }
       },
       "project": "",
