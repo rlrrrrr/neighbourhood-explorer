@@ -770,6 +770,39 @@
         }
       ],
       "types": []
+    },
+    "0tLNynzA3Y7aprM/EdAkeA==": {
+      "description": "Close button of the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Close the lens panel",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/FJk/ygboVjnCum+t/tiOQ==": {
+      "description": "Product name shown in the footer",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood Explorer",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "aeZG3nRXrzjBFOjI0+vVLg==": {
+      "description": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gradient: Dia gradient, designed by",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

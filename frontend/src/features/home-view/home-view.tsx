@@ -1,5 +1,6 @@
 import { fbs, fbt, type TranslatedString } from "fbtee";
 import { Button } from "../../components/ui/button";
+import { FeatheredImage } from "../../components/ui/feathered-image";
 
 type EntryView = "chat" | "map" | "data";
 
@@ -102,12 +103,12 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             key={photo.key}
             className="grain overflow-hidden rounded-2xl bg-surface text-left shadow-elevated"
           >
-            <img
+            <FeatheredImage
               src={`/assets/${photo.file}`}
               alt={photo.alt()}
               loading="lazy"
               decoding="async"
-              className="h-44 w-full object-cover sm:h-52"
+              className="h-44 w-full sm:h-52"
             />
             <p className="px-3 py-2 text-xs text-text-secondary">
               <span className="font-semibold text-text">{photo.caption()}</span>
