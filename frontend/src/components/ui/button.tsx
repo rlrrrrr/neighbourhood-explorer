@@ -11,10 +11,10 @@ const buttonVariants = tv({
       ghost: "bg-transparent text-text hover:bg-surface",
     },
     size: {
-      sm: "min-h-9 px-4 text-sm",
+      sm: "min-h-11 px-4 text-sm sm:min-h-9",
       md: "min-h-11 px-5 text-sm",
       lg: "min-h-12 px-7 text-base",
-      icon: "size-9",
+      icon: "size-11 sm:size-9",
     },
   },
   defaultVariants: {

@@ -29,4 +29,12 @@ describe("lens panel", () => {
     expect(markup.match(/type="checkbox"/g)).toHaveLength(7);
     expect(markup).not.toMatch(/type="checkbox"[^>]*checked/);
   });
+
+  it("keeps the filter controls reachable by keyboard under a styled indicator", () => {
+    const markup = renderToStaticMarkup(<LensPanel onClose={() => {}} />);
+
+    expect(markup.match(/peer sr-only/g)).toHaveLength(10);
+    expect(markup).toContain("has-[:checked]:bg-highlight");
+    expect(markup).toContain("peer-checked:opacity-100");
+  });
 });

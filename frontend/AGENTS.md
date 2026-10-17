@@ -14,21 +14,26 @@ Trois vues de même niveau, reliées par une barre de navigation toujours visibl
 | **Carte**   | Quartiers colorés, filtres manuels, fiche de quartier, isochrones                                                            |
 | **Données** | Tableau de classement : une colonne par critère, triable, valeurs brutes avec unité et date                                  |
 
+Navigation mobile : la barre reste **en haut**, sur deux lignes sous `sm` (marque et sélecteurs, puis les trois vues), ce qui supprime le débordement horizontal. La variante **barre en bas est abandonnée** (décision du 17/10/2026) ; `../docs/ux-ui-review.md` reste le tableau de suivi (document de travail local : `docs/` est ignoré par Git).
+
+Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et le tri du tableau (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue.
+
 ## Pile
 
-| Domaine              | Choix                                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Outillage            | Vite+ (`vp`) pour tout : dev, vérifications, tests, build                                                                |
-| UI                   | React + TypeScript en mode strict                                                                                        |
-| Internationalisation | fbtee 5 : traductions inline (`<fbt>`, `fbt()`, `fbs()`), compilées par le plugin Vite ; locales fr (source), en, tr, ar |
-| Données serveur      | TanStack Query                                                                                                           |
-| Carte                | mapcn (composants React au-dessus de MapLibre GL), fond OpenFreeMap                                                      |
-| Graphiques           | TanStack Charts (**pré-alpha, version épinglée, usage isolé** dans `features/charts`)                                    |
-| Styles               | Tailwind + shadcn/ui ; variantes avec tailwind-variants                                                                  |
-| Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod   |
-| Tests                | Vitest, Testing Library, fast-check                                                                                      |
+| Domaine              | Choix                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Outillage            | Vite+ (`vp`) pour tout : dev, vérifications, tests, build                                                                      |
+| Routage              | TanStack Router (routes de code dans `app/router.tsx` et `app/routes.tsx` ; validation d'URL dans `app/url-state.ts`)          |
+| UI                   | React + TypeScript en mode strict                                                                                              |
+| Internationalisation | fbtee 5 : traductions inline (`<fbt>`, `fbt()`, `fbs()`), compilées par le plugin Vite ; locales fr (source), en, tr, ar       |
+| Données serveur      | TanStack Query                                                                                                                 |
+| Carte                | mapcn (composants React au-dessus de MapLibre GL), fond OpenFreeMap                                                            |
+| Graphiques           | TanStack Charts (**pré-alpha, version épinglée, usage isolé** dans `features/charts`)                                          |
+| Styles               | Tailwind + shadcn/ui ; variantes avec tailwind-variants                                                                        |
+| Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod         |
+| Tests                | Vitest (tests de rendu en SSR via `renderToStaticMarkup`) ; Testing Library et fast-check **non installés**, décision reportée |
 
-Routage : non décidé (ajouter une dépendance demande l'accord de l'humain). L'état partagé vit dans l'URL.
+Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; la validation d'entrée est dans `app/url-state.ts`.
 
 ## Structure : un dossier par fonctionnalité
 
@@ -36,7 +41,7 @@ Noms de fichiers explicites en **kebab-case**, **aucun barrel file** (pas de `in
 
 ```
 src/
-├── app/                      # coque : barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher), pied de page (site-footer, dia-gradient)
+├── app/                      # coque : routage (router, routes, url-state), barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher)
 ├── features/
 │   ├── criteria/             # état des critères partagé, encodage dans l'URL
 │   ├── chat-view/            # vue Chat
@@ -104,7 +109,7 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 
 ## Vue Données
 
-- Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne, valeurs brutes avec unité, date d'observation et source accessible.
+- Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne (état dans l'URL, donc partageable), valeurs brutes avec unité, date d'observation et source accessible.
 - La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`).
 - Chaque ligne a un bouton **« Voir sur la carte »**.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
@@ -153,8 +158,9 @@ Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la 
 ## Tests
 
 - Vitest + Testing Library ; **pas de bibliothèque de mocking**. MSW : décision ouverte (`../docs/product.md`) ; en attendant, tester contre les vraies implémentations ou une implémentation de remplacement réelle de l'API.
-- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total).
-- Locales : `src/app/locale-context.test.tsx` charge les vrais catalogues compilés (en, tr, ar) et vérifie le rendu de textes visibles ; `App.test.tsx` vérifie le rendu sans provider (langue source, déterministe). Aucun mock du runtime fbtee.
+- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total). `fast-check` n'est pas installé : en attendant, l'aller-retour est couvert par des cas explicites (`app/url-state.test.ts`).
+- Locales : `src/app/locale-context.test.tsx` charge les vrais catalogues compilés (en, tr, ar) et vérifie le rendu de textes visibles ; `src/app/app-shell.test.tsx` vérifie le rendu de la coque sans provider (langue source, déterministe). Aucun mock du runtime fbtee.
+- La coque `AppShell` est **présentational** (`view`, `onNavigate`, `children`) pour rester rendable en SSR sans DOM : le routeur vit dans `app/router.tsx` / `app/routes.tsx`, jamais dans `main.tsx` ni dans les vues. Tester le contrat d'URL dans `app/url-state.ts` plutôt que le câblage du routeur.
 - Déboguer avec `vp test run <chemin/complet.test.ts>` ; suite complète une seule fois avant le résumé final.
 
 ## Commandes

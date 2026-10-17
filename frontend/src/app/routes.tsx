@@ -1,0 +1,109 @@
+import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-router";
+import { fbt } from "fbtee";
+import { AppShell } from "./app-shell";
+import {
+  searchWithNeighborhood,
+  searchWithTableSort,
+  tableSortFromSearch,
+  viewForPath,
+  viewPath,
+  type ViewName,
+} from "./url-state";
+import { HomeView } from "../features/home-view/home-view";
+import { ChatView } from "../features/chat-view/chat-view";
+import { MapView } from "../features/map-view/map-view";
+import { DataView } from "../features/data-view/data-view";
+
+function useOpenView() {
+  const navigate = useNavigate();
+  return (view: ViewName) => {
+    void navigate({ to: viewPath(view), search: (previous) => previous });
+  };
+}
+
+function useOpenMapAt() {
+  const navigate = useNavigate();
+  return (neighborhood: string) => {
+    void navigate({
+      to: viewPath("map"),
+      search: (previous) => searchWithNeighborhood(previous, neighborhood),
+    });
+  };
+}
+
+export function AppLayout() {
+  const location = useLocation();
+  const openView = useOpenView();
+
+  return (
+    <AppShell view={viewForPath(location.pathname)} onNavigate={openView}>
+      <Outlet />
+    </AppShell>
+  );
+}
+
+export function HomeRoute() {
+  const openView = useOpenView();
+
+  return <HomeView onNavigate={openView} />;
+}
+
+export function ChatRoute() {
+  const openMapAt = useOpenMapAt();
+
+  return <ChatView onShowOnMap={openMapAt} />;
+}
+
+export function MapRoute() {
+  const navigate = useNavigate();
+  const search = useSearch({ from: "/map" });
+
+  return (
+    <MapView
+      selectedNeighborhood={search.neighborhood ?? null}
+      onSelectNeighborhood={(neighborhood) => {
+        void navigate({
+          to: viewPath("map"),
+          search: (previous) => searchWithNeighborhood(previous, neighborhood),
+        });
+      }}
+    />
+  );
+}
+
+export function DataRoute() {
+  const navigate = useNavigate();
+  const search = useSearch({ from: "/data" });
+  const openMapAt = useOpenMapAt();
+
+  return (
+    <DataView
+      sort={tableSortFromSearch(search)}
+      onSortChange={(sort) => {
+        void navigate({
+          to: viewPath("data"),
+          search: (previous) => searchWithTableSort(previous, sort),
+        });
+      }}
+      onShowOnMap={openMapAt}
+    />
+  );
+}
+
+export function UnknownPageView() {
+  const unknownPageTitle = fbt(
+    "Cette page n'existe pas",
+    "Title of the page shown when the URL matches no view",
+  );
+  const unknownPageHint = fbt(
+    "Choisis une vue dans la barre de navigation.",
+    "Hint shown under the title of the unknown page",
+  );
+
+  return (
+    <div className="mx-auto flex w-full max-w-md flex-1 flex-col justify-center gap-2 px-4 py-12 sm:px-8">
+      <h1 className="text-2xl font-bold tracking-tight text-balance">{unknownPageTitle}</h1>
+      <p className="text-sm text-text-secondary">{unknownPageHint}</p>
+    </div>
+  );
+}

@@ -1,5 +1,5 @@
 import { fbs } from "fbtee";
-import { useRef, useState, type ChangeEvent, type FormEvent, type KeyboardEvent } from "react";
+import { useState, type ChangeEvent, type FormEvent, type KeyboardEvent } from "react";
 import { Button } from "../../components/ui/button";
 
 interface ChatComposerProps {
@@ -8,16 +8,9 @@ interface ChatComposerProps {
 
 export function ChatComposer({ onSubmit }: ChatComposerProps) {
   const [draft, setDraft] = useState("");
-  const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
-  function resizeToContent(textArea: HTMLTextAreaElement) {
-    textArea.style.height = "auto";
-    textArea.style.height = `${textArea.scrollHeight}px`;
-  }
 
   function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
     setDraft(event.target.value);
-    resizeToContent(event.currentTarget);
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -27,9 +20,6 @@ export function ChatComposer({ onSubmit }: ChatComposerProps) {
       return;
     }
     setDraft("");
-    if (textAreaRef.current) {
-      textAreaRef.current.style.height = "auto";
-    }
     onSubmit(text);
   }
 
@@ -46,17 +36,20 @@ export function ChatComposer({ onSubmit }: ChatComposerProps) {
       className="flex items-end gap-2 rounded-3xl border border-border bg-surface p-2 focus-within:outline-2 focus-within:outline-offset-2 focus-within:outline-action"
     >
       <textarea
-        ref={textAreaRef}
         id="chat-command"
         value={draft}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
         rows={1}
+        aria-label={fbs(
+          "Décris le quartier que tu cherches",
+          "Accessibility label of the chat input",
+        )}
         placeholder={fbs(
           "Ex. un quartier calme avec des cafés, près du métro",
           "Placeholder of the chat input, with an example search",
         )}
-        className="max-h-40 min-h-11 flex-1 resize-none overflow-y-auto bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-text-secondary"
+        className="field-sizing-content max-h-40 min-h-11 flex-1 resize-none overflow-y-auto bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-text-secondary"
       />
       <Button
         type="submit"

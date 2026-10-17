@@ -1,9 +1,15 @@
 <!doctype html>
-<html lang="fr" data-theme="bosphore">
+<html lang="fr" data-theme="moda">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Neighbourhood Explorer</title>
+    <script>
+      const storedTheme = window.localStorage.getItem("theme");
+      if (storedTheme && /^[a-z]+$/.test(storedTheme)) {
+        document.documentElement.dataset.theme = storedTheme;
+      }
+    </script>
   </head>
   <body>
     <div id="root"></div>

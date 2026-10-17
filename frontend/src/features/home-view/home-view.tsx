@@ -93,11 +93,24 @@ export function HomeView({ onNavigate }: HomeViewProps) {
         <Button size="lg" onClick={() => onNavigate("map")}>
           <fbt desc="Call to action opening the map view">Explorer la carte</fbt>
         </Button>
-        <Button size="lg" variant="outline" onClick={() => onNavigate("chat")}>
-          <fbt desc="Call to action opening the chat view">Décrire ce qu'on cherche</fbt>
-        </Button>
       </div>
       <ul className="mt-14 grid w-full gap-3 sm:grid-cols-3">
+        {HOME_ENTRY_VIEWS.map((view) => (
+          <li key={view}>
+            <button
+              type="button"
+              onClick={() => onNavigate(view)}
+              className="grain h-full w-full cursor-pointer rounded-2xl bg-surface p-5 text-left shadow-elevated transition-shadow hover:shadow-elevated-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action motion-safe:active:scale-[0.98]"
+            >
+              <span className="font-semibold">{entryTitle(view)}</span>
+              <span className="mt-1 block text-sm text-text-secondary">
+                {entryDescription(view)}
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+      <ul className="mt-16 grid w-full gap-3 sm:grid-cols-3">
         {HOME_PHOTOS.map((photo) => (
           <li
             key={photo.key}
@@ -115,22 +128,6 @@ export function HomeView({ onNavigate }: HomeViewProps) {
               <span aria-hidden="true"> · </span>
               {photo.credit}
             </p>
-          </li>
-        ))}
-      </ul>
-      <ul className="mt-16 grid w-full gap-3 sm:grid-cols-3">
-        {HOME_ENTRY_VIEWS.map((view) => (
-          <li key={view}>
-            <button
-              type="button"
-              onClick={() => onNavigate(view)}
-              className="grain h-full w-full cursor-pointer rounded-2xl bg-surface p-5 text-left shadow-elevated transition-shadow hover:shadow-elevated-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-            >
-              <span className="font-semibold">{entryTitle(view)}</span>
-              <span className="mt-1 block text-sm text-text-secondary">
-                {entryDescription(view)}
-              </span>
-            </button>
           </li>
         ))}
       </ul>

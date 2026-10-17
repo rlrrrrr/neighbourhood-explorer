@@ -40,8 +40,8 @@ export function ThemeSwitcher({ theme, onChange }: ThemeSwitcherProps) {
       <Button
         variant="ghost"
         size="sm"
-        aria-haspopup="true"
         aria-expanded={open}
+        aria-controls="theme-picker"
         onClick={() => setOpen((current) => !current)}
       >
         <span aria-hidden="true" className="flex gap-0.5">
@@ -53,9 +53,10 @@ export function ThemeSwitcher({ theme, onChange }: ThemeSwitcherProps) {
       </Button>
       {open && (
         <div
+          id="theme-picker"
           role="group"
           aria-label={fbs("Thème de l'interface", "Accessibility label for the theme picker group")}
-          className="absolute right-0 z-20 mt-2 grid w-64 grid-cols-2 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
+          className="absolute end-0 z-20 mt-2 grid w-64 grid-cols-2 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
         >
           {ALL_THEME_NAMES.map((option) => (
             <button

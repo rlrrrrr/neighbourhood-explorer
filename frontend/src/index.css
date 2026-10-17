@@ -98,6 +98,24 @@ body::before {
   mask-repeat: no-repeat;
 }
 
+/* Valeur manquante : la couleur seule ne la distingue pas d'un cran de la rampe. */
+.no-data-pattern {
+  background-color: var(--no-data);
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--text) 40%, transparent) 0 2px,
+    transparent 2px 5px
+  );
+}
+
+.scroll-fade-inline-end {
+  background-image: linear-gradient(to right, transparent, var(--bg));
+}
+
+[dir="rtl"] .scroll-fade-inline-end {
+  background-image: linear-gradient(to left, transparent, var(--bg));
+}
+
 .skeleton {
   background-color: var(--surface);
   background-image: linear-gradient(

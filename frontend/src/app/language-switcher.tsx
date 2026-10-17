@@ -37,8 +37,8 @@ export function LanguageSwitcher() {
       <Button
         variant="ghost"
         size="sm"
-        aria-haspopup="true"
         aria-expanded={open}
+        aria-controls="language-picker"
         onClick={() => setOpen((current) => !current)}
       >
         <span aria-hidden="true" className="font-mono text-xs">
@@ -48,12 +48,13 @@ export function LanguageSwitcher() {
       </Button>
       {open && (
         <div
+          id="language-picker"
           role="group"
           aria-label={fbs(
             "Langue de l'interface",
             "Accessibility label for the language picker group",
           )}
-          className="absolute right-0 z-20 mt-2 grid w-44 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
+          className="absolute end-0 z-20 mt-2 grid w-44 gap-1 rounded-2xl border border-border bg-panel-bg p-2 shadow-elevated backdrop-blur"
         >
           {[...AVAILABLE_LANGUAGES].map(([language, label]) => (
             <button

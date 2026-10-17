@@ -452,17 +452,6 @@
       ],
       "types": []
     },
-    "9LlIuJmHsbfjXSDHJDlxAQ==": {
-      "description": "Call to action opening the chat view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Ne aradığımızı tarif et",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "zMZLinNitZ+JlmBvBAUx6w==": {
       "description": "Title of the data view",
       "tokens": [],
@@ -502,17 +491,6 @@
       "translations": [
         {
           "translation": "İlçe",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "2EActZ3eg3Li7Y9CLuH4ew==": {
-      "description": "Column header of the cafés per square kilometer",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Kafe / km²",
           "variations": {}
         }
       ],
@@ -661,17 +639,6 @@
       ],
       "types": []
     },
-    "PzspTH7fsLv/QzftLVs03A==": {
-      "description": "Note explaining that the chat input will be wired to the preference engine",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Tema önizlemesi: giriş tercih motoruna bağlanacak. Yapay zeka olmadan elle seçilen kriterler ve ada göre arama devreye girer.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "iuT1Klvd9NBGTDvgYSvpPw==": {
       "description": "Badge shown on the first sample result",
       "tokens": [],
@@ -782,23 +749,122 @@
       ],
       "types": []
     },
-    "/FJk/ygboVjnCum+t/tiOQ==": {
-      "description": "Product name shown in the footer",
+    "jSaV09hGCKW0jLG6Nz3pPA==": {
+      "description": "Title of the map region and its accessible name",
       "tokens": [],
       "translations": [
         {
-          "translation": "Neighbourhood Explorer",
+          "translation": "Mahalle haritası",
           "variations": {}
         }
       ],
       "types": []
     },
-    "aeZG3nRXrzjBFOjI0+vVLg==": {
-      "description": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+    "J6thJMaSahqdigYonXOZBA==": {
+      "description": "Column header of the cafés per square kilometer",
       "tokens": [],
       "translations": [
         {
-          "translation": "Gradyan : Dia gradient, tasarlayan",
+          "translation": "Kafeler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3pm+jSiAKziqh/Y7M60mFA==": {
+      "description": "Unit suffix of the café density column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "/km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BUjEfKVrbn4pBkYTP7ZaRg==": {
+      "description": "Unit suffix of the walking distance to the metro column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "dk",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rV7bs/rHL0cJ0AEZ6vAW2w==": {
+      "description": "Unit suffix of the green cover column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "%",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "a/LDD8vWAgWnsecOf/N/SA==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle başına ham değerler: ad, ilçe ve her sütunda bir ölçüt; sıralanabilir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "MziqoB5OZg5QNF0OXqNCBw==": {
+      "description": "Accessibility label of the chat input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Aradığın mahalleyi anlat",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxus3wy/o+lNrPX4xNuhmg==": {
+      "description": "Empty state shown when every criterion chip has been removed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz ölçüt yok: eklemek için aradığını anlat.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xTYA4KetEEp8l8LAFk/8ow==": {
+      "description": "Label of the button removing a search criterion chip",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu ölçütü kaldır",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "25ghNilGi+yElBjVhIwWAw==": {
+      "description": "Title of the page shown when the URL matches no view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu sayfa yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VLE8iSdanwhi3F6YELu0iA==": {
+      "description": "Hint shown under the title of the unknown page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gezinti çubuğundan bir görünüm seç.",
           "variations": {}
         }
       ],
