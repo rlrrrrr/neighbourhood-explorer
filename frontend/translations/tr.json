@@ -869,6 +869,50 @@
         }
       ],
       "types": []
+    },
+    "qdL2+sL0gU7Hc4lddEke5w==": {
+      "description": "Legend of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ölçütler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "09+5gagG95MCqtLZS5L73w==": {
+      "description": "Empty state of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Etkin ölçüt yok: bunları sohbetten ekle.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nB/gx19Kq82h1i7hlBpvIw==": {
+      "description": "Title of the active criteria group above the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Etkin ölçütler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "1w5c1mht5hugpVQeOnE0eg==": {
+      "description": "Legend of the suggested criterion buttons in the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ölçüt ekle",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

@@ -7,8 +7,12 @@ import {
   type SampleNeighborhood,
 } from "../neighborhood-detail/sample-neighborhoods";
 import { nextSort, sortRows, type TableSort } from "./table-sort";
+import { CriteriaChips } from "../criteria/criteria-chips";
+import type { Criteria } from "../criteria/criteria";
 
 interface DataViewProps {
+  criteria: Criteria;
+  onRemoveCriterion: (metricKey: string) => void;
   sort: TableSort | null;
   onSortChange: (sort: TableSort) => void;
   onShowOnMap: (neighborhood: string) => void;
@@ -73,7 +77,13 @@ function SortArrow({ direction }: { direction: TableSort["direction"] | null }) 
   );
 }
 
-export function DataView({ sort, onSortChange, onShowOnMap }: DataViewProps) {
+export function DataView({
+  criteria,
+  onRemoveCriterion,
+  sort,
+  onSortChange,
+  onShowOnMap,
+}: DataViewProps) {
   const { containerRef, hasMore, overflows } = useScrollOverflowHint({ axis: "horizontal" });
   const rows = sortRows({ rows: SAMPLE_NEIGHBORHOODS, sort, sortValueOf });
   const stickyColumn = cn("sticky start-0 z-10 bg-inherit", overflows && "border-e");
@@ -88,6 +98,19 @@ export function DataView({ sort, onSortChange, onShowOnMap }: DataViewProps) {
           Millésime 2024 · valeurs brutes avec unité, sans score composite
         </fbt>
       </p>
+
+      {criteria.weights.length > 0 && (
+        <section className="mt-6" aria-labelledby="data-criteria-label">
+          <h2 id="data-criteria-label" className="text-xs font-semibold text-text-secondary">
+            <fbt desc="Title of the active criteria group above the raw values table">
+              Critères actifs
+            </fbt>
+          </h2>
+          <div className="mt-2">
+            <CriteriaChips criteria={criteria} onRemove={onRemoveCriterion} />
+          </div>
+        </section>
+      )}
       <div className="relative mt-8 rounded-2xl shadow-elevated">
         <div ref={containerRef} className="relative overflow-x-auto rounded-2xl">
           <table className="w-full text-sm">

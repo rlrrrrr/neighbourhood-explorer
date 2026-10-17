@@ -4,7 +4,13 @@ import "../../app/locale-runtime";
 import { DataView } from "./data-view";
 
 const MARKUP = renderToStaticMarkup(
-  <DataView sort={null} onSortChange={() => {}} onShowOnMap={() => {}} />,
+  <DataView
+    criteria={{ weights: [] }}
+    onRemoveCriterion={() => {}}
+    sort={null}
+    onSortChange={() => {}}
+    onShowOnMap={() => {}}
+  />,
 );
 
 describe("data view", () => {
@@ -28,8 +34,27 @@ describe("data view", () => {
   });
 
   it("never highlights a row as the best one", () => {
-    expect(MARKUP).not.toContain("bg-highlight");
+    const rows = MARKUP.slice(MARKUP.indexOf("<tbody>"), MARKUP.indexOf("</tbody>"));
+
+    expect(rows).not.toContain("bg-highlight");
     expect(MARKUP).toContain("odd:bg-surface");
+  });
+
+  it("shows the active criteria above the table, and nothing when there are none", () => {
+    expect(MARKUP).not.toContain("Critères actifs");
+
+    const markup = renderToStaticMarkup(
+      <DataView
+        criteria={{ weights: [{ metricKey: "cafes", weight: 1 }] }}
+        onRemoveCriterion={() => {}}
+        sort={null}
+        onSortChange={() => {}}
+        onShowOnMap={() => {}}
+      />,
+    );
+
+    expect(markup).toContain("Critères actifs");
+    expect(markup).toContain("Retirer ce critère");
   });
 
   it("sends the row neighborhood to the map", () => {
@@ -43,6 +68,8 @@ describe("data view", () => {
   it("sorts the column and the rows given by the URL", () => {
     const markup = renderToStaticMarkup(
       <DataView
+        criteria={{ weights: [] }}
+        onRemoveCriterion={() => {}}
         sort={{ key: "cafes", direction: "descending" }}
         onSortChange={() => {}}
         onShowOnMap={() => {}}

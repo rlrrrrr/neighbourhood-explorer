@@ -1,9 +1,12 @@
 import type { TableSort } from "../features/data-view/table-sort";
+import { isMetricKey, MAX_METRIC_KEY_LENGTH, type Criteria } from "../features/criteria/criteria";
+import { decodeCriteria, encodeCriteria } from "../features/criteria/criteria-url";
 
 export type ViewName = "home" | "chat" | "map" | "data";
 
 export type UrlSearch = {
   neighborhood?: string;
+  criteria?: string;
   sort?: string;
   order?: "asc" | "desc";
 };
@@ -18,8 +21,13 @@ const VIEW_PATHS = {
 export type ViewPath = (typeof VIEW_PATHS)[ViewName];
 
 const MAX_NEIGHBORHOOD_LENGTH = 80;
-const MAX_SORT_KEY_LENGTH = 32;
-const SORT_KEY_PATTERN = /^[a-z][a-z0-9-]*$/;
+
+const QUERY_PARAMETER_NAMES = [
+  "neighborhood",
+  "criteria",
+  "sort",
+  "order",
+] as const satisfies ReadonlyArray<keyof UrlSearch>;
 
 function readBoundedText(value: unknown, maxLength: number): string | undefined {
   if (typeof value !== "string") {
@@ -37,15 +45,16 @@ export function parseSearchString(searchString: string): Record<string, unknown>
   return Object.fromEntries(new URLSearchParams(searchString.replace(/^\?/, "")));
 }
 
+function encodeQueryValue(value: string): string {
+  return encodeURIComponent(value).replaceAll("%3A", ":").replaceAll("%2C", ",");
+}
+
 export function stringifySearchObject(search: UrlSearch): string {
-  const parameters = new URLSearchParams();
-  for (const [key, value] of Object.entries(search)) {
-    if (value !== undefined) {
-      parameters.set(key, value);
-    }
-  }
-  const query = parameters.toString();
-  return query.length > 0 ? `?${query}` : "";
+  const parameters = QUERY_PARAMETER_NAMES.flatMap((name) => {
+    const value = search[name];
+    return value === undefined ? [] : [`${name}=${encodeQueryValue(value)}`];
+  });
+  return parameters.length === 0 ? "" : `?${parameters.join("&")}`;
 }
 
 export function viewForPath(pathname: string): ViewName {
@@ -61,12 +70,24 @@ export function validateSearch(search: Record<string, unknown>): UrlSearch {
   if (neighborhood) {
     result.neighborhood = neighborhood;
   }
-  const sort = readBoundedText(search.sort, MAX_SORT_KEY_LENGTH);
-  if (sort && SORT_KEY_PATTERN.test(sort)) {
+  const criteria = encodeCriteria(decodeCriteria(search.criteria));
+  if (criteria) {
+    result.criteria = criteria;
+  }
+  const sort = readBoundedText(search.sort, MAX_METRIC_KEY_LENGTH);
+  if (sort && isMetricKey(sort)) {
     result.sort = sort;
     result.order = search.order === "desc" ? "desc" : "asc";
   }
   return result;
+}
+
+export function criteriaFromSearch(search: UrlSearch): Criteria {
+  return decodeCriteria(search.criteria);
+}
+
+export function searchWithCriteria(search: UrlSearch, criteria: Criteria): UrlSearch {
+  return { ...search, criteria: encodeCriteria(criteria) };
 }
 
 export function tableSortFromSearch(search: UrlSearch): TableSort | null {

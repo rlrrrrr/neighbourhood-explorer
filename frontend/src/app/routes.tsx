@@ -2,17 +2,21 @@ import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-rou
 import { fbt } from "fbtee";
 import { AppShell } from "./app-shell";
 import {
+  criteriaFromSearch,
+  searchWithCriteria,
   searchWithNeighborhood,
   searchWithTableSort,
   tableSortFromSearch,
   viewForPath,
   viewPath,
   type ViewName,
+  type ViewPath,
 } from "./url-state";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
 import { MapView } from "../features/map-view/map-view";
 import { DataView } from "../features/data-view/data-view";
+import { toggleCriterion, withoutCriterion, type Criteria } from "../features/criteria/criteria";
 
 function useOpenView() {
   const navigate = useNavigate();
@@ -27,6 +31,17 @@ function useOpenMapAt() {
     void navigate({
       to: viewPath("map"),
       search: (previous) => searchWithNeighborhood(previous, neighborhood),
+    });
+  };
+}
+
+function useCriterionWriter(to: ViewPath) {
+  const navigate = useNavigate();
+  return (metricKey: string, change: (criteria: Criteria, metricKey: string) => Criteria) => {
+    void navigate({
+      to,
+      search: (previous) =>
+        searchWithCriteria(previous, change(criteriaFromSearch(previous), metricKey)),
     });
   };
 }
@@ -49,17 +64,28 @@ export function HomeRoute() {
 }
 
 export function ChatRoute() {
+  const search = useSearch({ from: "/chat" });
   const openMapAt = useOpenMapAt();
+  const changeCriterion = useCriterionWriter(viewPath("chat"));
 
-  return <ChatView onShowOnMap={openMapAt} />;
+  return (
+    <ChatView
+      criteria={criteriaFromSearch(search)}
+      onToggleCriterion={(metricKey) => changeCriterion(metricKey, toggleCriterion)}
+      onShowOnMap={openMapAt}
+    />
+  );
 }
 
 export function MapRoute() {
   const navigate = useNavigate();
   const search = useSearch({ from: "/map" });
+  const changeCriterion = useCriterionWriter(viewPath("map"));
 
   return (
     <MapView
+      criteria={criteriaFromSearch(search)}
+      onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
       selectedNeighborhood={search.neighborhood ?? null}
       onSelectNeighborhood={(neighborhood) => {
         void navigate({
@@ -75,9 +101,12 @@ export function DataRoute() {
   const navigate = useNavigate();
   const search = useSearch({ from: "/data" });
   const openMapAt = useOpenMapAt();
+  const changeCriterion = useCriterionWriter(viewPath("data"));
 
   return (
     <DataView
+      criteria={criteriaFromSearch(search)}
+      onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
       sort={tableSortFromSearch(search)}
       onSortChange={(sort) => {
         void navigate({

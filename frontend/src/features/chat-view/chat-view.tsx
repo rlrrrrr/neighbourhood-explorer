@@ -1,24 +1,20 @@
-import { useState, type ReactNode } from "react";
+import { useState } from "react";
 import { fbs, fbt, type TranslatedString } from "fbtee";
 import { Button } from "../../components/ui/button";
+import { ChipList, type Chip } from "../../components/ui/chip-list";
 import { ChatComposer } from "./chat-composer";
-import {
-  addFreeTextCriterion,
-  removeCriterion,
-  SUGGESTED_CRITERIA,
-  type SuggestedCriterion,
-} from "./chat-criteria";
+import { addFreeTextChip, removeFreeTextChip, type FreeTextChip } from "./free-text-chips";
+import { hasCriterion, type Criteria } from "../criteria/criteria";
+import { SAMPLE_METRICS } from "../criteria/sample-metrics";
 import {
   SAMPLE_NEIGHBORHOODS,
   type SampleNeighborhood,
 } from "../neighborhood-detail/sample-neighborhoods";
 
 interface ChatViewProps {
+  criteria: Criteria;
+  onToggleCriterion: (metricKey: string) => void;
   onShowOnMap: (neighborhood: string) => void;
-}
-
-function criterionLabel(criterion: SuggestedCriterion): ReactNode {
-  return criterion.kind === "suggested" ? criterion.label() : criterion.text;
 }
 
 function resultStats(
@@ -43,8 +39,16 @@ function resultStats(
   ];
 }
 
-export function ChatView({ onShowOnMap }: ChatViewProps) {
-  const [criteria, setCriteria] = useState<readonly SuggestedCriterion[]>(SUGGESTED_CRITERIA);
+export function ChatView({ criteria, onToggleCriterion, onShowOnMap }: ChatViewProps) {
+  const [freeTextChips, setFreeTextChips] = useState<readonly FreeTextChip[]>([]);
+  const freeTextChipList: Chip[] = freeTextChips.map((chip) => ({
+    key: chip.key,
+    label: chip.text,
+  }));
+  const removeLabel = fbs(
+    "Retirer ce critère",
+    "Label of the button removing a search criterion chip",
+  );
 
   return (
     <div className="mx-auto flex w-full max-w-2xl flex-1 flex-col px-4 py-12 sm:px-8">
@@ -53,48 +57,51 @@ export function ChatView({ onShowOnMap }: ChatViewProps) {
       </h1>
       <div className="mt-6">
         <ChatComposer
-          onSubmit={(text) => setCriteria((current) => addFreeTextCriterion(current, text))}
+          onSubmit={(text) => setFreeTextChips((current) => addFreeTextChip(current, text))}
         />
       </div>
-      {criteria.length === 0 ? (
+
+      {freeTextChips.length === 0 && criteria.weights.length === 0 && (
         <p className="mt-4 text-xs text-text-secondary">
           <fbt desc="Empty state shown when every criterion chip has been removed">
             Aucun critère pour l'instant : décris ce que tu cherches pour en ajouter.
           </fbt>
         </p>
-      ) : (
-        <ul className="mt-4 flex flex-wrap gap-2">
-          {criteria.map((criterion) => (
-            <li
-              key={criterion.key}
-              className="flex min-h-9 items-center gap-1 rounded-full border border-border bg-highlight pr-1 pl-3 text-xs font-semibold text-highlight-text"
-            >
-              {criterionLabel(criterion)}
-              <button
-                type="button"
-                aria-label={fbs(
-                  "Retirer ce critère",
-                  "Label of the button removing a search criterion chip",
-                )}
-                onClick={() => setCriteria((current) => removeCriterion(current, criterion.key))}
-                className="flex size-7 cursor-pointer items-center justify-center rounded-full transition-colors duration-150 ease-out hover:bg-highlight-text/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-              >
-                <svg
-                  viewBox="0 0 16 16"
-                  className="size-3"
-                  aria-hidden="true"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                >
-                  <path d="M4 4l8 8M12 4l-8 8" />
-                </svg>
-              </button>
-            </li>
-          ))}
-        </ul>
       )}
+
+      {freeTextChips.length > 0 && (
+        <ChipList
+          className="mt-4"
+          chips={freeTextChipList}
+          removeLabel={removeLabel}
+          onRemove={(key) => setFreeTextChips((current) => removeFreeTextChip(current, key))}
+        />
+      )}
+
+      <fieldset className="mt-6 min-w-0">
+        <legend className="text-xs font-semibold text-text-secondary">
+          <fbt desc="Legend of the suggested criterion buttons in the chat view">
+            Ajouter un critère
+          </fbt>
+        </legend>
+        <ul className="mt-2 flex flex-wrap gap-2">
+          {SAMPLE_METRICS.map((metric) => {
+            const selected = hasCriterion(criteria, metric.key);
+            return (
+              <li key={metric.key}>
+                <Button
+                  size="sm"
+                  variant={selected ? "primary" : "outline"}
+                  aria-pressed={selected}
+                  onClick={() => onToggleCriterion(metric.key)}
+                >
+                  {metric.label()}
+                </Button>
+              </li>
+            );
+          })}
+        </ul>
+      </fieldset>
 
       <ul className="mt-12 flex flex-col gap-4">
         {SAMPLE_NEIGHBORHOODS.map((result, index) => (

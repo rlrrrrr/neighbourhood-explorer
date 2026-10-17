@@ -33,7 +33,7 @@ Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le qua
 | Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod         |
 | Tests                | Vitest (tests de rendu en SSR via `renderToStaticMarkup`) ; Testing Library et fast-check **non installés**, décision reportée |
 
-Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; `app/url-state.ts` porte le contrat : validation d'entrée, chemins, et l'analyse stricte de la requête (`parseSearchString` / `stringifySearchObject` — toute valeur reste une chaîne, encodage de formulaire UTF-8) branchée sur le routeur.
+Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; `app/url-state.ts` porte le contrat : validation d'entrée, chemins, et l'analyse stricte de la requête (`parseSearchString` / `stringifySearchObject` — toute valeur reste une chaîne, encodage de formulaire UTF-8, paramètres écrits dans un ordre stable) branchée sur le routeur. Paramètres actuels : `neighborhood`, `criteria`, `sort`, `order`.
 
 ## Structure : un dossier par fonctionnalité
 
@@ -82,14 +82,16 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 
 ## Critères : un seul état pour les trois vues
 
-- Un objet `Criteria` (liste de `{ metricKey, weight, target }`, quartier de référence et ajustements éventuels) est l'unique source de vérité. Les curseurs de la carte, les puces du chat et les colonnes pondérées du tableau lisent et écrivent **le même état**.
-- Il est encodé dans l'URL : vue, centre, zoom, couche, sélection, critères. Un lien recharge exactement la même vue. L'encodage et le décodage sont testés par propriété (aller-retour sans perte).
-- Un critère rempli par l'IA porte `source: "ai"` : l'interface l'affiche « proposé par l'IA » et le rend modifiable. L'IA propose, l'utilisateur valide.
+- Un objet `Criteria` (`features/criteria/criteria.ts` : liste de `{ metricKey, weight }`) est l'unique source de vérité. Le chat écrit la liste, la lentille de la carte et la vue Données la lisent et peuvent retirer un critère ; les fonctions pures `withWeight`, `toggleCriterion`, `withoutCriterion` sont la seule porte d'écriture, les vues n'ont jamais de copie locale.
+- Il est **encodé dans l'URL** (`?criteria=quiet,cafes:0.6`) par `features/criteria/criteria-url.ts` : grammaire `metricKey[:weight]` séparée par des virgules, poids omis quand il vaut 1, clé validée comme un slug borné, liste bornée en longueur et en nombre, premier poids gagnant en cas de doublon. `app/url-state.ts` valide puis **canonicalise** la valeur (un état et sa chaîne se reconstruisent à l'identique : aller-retour testé dans `criteria-url.test.ts` et `url-state.test.ts`).
+- Le **texte libre** du chat ne va pas dans l'URL (décision du 17/10/2026 : un lien partagé ne doit pas exposer la recherche tapée) ; il reste local à la vue. Les critères suggérés, eux, voyagent.
+- Restent à venir, avec les définitions de métriques et le classement du backend : les **curseurs de poids** (`weight` est déjà porté par le modèle et l'URL, rien ne l'écrit encore), la colonne « Score selon tes critères », le quartier de **référence** et la marque `source: "ai"` (« proposé par l'IA »). Ces deux derniers n'ont pas encore de producteur : ne pas les encoder avant qu'un flux les remplisse.
 - Changements immédiats, **sans bouton « Appliquer »** ; debounce sur les curseurs ; pas de requête à chaque `mousemove`.
 
 ## Vue Chat
 
 - Un champ de saisie ; le texte brut part tel quel (jamais reformulé côté client). Langues du texte libre : français et anglais ; turc en bêta (avertissement `locale_experimental`).
+- Les critères s'affichent en **boutons de critère** sous le champ : pressé = critère actif dans l'état partagé (`features/criteria`), un second clic le retire. Aucune palette codée en dur dans la vue : la liste des métriques proposées est `features/criteria/sample-metrics.ts`, à remplacer par `GET /api/v1/metrics`. Le texte libre ajoute une puce locale, **hors URL** (elle ne survit pas à un partage, décision assumée).
 - Réponse : `message` (déjà composé par gabarit côté backend, affiché tel quel) et `actions[]`. Le frontend **n'écrit jamais de phrase d'explication lui-même**.
 - Les `actions[]` sont validées avec zod puis exécutées : `setCriteria`, `showMatches`, `fitBounds`, `highlight`, `openCard`, `ask`, `setLayer`. Une action inconnue est ignorée et journalisée en développement, jamais exécutée au hasard.
 - `ask` : question de clarification avec choix rapides (par exemple choisir un quartier précis d'un district, ou résoudre `reference_ambiguous`).
@@ -104,13 +106,15 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Rampe de scores à **une seule teinte** (clarté croissante), valeur manquante en gris avec motif distinct ; la couleur n'est jamais le seul porteur d'information (libellé, valeur, rang numéroté).
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
 - Une **vue liste** synchronisée avec la carte est toujours disponible (accessibilité, petits écrans).
+- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend.
 - Budgets : changement de couche < 100 ms sans requête réseau ; premier affichage < 2 s.
 - Mobile : feuille basse à trois crans, zones tactiles ≥ 44 px, rien ne dépend du survol.
 
 ## Vue Données
 
 - Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne (état dans l'URL, donc partageable), valeurs brutes avec unité, date d'observation et source accessible.
-- La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`).
+- Les critères actifs sont rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) : la vue lit le même état que le chat et la carte.
+- La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
 - Chaque ligne a un bouton **« Voir sur la carte »**.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
 
@@ -158,7 +162,7 @@ Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la 
 ## Tests
 
 - Vitest + Testing Library ; **pas de bibliothèque de mocking**. MSW : décision ouverte (`../docs/product.md`) ; en attendant, tester contre les vraies implémentations ou une implémentation de remplacement réelle de l'API.
-- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total). `fast-check` n'est pas installé : en attendant, l'aller-retour est couvert par des cas explicites (`app/url-state.test.ts`).
+- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total). `fast-check` n'est pas installé : en attendant, l'aller-retour est couvert par des cas explicites (`features/criteria/criteria-url.test.ts`, `app/url-state.test.ts`).
 - Locales : `src/app/locale-context.test.tsx` charge les vrais catalogues compilés (en, tr, ar) et vérifie le rendu de textes visibles ; `src/app/app-shell.test.tsx` vérifie le rendu de la coque sans provider (langue source, déterministe). Aucun mock du runtime fbtee.
 - La coque `AppShell` est **présentational** (`view`, `onNavigate`, `children`) pour rester rendable en SSR sans DOM : le routeur vit dans `app/router.tsx` / `app/routes.tsx`, jamais dans `main.tsx` ni dans les vues. Tester le contrat d'URL dans `app/url-state.ts` plutôt que le câblage du routeur.
 - Déboguer avec `vp test run <chemin/complet.test.ts>` ; suite complète une seule fois avant le résumé final.

@@ -5,6 +5,7 @@ import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
 import { SAMPLE_NEIGHBORHOODS } from "../neighborhood-detail/sample-neighborhoods";
 import { LensPanel } from "./lens-panel";
+import type { Criteria } from "../criteria/criteria";
 
 const rankingRow = tv({
   base: "flex min-h-11 w-full cursor-pointer items-center gap-3 rounded-xl px-2 py-1.5 text-left transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action sm:min-h-0",
@@ -20,11 +21,18 @@ const rankingRow = tv({
 });
 
 interface MapViewProps {
+  criteria: Criteria;
+  onRemoveCriterion: (metricKey: string) => void;
   selectedNeighborhood: string | null;
   onSelectNeighborhood: (neighborhood: string) => void;
 }
 
-export function MapView({ selectedNeighborhood, onSelectNeighborhood }: MapViewProps) {
+export function MapView({
+  criteria,
+  onRemoveCriterion,
+  selectedNeighborhood,
+  onSelectNeighborhood,
+}: MapViewProps) {
   const [showRanking, setShowRanking] = useState(true);
   const [showLens, setShowLens] = useState(false);
   const mapTitle = fbt("Carte des quartiers", "Title of the map region and its accessible name");
@@ -100,7 +108,13 @@ export function MapView({ selectedNeighborhood, onSelectNeighborhood }: MapViewP
         </aside>
       )}
 
-      {showLens && <LensPanel onClose={() => setShowLens(false)} />}
+      {showLens && (
+        <LensPanel
+          criteria={criteria}
+          onRemoveCriterion={onRemoveCriterion}
+          onClose={() => setShowLens(false)}
+        />
+      )}
 
       <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 p-3 sm:p-4">
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border bg-panel-bg px-3 py-2 text-xs backdrop-blur">

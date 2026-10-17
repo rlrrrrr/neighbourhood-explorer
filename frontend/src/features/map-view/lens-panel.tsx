@@ -2,6 +2,8 @@ import { useState, type ReactNode } from "react";
 import { fbs, fbt, type TranslatedString } from "fbtee";
 import { tv } from "tailwind-variants";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
+import { CriteriaChips } from "../criteria/criteria-chips";
+import type { Criteria } from "../criteria/criteria";
 
 const lensOption = tv({
   slots: {
@@ -102,10 +104,12 @@ function LensFieldset({ legend, children }: { legend: TranslatedString; children
 }
 
 interface LensPanelProps {
+  criteria: Criteria;
+  onRemoveCriterion: (metricKey: string) => void;
   onClose: () => void;
 }
 
-export function LensPanel({ onClose }: LensPanelProps) {
+export function LensPanel({ criteria, onRemoveCriterion, onClose }: LensPanelProps) {
   const [selectedCategories, setSelectedCategories] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
@@ -173,6 +177,23 @@ export function LensPanel({ onClose }: LensPanelProps) {
                 />
               ))}
             </LensFieldset>
+
+            <section className="mt-5" aria-labelledby="lens-criteria-label">
+              <h3 id="lens-criteria-label" className="text-xs font-semibold text-text-secondary">
+                <fbt desc="Legend of the active criteria group in the lens panel">Critères</fbt>
+              </h3>
+              {criteria.weights.length === 0 ? (
+                <p className="mt-2 rounded-xl bg-surface px-3 py-2 text-xs text-text-secondary">
+                  <fbt desc="Empty state of the active criteria group in the lens panel">
+                    Aucun critère actif : ajoute-les depuis le chat.
+                  </fbt>
+                </p>
+              ) : (
+                <div className="mt-2">
+                  <CriteriaChips criteria={criteria} onRemove={onRemoveCriterion} />
+                </div>
+              )}
+            </section>
 
             <section className="mt-5" aria-labelledby="lens-selection-label">
               <h3 id="lens-selection-label" className="text-xs font-semibold text-text-secondary">

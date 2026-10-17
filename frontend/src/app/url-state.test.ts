@@ -1,6 +1,8 @@
 import { describe, expect, it } from "vite-plus/test";
 import {
+  criteriaFromSearch,
   parseSearchString,
+  searchWithCriteria,
   searchWithNeighborhood,
   searchWithTableSort,
   stringifySearchObject,
@@ -54,13 +56,27 @@ describe("query string codec", () => {
   it("encodes reserved characters and keeps the separators readable", () => {
     expect(
       stringifySearchObject({ neighborhood: "Moda Merkez", sort: "green", order: "desc" }),
-    ).toBe("?neighborhood=Moda+Merkez&sort=green&order=desc");
+    ).toBe("?neighborhood=Moda%20Merkez&sort=green&order=desc");
     expect(stringifySearchObject({ neighborhood: "A&B=C" })).toBe("?neighborhood=A%26B%3DC");
     expect(stringifySearchObject({ neighborhood: "Yeldeğirmeni" })).toBe(
       "?neighborhood=Yelde%C4%9Firmeni",
     );
+    expect(stringifySearchObject({ criteria: "cafes:0.6,quiet" })).toBe(
+      "?criteria=cafes:0.6,quiet",
+    );
     expect(stringifySearchObject({})).toBe("");
     expect(stringifySearchObject({ neighborhood: undefined })).toBe("");
+  });
+
+  it("writes the parameters in a stable order", () => {
+    expect(
+      stringifySearchObject({
+        order: "desc",
+        sort: "green",
+        criteria: "quiet",
+        neighborhood: "Moda",
+      }),
+    ).toBe("?neighborhood=Moda&criteria=quiet&sort=green&order=desc");
   });
 
   it("rebuilds the same state through the whole URL round trip", () => {
@@ -71,6 +87,8 @@ describe("query string codec", () => {
       { neighborhood: "Moda Merkez", sort: "green", order: "desc" },
       { neighborhood: "A&B=C ?" },
       { sort: "metro", order: "desc" },
+      { criteria: "quiet,cafes:0.6" },
+      { neighborhood: "Moda", criteria: "metro:0.25", sort: "cafes", order: "desc" },
     ];
 
     for (const state of states) {
@@ -132,6 +150,44 @@ describe("search validation", () => {
     for (const search of searches) {
       expect(validateSearch({ ...search })).toEqual(search);
     }
+  });
+});
+
+describe("criteria projection", () => {
+  it("reads the shared criteria from the search", () => {
+    expect(criteriaFromSearch({})).toEqual({ weights: [] });
+    expect(criteriaFromSearch({ criteria: "cafes:0.6,quiet" })).toEqual({
+      weights: [
+        { metricKey: "cafes", weight: 0.6 },
+        { metricKey: "quiet", weight: 1 },
+      ],
+    });
+  });
+
+  it("writes the criteria into the search and clears it when none is left", () => {
+    expect(
+      searchWithCriteria(
+        { sort: "cafes", order: "asc" },
+        {
+          weights: [{ metricKey: "quiet", weight: 1 }],
+        },
+      ),
+    ).toEqual({ sort: "cafes", order: "asc", criteria: "quiet" });
+    expect(searchWithCriteria({ criteria: "quiet" }, { weights: [] })).toEqual({
+      criteria: undefined,
+    });
+  });
+
+  it("canonicalises the criteria value it accepts", () => {
+    expect(validateSearch({ criteria: "quiet:0.60,cafes" })).toEqual({
+      criteria: "quiet:0.6,cafes",
+    });
+    expect(validateSearch({ criteria: " Cafés " })).toEqual({});
+    expect(validateSearch({ criteria: 42 })).toEqual({});
+  });
+
+  it("drops the criteria of a value that carries none", () => {
+    expect(validateSearch({ criteria: "quiet:2,metro:0,cafes" })).toEqual({ criteria: "cafes" });
   });
 });
 

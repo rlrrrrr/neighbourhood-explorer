@@ -10,7 +10,12 @@ function renderShell(view: "home" | "map") {
       {view === "home" ? (
         <HomeView onNavigate={() => {}} />
       ) : (
-        <MapView selectedNeighborhood={null} onSelectNeighborhood={() => {}} />
+        <MapView
+          criteria={{ weights: [] }}
+          onRemoveCriterion={() => {}}
+          selectedNeighborhood={null}
+          onSelectNeighborhood={() => {}}
+        />
       )}
     </AppShell>,
   );

@@ -98,14 +98,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 29,
+          "line": 31,
           "column": 34,
-          "index": 1411
+          "index": 1525
         },
         "end": {
-          "line": 29,
+          "line": 31,
           "column": 83,
-          "index": 1460
+          "index": 1574
         }
       },
       "project": "",
@@ -127,14 +127,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 30,
+          "line": 32,
           "column": 36,
-          "index": 1500
+          "index": 1614
         },
         "end": {
-          "line": 30,
+          "line": 32,
           "column": 89,
-          "index": 1553
+          "index": 1667
         }
       },
       "project": "",
@@ -156,14 +156,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 31,
+          "line": 33,
           "column": 32,
-          "index": 1589
+          "index": 1703
         },
         "end": {
-          "line": 31,
+          "line": 33,
           "column": 77,
-          "index": 1634
+          "index": 1748
         }
       },
       "project": "",
@@ -185,14 +185,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 34,
           "column": 34,
-          "index": 1672
+          "index": 1786
         },
         "end": {
-          "line": 32,
+          "line": 34,
           "column": 83,
-          "index": 1721
+          "index": 1835
         }
       },
       "project": "",
@@ -214,14 +214,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 36,
+          "line": 38,
           "column": 31,
-          "index": 1782
+          "index": 1896
         },
         "end": {
-          "line": 36,
+          "line": 38,
           "column": 64,
-          "index": 1815
+          "index": 1929
         }
       },
       "project": "",
@@ -243,14 +243,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 37,
+          "line": 39,
           "column": 31,
-          "index": 1850
+          "index": 1964
         },
         "end": {
-          "line": 37,
+          "line": 39,
           "column": 64,
-          "index": 1883
+          "index": 1997
         }
       },
       "project": "",
@@ -272,14 +272,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 38,
+          "line": 40,
           "column": 35,
-          "index": 1922
+          "index": 2036
         },
         "end": {
-          "line": 38,
+          "line": 40,
           "column": 76,
-          "index": 1963
+          "index": 2077
         }
       },
       "project": "",
@@ -301,14 +301,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 116,
+          "line": 120,
           "column": 16,
-          "index": 4101
+          "index": 4316
         },
         "end": {
-          "line": 116,
+          "line": 120,
           "column": 72,
-          "index": 4157
+          "index": 4372
         }
       },
       "project": "",
@@ -330,14 +330,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 117,
+          "line": 121,
           "column": 21,
-          "index": 4180
+          "index": 4395
         },
         "end": {
-          "line": 117,
+          "line": 121,
           "column": 94,
-          "index": 4253
+          "index": 4468
         }
       },
       "project": "",
@@ -359,14 +359,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 151,
+          "line": 155,
           "column": 16,
-          "index": 5791
+          "index": 6006
         },
         "end": {
-          "line": 151,
+          "line": 155,
           "column": 81,
-          "index": 5856
+          "index": 6071
         }
       },
       "project": "",
@@ -388,14 +388,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 156,
+          "line": 160,
           "column": 14,
-          "index": 6043
+          "index": 6258
         },
         "end": {
-          "line": 158,
+          "line": 162,
           "column": 20,
-          "index": 6218
+          "index": 6433
         }
       },
       "project": "",
@@ -417,14 +417,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 162,
+          "line": 166,
           "column": 22,
-          "index": 6285
+          "index": 6500
         },
         "end": {
-          "line": 162,
+          "line": 166,
           "column": 96,
-          "index": 6359
+          "index": 6574
         }
       },
       "project": "",
@@ -438,6 +438,64 @@
     },
     {
       "hashToLeaf": {
+        "qdL2+sL0gU7Hc4lddEke5w==": {
+          "desc": "Legend of the active criteria group in the lens panel",
+          "text": "Critères"
+        }
+      },
+      "filename": "src/features/map-view/lens-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 183,
+          "column": 16,
+          "index": 7248
+        },
+        "end": {
+          "line": 183,
+          "column": 96,
+          "index": 7328
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the active criteria group in the lens panel",
+          "text": "Critères"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "09+5gagG95MCqtLZS5L73w==": {
+          "desc": "Empty state of the active criteria group in the lens panel",
+          "text": "Aucun critère actif : ajoute-les depuis le chat."
+        }
+      },
+      "filename": "src/features/map-view/lens-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 187,
+          "column": 18,
+          "index": 7513
+        },
+        "end": {
+          "line": 189,
+          "column": 24,
+          "index": 7678
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Empty state of the active criteria group in the lens panel",
+          "text": "Aucun critère actif : ajoute-les depuis le chat."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "ewI+AXQaV1H+04F/0IJEZw==": {
           "desc": "Label of the saved selection field in the lens panel",
           "text": "Sélection"
@@ -446,14 +504,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 179,
+          "line": 200,
           "column": 16,
-          "index": 7035
+          "index": 8101
         },
         "end": {
-          "line": 179,
+          "line": 200,
           "column": 96,
-          "index": 7115
+          "index": 8181
         }
       },
       "project": "",
@@ -475,14 +533,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 182,
+          "line": 203,
           "column": 16,
-          "index": 7247
+          "index": 8313
         },
         "end": {
-          "line": 184,
+          "line": 205,
           "column": 22,
-          "index": 7394
+          "index": 8460
         }
       },
       "project": "",
@@ -504,14 +562,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 189,
+          "line": 210,
           "column": 22,
-          "index": 7486
+          "index": 8552
         },
         "end": {
-          "line": 189,
+          "line": 210,
           "column": 97,
-          "index": 7561
+          "index": 8627
         }
       },
       "project": "",
@@ -533,14 +591,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 204,
+          "line": 225,
           "column": 34,
-          "index": 8027
+          "index": 9093
         },
         "end": {
-          "line": 204,
+          "line": 225,
           "column": 95,
-          "index": 8088
+          "index": 9154
         }
       },
       "project": "",
@@ -562,14 +620,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 30,
+          "line": 38,
           "column": 19,
-          "index": 1098
+          "index": 1262
         },
         "end": {
-          "line": 30,
+          "line": 38,
           "column": 96,
-          "index": 1175
+          "index": 1339
         }
       },
       "project": "",
@@ -591,14 +649,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 31,
+          "line": 39,
           "column": 23,
-          "index": 1200
+          "index": 1364
         },
         "end": {
-          "line": 31,
+          "line": 39,
           "column": 95,
-          "index": 1272
+          "index": 1436
         }
       },
       "project": "",
@@ -620,14 +678,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 45,
+          "line": 53,
           "column": 10,
-          "index": 1676
+          "index": 1840
         },
         "end": {
-          "line": 47,
+          "line": 55,
           "column": 16,
-          "index": 1818
+          "index": 1982
         }
       },
       "project": "",
@@ -649,14 +707,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 58,
+          "line": 66,
           "column": 10,
-          "index": 2111
+          "index": 2275
         },
         "end": {
-          "line": 58,
+          "line": 66,
           "column": 72,
-          "index": 2173
+          "index": 2337
         }
       },
       "project": "",
@@ -678,14 +736,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 74,
           "column": 10,
-          "index": 2390
+          "index": 2554
         },
         "end": {
-          "line": 66,
+          "line": 74,
           "column": 69,
-          "index": 2449
+          "index": 2613
         }
       },
       "project": "",
@@ -707,14 +765,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 108,
+          "line": 122,
           "column": 12,
-          "index": 4228
+          "index": 4506
         },
         "end": {
-          "line": 108,
+          "line": 122,
           "column": 69,
-          "index": 4285
+          "index": 4563
         }
       },
       "project": "",
@@ -736,14 +794,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 114,
+          "line": 128,
           "column": 12,
-          "index": 4703
+          "index": 4981
         },
         "end": {
-          "line": 114,
+          "line": 128,
           "column": 69,
-          "index": 4760
+          "index": 5038
         }
       },
       "project": "",
@@ -765,14 +823,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 118,
+          "line": 132,
           "column": 12,
-          "index": 4933
+          "index": 5211
         },
         "end": {
-          "line": 118,
+          "line": 132,
           "column": 87,
-          "index": 5008
+          "index": 5286
         }
       },
       "project": "",
@@ -794,14 +852,14 @@
       "filename": "src/features/map-view/map-view.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 137,
           "column": 10,
-          "index": 5155
+          "index": 5433
         },
         "end": {
-          "line": 125,
+          "line": 139,
           "column": 16,
-          "index": 5296
+          "index": 5574
         }
       },
       "project": "",
@@ -1258,14 +1316,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 28,
+          "line": 32,
           "column": 18,
-          "index": 851
+          "index": 1037
         },
         "end": {
-          "line": 28,
+          "line": 32,
           "column": 81,
-          "index": 914
+          "index": 1100
         }
       },
       "project": "",
@@ -1287,14 +1345,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 29,
+          "line": 33,
           "column": 16,
-          "index": 932
+          "index": 1118
         },
         "end": {
-          "line": 29,
+          "line": 33,
           "column": 69,
-          "index": 985
+          "index": 1171
         }
       },
       "project": "",
@@ -1316,14 +1374,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 35,
+          "line": 39,
           "column": 18,
-          "index": 1135
+          "index": 1321
         },
         "end": {
-          "line": 35,
+          "line": 39,
           "column": 91,
-          "index": 1208
+          "index": 1394
         }
       },
       "project": "",
@@ -1345,14 +1403,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 36,
+          "line": 40,
           "column": 16,
-          "index": 1226
+          "index": 1412
         },
         "end": {
-          "line": 36,
+          "line": 40,
           "column": 85,
-          "index": 1295
+          "index": 1481
         }
       },
       "project": "",
@@ -1374,14 +1432,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 42,
+          "line": 46,
           "column": 18,
-          "index": 1448
+          "index": 1634
         },
         "end": {
-          "line": 42,
+          "line": 46,
           "column": 68,
-          "index": 1498
+          "index": 1684
         }
       },
       "project": "",
@@ -1403,14 +1461,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 43,
+          "line": 47,
           "column": 16,
-          "index": 1516
+          "index": 1702
         },
         "end": {
-          "line": 43,
+          "line": 47,
           "column": 65,
-          "index": 1565
+          "index": 1751
         }
       },
       "project": "",
@@ -1432,14 +1490,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 84,
+          "line": 94,
           "column": 8,
-          "index": 2972
+          "index": 3198
         },
         "end": {
-          "line": 84,
+          "line": 94,
           "column": 63,
-          "index": 3027
+          "index": 3253
         }
       },
       "project": "",
@@ -1461,14 +1519,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 87,
+          "line": 97,
           "column": 8,
-          "index": 3103
+          "index": 3329
         },
         "end": {
-          "line": 89,
+          "line": 99,
           "column": 14,
-          "index": 3272
+          "index": 3498
         }
       },
       "project": "",
@@ -1482,6 +1540,35 @@
     },
     {
       "hashToLeaf": {
+        "nB/gx19Kq82h1i7hlBpvIw==": {
+          "desc": "Title of the active criteria group above the raw values table",
+          "text": "Critères actifs"
+        }
+      },
+      "filename": "src/features/data-view/data-view.tsx",
+      "loc": {
+        "start": {
+          "line": 105,
+          "column": 12,
+          "index": 3730
+        },
+        "end": {
+          "line": 107,
+          "column": 18,
+          "index": 3853
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the active criteria group above the raw values table",
+          "text": "Critères actifs"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "a/LDD8vWAgWnsecOf/N/SA==": {
           "desc": "Accessible caption of the raw values table",
           "text": "Valeurs brutes par quartier : nom, district et un critère par colonne, triable."
@@ -1490,14 +1577,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 95,
+          "line": 118,
           "column": 14,
-          "index": 3533
+          "index": 4276
         },
         "end": {
-          "line": 97,
+          "line": 120,
           "column": 20,
-          "index": 3705
+          "index": 4448
         }
       },
       "project": "",
@@ -1519,14 +1606,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 102,
+          "line": 125,
           "column": 18,
-          "index": 3973
+          "index": 4716
         },
         "end": {
-          "line": 102,
+          "line": 125,
           "column": 83,
-          "index": 4038
+          "index": 4781
         }
       },
       "project": "",
@@ -1548,14 +1635,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 105,
+          "line": 128,
           "column": 18,
-          "index": 4134
+          "index": 4877
         },
         "end": {
-          "line": 105,
+          "line": 128,
           "column": 79,
-          "index": 4195
+          "index": 4938
         }
       },
       "project": "",
@@ -1577,14 +1664,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 135,
+          "line": 158,
           "column": 20,
-          "index": 5605
+          "index": 6348
         },
         "end": {
-          "line": 135,
+          "line": 158,
           "column": 86,
-          "index": 5671
+          "index": 6414
         }
       },
       "project": "",
@@ -1606,14 +1693,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 158,
+          "line": 181,
           "column": 22,
-          "index": 6727
+          "index": 7470
         },
         "end": {
-          "line": 160,
+          "line": 183,
           "column": 28,
-          "index": 6854
+          "index": 7597
         }
       },
       "project": "",
@@ -1622,6 +1709,122 @@
         "t": {
           "desc": "Button opening the map view from a data row",
           "text": "Voir sur la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xTYA4KetEEp8l8LAFk/8ow==": {
+          "desc": "Label of the button removing a search criterion chip",
+          "text": "Retirer ce critère"
+        }
+      },
+      "filename": "src/features/criteria/criteria-chips.tsx",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 19,
+          "index": 597
+        },
+        "end": {
+          "line": 23,
+          "column": 7,
+          "index": 703
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the button removing a search criterion chip",
+          "text": "Retirer ce critère"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "f3Shm3jobSPjE8Y38RF9iQ==": {
+          "desc": "Sample search criterion chip: quietness",
+          "text": "Calme"
+        }
+      },
+      "filename": "src/features/criteria/sample-metrics.ts",
+      "loc": {
+        "start": {
+          "line": 11,
+          "column": 17,
+          "index": 232
+        },
+        "end": {
+          "line": 11,
+          "column": 72,
+          "index": 287
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: quietness",
+          "text": "Calme"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "kCPlq36Zm85nwi/tBe4f/g==": {
+          "desc": "Sample search criterion chip: cafés",
+          "text": "Cafés"
+        }
+      },
+      "filename": "src/features/criteria/sample-metrics.ts",
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 17,
+          "index": 333
+        },
+        "end": {
+          "line": 15,
+          "column": 68,
+          "index": 384
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: cafés",
+          "text": "Cafés"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "yqZZXGSWo3OP45Qoo4NeCw==": {
+          "desc": "Sample search criterion chip: nearby metro",
+          "text": "Métro proche"
+        }
+      },
+      "filename": "src/features/criteria/sample-metrics.ts",
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 17,
+          "index": 430
+        },
+        "end": {
+          "line": 19,
+          "column": 82,
+          "index": 495
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sample search criterion chip: nearby metro",
+          "text": "Métro proche"
         }
       }
     },
@@ -1714,93 +1917,6 @@
     },
     {
       "hashToLeaf": {
-        "f3Shm3jobSPjE8Y38RF9iQ==": {
-          "desc": "Sample search criterion chip: quietness",
-          "text": "Calme"
-        }
-      },
-      "filename": "src/features/chat-view/chat-criteria.ts",
-      "loc": {
-        "start": {
-          "line": 11,
-          "column": 17,
-          "index": 340
-        },
-        "end": {
-          "line": 11,
-          "column": 72,
-          "index": 395
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Sample search criterion chip: quietness",
-          "text": "Calme"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "kCPlq36Zm85nwi/tBe4f/g==": {
-          "desc": "Sample search criterion chip: cafés",
-          "text": "Cafés"
-        }
-      },
-      "filename": "src/features/chat-view/chat-criteria.ts",
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 17,
-          "index": 464
-        },
-        "end": {
-          "line": 16,
-          "column": 68,
-          "index": 515
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Sample search criterion chip: cafés",
-          "text": "Cafés"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "yqZZXGSWo3OP45Qoo4NeCw==": {
-          "desc": "Sample search criterion chip: nearby metro",
-          "text": "Métro proche"
-        }
-      },
-      "filename": "src/features/chat-view/chat-criteria.ts",
-      "loc": {
-        "start": {
-          "line": 21,
-          "column": 17,
-          "index": 584
-        },
-        "end": {
-          "line": 21,
-          "column": 82,
-          "index": 649
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Sample search criterion chip: nearby metro",
-          "text": "Métro proche"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "FN+wqTB8/wsgiZf05cKS2A==": {
           "desc": "Label of the café density stat on a sample result",
           "text": "Cafés / km²"
@@ -1809,14 +1925,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 30,
+          "line": 26,
           "column": 13,
-          "index": 851
+          "index": 921
         },
         "end": {
-          "line": 30,
+          "line": 26,
           "column": 84,
-          "index": 922
+          "index": 992
         }
       },
       "project": "",
@@ -1838,14 +1954,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 35,
+          "line": 31,
           "column": 13,
-          "index": 1003
+          "index": 1073
         },
         "end": {
-          "line": 35,
+          "line": 31,
           "column": 83,
-          "index": 1073
+          "index": 1143
         }
       },
       "project": "",
@@ -1867,14 +1983,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 40,
+          "line": 36,
           "column": 13,
-          "index": 1154
+          "index": 1224
         },
         "end": {
-          "line": 40,
+          "line": 36,
           "column": 79,
-          "index": 1220
+          "index": 1290
         }
       },
       "project": "",
@@ -1888,6 +2004,35 @@
     },
     {
       "hashToLeaf": {
+        "xTYA4KetEEp8l8LAFk/8ow==": {
+          "desc": "Label of the button removing a search criterion chip",
+          "text": "Retirer ce critère"
+        }
+      },
+      "filename": "src/features/chat-view/chat-view.tsx",
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 22,
+          "index": 1647
+        },
+        "end": {
+          "line": 51,
+          "column": 3,
+          "index": 1741
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the button removing a search criterion chip",
+          "text": "Retirer ce critère"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "5wPEsJbU9GcH6560K/tSvQ==": {
           "desc": "Title of the chat view, above the input",
           "text": "Décris le quartier que tu cherches"
@@ -1896,14 +2041,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 52,
+          "line": 56,
           "column": 8,
-          "index": 1601
+          "index": 1920
         },
         "end": {
-          "line": 52,
+          "line": 56,
           "column": 100,
-          "index": 1693
+          "index": 2012
         }
       },
       "project": "",
@@ -1925,14 +2070,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 61,
+          "line": 66,
           "column": 10,
-          "index": 1974
+          "index": 2333
         },
         "end": {
-          "line": 63,
+          "line": 68,
           "column": 16,
-          "index": 2150
+          "index": 2509
         }
       },
       "project": "",
@@ -1946,30 +2091,30 @@
     },
     {
       "hashToLeaf": {
-        "xTYA4KetEEp8l8LAFk/8ow==": {
-          "desc": "Label of the button removing a search criterion chip",
-          "text": "Retirer ce critère"
+        "1w5c1mht5hugpVQeOnE0eg==": {
+          "desc": "Legend of the suggested criterion buttons in the chat view",
+          "text": "Ajouter un critère"
         }
       },
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 75,
-          "column": 28,
-          "index": 2611
+          "line": 83,
+          "column": 10,
+          "index": 2924
         },
         "end": {
-          "line": 78,
-          "column": 17,
-          "index": 2747
+          "line": 85,
+          "column": 16,
+          "index": 3043
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Label of the button removing a search criterion chip",
-          "text": "Retirer ce critère"
+          "desc": "Legend of the suggested criterion buttons in the chat view",
+          "text": "Ajouter un critère"
         }
       }
     },
@@ -1983,14 +2128,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 114,
+          "line": 121,
           "column": 18,
-          "index": 4325
+          "index": 4426
         },
         "end": {
-          "line": 114,
+          "line": 121,
           "column": 92,
-          "index": 4399
+          "index": 4500
         }
       },
       "project": "",
@@ -2012,14 +2157,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 133,
+          "line": 140,
           "column": 14,
-          "index": 5149
+          "index": 5250
         },
         "end": {
-          "line": 133,
+          "line": 140,
           "column": 97,
-          "index": 5232
+          "index": 5333
         }
       },
       "project": "",
@@ -2215,14 +2360,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 95,
+          "line": 123,
           "column": 27,
-          "index": 2349
+          "index": 3455
         },
         "end": {
-          "line": 98,
+          "line": 126,
           "column": 3,
-          "index": 2448
+          "index": 3554
         }
       },
       "project": "",
@@ -2244,14 +2389,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 99,
+          "line": 127,
           "column": 26,
-          "index": 2476
+          "index": 3582
         },
         "end": {
-          "line": 102,
+          "line": 130,
           "column": 3,
-          "index": 2590
+          "index": 3696
         }
       },
       "project": "",

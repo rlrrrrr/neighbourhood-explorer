@@ -5,7 +5,12 @@ import { MapView } from "./map-view";
 
 function renderMap({ selectedNeighborhood }: { selectedNeighborhood: string | null }) {
   return renderToStaticMarkup(
-    <MapView selectedNeighborhood={selectedNeighborhood} onSelectNeighborhood={() => {}} />,
+    <MapView
+      criteria={{ weights: [] }}
+      onRemoveCriterion={() => {}}
+      selectedNeighborhood={selectedNeighborhood}
+      onSelectNeighborhood={() => {}}
+    />,
   );
 }
 
