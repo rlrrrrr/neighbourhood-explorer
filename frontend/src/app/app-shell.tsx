@@ -69,6 +69,7 @@ export function AppShell() {
         {activeView === "map" && <MapView />}
         {activeView === "data" && <DataView onShowOnMap={() => setActiveView("map")} />}
       </main>
+      <SiteFooter />
     </div>
   );
 }
