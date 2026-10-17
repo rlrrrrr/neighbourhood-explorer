@@ -13,12 +13,12 @@
         "start": {
           "line": 20,
           "column": 6,
-          "index": 434
+          "index": 415
         },
         "end": {
           "line": 23,
           "column": 7,
-          "index": 575
+          "index": 553
         }
       },
       "project": "",
@@ -42,12 +42,12 @@
         "start": {
           "line": 32,
           "column": 6,
-          "index": 726
+          "index": 695
         },
         "end": {
           "line": 35,
           "column": 7,
-          "index": 868
+          "index": 834
         }
       },
       "project": "",
@@ -71,12 +71,12 @@
         "start": {
           "line": 44,
           "column": 6,
-          "index": 1024
+          "index": 981
         },
         "end": {
           "line": 47,
           "column": 7,
-          "index": 1180
+          "index": 1134
         }
       },
       "project": "",
@@ -100,12 +100,12 @@
         "start": {
           "line": 11,
           "column": 34,
-          "index": 375
+          "index": 365
         },
         "end": {
           "line": 11,
           "column": 83,
-          "index": 424
+          "index": 414
         }
       },
       "project": "",
@@ -129,12 +129,12 @@
         "start": {
           "line": 12,
           "column": 36,
-          "index": 465
+          "index": 454
         },
         "end": {
           "line": 12,
           "column": 89,
-          "index": 518
+          "index": 507
         }
       },
       "project": "",
@@ -158,12 +158,12 @@
         "start": {
           "line": 13,
           "column": 32,
-          "index": 555
+          "index": 543
         },
         "end": {
           "line": 13,
           "column": 77,
-          "index": 600
+          "index": 588
         }
       },
       "project": "",
@@ -187,12 +187,12 @@
         "start": {
           "line": 14,
           "column": 34,
-          "index": 639
+          "index": 626
         },
         "end": {
           "line": 14,
           "column": 83,
-          "index": 688
+          "index": 675
         }
       },
       "project": "",
@@ -216,12 +216,12 @@
         "start": {
           "line": 18,
           "column": 31,
-          "index": 753
+          "index": 736
         },
         "end": {
           "line": 18,
           "column": 64,
-          "index": 786
+          "index": 769
         }
       },
       "project": "",
@@ -245,12 +245,12 @@
         "start": {
           "line": 19,
           "column": 31,
-          "index": 822
+          "index": 804
         },
         "end": {
           "line": 19,
           "column": 64,
-          "index": 855
+          "index": 837
         }
       },
       "project": "",
@@ -274,12 +274,12 @@
         "start": {
           "line": 20,
           "column": 35,
-          "index": 895
+          "index": 876
         },
         "end": {
           "line": 20,
           "column": 76,
-          "index": 936
+          "index": 917
         }
       },
       "project": "",
@@ -303,12 +303,12 @@
         "start": {
           "line": 26,
           "column": 23,
-          "index": 1108
+          "index": 1083
         },
         "end": {
           "line": 26,
           "column": 95,
-          "index": 1180
+          "index": 1155
         }
       },
       "project": "",
@@ -332,12 +332,12 @@
         "start": {
           "line": 27,
           "column": 20,
-          "index": 1203
+          "index": 1177
         },
         "end": {
           "line": 27,
           "column": 76,
-          "index": 1259
+          "index": 1233
         }
       },
       "project": "",
@@ -361,12 +361,12 @@
         "start": {
           "line": 33,
           "column": 10,
-          "index": 1464
+          "index": 1432
         },
         "end": {
           "line": 35,
           "column": 16,
-          "index": 1608
+          "index": 1574
         }
       },
       "project": "",
@@ -390,12 +390,12 @@
         "start": {
           "line": 46,
           "column": 10,
-          "index": 1911
+          "index": 1866
         },
         "end": {
           "line": 46,
           "column": 72,
-          "index": 1973
+          "index": 1928
         }
       },
       "project": "",
@@ -419,12 +419,12 @@
         "start": {
           "line": 54,
           "column": 10,
-          "index": 2198
+          "index": 2145
         },
         "end": {
           "line": 54,
           "column": 69,
-          "index": 2257
+          "index": 2204
         }
       },
       "project": "",
@@ -448,12 +448,12 @@
         "start": {
           "line": 87,
           "column": 14,
-          "index": 3704
+          "index": 3618
         },
         "end": {
           "line": 87,
           "column": 79,
-          "index": 3769
+          "index": 3683
         }
       },
       "project": "",
@@ -477,12 +477,12 @@
         "start": {
           "line": 92,
           "column": 12,
-          "index": 3956
+          "index": 3865
         },
         "end": {
           "line": 94,
           "column": 18,
-          "index": 4129
+          "index": 4036
         }
       },
       "project": "",
@@ -506,12 +506,12 @@
         "start": {
           "line": 99,
           "column": 14,
-          "index": 4278
+          "index": 4180
         },
         "end": {
           "line": 99,
           "column": 96,
-          "index": 4360
+          "index": 4262
         }
       },
       "project": "",
@@ -535,12 +535,12 @@
         "start": {
           "line": 116,
           "column": 14,
-          "index": 4979
+          "index": 4864
         },
         "end": {
           "line": 116,
           "column": 94,
-          "index": 5059
+          "index": 4944
         }
       },
       "project": "",
@@ -564,12 +564,12 @@
         "start": {
           "line": 119,
           "column": 14,
-          "index": 5158
+          "index": 5040
         },
         "end": {
           "line": 121,
           "column": 20,
-          "index": 5303
+          "index": 5183
         }
       },
       "project": "",
@@ -593,12 +593,12 @@
         "start": {
           "line": 127,
           "column": 14,
-          "index": 5472
+          "index": 5346
         },
         "end": {
           "line": 127,
           "column": 97,
-          "index": 5555
+          "index": 5429
         }
       },
       "project": "",
@@ -622,12 +622,12 @@
         "start": {
           "line": 144,
           "column": 14,
-          "index": 6214
+          "index": 6071
         },
         "end": {
           "line": 144,
           "column": 83,
-          "index": 6283
+          "index": 6140
         }
       },
       "project": "",
@@ -651,12 +651,12 @@
         "start": {
           "line": 163,
           "column": 10,
-          "index": 6973
+          "index": 6811
         },
         "end": {
           "line": 163,
           "column": 67,
-          "index": 7030
+          "index": 6868
         }
       },
       "project": "",
@@ -680,12 +680,12 @@
         "start": {
           "line": 171,
           "column": 10,
-          "index": 7370
+          "index": 7200
         },
         "end": {
           "line": 171,
           "column": 67,
-          "index": 7427
+          "index": 7257
         }
       },
       "project": "",
@@ -709,12 +709,12 @@
         "start": {
           "line": 175,
           "column": 10,
-          "index": 7537
+          "index": 7363
         },
         "end": {
           "line": 175,
           "column": 85,
-          "index": 7612
+          "index": 7438
         }
       },
       "project": "",
@@ -738,12 +738,12 @@
         "start": {
           "line": 180,
           "column": 8,
-          "index": 7732
+          "index": 7553
         },
         "end": {
           "line": 182,
           "column": 14,
-          "index": 7871
+          "index": 7690
         }
       },
       "project": "",
@@ -765,14 +765,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 16,
+          "line": 17,
           "column": 6,
-          "index": 399
+          "index": 470
         },
         "end": {
-          "line": 19,
+          "line": 20,
           "column": 7,
-          "index": 542
+          "index": 613
         }
       },
       "project": "",
@@ -794,14 +794,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 21,
           "column": 19,
-          "index": 564
+          "index": 635
         },
         "end": {
-          "line": 20,
+          "line": 21,
           "column": 84,
-          "index": 629
+          "index": 700
         }
       },
       "project": "",
@@ -823,14 +823,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 27,
+          "line": 28,
           "column": 6,
-          "index": 779
+          "index": 850
         },
         "end": {
-          "line": 30,
+          "line": 31,
           "column": 7,
-          "index": 931
+          "index": 1002
         }
       },
       "project": "",
@@ -852,14 +852,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 31,
+          "line": 32,
           "column": 19,
-          "index": 953
+          "index": 1024
         },
         "end": {
-          "line": 31,
+          "line": 32,
           "column": 88,
-          "index": 1022
+          "index": 1093
         }
       },
       "project": "",
@@ -881,14 +881,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 38,
+          "line": 39,
           "column": 6,
-          "index": 1175
+          "index": 1246
         },
         "end": {
-          "line": 41,
+          "line": 42,
           "column": 7,
-          "index": 1317
+          "index": 1388
         }
       },
       "project": "",
@@ -910,14 +910,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 42,
+          "line": 43,
           "column": 19,
-          "index": 1339
+          "index": 1410
         },
         "end": {
-          "line": 42,
+          "line": 43,
           "column": 97,
-          "index": 1417
+          "index": 1488
         }
       },
       "project": "",
@@ -939,14 +939,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 51,
+          "line": 52,
           "column": 13,
-          "index": 1624
+          "index": 1695
         },
         "end": {
-          "line": 51,
+          "line": 52,
           "column": 73,
-          "index": 1684
+          "index": 1755
         }
       },
       "project": "",
@@ -968,14 +968,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 53,
+          "line": 54,
           "column": 13,
-          "index": 1717
+          "index": 1788
         },
         "end": {
-          "line": 53,
+          "line": 54,
           "column": 73,
-          "index": 1777
+          "index": 1848
         }
       },
       "project": "",
@@ -997,14 +997,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 55,
+          "line": 56,
           "column": 13,
-          "index": 1811
+          "index": 1882
         },
         "end": {
-          "line": 55,
+          "line": 56,
           "column": 76,
-          "index": 1874
+          "index": 1945
         }
       },
       "project": "",
@@ -1026,14 +1026,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 62,
+          "line": 63,
           "column": 13,
-          "index": 2001
+          "index": 2072
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 7,
-          "index": 2146
+          "index": 2217
         }
       },
       "project": "",
@@ -1055,14 +1055,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 13,
-          "index": 2179
+          "index": 2250
         },
         "end": {
-          "line": 70,
+          "line": 71,
           "column": 7,
-          "index": 2317
+          "index": 2388
         }
       },
       "project": "",
@@ -1084,14 +1084,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 72,
+          "line": 73,
           "column": 13,
-          "index": 2351
+          "index": 2422
         },
         "end": {
-          "line": 75,
+          "line": 76,
           "column": 7,
-          "index": 2496
+          "index": 2567
         }
       },
       "project": "",
@@ -1113,14 +1113,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 83,
+          "line": 84,
           "column": 8,
-          "index": 2809
+          "index": 2880
         },
         "end": {
-          "line": 83,
+          "line": 84,
           "column": 88,
-          "index": 2889
+          "index": 2960
         }
       },
       "project": "",
@@ -1142,14 +1142,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 86,
+          "line": 87,
           "column": 8,
-          "index": 3002
+          "index": 3073
         },
         "end": {
-          "line": 89,
+          "line": 90,
           "column": 14,
-          "index": 3185
+          "index": 3256
         }
       },
       "project": "",
@@ -1171,14 +1171,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 93,
+          "line": 94,
           "column": 10,
-          "index": 3338
+          "index": 3409
         },
         "end": {
-          "line": 93,
+          "line": 94,
           "column": 81,
-          "index": 3409
+          "index": 3480
         }
       },
       "project": "",
@@ -1200,14 +1200,14 @@
       "filename": "src\\features\\home-view\\home-view.tsx",
       "loc": {
         "start": {
-          "line": 96,
+          "line": 97,
           "column": 10,
-          "index": 3521
+          "index": 3592
         },
         "end": {
-          "line": 96,
+          "line": 97,
           "column": 89,
-          "index": 3600
+          "index": 3671
         }
       },
       "project": "",
@@ -1231,12 +1231,12 @@
         "start": {
           "line": 12,
           "column": 8,
-          "index": 413
+          "index": 402
         },
         "end": {
           "line": 12,
           "column": 63,
-          "index": 468
+          "index": 457
         }
       },
       "project": "",
@@ -1260,12 +1260,12 @@
         "start": {
           "line": 15,
           "column": 8,
-          "index": 547
+          "index": 533
         },
         "end": {
           "line": 17,
           "column": 14,
-          "index": 718
+          "index": 702
         }
       },
       "project": "",
@@ -1289,12 +1289,12 @@
         "start": {
           "line": 24,
           "column": 16,
-          "index": 1055
+          "index": 1032
         },
         "end": {
           "line": 24,
           "column": 81,
-          "index": 1120
+          "index": 1097
         }
       },
       "project": "",
@@ -1318,12 +1318,12 @@
         "start": {
           "line": 27,
           "column": 16,
-          "index": 1213
+          "index": 1187
         },
         "end": {
           "line": 27,
           "column": 77,
-          "index": 1274
+          "index": 1248
         }
       },
       "project": "",
@@ -1347,12 +1347,12 @@
         "start": {
           "line": 30,
           "column": 16,
-          "index": 1378
+          "index": 1349
         },
         "end": {
           "line": 30,
           "column": 93,
-          "index": 1455
+          "index": 1426
         }
       },
       "project": "",
@@ -1376,12 +1376,12 @@
         "start": {
           "line": 33,
           "column": 16,
-          "index": 1559
+          "index": 1527
         },
         "end": {
           "line": 33,
           "column": 97,
-          "index": 1640
+          "index": 1608
         }
       },
       "project": "",
@@ -1405,12 +1405,12 @@
         "start": {
           "line": 36,
           "column": 16,
-          "index": 1744
+          "index": 1709
         },
         "end": {
           "line": 36,
           "column": 74,
-          "index": 1802
+          "index": 1767
         }
       },
       "project": "",
@@ -1434,12 +1434,12 @@
         "start": {
           "line": 40,
           "column": 18,
-          "index": 1941
+          "index": 1902
         },
         "end": {
           "line": 40,
           "column": 84,
-          "index": 2007
+          "index": 1968
         }
       },
       "project": "",
@@ -1463,12 +1463,12 @@
         "start": {
           "line": 57,
           "column": 20,
-          "index": 2890
+          "index": 2834
         },
         "end": {
           "line": 57,
           "column": 99,
-          "index": 2969
+          "index": 2913
         }
       },
       "project": "",
@@ -1482,6 +1482,64 @@
     },
     {
       "hashToLeaf": {
+        "KbUJEGx+mAOVwyxXOw8Ggw==": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-composer.tsx",
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 21,
+          "index": 1750
+        },
+        "end": {
+          "line": 58,
+          "column": 9,
+          "index": 1899
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Placeholder of the chat input, with an example search",
+          "text": "Ex. un quartier calme avec des cafés, près du métro"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "SHbUe1fn5fdYZSxh5wWqiA==": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      },
+      "filename": "src\\features\\chat-view\\chat-composer.tsx",
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 20,
+          "index": 2193
+        },
+        "end": {
+          "line": 65,
+          "column": 67,
+          "index": 2240
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the chat send button",
+          "text": "Envoyer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "f3Shm3jobSPjE8Y38RF9iQ==": {
           "desc": "Sample search criterion chip: quietness",
           "text": "Calme"
@@ -1490,14 +1548,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 13,
+          "line": 14,
           "column": 31,
-          "index": 350
+          "index": 394
         },
         "end": {
-          "line": 13,
+          "line": 14,
           "column": 86,
-          "index": 405
+          "index": 449
         }
       },
       "project": "",
@@ -1519,14 +1577,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 14,
+          "line": 15,
           "column": 31,
-          "index": 441
+          "index": 485
         },
         "end": {
-          "line": 14,
+          "line": 15,
           "column": 82,
-          "index": 492
+          "index": 536
         }
       },
       "project": "",
@@ -1548,14 +1606,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 15,
+          "line": 16,
           "column": 31,
-          "index": 528
+          "index": 572
         },
         "end": {
-          "line": 15,
+          "line": 16,
           "column": 96,
-          "index": 593
+          "index": 637
         }
       },
       "project": "",
@@ -1577,14 +1635,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 24,
+          "line": 25,
           "column": 13,
-          "index": 786
+          "index": 830
         },
         "end": {
-          "line": 24,
+          "line": 25,
           "column": 84,
-          "index": 857
+          "index": 901
         }
       },
       "project": "",
@@ -1606,14 +1664,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 29,
+          "line": 30,
           "column": 13,
-          "index": 943
+          "index": 987
         },
         "end": {
-          "line": 29,
+          "line": 30,
           "column": 83,
-          "index": 1013
+          "index": 1057
         }
       },
       "project": "",
@@ -1635,14 +1693,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 34,
+          "line": 35,
           "column": 13,
-          "index": 1099
+          "index": 1143
         },
         "end": {
-          "line": 34,
+          "line": 35,
           "column": 79,
-          "index": 1165
+          "index": 1209
         }
       },
       "project": "",
@@ -1664,14 +1722,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 44,
+          "line": 45,
           "column": 8,
-          "index": 1460
+          "index": 1504
         },
         "end": {
-          "line": 44,
+          "line": 45,
           "column": 100,
-          "index": 1552
+          "index": 1596
         }
       },
       "project": "",
@@ -1685,64 +1743,6 @@
     },
     {
       "hashToLeaf": {
-        "KbUJEGx+mAOVwyxXOw8Ggw==": {
-          "desc": "Placeholder of the chat input, with an example search",
-          "text": "Ex. un quartier calme avec des cafés, près du métro"
-        }
-      },
-      "filename": "src\\features\\chat-view\\chat-view.tsx",
-      "loc": {
-        "start": {
-          "line": 51,
-          "column": 23,
-          "index": 1893
-        },
-        "end": {
-          "line": 54,
-          "column": 11,
-          "index": 2048
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Placeholder of the chat input, with an example search",
-          "text": "Ex. un quartier calme avec des cafés, près du métro"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "SHbUe1fn5fdYZSxh5wWqiA==": {
-          "desc": "Label of the chat send button",
-          "text": "Envoyer"
-        }
-      },
-      "filename": "src\\features\\chat-view\\chat-view.tsx",
-      "loc": {
-        "start": {
-          "line": 57,
-          "column": 10,
-          "index": 2105
-        },
-        "end": {
-          "line": 57,
-          "column": 65,
-          "index": 2160
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Label of the chat send button",
-          "text": "Envoyer"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "PzspTH7fsLv/QzftLVs03A==": {
           "desc": "Note explaining that the chat input will be wired to the preference engine",
           "text": "Aperçu du thème : la saisie sera reliée au moteur de préférences. Sans IA, les critères manuels et la recherche par nom prennent le relais."
@@ -1751,14 +1751,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 71,
+          "line": 61,
           "column": 8,
-          "index": 2617
+          "index": 2103
         },
         "end": {
-          "line": 74,
+          "line": 64,
           "column": 14,
-          "index": 2882
+          "index": 2368
         }
       },
       "project": "",
@@ -1780,14 +1780,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 92,
+          "line": 82,
           "column": 18,
-          "index": 3680
+          "index": 3166
         },
         "end": {
-          "line": 92,
+          "line": 82,
           "column": 92,
-          "index": 3754
+          "index": 3240
         }
       },
       "project": "",
@@ -1809,14 +1809,14 @@
       "filename": "src\\features\\chat-view\\chat-view.tsx",
       "loc": {
         "start": {
-          "line": 106,
+          "line": 96,
           "column": 14,
-          "index": 4430
+          "index": 3916
         },
         "end": {
-          "line": 106,
+          "line": 96,
           "column": 97,
-          "index": 4513
+          "index": 3999
         }
       },
       "project": "",
@@ -1985,12 +1985,12 @@
         "start": {
           "line": 52,
           "column": 22,
-          "index": 1770
+          "index": 1719
         },
         "end": {
           "line": 55,
           "column": 11,
-          "index": 1891
+          "index": 1837
         }
       },
       "project": "",
@@ -2012,14 +2012,14 @@
       "filename": "src\\app\\site-footer.tsx",
       "loc": {
         "start": {
-          "line": 9,
+          "line": 11,
           "column": 17,
-          "index": 333
+          "index": 503
         },
         "end": {
-          "line": 9,
+          "line": 11,
           "column": 90,
-          "index": 406
+          "index": 576
         }
       },
       "project": "",
@@ -2041,14 +2041,14 @@
       "filename": "src\\app\\site-footer.tsx",
       "loc": {
         "start": {
-          "line": 12,
+          "line": 14,
           "column": 10,
-          "index": 442
+          "index": 697
         },
         "end": {
-          "line": 14,
+          "line": 16,
           "column": 16,
-          "index": 602
+          "index": 859
         }
       },
       "project": "",
@@ -2072,12 +2072,12 @@
         "start": {
           "line": 57,
           "column": 22,
-          "index": 1912
+          "index": 1856
         },
         "end": {
           "line": 57,
           "column": 99,
-          "index": 1989
+          "index": 1933
         }
       },
       "project": "",
