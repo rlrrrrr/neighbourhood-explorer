@@ -42,10 +42,13 @@ export function useScrollOverflowHint({ axis }: { axis: ScrollAxis }): {
     }
     const update = () => {
       const metrics = readMetrics(element, axis);
-      setState({
-        hasMore: hasMoreToScroll(metrics),
-        overflows: hasOverflow(metrics),
-      });
+      const hasMore = hasMoreToScroll(metrics);
+      const overflows = hasOverflow(metrics);
+      setState((current) =>
+        current.hasMore === hasMore && current.overflows === overflows
+          ? current
+          : { hasMore, overflows },
+      );
     };
     update();
     const observer = new ResizeObserver(update);

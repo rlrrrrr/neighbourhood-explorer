@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { fbt, type TranslatedString } from "fbtee";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
@@ -50,30 +51,36 @@ const SAMPLE_COLUMNS: readonly SampleColumn[] = [
   },
 ];
 
+const SAMPLE_COLUMNS_BY_KEY = new Map(SAMPLE_COLUMNS.map((column) => [column.key, column]));
+
 function sortValueOf(row: SampleNeighborhood, key: string): number {
-  const column = SAMPLE_COLUMNS.find((candidate) => candidate.key === key);
+  const column = SAMPLE_COLUMNS_BY_KEY.get(key);
   return column ? column.sortValue(row) : 0;
 }
 
 function SortArrow({ direction }: { direction: TableSort["direction"] | null }) {
   return (
-    <svg
-      viewBox="0 0 12 12"
+    <span
       aria-hidden="true"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={cn(
-        "size-3 shrink-0 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none",
+        "inline-flex shrink-0 transition-[opacity,transform] duration-150 ease-out motion-reduce:transition-none",
         direction ? "opacity-100" : "opacity-0",
         direction === "descending" && "rotate-180",
       )}
     >
-      <path d="M6 9.5V2.5" />
-      <path d="M3 5.5 6 2.5l3 3" />
-    </svg>
+      <svg
+        viewBox="0 0 12 12"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className="size-3"
+      >
+        <path d="M6 9.5V2.5" />
+        <path d="M3 5.5 6 2.5l3 3" />
+      </svg>
+    </span>
   );
 }
 
@@ -85,7 +92,13 @@ export function DataView({
   onShowOnMap,
 }: DataViewProps) {
   const { containerRef, hasMore, overflows } = useScrollOverflowHint({ axis: "horizontal" });
-  const rows = sortRows({ rows: SAMPLE_NEIGHBORHOODS, sort, sortValueOf });
+  const rows = useMemo(() => sortRows({ rows: SAMPLE_NEIGHBORHOODS, sort, sortValueOf }), [sort]);
+  const columns = SAMPLE_COLUMNS.map((column) => ({
+    key: column.key,
+    header: column.header(),
+    unit: column.unit(),
+    value: column.value,
+  }));
   const stickyColumn = cn("sticky start-0 z-10 bg-inherit", overflows && "border-e");
 
   return (
@@ -127,7 +140,7 @@ export function DataView({
                 <th scope="col" className="px-4 py-3">
                   <fbt desc="Column header of the district name">District</fbt>
                 </th>
-                {SAMPLE_COLUMNS.map((column) => {
+                {columns.map((column) => {
                   const direction = sort?.key === column.key ? sort.direction : null;
                   return (
                     <th
@@ -147,7 +160,7 @@ export function DataView({
                         onClick={() => onSortChange(nextSort(sort, column.key))}
                         className="flex min-h-11 w-full cursor-pointer items-center justify-end gap-1 px-4 py-3 font-semibold transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0"
                       >
-                        {column.header()}
+                        {column.header}
                         <SortArrow direction={direction} />
                       </button>
                     </th>
@@ -170,10 +183,10 @@ export function DataView({
                     {row.name}
                   </th>
                   <td className="px-4 py-3 text-text-secondary">{row.district}</td>
-                  {SAMPLE_COLUMNS.map((column) => (
+                  {columns.map((column) => (
                     <td key={column.key} className="px-4 py-3 text-right">
                       <span className="tabular-nums">{column.value(row)}</span>
-                      <span className="ml-1 text-xs text-text-secondary">{column.unit()}</span>
+                      <span className="ml-1 text-xs text-text-secondary">{column.unit}</span>
                     </td>
                   ))}
                   <td className="px-4 py-3 text-right">

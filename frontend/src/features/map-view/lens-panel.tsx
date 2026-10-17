@@ -11,7 +11,8 @@ const lensOption = tv({
       "flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-border px-3 text-xs font-semibold text-text transition-[background-color,color] duration-150 ease-out has-[:checked]:bg-highlight has-[:checked]:text-highlight-text has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-action sm:min-h-9 sm:hover:bg-surface",
     indicator:
       "flex size-4 shrink-0 items-center justify-center border border-border bg-surface text-action-text transition-colors duration-150 ease-out has-[:checked]:border-action has-[:checked]:bg-action",
-    glyph: "size-2.5 opacity-0 transition-opacity duration-150 ease-out peer-checked:opacity-100",
+    glyph:
+      "block size-2.5 opacity-0 transition-opacity duration-150 ease-out peer-checked:opacity-100",
     dot: "size-1.5 rounded-full bg-action-text opacity-0 transition-opacity duration-150 ease-out peer-checked:opacity-100",
   },
   variants: {
@@ -73,18 +74,19 @@ function LensOption({ type, name, checked, onChange, label, shape = "box" }: Len
           onChange={onChange}
         />
         {shape === "box" ? (
-          <svg
-            viewBox="0 0 12 12"
-            className={slots.glyph()}
-            aria-hidden="true"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M2 6.5 4.5 9 10 3" />
-          </svg>
+          <span aria-hidden="true" className={slots.glyph()}>
+            <svg
+              viewBox="0 0 12 12"
+              className="size-full"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M2 6.5 4.5 9 10 3" />
+            </svg>
+          </span>
         ) : (
           <span aria-hidden="true" className={slots.dot()} />
         )}
