@@ -14,21 +14,26 @@ Trois vues de même niveau, reliées par une barre de navigation toujours visibl
 | **Carte**   | Quartiers colorés, filtres manuels, fiche de quartier, isochrones                                                            |
 | **Données** | Tableau de classement : une colonne par critère, triable, valeurs brutes avec unité et date                                  |
 
+Navigation mobile : la barre reste **en haut**, sur deux lignes sous `sm` (marque et sélecteurs, puis les trois vues), ce qui supprime le débordement horizontal. La variante **barre en bas est abandonnée** (décision du 17/10/2026) ; `../docs/ux-ui-review.md` reste le tableau de suivi (document de travail local : `docs/` est ignoré par Git).
+
+Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et le tri du tableau (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue.
+
 ## Pile
 
-| Domaine              | Choix                                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| Outillage            | Vite+ (`vp`) pour tout : dev, vérifications, tests, build                                                                |
-| UI                   | React + TypeScript en mode strict                                                                                        |
-| Internationalisation | fbtee 5 : traductions inline (`<fbt>`, `fbt()`, `fbs()`), compilées par le plugin Vite ; locales fr (source), en, tr, ar |
-| Données serveur      | TanStack Query                                                                                                           |
-| Carte                | mapcn (composants React au-dessus de MapLibre GL), fond OpenFreeMap                                                      |
-| Graphiques           | TanStack Charts (**pré-alpha, version épinglée, usage isolé** dans `features/charts`)                                    |
-| Styles               | Tailwind + shadcn/ui ; variantes avec tailwind-variants                                                                  |
-| Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod   |
-| Tests                | Vitest, Testing Library, fast-check                                                                                      |
+| Domaine              | Choix                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Outillage            | Vite+ (`vp`) pour tout : dev, vérifications, tests, build                                                                      |
+| Routage              | TanStack Router (routes de code dans `app/router.tsx` et `app/routes.tsx` ; validation d'URL dans `app/url-state.ts`)          |
+| UI                   | React + TypeScript en mode strict                                                                                              |
+| Internationalisation | fbtee 5 : traductions inline (`<fbt>`, `fbt()`, `fbs()`), compilées par le plugin Vite ; locales fr (source), en, tr, ar       |
+| Données serveur      | TanStack Query                                                                                                                 |
+| Carte                | mapcn (composants React au-dessus de MapLibre GL), fond OpenFreeMap                                                            |
+| Graphiques           | TanStack Charts (**pré-alpha, version épinglée, usage isolé** dans `features/charts`)                                          |
+| Styles               | Tailwind + shadcn/ui ; variantes avec tailwind-variants                                                                        |
+| Contrat              | types générés avec openapi-typescript depuis `../backend/openapi/openapi.v1.json` ; validation à la frontière avec zod         |
+| Tests                | Vitest (tests de rendu en SSR via `renderToStaticMarkup`) ; Testing Library et fast-check **non installés**, décision reportée |
 
-Routage : non décidé (ajouter une dépendance demande l'accord de l'humain). L'état partagé vit dans l'URL.
+Routage : décidé le 17/10/2026 — **TanStack Router**, routes de code (pas de plugin ni de fichier généré), chemins en anglais (`/`, `/chat`, `/map`, `/data`). L'état partagé vit dans l'URL ; `app/url-state.ts` porte le contrat : validation d'entrée, chemins, et l'analyse stricte de la requête (`parseSearchString` / `stringifySearchObject` — toute valeur reste une chaîne, encodage de formulaire UTF-8, paramètres écrits dans un ordre stable) branchée sur le routeur. Paramètres actuels : `neighborhood`, `criteria`, `sort`, `order`.
 
 ## Structure : un dossier par fonctionnalité
 
@@ -36,7 +41,7 @@ Noms de fichiers explicites en **kebab-case**, **aucun barrel file** (pas de `in
 
 ```
 src/
-├── app/                      # coque : barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher), pied de page (site-footer, dia-gradient)
+├── app/                      # coque : routage (router, routes, url-state), barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher)
 ├── features/
 │   ├── criteria/             # état des critères partagé, encodage dans l'URL
 │   ├── chat-view/            # vue Chat
@@ -77,14 +82,16 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 
 ## Critères : un seul état pour les trois vues
 
-- Un objet `Criteria` (liste de `{ metricKey, weight, target }`, quartier de référence et ajustements éventuels) est l'unique source de vérité. Les curseurs de la carte, les puces du chat et les colonnes pondérées du tableau lisent et écrivent **le même état**.
-- Il est encodé dans l'URL : vue, centre, zoom, couche, sélection, critères. Un lien recharge exactement la même vue. L'encodage et le décodage sont testés par propriété (aller-retour sans perte).
-- Un critère rempli par l'IA porte `source: "ai"` : l'interface l'affiche « proposé par l'IA » et le rend modifiable. L'IA propose, l'utilisateur valide.
+- Un objet `Criteria` (`features/criteria/criteria.ts` : liste de `{ metricKey, weight }`) est l'unique source de vérité. Le chat écrit la liste, la lentille de la carte et la vue Données la lisent et peuvent retirer un critère ; les fonctions pures `withWeight`, `toggleCriterion`, `withoutCriterion` sont la seule porte d'écriture, les vues n'ont jamais de copie locale.
+- Il est **encodé dans l'URL** (`?criteria=quiet,cafes:0.6`) par `features/criteria/criteria-url.ts` : grammaire `metricKey[:weight]` séparée par des virgules, poids omis quand il vaut 1, clé validée comme un slug borné, liste bornée en longueur et en nombre, premier poids gagnant en cas de doublon. `app/url-state.ts` valide puis **canonicalise** la valeur (un état et sa chaîne se reconstruisent à l'identique : aller-retour testé dans `criteria-url.test.ts` et `url-state.test.ts`).
+- Le **texte libre** du chat ne va pas dans l'URL (décision du 17/10/2026 : un lien partagé ne doit pas exposer la recherche tapée) ; il reste local à la vue. Les critères suggérés, eux, voyagent.
+- Restent à venir, avec les définitions de métriques et le classement du backend : les **curseurs de poids** (`weight` est déjà porté par le modèle et l'URL, rien ne l'écrit encore), la colonne « Score selon tes critères », le quartier de **référence** et la marque `source: "ai"` (« proposé par l'IA »). Ces deux derniers n'ont pas encore de producteur : ne pas les encoder avant qu'un flux les remplisse.
 - Changements immédiats, **sans bouton « Appliquer »** ; debounce sur les curseurs ; pas de requête à chaque `mousemove`.
 
 ## Vue Chat
 
 - Un champ de saisie ; le texte brut part tel quel (jamais reformulé côté client). Langues du texte libre : français et anglais ; turc en bêta (avertissement `locale_experimental`).
+- Les critères s'affichent en **boutons de critère** sous le champ : pressé = critère actif dans l'état partagé (`features/criteria`), un second clic le retire. Aucune palette codée en dur dans la vue : la liste des métriques proposées est `features/criteria/sample-metrics.ts`, à remplacer par `GET /api/v1/metrics`. Le texte libre ajoute une puce locale, **hors URL** (elle ne survit pas à un partage, décision assumée).
 - Réponse : `message` (déjà composé par gabarit côté backend, affiché tel quel) et `actions[]`. Le frontend **n'écrit jamais de phrase d'explication lui-même**.
 - Les `actions[]` sont validées avec zod puis exécutées : `setCriteria`, `showMatches`, `fitBounds`, `highlight`, `openCard`, `ask`, `setLayer`. Une action inconnue est ignorée et journalisée en développement, jamais exécutée au hasard.
 - `ask` : question de clarification avec choix rapides (par exemple choisir un quartier précis d'un district, ou résoudre `reference_ambiguous`).
@@ -99,13 +106,15 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Rampe de scores à **une seule teinte** (clarté croissante), valeur manquante en gris avec motif distinct ; la couleur n'est jamais le seul porteur d'information (libellé, valeur, rang numéroté).
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
 - Une **vue liste** synchronisée avec la carte est toujours disponible (accessibilité, petits écrans).
+- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend.
 - Budgets : changement de couche < 100 ms sans requête réseau ; premier affichage < 2 s.
 - Mobile : feuille basse à trois crans, zones tactiles ≥ 44 px, rien ne dépend du survol.
 
 ## Vue Données
 
-- Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne, valeurs brutes avec unité, date d'observation et source accessible.
-- La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`).
+- Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne (état dans l'URL, donc partageable), valeurs brutes avec unité, date d'observation et source accessible.
+- Les critères actifs sont rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) : la vue lit le même état que le chat et la carte.
+- La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
 - Chaque ligne a un bouton **« Voir sur la carte »**.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
 
@@ -119,6 +128,8 @@ Les composants ne contiennent **aucune couleur en dur** : ils utilisent des jeto
 
 **Profondeur** : les cartes et panneaux portent les jetons d'ombre en couches `--elevated` / `--elevated-hover` (utilités `shadow-elevated`, `shadow-elevated-hover`) plutôt que des bordures ; les commandes (champs, chips, légende) gardent `--border` à 3:1. Le grain de film (tuile SVG 200 px dans `index.css`, `--grain-image`) est **quasi invisible** (`--grain-opacity: 0,04`) : un réglage unique, jamais une texture marquée — sans `mix-blend-mode` (annulé sur blanc/noir purs) et jamais sur un conteneur défilant (le `::after` défilerait avec le contenu).
 
+**Mouvement** : une seule courbe, `--ease-out` (`cubic-bezier(0.23, 1, 0.32, 1)`, déclarée dans `index.css`), et des durées courtes — 160 ms pour l'apparition et la disparition d'un panneau (les boutons gardent 200 ms, leur retour au toucher étant porté par `:active`, donc immédiat). Un panneau flottant est **ancré** à son déclencheur : classes `anchored-panel` (origine au coin de fin de ligne) et `anchored-panel-origin-start` (panneaux de la carte, origine au coin de début de ligne, celle qui regarde les commandes), toutes deux inversées en RTL. L'état ouvert vit dans `data-open`, le panneau **reste monté** et passe `inert` quand il est fermé : la sortie est animée par le même chemin que l'entrée (Apple : un panneau qui entre d'un côté ressort du même côté), les commandes fermées sortent de l'ordre de tabulation, et l'état interne (cases cochées de la lentille, sélection d'un sélecteur) survit à la fermeture. Les deux menus de l'en-tête partagent `app/header-menu.tsx` (fermeture au clic extérieur sur `pointerdown`, couvre le tactile ; Échap rend le focus au déclencheur). `prefers-reduced-motion` : fondu court sans échelle ; `prefers-reduced-transparency` : surfaces pleines sans flou.
+
 **Images** : passer par `components/ui/feathered-image.tsx` (`FeatheredImage`) plutôt qu'un `<img>` nu. Il combine un skeleton à sheen pendant le chargement, un reveal `blur-[6px]` → net en 500 ms, et une lisière organique (masque SVG turbulence + flou, `--feathered-image-mask` dans `index.css`) qui fait fondre le bord de l'image dans le fond — CSS pur, jamais de WebGL ; transitions neutralisées sous `prefers-reduced-motion`.
 
 Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la rampe reste discernable sur le fond de Positron (les crans actuels vont de 1,23 à 1,9 sur blanc : contour sur les polygones obligatoire ; à retester sur la vraie carte).
@@ -131,7 +142,7 @@ Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la 
 
 ## Interface et textes
 
-- **Langues** : français (langue source — les textes source sont en français dans le code), anglais, turc, arabe. Commutateur dans l'en-tête (`app/language-switcher.tsx`) ; `lang` et `dir` (RTL pour l'arabe) gérés par `app/locale-context.tsx` ; choix mémorisé dans `localStorage` (clé `locale`) et restauré au chargement (`LocaleContext.preload()` dans `main.tsx`, avant le premier rendu).
+- **Langues** : français (langue source — les textes source sont en français dans le code), anglais, turc, arabe. Commutateur dans l'en-tête (`app/language-switcher.tsx`) ; `lang` et `dir` (RTL pour l'arabe) gérés par `app/locale-context.tsx` ; choix mémorisé dans `localStorage` (clé `locale:v1`) et restauré au chargement (`LocaleContext.preload()` dans `main.tsx`, avant le premier rendu).
 - **Aucun texte en dur** : tout passe par fbtee — `<fbt desc="…">` dans le JSX, `fbt()` pour les textes construits en fonction, `fbs()` pour les attributs (`placeholder`, `aria-label`). `desc` est le contexte du traducteur et doit être écrit.
 - **Noms propres non traduits** (données brutes, pas de catalogue) : noms de thèmes (`THEME_DISPLAY_NAMES` dans `app/theme.ts`), noms de quartiers et de districts, noms de fonds de carte (Positron, Liberty…), crédits photo, nom de marque de la source de données.
 - **Workflow de traduction** : après tout ajout ou changement de texte, relancer `mise i18n` (collect + compile). Les fichiers `translations/*.json` sont édités à la main (le champ `status: "new"` des nouvelles chaînes est retiré une fois traduit). `source_strings.json`, `.enum_manifest.json` et `src/translations/*.json` sont **générés et commités** (clone fraîche buildable sans étape supplémentaire) — jamais édités à la main ; c'est un écart assumé à la recommandation fbtee (qui suggère de les ignorer) pour garder le build reproductible hors CI.
@@ -153,8 +164,9 @@ Sur les thèmes clairs, revérifier à chaque palette que le premier cran de la 
 ## Tests
 
 - Vitest + Testing Library ; **pas de bibliothèque de mocking**. MSW : décision ouverte (`../docs/product.md`) ; en attendant, tester contre les vraies implémentations ou une implémentation de remplacement réelle de l'API.
-- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total).
-- Locales : `src/app/locale-context.test.tsx` charge les vrais catalogues compilés (en, tr, ar) et vérifie le rendu de textes visibles ; `App.test.tsx` vérifie le rendu sans provider (langue source, déterministe). Aucun mock du runtime fbtee.
+- Tests de propriétés (fast-check) : aller-retour de l'encodage des critères dans l'URL ; validation des `actions[]` (jamais d'exécution d'une action invalide) ; tri du tableau (stable, total). `fast-check` n'est pas installé : en attendant, l'aller-retour est couvert par des cas explicites (`features/criteria/criteria-url.test.ts`, `app/url-state.test.ts`).
+- Locales : `src/app/locale-context.test.tsx` charge les vrais catalogues compilés (en, tr, ar) et vérifie le rendu de textes visibles ; `src/app/app-shell.test.tsx` vérifie le rendu de la coque sans provider (langue source, déterministe). Aucun mock du runtime fbtee.
+- La coque `AppShell` est **présentational** (`view`, `onNavigate`, `children`) pour rester rendable en SSR sans DOM : le routeur vit dans `app/router.tsx` / `app/routes.tsx`, jamais dans `main.tsx` ni dans les vues. Tester le contrat d'URL dans `app/url-state.ts` plutôt que le câblage du routeur.
 - Déboguer avec `vp test run <chemin/complet.test.ts>` ; suite complète une seule fois avant le résumé final.
 
 ## Commandes

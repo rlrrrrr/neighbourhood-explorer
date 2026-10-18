@@ -452,17 +452,6 @@
       ],
       "types": []
     },
-    "9LlIuJmHsbfjXSDHJDlxAQ==": {
-      "description": "Call to action opening the chat view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "صف ما نبحث عنه",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "zMZLinNitZ+JlmBvBAUx6w==": {
       "description": "Title of the data view",
       "tokens": [],
@@ -502,17 +491,6 @@
       "translations": [
         {
           "translation": "المنطقة",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "2EActZ3eg3Li7Y9CLuH4ew==": {
-      "description": "Column header of the cafés per square kilometer",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "مقاهي / كم²",
           "variations": {}
         }
       ],
@@ -661,17 +639,6 @@
       ],
       "types": []
     },
-    "PzspTH7fsLv/QzftLVs03A==": {
-      "description": "Note explaining that the chat input will be wired to the preference engine",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "معاينة التصميم: سيتم ربط الإدخال بمحرك التفضيلات. بدون الذكاء الاصطناعي، تتكفل المعايير اليدوية والبحث بالاسم.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "iuT1Klvd9NBGTDvgYSvpPw==": {
       "description": "Badge shown on the first sample result",
       "tokens": [],
@@ -782,23 +749,166 @@
       ],
       "types": []
     },
-    "/FJk/ygboVjnCum+t/tiOQ==": {
-      "description": "Product name shown in the footer",
+    "jSaV09hGCKW0jLG6Nz3pPA==": {
+      "description": "Title of the map region and its accessible name",
       "tokens": [],
       "translations": [
         {
-          "translation": "Neighbourhood Explorer",
+          "translation": "خريطة الأحياء",
           "variations": {}
         }
       ],
       "types": []
     },
-    "aeZG3nRXrzjBFOjI0+vVLg==": {
-      "description": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+    "J6thJMaSahqdigYonXOZBA==": {
+      "description": "Column header of the cafés per square kilometer",
       "tokens": [],
       "translations": [
         {
-          "translation": "التدرّج : Dia gradient، من تصميم",
+          "translation": "المقاهي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3pm+jSiAKziqh/Y7M60mFA==": {
+      "description": "Unit suffix of the café density column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "/km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BUjEfKVrbn4pBkYTP7ZaRg==": {
+      "description": "Unit suffix of the walking distance to the metro column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "د",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rV7bs/rHL0cJ0AEZ6vAW2w==": {
+      "description": "Unit suffix of the green cover column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "%",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "a/LDD8vWAgWnsecOf/N/SA==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "القيم الخام لكل حي: الاسم والقضاء ومعيار واحد في كل عمود، قابلة للفرز.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "MziqoB5OZg5QNF0OXqNCBw==": {
+      "description": "Accessibility label of the chat input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "صف الحي الذي تبحث عنه",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxus3wy/o+lNrPX4xNuhmg==": {
+      "description": "Empty state shown when every criterion chip has been removed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا يوجد معيار بعد: صف ما تبحث عنه لإضافته.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xTYA4KetEEp8l8LAFk/8ow==": {
+      "description": "Label of the button removing a search criterion chip",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إزالة هذا المعيار",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "25ghNilGi+yElBjVhIwWAw==": {
+      "description": "Title of the page shown when the URL matches no view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "هذه الصفحة غير موجودة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VLE8iSdanwhi3F6YELu0iA==": {
+      "description": "Hint shown under the title of the unknown page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اختر عرضًا من شريط التنقل.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qdL2+sL0gU7Hc4lddEke5w==": {
+      "description": "Legend of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المعايير",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "09+5gagG95MCqtLZS5L73w==": {
+      "description": "Empty state of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا توجد معايير مفعّلة: أضِفها من الدردشة.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nB/gx19Kq82h1i7hlBpvIw==": {
+      "description": "Title of the active criteria group above the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المعايير المفعّلة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "1w5c1mht5hugpVQeOnE0eg==": {
+      "description": "Legend of the suggested criterion buttons in the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إضافة معيار",
           "variations": {}
         }
       ],

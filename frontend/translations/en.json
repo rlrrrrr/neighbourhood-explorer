@@ -452,17 +452,6 @@
       ],
       "types": []
     },
-    "9LlIuJmHsbfjXSDHJDlxAQ==": {
-      "description": "Call to action opening the chat view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Describe what you are looking for",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "zMZLinNitZ+JlmBvBAUx6w==": {
       "description": "Title of the data view",
       "tokens": [],
@@ -502,17 +491,6 @@
       "translations": [
         {
           "translation": "District",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "2EActZ3eg3Li7Y9CLuH4ew==": {
-      "description": "Column header of the cafés per square kilometer",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Cafés / km²",
           "variations": {}
         }
       ],
@@ -661,17 +639,6 @@
       ],
       "types": []
     },
-    "PzspTH7fsLv/QzftLVs03A==": {
-      "description": "Note explaining that the chat input will be wired to the preference engine",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Theme preview: the input will be wired to the preference engine. Without AI, manual criteria and name search take over.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "iuT1Klvd9NBGTDvgYSvpPw==": {
       "description": "Badge shown on the first sample result",
       "tokens": [],
@@ -782,23 +749,166 @@
       ],
       "types": []
     },
-    "/FJk/ygboVjnCum+t/tiOQ==": {
-      "description": "Product name shown in the footer",
+    "jSaV09hGCKW0jLG6Nz3pPA==": {
+      "description": "Title of the map region and its accessible name",
       "tokens": [],
       "translations": [
         {
-          "translation": "Neighbourhood Explorer",
+          "translation": "Neighborhood map",
           "variations": {}
         }
       ],
       "types": []
     },
-    "aeZG3nRXrzjBFOjI0+vVLg==": {
-      "description": "Credit introducing the authors of the gradient decoration at the bottom of the page",
+    "J6thJMaSahqdigYonXOZBA==": {
+      "description": "Column header of the cafés per square kilometer",
       "tokens": [],
       "translations": [
         {
-          "translation": "Gradient: Dia gradient, designed by",
+          "translation": "Cafés",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3pm+jSiAKziqh/Y7M60mFA==": {
+      "description": "Unit suffix of the café density column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "/km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BUjEfKVrbn4pBkYTP7ZaRg==": {
+      "description": "Unit suffix of the walking distance to the metro column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "min",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rV7bs/rHL0cJ0AEZ6vAW2w==": {
+      "description": "Unit suffix of the green cover column",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "%",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "a/LDD8vWAgWnsecOf/N/SA==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw values per neighborhood: name, district and one criterion per column, sortable.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "MziqoB5OZg5QNF0OXqNCBw==": {
+      "description": "Accessibility label of the chat input",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Describe the neighborhood you are looking for",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxus3wy/o+lNrPX4xNuhmg==": {
+      "description": "Empty state shown when every criterion chip has been removed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No criterion yet: describe what you are looking for to add one.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xTYA4KetEEp8l8LAFk/8ow==": {
+      "description": "Label of the button removing a search criterion chip",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Remove this criterion",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "25ghNilGi+yElBjVhIwWAw==": {
+      "description": "Title of the page shown when the URL matches no view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This page does not exist",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VLE8iSdanwhi3F6YELu0iA==": {
+      "description": "Hint shown under the title of the unknown page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Pick a view in the navigation bar.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qdL2+sL0gU7Hc4lddEke5w==": {
+      "description": "Legend of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Criteria",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "09+5gagG95MCqtLZS5L73w==": {
+      "description": "Empty state of the active criteria group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No active criterion: add them from the chat.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nB/gx19Kq82h1i7hlBpvIw==": {
+      "description": "Title of the active criteria group above the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Active criteria",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "1w5c1mht5hugpVQeOnE0eg==": {
+      "description": "Legend of the suggested criterion buttons in the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Add a criterion",
           "variations": {}
         }
       ],

@@ -1,9 +1,18 @@
 <!doctype html>
-<html lang="fr" data-theme="bosphore">
+<html lang="fr" data-theme="moda">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Neighbourhood Explorer</title>
+    <script>
+      try {
+        const storedTheme = window.localStorage.getItem("theme:v1");
+        if (storedTheme && /^[a-z]+$/.test(storedTheme)) {
+          document.documentElement.dataset.theme = storedTheme;
+        }
+      } catch {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

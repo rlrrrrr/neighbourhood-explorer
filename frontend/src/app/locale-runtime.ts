@@ -9,13 +9,22 @@ export const AVAILABLE_LANGUAGES: ReadonlyMap<string, string> = new Map([
   ["ar", "العربية"],
 ]);
 
-const LOCALE_STORAGE_KEY = "locale";
+const LOCALE_STORAGE_KEY = "locale:v1";
+
+function readStoredLocale(): string | null {
+  try {
+    return window.localStorage.getItem(LOCALE_STORAGE_KEY);
+  } catch {
+    // `localStorage` peut lever (navigation privée, stockage désactivé) : on retombe sur les langues du navigateur.
+    return null;
+  }
+}
 
 function readClientLocales(): ReadonlyArray<string | null> {
   if (typeof window === "undefined") {
     return navigator.languages;
   }
-  const storedLocale = window.localStorage.getItem(LOCALE_STORAGE_KEY);
+  const storedLocale = readStoredLocale();
   return storedLocale ? [storedLocale, ...navigator.languages] : navigator.languages;
 }
 
@@ -40,5 +49,9 @@ export const LocaleContext = createLocaleContext({
 });
 
 export function storeLocale(locale: string): void {
-  window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+  try {
+    window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
+  } catch {
+    // Même raison : le choix s'applique quand même pour la session en cours.
+  }
 }

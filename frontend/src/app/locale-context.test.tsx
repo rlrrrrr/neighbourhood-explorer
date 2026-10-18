@@ -1,7 +1,8 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { setupLocaleContext } from "fbtee";
 import { describe, expect, it } from "vite-plus/test";
-import App from "../App";
+import { AppShell } from "./app-shell";
+import { HomeView } from "../features/home-view/home-view";
 import { AVAILABLE_LANGUAGES, SOURCE_LANGUAGE, loadLocale } from "./locale-runtime";
 
 async function renderWithClientLocale(clientLocale: string): Promise<string> {
@@ -12,7 +13,11 @@ async function renderWithClientLocale(clientLocale: string): Promise<string> {
     loadLocale,
   });
   await preloadLocale();
-  return renderToStaticMarkup(<App />);
+  return renderToStaticMarkup(
+    <AppShell view="home" onNavigate={() => {}}>
+      <HomeView onNavigate={() => {}} />
+    </AppShell>,
+  );
 }
 
 describe("interface locale", () => {

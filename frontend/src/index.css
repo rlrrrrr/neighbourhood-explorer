@@ -2,6 +2,10 @@
 @import "tailwindcss";
 @import "./design-tokens/themes.css";
 
+@theme {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
 @theme inline {
   --font-sans: "Plus Jakarta Sans Variable", system-ui, -apple-system, "Segoe UI", sans-serif;
   --color-bg: var(--bg);
@@ -96,6 +100,107 @@ body::before {
   mask-size: 100% 100%;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
+}
+
+/* Valeur manquante : la couleur seule ne la distingue pas d'un cran de la rampe. */
+.no-data-pattern {
+  background-color: var(--no-data);
+  background-image: repeating-linear-gradient(
+    135deg,
+    color-mix(in oklab, var(--text) 40%, transparent) 0 2px,
+    transparent 2px 5px
+  );
+}
+
+.scroll-fade-inline-end {
+  background-image: linear-gradient(to right, transparent, var(--bg));
+}
+
+[dir="rtl"] .scroll-fade-inline-end {
+  background-image: linear-gradient(to left, transparent, var(--bg));
+}
+
+/* Panneau attaché à son déclencheur : il grandit depuis le coin qui fait face à ce
+   déclencheur et se retire par le même chemin. `data-open` porte l'état ; le panneau
+   reste monté, `visibility` ne se retourne qu'en fin de transition pour que la sortie
+   soit visible. Origine par défaut : le coin de fin de ligne, celui des sélecteurs de
+   l'en-tête, posés sous leur déclencheur. */
+.anchored-panel {
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.96) translateY(-0.375rem);
+  transform-origin: top right;
+  transition:
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out),
+    visibility 160ms;
+}
+
+.anchored-panel[data-open] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+/* Panneaux de la carte : leur coin de début de ligne est celui qui regarde les
+   commandes (le classement tombe juste dessous, la lentille est de l'autre côté). */
+.anchored-panel-origin-start {
+  transform-origin: top left;
+}
+
+[dir="rtl"] .anchored-panel {
+  transform-origin: top left;
+}
+
+[dir="rtl"] .anchored-panel-origin-start {
+  transform-origin: top right;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anchored-panel {
+    transform: none;
+    transition:
+      opacity 120ms ease,
+      visibility 120ms;
+  }
+}
+
+/* Matière flottante : fond translucide et flou séparent la surface, sans trait dur. */
+.material-panel {
+  background-color: color-mix(in srgb, var(--panel-bg) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material-panel {
+    background-color: var(--bg);
+    backdrop-filter: none;
+  }
+}
+
+/* Changement de langue : fbtee remonte tout son sous-arbre, le texte serait remplacé
+   d'un coup. L'écran reparaît en fondu et se pose d'un léger recul (origine en haut,
+   pour ne pas décoller la barre haute collante). */
+.interface-enter {
+  --interface-enter-scale: 0.98;
+  transform-origin: top center;
+  transition:
+    opacity 200ms var(--ease-out),
+    transform 200ms var(--ease-out);
+}
+
+@starting-style {
+  .interface-enter {
+    opacity: 0;
+    transform: scale(var(--interface-enter-scale));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .interface-enter {
+    --interface-enter-scale: 1;
+    transition: opacity 150ms var(--ease-out);
+  }
 }
 
 .skeleton {
