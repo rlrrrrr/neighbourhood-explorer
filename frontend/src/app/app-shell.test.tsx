@@ -56,4 +56,12 @@ describe("app shell", () => {
       'class="interface-enter flex min-h-screen flex-col text-text"',
     );
   });
+
+  it("keeps the header as a floating material rather than a hard separator", () => {
+    const markup = renderShell("home");
+    const header = markup.slice(markup.indexOf("<header"), markup.indexOf("</header>"));
+
+    expect(header).toContain("material-panel");
+    expect(header).not.toContain("border-b");
+  });
 });

@@ -108,10 +108,11 @@ function LensFieldset({ legend, children }: { legend: TranslatedString; children
 interface LensPanelProps {
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
+  open: boolean;
   onClose: () => void;
 }
 
-export function LensPanel({ criteria, onRemoveCriterion, onClose }: LensPanelProps) {
+export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPanelProps) {
   const [selectedCategories, setSelectedCategories] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
@@ -125,7 +126,9 @@ export function LensPanel({ criteria, onRemoveCriterion, onClose }: LensPanelPro
   return (
     <div className="pointer-events-none absolute inset-0 flex flex-col items-end px-4 pb-28 pt-16 sm:pb-16">
       <aside
-        className="grain pointer-events-auto flex max-h-full w-72 flex-col overflow-hidden rounded-2xl bg-panel-bg shadow-elevated backdrop-blur"
+        data-open={open ? "" : undefined}
+        inert={!open}
+        className="anchored-panel anchored-panel-origin-start material-panel grain pointer-events-auto flex max-h-full w-72 flex-col overflow-hidden rounded-2xl shadow-elevated"
         aria-label={title}
       >
         <div className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">

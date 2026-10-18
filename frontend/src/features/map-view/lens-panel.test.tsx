@@ -3,11 +3,18 @@ import { describe, expect, it } from "vite-plus/test";
 import "../../app/locale-runtime";
 import { LensPanel } from "./lens-panel";
 
-function renderLens(criteriaKeys: readonly string[] = []) {
+function renderLens({
+  criteriaKeys = [],
+  open = true,
+}: {
+  criteriaKeys?: readonly string[];
+  open?: boolean;
+} = {}) {
   return renderToStaticMarkup(
     <LensPanel
       criteria={{ weights: criteriaKeys.map((metricKey) => ({ metricKey, weight: 1 })) }}
       onRemoveCriterion={() => {}}
+      open={open}
       onClose={() => {}}
     />,
   );
@@ -51,10 +58,18 @@ describe("lens panel", () => {
   it("shows the criteria of the shared state, with its empty state", () => {
     expect(renderLens()).toContain("Aucun critère actif");
 
-    const markup = renderLens(["cafes"]);
+    const markup = renderLens({ criteriaKeys: ["cafes"] });
     expect(markup).toContain("Critères");
     expect(markup).toContain("Cafés");
     expect(markup).toContain("Retirer ce critère");
     expect(markup).not.toContain("Aucun critère actif");
+  });
+
+  it("stays mounted but inert while closed, so its controls leave the tab order", () => {
+    const markup = renderLens({ open: false });
+
+    expect(markup).toContain("anchored-panel");
+    expect(markup).toContain("inert");
+    expect(markup).not.toContain("data-open");
   });
 });

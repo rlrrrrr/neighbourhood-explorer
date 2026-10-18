@@ -1,4 +1,4 @@
-import { Activity, useState } from "react";
+import { useState } from "react";
 import { fbt } from "fbtee";
 import { tv } from "tailwind-variants";
 import { Button } from "../../components/ui/button";
@@ -75,49 +75,48 @@ export function MapView({
         </Button>
       </div>
 
-      {showRanking && (
-        <aside
-          className={cn(
-            "grain absolute start-4 top-16 w-72 rounded-2xl bg-panel-bg p-3 shadow-elevated backdrop-blur",
-            showLens && "max-sm:hidden",
-          )}
-          aria-label={rankingTitle}
-        >
-          <h2 className="px-2 pt-1 text-sm font-bold">{rankingTitle}</h2>
-          <ol className="mt-2 flex flex-col gap-1">
-            {SAMPLE_NEIGHBORHOODS.map((result, index) => {
-              const selected = result.name === selectedNeighborhood;
-              return (
-                <li key={result.name}>
-                  <button
-                    type="button"
-                    aria-pressed={selected}
-                    onClick={() => onSelectNeighborhood(result.name)}
-                    className={rankingRow({ selected })}
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-highlight text-xs font-bold text-highlight-text">
-                      {index + 1}
-                    </span>
-                    <span className="text-sm font-semibold">{result.name}</span>
-                    <span className="text-xs text-text-secondary">{result.district}</span>
-                  </button>
-                </li>
-              );
-            })}
-          </ol>
-        </aside>
-      )}
+      <aside
+        data-open={showRanking ? "" : undefined}
+        inert={!showRanking}
+        className={cn(
+          "anchored-panel anchored-panel-origin-start material-panel grain absolute start-4 top-16 w-72 rounded-2xl p-3 shadow-elevated",
+          showLens && "max-sm:hidden",
+        )}
+        aria-label={rankingTitle}
+      >
+        <h2 className="px-2 pt-1 text-sm font-bold">{rankingTitle}</h2>
+        <ol className="mt-2 flex flex-col gap-1">
+          {SAMPLE_NEIGHBORHOODS.map((result, index) => {
+            const selected = result.name === selectedNeighborhood;
+            return (
+              <li key={result.name}>
+                <button
+                  type="button"
+                  aria-pressed={selected}
+                  onClick={() => onSelectNeighborhood(result.name)}
+                  className={rankingRow({ selected })}
+                >
+                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-highlight text-xs font-bold text-highlight-text">
+                    {index + 1}
+                  </span>
+                  <span className="text-sm font-semibold">{result.name}</span>
+                  <span className="text-xs text-text-secondary">{result.district}</span>
+                </button>
+              </li>
+            );
+          })}
+        </ol>
+      </aside>
 
-      <Activity mode={showLens ? "visible" : "hidden"}>
-        <LensPanel
-          criteria={criteria}
-          onRemoveCriterion={onRemoveCriterion}
-          onClose={() => setShowLens(false)}
-        />
-      </Activity>
+      <LensPanel
+        criteria={criteria}
+        onRemoveCriterion={onRemoveCriterion}
+        open={showLens}
+        onClose={() => setShowLens(false)}
+      />
 
       <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-2 p-3 sm:p-4">
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border bg-panel-bg px-3 py-2 text-xs backdrop-blur">
+        <div className="material-panel flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border px-3 py-2 text-xs">
           <span className="flex items-center gap-1.5">
             <fbt desc="Low end of the score ramp legend">Faible</fbt>
             <span className="h-3 w-5 rounded-sm bg-ramp-1 ring-1 ring-border" />
@@ -133,7 +132,7 @@ export function MapView({
           </span>
         </div>
 
-        <p className="rounded-2xl bg-panel-bg px-3 py-1.5 text-xs text-text-secondary backdrop-blur">
+        <p className="material-panel rounded-2xl px-3 py-1.5 text-xs text-text-secondary">
           <fbt desc="Basemap and data attribution shown on the map">
             Fond de carte : OpenFreeMap · Données © OpenStreetMap
           </fbt>

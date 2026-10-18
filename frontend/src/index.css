@@ -120,30 +120,61 @@ body::before {
   background-image: linear-gradient(to left, transparent, var(--bg));
 }
 
-/* Panneau attaché à son déclencheur : il grandit depuis le coin de la barre qui l'ouvre. */
+/* Panneau attaché à son déclencheur : il grandit depuis le coin qui fait face à ce
+   déclencheur et se retire par le même chemin. `data-open` porte l'état ; le panneau
+   reste monté, `visibility` ne se retourne qu'en fin de transition pour que la sortie
+   soit visible. Origine par défaut : le coin de fin de ligne, celui des sélecteurs de
+   l'en-tête, posés sous leur déclencheur. */
 .anchored-panel {
-  --panel-enter-scale: 0.95;
+  visibility: hidden;
+  opacity: 0;
+  transform: scale(0.96) translateY(-0.375rem);
   transform-origin: top right;
   transition:
-    opacity 150ms var(--ease-out),
-    transform 150ms var(--ease-out);
+    opacity 160ms var(--ease-out),
+    transform 160ms var(--ease-out),
+    visibility 160ms;
+}
+
+.anchored-panel[data-open] {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+}
+
+/* Panneaux de la carte : leur coin de début de ligne est celui qui regarde les
+   commandes (le classement tombe juste dessous, la lentille est de l'autre côté). */
+.anchored-panel-origin-start {
+  transform-origin: top left;
 }
 
 [dir="rtl"] .anchored-panel {
   transform-origin: top left;
 }
 
-@starting-style {
-  .anchored-panel {
-    opacity: 0;
-    transform: scale(var(--panel-enter-scale));
-  }
+[dir="rtl"] .anchored-panel-origin-start {
+  transform-origin: top right;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .anchored-panel {
-    --panel-enter-scale: 1;
-    transition: opacity 150ms var(--ease-out);
+    transform: none;
+    transition:
+      opacity 120ms ease,
+      visibility 120ms;
+  }
+}
+
+/* Matière flottante : fond translucide et flou séparent la surface, sans trait dur. */
+.material-panel {
+  background-color: color-mix(in srgb, var(--panel-bg) 88%, transparent);
+  backdrop-filter: blur(20px) saturate(180%);
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .material-panel {
+    background-color: var(--bg);
+    backdrop-filter: none;
   }
 }
 
