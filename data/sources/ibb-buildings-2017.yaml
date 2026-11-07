@@ -1,0 +1,25 @@
+id: ibb-buildings-2017
+name: Nombre de bâtiments par mahalle (2017)
+organization: İstanbul Büyükşehir Belediyesi (İBB), Open Data Portal
+url: https://data.ibb.gov.tr/en/dataset/mahalle-bazli-bina-analiz-verisi
+license: Istanbul Metropolitan Municipality Open Data License v1.0 (compatible CC BY 4.0) — https://data.ibb.gov.tr/en/license
+attribution_text: Contains public sector information licensed under the Attribution 4.0 International (CC BY 4.0). İBB Open Data Portal.
+retrieved_at: 2026-11-03
+reference_period: 2017
+published_at: 2021-01-16
+source_version: resource cef193d5-0bd2-4e8d-8a69-275c50288875
+format: csv
+coordinate_system: none
+encoding: windows-1254 (export lu comme ISO-8859-1 puis recodé en UTF-8)
+checksum_sha256: 6b1c40e52a851ca2f15cbd4e97cd09958ebe9c91fd71f328a3852be6cb88a5dc
+verified_by: humain — autorisation du 2026-10-31 (docs/data-istanbul.md)
+verified_at: 2026-10-31
+steps: [download-datastore-search, repair-encoding, normalize-names-tr-TR, load-staging]
+outputs: [data/processed/ibb-buildings-2017/buildings-2017.csv]
+metrics: [building_age, building_height]
+pipeline: ibb-buildings-2017
+expected_counts:
+  rows: 959
+  districts: 39
+  uavt: 959
+  buildings: 1165936
