@@ -13,7 +13,7 @@ function renderShell(view: "home" | "map") {
         <MapView
           criteria={{ weights: [] }}
           onRemoveCriterion={() => {}}
-          selectedNeighborhood={null}
+          selectedNeighborhoodId={null}
           onSelectNeighborhood={() => {}}
         />
       )}

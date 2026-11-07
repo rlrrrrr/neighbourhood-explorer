@@ -55,6 +55,12 @@ describe("lens panel", () => {
     expect(markup).toContain("peer-checked:opacity-100");
   });
 
+  it("clips the panel so focusing a filter cannot scroll its header away", () => {
+    const markup = renderLens();
+
+    expect(markup).toMatch(/<aside[^>]*class="[^"]*overflow-clip/);
+  });
+
   it("shows the criteria of the shared state, with its empty state", () => {
     expect(renderLens()).toContain("Aucun critère actif");
 

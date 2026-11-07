@@ -14,7 +14,7 @@ import {
 interface ChatViewProps {
   criteria: Criteria;
   onToggleCriterion: (metricKey: string) => void;
-  onShowOnMap: (neighborhood: string) => void;
+  onShowOnMap: (neighborhoodId: number) => void;
 }
 
 function resultStats(
@@ -135,7 +135,7 @@ export function ChatView({ criteria, onToggleCriterion, onShowOnMap }: ChatViewP
               variant="outline"
               size="sm"
               className="mt-5"
-              onClick={() => onShowOnMap(result.name)}
+              onClick={() => onShowOnMap(result.neighborhoodId)}
             >
               <fbt desc="Button opening the map view for a sample result">Voir sur la carte</fbt>
             </Button>

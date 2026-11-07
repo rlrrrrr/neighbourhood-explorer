@@ -5,15 +5,28 @@ import { defineConfig, lazyPlugins } from "vite-plus";
 
 // https://vite.dev/config/
 export default defineConfig({
+  envDir: "..",
+  server: {
+    proxy: {
+      "/api": {
+        target: "http://127.0.0.1:5080",
+        changeOrigin: true,
+      },
+    },
+  },
   fmt: {
     ignorePatterns: [
       ".enum_manifest.json",
       "source_strings.json",
+      "src/generated/**",
+      "public/maplibre-gl-worker.mjs",
+      "public/maplibre-gl-shared.mjs",
       "src/translations/**",
       "translations/**",
     ],
   },
   lint: {
+    ignorePatterns: ["public/**", "src/generated/**"],
     plugins: ["react", "typescript", "oxc"],
     rules: {
       "react/rules-of-hooks": "error",

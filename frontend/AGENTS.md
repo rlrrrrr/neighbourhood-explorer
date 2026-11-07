@@ -101,12 +101,21 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 ## Vue Carte
 
 - mapcn au-dessus de MapLibre GL. Les besoins que mapcn ne couvre pas (couches de polygones, `feature-state`, regroupement de points, inclinaison) passent par l'instance MapLibre : **vérifier dans la documentation de la version installée** qu'on y a accès avant de coder.
-- **Fond de carte** : OpenFreeMap, style _Positron_ par défaut (fond calme sous les quartiers colorés), _Liberty_ en option, _Dark_ pour le thème sombre ; URL dans `VITE_BASEMAP_STYLE_URL` (jamais en dur). L'attribution (MapLibre, OpenMapTiles, OpenStreetMap) reste visible.
-- Trois niveaux de zoom : districts, mahalles, lieux. La couleur des quartiers est pilotée par `feature-state` : changer de couche ne recrée pas les couches.
+- **mapcn vient du registre** `https://mapcn.dev/r/map.json` (MIT), pas du paquet npm `mapcn` (homonyme non officiel). Le composant est copié dans `components/ui/map.tsx` et adapté (imports `./cn`, jetons du projet, worker local) ; pour le mettre à jour, recopier le registre puis réappliquer ces adaptations, ne pas remplacer par le paquet npm.
+- **Worker MapLibre auto-hébergé** : `node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs` est copié dans `public/` et chargé depuis `${import.meta.env.BASE_URL}maplibre-gl-worker.mjs` ; jamais depuis un CDN. Recopier le worker après toute mise à jour de `maplibre-gl`.
+- **Fond de carte** : OpenFreeMap, style _Positron_ par défaut (fond calme sous les quartiers colorés), _Dark_ pour le thème sombre ; URL dans `VITE_BASEMAP_STYLE_URL` et `VITE_BASEMAP_DARK_STYLE_URL` (jamais en dur). L'attribution (OpenFreeMap, OpenMapTiles, OpenStreetMap) est regroupée dans le contrôle d'attribution MapLibre, sans doublon fixe dans l'interface.
+- **Configuration locale** : Vite charge le `.env` de la racine (`envDir: ".."`). `VITE_API_URL` vide = URLs relatives, servies en développement par le proxy Vite `/api` → `http://127.0.0.1:5080` ; le renseigner pour viser une API distante. Le build statique suppose le même proxy inverse en production.
+- **État A2** : une seule couche, `population_density`, lue depuis `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods`. Pas encore de TanStack Query : `use-map-data.ts` expose une union `loading | error | ready` avec `reload`. Les géométries sont déjà simplifiées côté ETL (`display_geometry`), l'API ne simplifie pas à la volée.
+- **Couleurs de la carte** : les jetons `--ramp-1..5`, `--no-data`, `--text`, `--border` sont lus sur `document.documentElement` et convertis en couleurs MapLibre (`color(srgb …)` → `rgba(...)`). Aucune couleur hexadécimale dans les composants de carte. La rampe reste à une teinte, valeur manquante en gris avec motif.
+- **Cadrage** : la carte se cale sur les limites des géométries reçues ; sélectionner un quartier (liste ou clic) cadre sur son polygone ; le bouton « Recentrer sur Istanbul » du sélecteur recadre sur l'ensemble des géométries chargées **et remet la sélection à zéro** (paramètre `neighborhood` retiré de l'URL). L'instance MapLibre n'est pas recréée : le premier cadrage est instantané, les suivants (sélection, recentrage) animent la caméra sur 700 ms (instantané si `prefers-reduced-motion`). Le cadrage n'est pas réappliqué lors d'un changement de thème.
+- **Sélection et URL** : le paramètre `neighborhood` stocke l'**id** du mahalle (entier positif validé et borné dans `app/url-state.ts`), jamais son nom. Carte, chat et vue Données partagent cet id : les résultats d'exemple portent le `neighborhoodId` de leur mahalle officiel (`Moda` → `Caferağa`, `Yeldeğirmeni` → `Rasimpaşa`). Un id inconnu n'affiche aucune sélection ; des mahalles homonymes dans deux ilçe restent distinguables.
+- **Sélecteur « Aller à un quartier »** : le popup natif n'est pas animable ; c'est le contrôle qui répond. Pendant l'ouverture (`select:open`), le chevron pivote à 180° et la bordure prend `--action`, sur 160 ms `--ease-out` ; `prefers-reduced-motion` supprime la transition et applique l'état instantanément.
+- **Unité** : `metric.unit` reste la valeur canonique du contrat (`people/km²`). L'affichage passe par `localized-unit.ts`, qui associe les unités connues à des chaînes fbtee (`habitants/km²`, `people/km²`, `kişi/km²`, `نسمة/كم²`) ; une unité inconnue est affichée brute, sans traduction inventée.
+- Trois niveaux de zoom : districts, mahalles, lieux. La couleur des quartiers est pilotée par `feature-state` : changer de couche ne recrée pas les couches. A2 ne rend que le niveau mahalle.
 - Rampe de scores à **une seule teinte** (clarté croissante), valeur manquante en gris avec motif distinct ; la couleur n'est jamais le seul porteur d'information (libellé, valeur, rang numéroté).
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
 - Une **vue liste** synchronisée avec la carte est toujours disponible (accessibilité, petits écrans).
-- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend.
+- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend. Son en-tête reste fixe : le panneau est `overflow-clip` et seul son contenu interne défile, pour qu'un focus sur un filtre ne déplace pas le panneau lui-même.
 - Budgets : changement de couche < 100 ms sans requête réseau ; premier affichage < 2 s.
 - Mobile : feuille basse à trois crans, zones tactiles ≥ 44 px, rien ne dépend du survol.
 
@@ -179,6 +188,7 @@ vp check --fix
 vp test run <chemin/complet.test.ts>
 vp test
 vp build
+vp run generate:api             # régénère src/generated/api.d.ts depuis ../backend/openapi/openapi.v1.json
 
 # Traductions (depuis la racine : mise i18n ; depuis frontend/) :
 vp exec fbtee collect --src src --include-default-strings=false   # collecte les chaînes source

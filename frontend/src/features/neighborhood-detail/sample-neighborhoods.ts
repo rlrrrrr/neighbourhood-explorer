@@ -1,6 +1,7 @@
 import { fbt, type TranslatedString } from "fbtee";
 
 export type SampleNeighborhood = {
+  neighborhoodId: number;
   name: string;
   district: string;
   cafes: string;
@@ -11,6 +12,7 @@ export type SampleNeighborhood = {
 
 export const SAMPLE_NEIGHBORHOODS: readonly SampleNeighborhood[] = [
   {
+    neighborhoodId: 1570,
     name: "Moda",
     district: "Kadıköy",
     cafes: "24,1",
@@ -23,6 +25,7 @@ export const SAMPLE_NEIGHBORHOODS: readonly SampleNeighborhood[] = [
       ),
   },
   {
+    neighborhoodId: 1272,
     name: "Cihangir",
     district: "Beyoğlu",
     cafes: "18,6",
@@ -35,6 +38,7 @@ export const SAMPLE_NEIGHBORHOODS: readonly SampleNeighborhood[] = [
       ),
   },
   {
+    neighborhoodId: 1583,
     name: "Yeldeğirmeni",
     district: "Kadıköy",
     cafes: "15,2",

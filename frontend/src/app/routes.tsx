@@ -27,10 +27,10 @@ function useOpenView() {
 
 function useOpenMapAt() {
   const navigate = useNavigate();
-  return (neighborhood: string) => {
+  return (neighborhoodId: number) => {
     void navigate({
       to: viewPath("map"),
-      search: (previous) => searchWithNeighborhood(previous, neighborhood),
+      search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
     });
   };
 }
@@ -86,11 +86,11 @@ export function MapRoute() {
     <MapView
       criteria={criteriaFromSearch(search)}
       onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
-      selectedNeighborhood={search.neighborhood ?? null}
-      onSelectNeighborhood={(neighborhood) => {
+      selectedNeighborhoodId={search.neighborhood ?? null}
+      onSelectNeighborhood={(neighborhoodId) => {
         void navigate({
           to: viewPath("map"),
-          search: (previous) => searchWithNeighborhood(previous, neighborhood),
+          search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
         });
       }}
     />
