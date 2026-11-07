@@ -35,10 +35,6 @@ run = "docker compose down"
 description = "Exécuter l'ETL (profil etl) : data/ vers PostGIS"
 run = "docker compose --profile etl run --rm etl"
 
-[tasks.clef]
-description = "CLEF-Flash seul (profil ai) ; premier démarrage : téléchargement du modèle"
-run = "docker compose --profile ai up -d clef"
-
 [tasks."dev:web"]
 description = "Serveur de dev frontend"
 dir = "frontend"

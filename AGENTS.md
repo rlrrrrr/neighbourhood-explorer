@@ -27,6 +27,8 @@ Projet **étudiant, non commercial, non destiné à être maintenu à long terme
 | Isochrones (« quartier à 10 min ») | `docs/isochrones.md` |
 | Données, sources, licences, métriques | `docs/data.md` |
 | Sources open data d'Istanbul par métrique | `docs/data-istanbul.md` |
+| Ordre de travail de l'ETL (étapes, contrôles, ce qu'il ne faut pas faire) | `docs/etl-work-order.md` |
+| Comptes, avis, suggestions de lieux, favoris, tendances d'audience | `docs/accounts.md` |
 | Stratégie de test, invariants, vérification formelle | `docs/verification.md` |
 
 Si ce fichier et un sous-fichier se contredisent, le sous-fichier le plus proche du code modifié gagne. Signale la contradiction.
@@ -48,7 +50,7 @@ Si ce fichier et un sous-fichier se contredisent, le sous-fichier le plus proche
 - Afficher une précision artificielle (`8.2 cafés/km²`, pas `8.237491`).
 - Présenter les indicateurs de risque (séisme, inondation…) comme des garanties de sécurité.
 - Commiter un secret (clé API, token, mot de passe). Utiliser des variables d'environnement et `.env.example`.
-- Construire des interactions entre utilisateurs : messagerie, abonnements, commentaires, contenu publié par les utilisateurs. Autorisés : les formes de consommation (fil *Explorer*, classements calculés, tendances issues des données, sélection locale, partage par lien) et le chat avec CLEF, qui n'est pas une messagerie. Comptes, likes et tendances d'audience : phase ultérieure (`docs/product-direction.md`).
+- Construire des interactions entre utilisateurs : messagerie, abonnements, commentaires, contenu publié par les utilisateurs. Autorisés : les formes de consommation (fil *Explorer*, classements calculés, tendances issues des données, sélection locale, partage par lien) et le chat avec CLEF, qui n'est pas une messagerie. Comptes, favoris, avis, suggestions de lieux et tendances d'audience : phase ultérieure, décisions dans `docs/accounts.md` ; la messagerie, les abonnements et les commentaires restent exclus.
 - Créer 50 métriques avant d'avoir une bonne UX : MVP = 11 métriques (`docs/data.md`).
 
 **Arbitrage** : en cas de conflit entre sophistication technique et expérience utilisateur, choisir l'expérience et la simplicité.
@@ -63,10 +65,8 @@ Kadıköy est un **ilçe** ; Moda est un **mahalle**. Le modèle de données gè
 ```
 /
 ├── AGENTS.md
-├── docker-compose.yml          # db + api ; profils "etl" et "ai" (frontend lancé avec vp en local)
+├── docker-compose.yml          # db + api ; profil "etl" (frontend lancé avec vp en local ; le modèle CLEF est hébergé sur une autre instance)
 ├── .env.example
-├── infra/
-│   └── clef/Dockerfile         # llama-server + CLEF-Flash (optionnel)
 ├── data/                       # raw/ processed/ normalized/ (ETL), hors Git sauf manifestes
 ├── docs/                       # documentation produit et technique
 ├── benchmarks/                 # benchmarks séparés (ex. benchmarks/clef/)
@@ -79,29 +79,12 @@ Kadıköy est un **ilçe** ; Moda est un **mahalle**. Le modèle de données gè
 
 ## Commandes
 
-À ajuster au scaffold réel ; mettre ce bloc à jour dès qu'une commande change. **Utiliser Vite+ (`vp`) pour tout le frontend** ; ne pas appeler `pnpm`/`npm`/`vite`/`vitest` directement pour ces tâches. Les outils (Node, SDK .NET 9, Python, `vp`) sont épinglés par `mise.toml` : après un clone, `mise install` puis `mise bootstrap`.
+À ajuster au scaffold réel ; mettre ce bloc à jour dès qu'une commande change. **Utiliser Vite+ (`vp`) pour tout le frontend** ; ne pas appeler `pnpm`/`npm`/`vite`/`vitest` directement pour ces tâches.
 
 ```bash
-# Tâches unifiées (mise, depuis la racine)
-mise bootstrap        # dépendances backend + frontend
-mise start             # docker compose up -d --build (db + api)
-mise stop              # docker compose down
-mise dev:web          # vp dev (serveur de dev frontend)
-mise dev:api          # API locale dotnet (http://localhost:5080)
-mise etl -- <source>  # docker compose --profile etl run --rm etl <source>
-mise clef             # CLEF-Flash seul (profil "ai")
-mise check            # vp check + dotnet format --verify-no-changes
-mise test             # vp test + dotnet test
-mise build            # vp build + dotnet build
-mise smoke            # benchmarks/clef/smoke-test.py
-mise i18n             # fbtee : chaînes sources + catalogues de traduction (frontend)
-mise tasks            # liste complète
-
 # Infrastructure (PostgreSQL + PostGIS + API)
 docker compose up
-docker compose --profile etl run --rm etl <source>   # ingestion d'une source
-docker compose --profile ai up -d clef   # CLEF-Flash seul (premier démarrage : téléchargement du modèle, plusieurs minutes)
-python benchmarks/clef/smoke-test.py     # test minimal de /v1/systemone (CLEF_URL pour changer l'adresse)
+python benchmarks/clef/smoke-test.py     # test minimal de /v1/systemone sur le serveur CLEF distant (CLEF_URL = son adresse)
 
 # Frontend (depuis frontend/)
 vp install
@@ -111,7 +94,6 @@ vp check --fix                        # corrige ce qui peut l'être
 vp test run <chemin/complet.test.ts>   # un seul fichier, une exécution (voir « Tests »)
 vp test                               # toute la suite
 vp build                              # build de production
-mise i18n                             # fbtee : collecte les chaînes source + compile les catalogues (voir frontend/AGENTS.md « Interface et textes »)
 
 # Backend (depuis backend/)
 dotnet build

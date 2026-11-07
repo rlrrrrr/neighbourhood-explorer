@@ -26,8 +26,10 @@ services:
       DATABASE_CONNECTION_STRING: Host=db;Database=${POSTGRES_DB:-explorer};Username=${POSTGRES_USER:-explorer};Password=${POSTGRES_PASSWORD:-}
       AI_ENABLED: ${AI_ENABLED:-false}
       AI_PROVIDER: ${AI_PROVIDER:-fake}
-      AI_ENDPOINT: ${AI_ENDPOINT:-http://clef:8080}
+      AI_ENDPOINT: ${AI_ENDPOINT:-}
       AI_MODEL: ${AI_MODEL:-clef-flash}
+      AI_USERNAME: ${AI_USERNAME:-}
+      AI_PASSWORD: ${AI_PASSWORD:-}
       AI_TIMEOUT_SECONDS: ${AI_TIMEOUT_SECONDS:-10}
       ISOCHRONE_PROVIDER: ${ISOCHRONE_PROVIDER:-fake}
       ISOCHRONE_API_KEY: ${ISOCHRONE_API_KEY:-}
@@ -46,31 +48,10 @@ services:
       ISOCHRONE_PROVIDER: ${ISOCHRONE_PROVIDER:-fake}
       ISOCHRONE_API_KEY: ${ISOCHRONE_API_KEY:-}
       ISOCHRONE_DAILY_BUDGET: ${ISOCHRONE_DAILY_BUDGET:-1000}
+      TUIK_API_KEY: ${TUIK_API_KEY:-}
     volumes:
       - ./data:/data
     entrypoint: ["dotnet", "Etl.dll"]
 
-  clef:
-    build:
-      context: ./infra/clef
-      args:
-        LLAMA_COMMIT: ${CLEF_LLAMA_COMMIT:-}
-    profiles: ["ai"]
-    environment:
-      QUANT: ${CLEF_QUANT:-Q4_K_M}
-    volumes:
-      - clef-models:/models
-    ports:
-      - "127.0.0.1:8090:8080"
-    mem_limit: ${CLEF_MEMORY_LIMIT:-12g}
-    healthcheck:
-      test: ["CMD", "curl", "-fsS", "http://localhost:8080/health"]
-      interval: 15s
-      timeout: 5s
-      retries: 5
-      start_period: 15m
-    restart: unless-stopped
-
 volumes:
   pgdata:
-  clef-models:

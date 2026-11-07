@@ -29,11 +29,10 @@ L'API répond sur `http://localhost:5080` (`GET /api/v1/health`), le frontend su
 mise tasks                 # liste complète
 mise dev:api               # API en local (dotnet run) au lieu du conteneur
 mise etl -- <source>       # ETL data/raw/<source> → PostGIS (profil "etl")
-mise clef                  # CLEF-Flash seul (profil "ai", optionnel)
 mise check                 # format + lint (frontend) et format (backend)
 mise test                  # suites de tests frontend + backend
 mise build                 # builds de production
-mise smoke                 # smoke test CLEF /v1/systemone (CLEF_URL : http://localhost:8090/v1/systemone)
+mise smoke                 # smoke test CLEF /v1/systemone (CLEF_URL : adresse du serveur CLEF)
 ```
 
 ## Structure
@@ -42,8 +41,7 @@ mise smoke                 # smoke test CLEF /v1/systemone (CLEF_URL : http://lo
 /
 ├── AGENTS.md            # cadre projet et règles non négociables
 ├── mise.toml            # outils épinglés + tâches
-├── docker-compose.yml   # db + api ; profils "etl" et "ai"
-├── infra/clef/          # llama-server + CLEF-Flash (optionnel)
+├── docker-compose.yml   # db + api ; profil "etl" (CLEF est hébergé sur une autre instance)
 ├── data/                # raw/ processed/ normalized/ (ETL) ; sources/ = manifestes (commités)
 ├── docs/                # documentation produit et technique
 ├── benchmarks/          # benchmarks séparés (benchmarks/clef/)
