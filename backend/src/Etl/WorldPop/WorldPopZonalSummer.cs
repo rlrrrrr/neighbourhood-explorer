@@ -17,7 +17,8 @@ public sealed record WorldPopZonalSumRequest(
     NpgsqlConnection Connection,
     NpgsqlTransaction Transaction,
     string SourceId,
-    int GridYear);
+    int GridYear,
+    DateTimeOffset ComputedAt);
 
 public static class WorldPopZonalSummer
 {
@@ -32,7 +33,7 @@ public static class WorldPopZonalSummer
             command.CommandText = ZonalSql;
             command.Parameters.AddWithValue("source_id", request.SourceId);
             command.Parameters.AddWithValue("grid_year", request.GridYear);
-            command.Parameters.AddWithValue("computed_at", DateTimeOffset.UtcNow);
+            command.Parameters.AddWithValue("computed_at", request.ComputedAt);
             await command.ExecuteNonQueryAsync(cancellationToken);
         }
 

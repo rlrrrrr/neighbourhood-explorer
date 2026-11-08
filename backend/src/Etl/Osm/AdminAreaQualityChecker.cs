@@ -1,3 +1,4 @@
+using NeighbourhoodExplorer.Etl.Manifests;
 using Npgsql;
 
 namespace NeighbourhoodExplorer.Etl.Osm;
@@ -24,7 +25,7 @@ public sealed class AdminAreaQualityChecker(NpgsqlConnection connection, NpgsqlT
         }
 
         return new AdminAreaQualityReport(
-            DateTimeOffset.UtcNow,
+            request.GeneratedAt,
             request.Manifest.Id,
             request.RawFilePath,
             request.InputSha256,
@@ -39,9 +40,18 @@ public sealed class AdminAreaQualityChecker(NpgsqlConnection connection, NpgsqlT
 
     private static IReadOnlyList<CountCheck> ReadCounts(AdminAreaQualityRequest request) =>
     [
-        CreateCount("province", request.Build.ProvinceCount, request.Manifest.ExpectedCounts["province"]),
-        CreateCount("district", request.Build.DistrictCount, request.Manifest.ExpectedCounts["district"]),
-        CreateCount("neighborhood", request.Build.NeighborhoodCount, request.Manifest.ExpectedCounts["neighborhood"]),
+        CreateCount(
+            "province",
+            request.Build.ProvinceCount,
+            request.Manifest.ExpectedCounts.Require(ExpectedCountField.Province, request.Manifest.Id)),
+        CreateCount(
+            "district",
+            request.Build.DistrictCount,
+            request.Manifest.ExpectedCounts.Require(ExpectedCountField.Districts, request.Manifest.Id)),
+        CreateCount(
+            "neighborhood",
+            request.Build.NeighborhoodCount,
+            request.Manifest.ExpectedCounts.Require(ExpectedCountField.Neighborhoods, request.Manifest.Id)),
     ];
 
     private static CountCheck CreateCount(string level, int actual, int expected) =>

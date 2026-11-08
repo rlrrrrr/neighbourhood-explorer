@@ -34,4 +34,5 @@ public sealed record AdminAreaQualityRequest(
     AdminAreaBuildResult Build,
     string RawFilePath,
     string InputSha256,
-    string Osm2pgsqlVersion);
+    string Osm2pgsqlVersion,
+    DateTimeOffset GeneratedAt);

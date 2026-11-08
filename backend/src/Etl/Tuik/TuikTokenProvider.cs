@@ -3,13 +3,17 @@ using System.Text.Json.Serialization;
 
 namespace NeighbourhoodExplorer.Etl.Tuik;
 
-public sealed class TuikTokenProvider(HttpClient httpClient, string apiKey, TuikTokenCache cache)
+public sealed class TuikTokenProvider(
+    HttpClient httpClient,
+    string apiKey,
+    TuikTokenCache cache,
+    TimeProvider timeProvider)
 {
     public const string Endpoint = "https://giris.tuik.gov.tr/realms/web/protocol/openid-connect/token";
 
     public async Task<string> GetTokenAsync(bool forceRefresh, CancellationToken cancellationToken)
     {
-        if (!forceRefresh && cache.Get(DateTimeOffset.UtcNow) is { } cached)
+        if (!forceRefresh && cache.Get(timeProvider.GetUtcNow()) is { } cached)
         {
             return cached;
         }
@@ -41,7 +45,7 @@ public sealed class TuikTokenProvider(HttpClient httpClient, string apiKey, Tuik
             var payload = await response.Content.ReadFromJsonAsync<TuikTokenResponse>(cancellationToken)
                 ?? throw new EtlFailureException("TÜİK : réponse de jeton illisible.");
 
-            cache.Store(payload.AccessToken, payload.ExpiresIn, DateTimeOffset.UtcNow);
+            cache.Store(payload.AccessToken, payload.ExpiresIn, timeProvider.GetUtcNow());
             return payload.AccessToken;
         }
     }

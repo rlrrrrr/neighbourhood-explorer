@@ -1,4 +1,5 @@
 using NeighbourhoodExplorer.Etl.Manifests;
+using NeighbourhoodExplorer.Etl.Pipelines;
 
 namespace NeighbourhoodExplorer.Etl.Tests;
 
@@ -22,12 +23,12 @@ internal static class TestManifests
         Steps = [],
         Outputs = [],
         Metrics = [],
-        Pipeline = "osm-admin-boundaries",
-        ExpectedCounts = new Dictionary<string, int>(StringComparer.Ordinal)
+        Pipeline = PipelineId.OsmAdminBoundaries,
+        ExpectedCounts = new ExpectedCounts
         {
-            ["province"] = province,
-            ["district"] = district,
-            ["neighborhood"] = neighborhood,
+            Province = province,
+            Districts = district,
+            Neighborhoods = neighborhood,
         },
     };
 }

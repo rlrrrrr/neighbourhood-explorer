@@ -1,4 +1,5 @@
 using System.Globalization;
+using NeighbourhoodExplorer.Etl.Infrastructure;
 using NeighbourhoodExplorer.Etl.Osm;
 using Npgsql;
 
@@ -11,14 +12,15 @@ public sealed record WorldPopRasterLoadResult(
     string PostgisVersion);
 
 public sealed record WorldPopRasterLoadRequest(
-    NpgsqlDataSource DataSource,
     OsmDatabaseTarget Target,
-    string ProjectedPath,
-    TextWriter Output);
+    string ProjectedPath);
 
-public static class WorldPopRasterLoader
+public sealed class WorldPopRasterLoader(
+    NpgsqlDataSource dataSource,
+    IExternalToolRunner toolRunner,
+    IEtlConsole console)
 {
-    public static async Task<WorldPopRasterLoadResult> LoadAsync(
+    public async Task<WorldPopRasterLoadResult> LoadAsync(
         WorldPopRasterLoadRequest request,
         CancellationToken cancellationToken)
     {
@@ -28,11 +30,11 @@ public static class WorldPopRasterLoader
 
         try
         {
-            request.Output.WriteLine(
+            console.WriteLine(
                 $"ETL: raster2pgsql, import de {Path.GetFileName(request.ProjectedPath)}");
 
-            var raster = await WorldPopCommandRunner.RunToFileAsync(
-                new WorldPopCommand(
+            var raster = await toolRunner.RunToFileAsync(
+                new ExternalToolCommand(
                     "raster2pgsql",
                     [
                         "-s",
@@ -52,12 +54,11 @@ public static class WorldPopRasterLoader
             if (raster.ExitCode != 0)
             {
                 throw new EtlFailureException(
-                    $"raster2pgsql a échoué (code {raster.ExitCode}) : " +
-                    $"{WorldPopCommandRunner.Tail(raster.StandardError)}");
+                    $"raster2pgsql a échoué (code {raster.ExitCode}) : {raster.Tail()}");
             }
 
-            var psql = await WorldPopCommandRunner.RunAsync(
-                new WorldPopCommand(
+            var psql = await toolRunner.RunAsync(
+                new ExternalToolCommand(
                     "psql",
                     [
                         "-h",
@@ -83,11 +84,10 @@ public static class WorldPopRasterLoader
             if (psql.ExitCode != 0)
             {
                 throw new EtlFailureException(
-                    $"psql a échoué (code {psql.ExitCode}) : " +
-                    $"{WorldPopCommandRunner.Tail(psql.StandardError)}");
+                    $"psql a échoué (code {psql.ExitCode}) : {psql.Tail()}");
             }
 
-            await using var connection = await request.DataSource.OpenConnectionAsync(cancellationToken);
+            await using var connection = await dataSource.OpenConnectionAsync(cancellationToken);
             await using var stats = connection.CreateCommand();
             stats.CommandText = """
                 SELECT count(*)::int,

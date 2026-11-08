@@ -1,18 +1,11 @@
 using System.Diagnostics;
 
-namespace NeighbourhoodExplorer.Etl.WorldPop;
+namespace NeighbourhoodExplorer.Etl.Infrastructure;
 
-public sealed record WorldPopCommand(
-    string FileName,
-    IReadOnlyList<string> Arguments,
-    IReadOnlyDictionary<string, string>? Environment = null);
-
-public sealed record WorldPopCommandResult(int ExitCode, string StandardOutput, string StandardError);
-
-public static class WorldPopCommandRunner
+public sealed class ProcessExternalToolRunner : IExternalToolRunner
 {
-    public static async Task<WorldPopCommandResult> RunAsync(
-        WorldPopCommand command,
+    public async Task<ExternalToolResult> RunAsync(
+        ExternalToolCommand command,
         CancellationToken cancellationToken)
     {
         var startInfo = CreateStartInfo(command, redirectStandardOutput: true);
@@ -31,14 +24,14 @@ public static class WorldPopCommandRunner
             throw;
         }
 
-        return new WorldPopCommandResult(
+        return new ExternalToolResult(
             process.ExitCode,
             await outputTask,
             await errorTask);
     }
 
-    public static async Task<WorldPopCommandResult> RunToFileAsync(
-        WorldPopCommand command,
+    public async Task<ExternalToolResult> RunToFileAsync(
+        ExternalToolCommand command,
         string outputPath,
         CancellationToken cancellationToken)
     {
@@ -62,13 +55,15 @@ public static class WorldPopCommandRunner
             throw;
         }
 
-        return new WorldPopCommandResult(
+        return new ExternalToolResult(
             process.ExitCode,
             string.Empty,
             await errorTask);
     }
 
-    private static ProcessStartInfo CreateStartInfo(WorldPopCommand command, bool redirectStandardOutput)
+    private static ProcessStartInfo CreateStartInfo(
+        ExternalToolCommand command,
+        bool redirectStandardOutput)
     {
         var startInfo = new ProcessStartInfo(command.FileName)
         {
@@ -104,12 +99,5 @@ public static class WorldPopCommandRunner
             throw new EtlFailureException(
                 $"{fileName} est absent du système : lancer l'ETL dans l'image Docker (service etl).");
         }
-    }
-
-    public static string Tail(string value, int lineCount = 40)
-    {
-        var lines = value
-            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
-        return string.Join(" | ", lines.TakeLast(lineCount));
     }
 }

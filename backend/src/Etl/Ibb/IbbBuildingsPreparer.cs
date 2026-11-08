@@ -1,4 +1,5 @@
 using System.Text;
+using NeighbourhoodExplorer.Etl.Manifests;
 
 namespace NeighbourhoodExplorer.Etl.Ibb;
 
@@ -36,7 +37,7 @@ public static class IbbBuildingsPreparer
 {
     public static IbbPreparedBuildings Prepare(
         IbbDatastoreDocument document,
-        IReadOnlyDictionary<string, int> expectedCounts)
+        ExpectedCounts expectedCounts)
     {
         var failures = new List<string>();
         var rows = new List<IbbBuildingRow>(document.Records.Count);
@@ -99,12 +100,12 @@ public static class IbbBuildingsPreparer
         }
 
         var counts = new List<IbbCountCheck>();
-        AddCount(counts, failures, expectedCounts, "rows", rows.Count);
-        AddCount(counts, failures, expectedCounts, "districts",
+        AddCount(counts, failures, expectedCounts, ExpectedCountField.Rows, "rows", rows.Count);
+        AddCount(counts, failures, expectedCounts, ExpectedCountField.Districts, "districts",
             rows.Select(row => row.DistrictNormalized).Distinct(StringComparer.Ordinal).Count());
-        AddCount(counts, failures, expectedCounts, "uavt",
+        AddCount(counts, failures, expectedCounts, ExpectedCountField.Uavt, "uavt",
             rows.Select(row => row.MahalleUavt).Distinct().Count());
-        AddCount(counts, failures, expectedCounts, "buildings",
+        AddCount(counts, failures, expectedCounts, ExpectedCountField.Buildings, "buildings",
             rows.Sum(row => (long)row.BuildingsByAge));
 
         return new IbbPreparedBuildings(rows, counts, failures, repairedNames);
@@ -113,11 +114,12 @@ public static class IbbBuildingsPreparer
     private static void AddCount(
         ICollection<IbbCountCheck> counts,
         ICollection<string> failures,
-        IReadOnlyDictionary<string, int> expectedCounts,
+        ExpectedCounts expectedCounts,
+        ExpectedCountField field,
         string key,
         long actual)
     {
-        if (!expectedCounts.TryGetValue(key, out var expected))
+        if (!expectedCounts.TryGet(field, out var expected))
         {
             failures.Add($"le manifeste doit définir expected_counts.{key}.");
             return;

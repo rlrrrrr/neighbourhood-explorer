@@ -1,4 +1,5 @@
 using NeighbourhoodExplorer.Etl.Ibb;
+using NeighbourhoodExplorer.Etl.Manifests;
 
 namespace NeighbourhoodExplorer.Etl.Tests;
 
@@ -11,18 +12,18 @@ public class IbbBuildingsPreparerTests
         return IbbDatastoreDocument.Parse(stream);
     }
 
-    private static Dictionary<string, int> ExpectedCounts() => new(StringComparer.Ordinal)
+    private static ExpectedCounts ValidExpectedCounts() => new()
     {
-        ["rows"] = 3,
-        ["districts"] = 3,
-        ["uavt"] = 3,
-        ["buildings"] = 71,
+        Rows = 3,
+        Districts = 3,
+        Uavt = 3,
+        Buildings = 71,
     };
 
     [Fact]
     public void Prepare_repairs_names_and_checks_counts()
     {
-        var prepared = IbbBuildingsPreparer.Prepare(LoadDocument(), ExpectedCounts());
+        var prepared = IbbBuildingsPreparer.Prepare(LoadDocument(), ValidExpectedCounts());
 
         Assert.Empty(prepared.Failures);
         Assert.All(prepared.Counts, count => Assert.True(count.Matches));
@@ -41,7 +42,7 @@ public class IbbBuildingsPreparerTests
 
         var prepared = IbbBuildingsPreparer.Prepare(
             new IbbDatastoreDocument(document.Total, [broken]),
-            ExpectedCounts());
+            ValidExpectedCounts());
 
         Assert.Contains(prepared.Failures, failure => failure.Contains("tranches d'âge"));
     }
@@ -49,7 +50,7 @@ public class IbbBuildingsPreparerTests
     [Fact]
     public void Prepare_requires_expected_counts()
     {
-        var prepared = IbbBuildingsPreparer.Prepare(LoadDocument(), new Dictionary<string, int>());
+        var prepared = IbbBuildingsPreparer.Prepare(LoadDocument(), ExpectedCounts.Empty);
 
         Assert.Contains(prepared.Failures, failure => failure.Contains("expected_counts.rows"));
     }

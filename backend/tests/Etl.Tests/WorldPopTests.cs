@@ -47,7 +47,12 @@ public sealed class WorldPopTests : IAsyncLifetime
         await using var transaction = await connection.BeginTransactionAsync();
 
         var result = await WorldPopZonalSummer.ComputeAsync(
-            new WorldPopZonalSumRequest(connection, transaction, "worldpop-test", 2025),
+            new WorldPopZonalSumRequest(
+                connection,
+                transaction,
+                "worldpop-test",
+                2025,
+                DateTimeOffset.UtcNow),
             CancellationToken.None);
 
         Assert.Equal(2, result.NeighborhoodCount);
@@ -189,9 +194,8 @@ public sealed class WorldPopTests : IAsyncLifetime
                 "worldpop-test",
                 2025,
                 2025,
-                2,
-                1,
-                100,
+                new WorldPopExpectedCounts(2, 1, 100),
+                DateTimeOffset.UtcNow,
                 metadata),
             CancellationToken.None);
 

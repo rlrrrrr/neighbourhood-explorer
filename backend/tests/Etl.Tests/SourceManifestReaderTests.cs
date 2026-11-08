@@ -48,7 +48,7 @@ public class SourceManifestReaderTests
 
         Assert.Empty(SourceManifestReader.FindMissingFields(manifest));
         Assert.Equal("humain", manifest.VerifiedBy);
-        Assert.Equal(39, manifest.ExpectedCounts["district"]);
+        Assert.Equal(39, manifest.ExpectedCounts.Districts);
         Assert.Equal(["import"], manifest.Steps);
     }
 

@@ -27,9 +27,9 @@ public sealed record IbbMatchResult(
     IReadOnlyList<IbbUnmatchedRow> Unmatched,
     IReadOnlyList<IbbAliasMatch> AliasMatches);
 
-public static class IbbNeighborhoodMatcher
+public sealed class IbbNeighborhoodMatcher(IbbNeighborhoodAliasTable aliases)
 {
-    public static IbbMatchResult Match(
+    public IbbMatchResult Match(
         IReadOnlyList<IbbBuildingRow> rows,
         IReadOnlyList<OsmNeighborhood> osmNeighborhoods)
     {
@@ -56,7 +56,7 @@ public static class IbbNeighborhoodMatcher
                 continue;
             }
 
-            if (IbbNeighborhoodAliases.TryResolve(key.DistrictNormalized, key.NeighborhoodNormalized, out var alias)
+            if (aliases.TryResolve(key.DistrictNormalized, key.NeighborhoodNormalized, out var alias)
                 && byKey.TryGetValue((key.DistrictNormalized, alias), out var aliasMatch)
                 && !matchedIds.Contains(aliasMatch.AdminAreaId))
             {

@@ -49,7 +49,13 @@ public sealed class AdminAreaImportTests : IAsyncLifetime
 
             var report = await new AdminAreaQualityChecker(connection, transaction)
                 .BuildAsync(
-                    new AdminAreaQualityRequest(manifest, build, "fixture", "sha", "1.8.0"),
+                    new AdminAreaQualityRequest(
+                        manifest,
+                        build,
+                        "fixture",
+                        "sha",
+                        "1.8.0",
+                        DateTimeOffset.UtcNow),
                     CancellationToken.None);
 
             Assert.Empty(report.Failures);

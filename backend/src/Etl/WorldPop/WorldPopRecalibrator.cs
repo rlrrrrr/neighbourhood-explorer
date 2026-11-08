@@ -69,147 +69,61 @@ public sealed record WorldPopRecalibrationResult(
     double MaxDensity,
     double MedianDensity);
 
+public sealed record WorldPopExpectedCounts(
+    int Neighborhoods,
+    int Districts,
+    int ProvincePopulation);
+
 public sealed record WorldPopRecalibrationRequest(
     NpgsqlConnection Connection,
     NpgsqlTransaction Transaction,
     string SourceId,
     int GridYear,
     int ReferenceYear,
-    int ExpectedNeighborhoods,
-    int ExpectedDistricts,
-    int ExpectedProvincePopulation,
+    WorldPopExpectedCounts ExpectedCounts,
+    DateTimeOffset ComputedAt,
     WorldPopMetricMetadata Metadata);
 
 public static class WorldPopRecalibrator
 {
-    private const double MinimumCoefficient = 0.7;
-    private const double MaximumCoefficient = 1.3;
-
     public static async Task<WorldPopRecalibrationResult> RecalculateAsync(
         WorldPopRecalibrationRequest request,
         CancellationToken cancellationToken)
     {
-        var failures = new List<string>();
-        var unmatched = new List<string>();
-
-        var tuikSourceId = await ReadTuikSourceAsync(request, failures, cancellationToken);
+        var readFailures = new List<string>();
+        var tuikSourceId = await ReadTuikSourceAsync(request, readFailures, cancellationToken);
         var tuikDistricts = tuikSourceId is null
             ? []
-            : await ReadTuikDistrictsAsync(request, tuikSourceId, failures, cancellationToken);
+            : await ReadTuikDistrictsAsync(request, tuikSourceId, readFailures, cancellationToken);
         var tuikProvince = tuikSourceId is null
             ? null
-            : await ReadTuikProvinceAsync(request, tuikSourceId, failures, cancellationToken);
-        var osmDistricts = await ReadOsmDistrictsAsync(request, failures, cancellationToken);
+            : await ReadTuikProvinceAsync(request, tuikSourceId, readFailures, cancellationToken);
+        var osmDistricts = await ReadOsmDistrictsAsync(request, readFailures, cancellationToken);
         var worldpopSums = await ReadWorldpopDistrictSumsAsync(request, cancellationToken);
         var totalRaw = await ReadTotalRawAsync(request, cancellationToken);
 
-        if (tuikDistricts.Count != request.ExpectedDistricts)
-        {
-            failures.Add(
-                $"TÜİK : {tuikDistricts.Count} ilçe au lieu de {request.ExpectedDistricts}.");
-        }
+        var plan = WorldPopRecalibrationPlanner.Build(
+            new WorldPopPlannerInput(
+                tuikDistricts,
+                tuikProvince,
+                osmDistricts,
+                worldpopSums,
+                request.ExpectedCounts.Districts,
+                request.ExpectedCounts.ProvincePopulation));
 
-        if (osmDistricts.Count != request.ExpectedDistricts)
-        {
-            failures.Add(
-                $"OSM : {osmDistricts.Count} ilçe au lieu de {request.ExpectedDistricts}.");
-        }
-
-        if (tuikProvince is null)
-        {
-            failures.Add("TÜİK : total provincial absent.");
-        }
-        else
-        {
-            var districtSum = tuikDistricts.Sum(district => (long)district.Population);
-            if (districtSum != tuikProvince.Population)
-            {
-                failures.Add(
-                    $"TÜİK : somme des ilçe {districtSum} ≠ total provincial " +
-                    $"{tuikProvince.Population}.");
-            }
-
-            if (tuikProvince.Population != request.ExpectedProvincePopulation)
-            {
-                failures.Add(
-                    $"TÜİK : population provinciale {tuikProvince.Population} ≠ attendu " +
-                    $"{request.ExpectedProvincePopulation}.");
-            }
-        }
-
-        var osmByName = new Dictionary<string, OsmDistrict>(StringComparer.Ordinal);
-        foreach (var district in osmDistricts)
-        {
-            if (!osmByName.TryAdd(district.NameNormalized, district))
-            {
-                failures.Add($"OSM : nom d'ilçe normalisé en double « {district.NameNormalized} ».");
-            }
-        }
-
-        var matchedOsmIds = new HashSet<long>();
-        var coefficients = new List<WorldPopCoefficient>();
-        foreach (var tuikDistrict in tuikDistricts)
-        {
-            if (!osmByName.TryGetValue(tuikDistrict.NameNormalized, out var osmDistrict))
-            {
-                unmatched.Add($"TÜİK {tuikDistrict.Code} {tuikDistrict.Name} sans ilçe OSM.");
-                continue;
-            }
-
-            matchedOsmIds.Add(osmDistrict.Id);
-            if (!worldpopSums.TryGetValue(osmDistrict.Id, out var worldpop))
-            {
-                failures.Add($"WorldPop : aucune somme pour l'ilçe {osmDistrict.Name}.");
-                continue;
-            }
-
-            if (worldpop.Sum <= 0)
-            {
-                failures.Add(
-                    $"WorldPop : somme nulle pour l'ilçe {osmDistrict.Name} " +
-                    $"({worldpop.NeighborhoodCount} mahalles) ; recalage impossible.");
-                continue;
-            }
-
-            var coefficient = tuikDistrict.Population / worldpop.Sum;
-            coefficients.Add(new WorldPopCoefficient(
-                osmDistrict.Id,
-                osmDistrict.Name,
-                tuikDistrict.Code,
-                tuikDistrict.Name,
-                worldpop.Sum,
-                tuikDistrict.Population,
-                coefficient,
-                coefficient < MinimumCoefficient || coefficient > MaximumCoefficient,
-                worldpop.NeighborhoodCount,
-                worldpop.ZeroNeighborhoodCount));
-        }
-
-        foreach (var osmDistrict in osmDistricts)
-        {
-            if (!matchedOsmIds.Contains(osmDistrict.Id))
-            {
-                unmatched.Add($"OSM {osmDistrict.Name} sans ilçe TÜİK.");
-            }
-        }
-
-        if (unmatched.Count > 0)
-        {
-            failures.Add($"{unmatched.Count} ilçe(s) sans correspondance TÜİK/OSM.");
-        }
-
+        var failures = readFailures.Concat(plan.Failures).ToList();
         if (failures.Count > 0)
         {
-            return BuildFailureResult(request, coefficients, unmatched, failures, totalRaw);
+            return BuildFailureResult(plan, totalRaw, failures);
         }
 
-        await ReplaceCoefficientsAsync(request, coefficients, cancellationToken);
+        await ReplaceCoefficientsAsync(request, plan.Coefficients, cancellationToken);
         await UpdateEstimatedPopulationsAsync(request, cancellationToken);
-        await CheckDistrictSumsAsync(request, coefficients, failures, cancellationToken);
+        await CheckDistrictSumsAsync(request, plan.Coefficients, failures, cancellationToken);
 
         if (failures.Count > 0)
         {
-            return BuildFailureResult(request, coefficients, unmatched, failures, totalRaw);
+            return BuildFailureResult(plan, totalRaw, failures);
         }
 
         var metricId = await UpsertMetricAsync(request, cancellationToken);
@@ -217,13 +131,13 @@ public static class WorldPopRecalibrator
         await InsertMetricValuesAsync(request, metricId, neighborhoodDensities, cancellationToken);
         var neighborhoods = await ReadNeighborhoodResultsAsync(request, metricId, cancellationToken);
         var totalEstimated = neighborhoods.Sum(neighborhood => neighborhood.PopulationEstimated);
-        var totalAdnks = coefficients.Sum(coefficient => coefficient.AdnksTotal);
+        var totalAdnks = plan.TotalAdnks;
 
-        if (neighborhoods.Count != request.ExpectedNeighborhoods)
+        if (neighborhoods.Count != request.ExpectedCounts.Neighborhoods)
         {
             failures.Add(
                 $"métrique : {neighborhoods.Count} valeurs de mahalle au lieu de " +
-                $"{request.ExpectedNeighborhoods}.");
+                $"{request.ExpectedCounts.Neighborhoods}.");
         }
 
         if (Math.Abs(totalEstimated - totalAdnks) > 0.5)
@@ -239,15 +153,15 @@ public static class WorldPopRecalibrator
             .ToList();
 
         return new WorldPopRecalibrationResult(
-            coefficients.Count,
+            plan.Coefficients.Count,
             neighborhoods.Count,
             totalRaw,
             totalAdnks,
             totalEstimated,
-            coefficients.Count(coefficient => coefficient.Flagged),
-            coefficients,
+            plan.Coefficients.Count(coefficient => coefficient.Flagged),
+            plan.Coefficients,
             neighborhoods,
-            unmatched,
+            plan.UnmatchedDistricts,
             failures,
             metricId,
             densities.Count == 0 ? 0 : densities[0],
@@ -256,21 +170,19 @@ public static class WorldPopRecalibrator
     }
 
     private static WorldPopRecalibrationResult BuildFailureResult(
-        WorldPopRecalibrationRequest request,
-        IReadOnlyList<WorldPopCoefficient> coefficients,
-        IReadOnlyList<string> unmatched,
-        IReadOnlyList<string> failures,
-        double totalRaw) =>
+        WorldPopPlan plan,
+        double totalRaw,
+        IReadOnlyList<string> failures) =>
         new(
-            coefficients.Count,
+            plan.Coefficients.Count,
             0,
             totalRaw,
-            coefficients.Sum(coefficient => coefficient.AdnksTotal),
+            plan.TotalAdnks,
             0,
-            coefficients.Count(coefficient => coefficient.Flagged),
-            coefficients,
+            plan.Coefficients.Count(coefficient => coefficient.Flagged),
+            plan.Coefficients,
             [],
-            unmatched,
+            plan.UnmatchedDistricts,
             failures,
             0,
             0,
@@ -318,7 +230,7 @@ public static class WorldPopRecalibrator
         return sources[0];
     }
 
-    private static async Task<IReadOnlyList<TuikDistrict>> ReadTuikDistrictsAsync(
+    private static async Task<IReadOnlyList<WorldPopTuikDistrict>> ReadTuikDistrictsAsync(
         WorldPopRecalibrationRequest request,
         string tuikSourceId,
         List<string> failures,
@@ -337,11 +249,11 @@ public static class WorldPopRecalibrator
         command.Parameters.AddWithValue("source_id", tuikSourceId);
         command.Parameters.AddWithValue("reference_year", request.ReferenceYear);
 
-        var districts = new List<TuikDistrict>();
+        var districts = new List<WorldPopTuikDistrict>();
         await using var reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))
         {
-            districts.Add(new TuikDistrict(
+            districts.Add(new WorldPopTuikDistrict(
                 reader.GetString(0),
                 reader.GetString(1),
                 reader.GetString(2),
@@ -356,7 +268,7 @@ public static class WorldPopRecalibrator
         return districts;
     }
 
-    private static async Task<TuikProvince?> ReadTuikProvinceAsync(
+    private static async Task<WorldPopTuikProvince?> ReadTuikProvinceAsync(
         WorldPopRecalibrationRequest request,
         string tuikSourceId,
         List<string> failures,
@@ -375,11 +287,11 @@ public static class WorldPopRecalibrator
         command.Parameters.AddWithValue("source_id", tuikSourceId);
         command.Parameters.AddWithValue("reference_year", request.ReferenceYear);
 
-        var provinces = new List<TuikProvince>();
+        var provinces = new List<WorldPopTuikProvince>();
         await using var reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))
         {
-            provinces.Add(new TuikProvince(
+            provinces.Add(new WorldPopTuikProvince(
                 reader.GetString(0),
                 reader.GetString(1),
                 reader.GetInt32(2)));
@@ -394,7 +306,7 @@ public static class WorldPopRecalibrator
         return provinces[0];
     }
 
-    private static async Task<IReadOnlyList<OsmDistrict>> ReadOsmDistrictsAsync(
+    private static async Task<IReadOnlyList<WorldPopOsmDistrict>> ReadOsmDistrictsAsync(
         WorldPopRecalibrationRequest request,
         List<string> failures,
         CancellationToken cancellationToken)
@@ -408,11 +320,11 @@ public static class WorldPopRecalibrator
             ORDER BY id
             """;
 
-        var districts = new List<OsmDistrict>();
+        var districts = new List<WorldPopOsmDistrict>();
         await using var reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))
         {
-            districts.Add(new OsmDistrict(
+            districts.Add(new WorldPopOsmDistrict(
                 reader.GetInt64(0),
                 reader.GetString(1),
                 reader.GetString(2)));
@@ -426,7 +338,7 @@ public static class WorldPopRecalibrator
         return districts;
     }
 
-    private static async Task<IReadOnlyDictionary<long, WorldpopDistrictSum>> ReadWorldpopDistrictSumsAsync(
+    private static async Task<IReadOnlyDictionary<long, WorldPopDistrictSum>> ReadWorldpopDistrictSumsAsync(
         WorldPopRecalibrationRequest request,
         CancellationToken cancellationToken)
     {
@@ -446,11 +358,11 @@ public static class WorldPopRecalibrator
         command.Parameters.AddWithValue("source_id", request.SourceId);
         command.Parameters.AddWithValue("grid_year", request.GridYear);
 
-        var sums = new Dictionary<long, WorldpopDistrictSum>();
+        var sums = new Dictionary<long, WorldPopDistrictSum>();
         await using var reader = await command.ExecuteReaderAsync(cancellationToken);
         while (await reader.ReadAsync(cancellationToken))
         {
-            sums[reader.GetInt64(0)] = new WorldpopDistrictSum(
+            sums[reader.GetInt64(0)] = new WorldPopDistrictSum(
                 reader.GetDouble(1),
                 reader.GetInt32(2),
                 reader.GetInt32(3));
@@ -517,7 +429,7 @@ public static class WorldPopRecalibrator
             insert.Parameters.AddWithValue("adnks_total", coefficient.AdnksTotal);
             insert.Parameters.AddWithValue("coefficient", coefficient.Coefficient);
             insert.Parameters.AddWithValue("flagged", coefficient.Flagged);
-            insert.Parameters.AddWithValue("computed_at", DateTimeOffset.UtcNow);
+            insert.Parameters.AddWithValue("computed_at", request.ComputedAt);
             await insert.ExecuteNonQueryAsync(cancellationToken);
         }
     }
@@ -730,7 +642,7 @@ public static class WorldPopRecalibrator
         command.Parameters.AddWithValue("metric_id", metricId);
         command.Parameters.AddWithValue("observed_at", metadata.ObservedAt);
         command.Parameters.AddWithValue("reference_period", metadata.ReferencePeriod);
-        command.Parameters.AddWithValue("computed_at", DateTimeOffset.UtcNow);
+        command.Parameters.AddWithValue("computed_at", request.ComputedAt);
         await command.ExecuteNonQueryAsync(cancellationToken);
     }
 
@@ -835,20 +747,5 @@ public static class WorldPopRecalibrator
             : values[middle];
     }
 
-    private sealed record TuikDistrict(
-        string Code,
-        string Name,
-        string NameNormalized,
-        int Population);
-
-    private sealed record TuikProvince(string Code, string Name, int Population);
-
-    private sealed record OsmDistrict(long Id, string Name, string NameNormalized);
-
     private sealed record NeighborhoodDensity(long AdminAreaId, double Density);
-
-    private sealed record WorldpopDistrictSum(
-        double Sum,
-        int NeighborhoodCount,
-        int ZeroNeighborhoodCount);
 }

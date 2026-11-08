@@ -1,4 +1,5 @@
 using System.Globalization;
+using NeighbourhoodExplorer.Etl.Pipelines;
 
 namespace NeighbourhoodExplorer.Etl.Manifests;
 
@@ -7,6 +8,11 @@ public static class SourceManifestReader
     public static SourceManifest Read(string path)
     {
         var document = ManifestDocument.Load(path);
+        var rawPipeline = Require(document, "pipeline");
+        if (!PipelineIdExtensions.TryParse(rawPipeline, out var pipelineId))
+        {
+            throw new ManifestException($"pipeline inconnu : {rawPipeline}");
+        }
 
         return new SourceManifest
         {
@@ -32,7 +38,7 @@ public static class SourceManifestReader
             Steps = document.List("steps"),
             Outputs = document.List("outputs"),
             Metrics = document.List("metrics"),
-            Pipeline = Require(document, "pipeline"),
+            Pipeline = pipelineId,
             ExpectedCounts = ReadExpectedCounts(document),
         };
     }
@@ -76,20 +82,62 @@ public static class SourceManifestReader
             : throw new ManifestException($"{key} doit être un entier.");
     }
 
-    private static IReadOnlyDictionary<string, int> ReadExpectedCounts(ManifestDocument document)
+    private static ExpectedCounts ReadExpectedCounts(ManifestDocument document)
     {
-        var counts = new Dictionary<string, int>(StringComparer.Ordinal);
-        foreach (var (level, value) in document.Map("expected_counts"))
+        var counts = ExpectedCounts.Empty;
+        foreach (var (key, value) in document.Map("expected_counts"))
         {
-            if (!int.TryParse(value, out var parsed))
+            if (!int.TryParse(
+                    value,
+                    NumberStyles.Integer,
+                    CultureInfo.InvariantCulture,
+                    out var parsed))
             {
-                throw new ManifestException($"expected_counts.{level} doit être un entier.");
+                throw new ManifestException($"expected_counts.{key} doit être un entier.");
             }
 
-            counts[level] = parsed;
+            counts = key switch
+            {
+                "province" => counts with { Province = parsed },
+                "district" or "districts" => counts with
+                {
+                    Districts = MergeDistricts(counts.Districts, parsed, key),
+                },
+                "neighborhood" or "neighborhoods" => counts with
+                {
+                    Neighborhoods = MergeNeighborhoods(counts.Neighborhoods, parsed, key),
+                },
+                "rows" => counts with { Rows = parsed },
+                "uavt" => counts with { Uavt = parsed },
+                "buildings" => counts with { Buildings = parsed },
+                "province_population" => counts with { ProvincePopulation = parsed },
+                _ => throw new ManifestException($"expected_counts.{key} inconnu."),
+            };
         }
 
         return counts;
+    }
+
+    private static int MergeDistricts(int? existing, int value, string key)
+    {
+        if (existing is { } current && current != value)
+        {
+            throw new ManifestException(
+                $"expected_counts.{key} ({value}) contredit expected_counts.districts ({current}).");
+        }
+
+        return value;
+    }
+
+    private static int MergeNeighborhoods(int? existing, int value, string key)
+    {
+        if (existing is { } current && current != value)
+        {
+            throw new ManifestException(
+                $"expected_counts.{key} ({value}) contredit expected_counts.neighborhoods ({current}).");
+        }
+
+        return value;
     }
 
     private static string Require(ManifestDocument document, string key) =>

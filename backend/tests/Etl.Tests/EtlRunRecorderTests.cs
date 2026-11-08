@@ -27,10 +27,10 @@ public sealed class EtlRunRecorderTests : IAsyncLifetime
     [Fact]
     public async Task Start_closes_a_previous_running_run_for_the_same_source()
     {
-        var recorder = new EtlRunRecorder(dataSource, "tuik-test");
+        var recorder = new EtlRunRecorder(dataSource, "tuik-test", TimeProvider.System);
 
-        var first = await recorder.StartAsync(DateTimeOffset.UtcNow, CancellationToken.None);
-        var second = await recorder.StartAsync(DateTimeOffset.UtcNow, CancellationToken.None);
+        var first = await recorder.StartAsync(CancellationToken.None);
+        var second = await recorder.StartAsync(CancellationToken.None);
 
         Assert.Equal("failed", await StatusAsync(first));
         Assert.Equal("running", await StatusAsync(second));

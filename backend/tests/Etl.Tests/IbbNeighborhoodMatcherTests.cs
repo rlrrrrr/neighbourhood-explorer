@@ -4,6 +4,13 @@ namespace NeighbourhoodExplorer.Etl.Tests;
 
 public class IbbNeighborhoodMatcherTests
 {
+    private static readonly IbbNeighborhoodAliasTable Aliases = IbbNeighborhoodAliasTable.Load(
+        Path.Combine(
+            AppContext.BaseDirectory,
+            "Ibb",
+            "Aliases",
+            "ibb-neighborhood-aliases.json"));
+
     [Fact]
     public void Match_uses_district_and_normalized_name_then_lists_candidates()
     {
@@ -18,7 +25,7 @@ public class IbbNeighborhoodMatcherTests
             new OsmNeighborhood(11, "kadikoy", "osmanaga", "Osmanağa Mahallesi"),
         };
 
-        var result = IbbNeighborhoodMatcher.Match(rows, osm);
+        var result = new IbbNeighborhoodMatcher(Aliases).Match(rows, osm);
 
         Assert.Equal(10, result.Rows[0].AdminAreaId);
         Assert.Equal("name", result.Rows[0].MatchMethod);
@@ -37,7 +44,7 @@ public class IbbNeighborhoodMatcherTests
             new OsmNeighborhood(10, "kadikoy", "19 mayis", "19 Mayıs Mahallesi"),
         };
 
-        var result = IbbNeighborhoodMatcher.Match(rows, osm);
+        var result = new IbbNeighborhoodMatcher(Aliases).Match(rows, osm);
 
         Assert.Equal(10, result.Rows[0].AdminAreaId);
         Assert.Equal("alias", result.Rows[0].MatchMethod);
@@ -59,7 +66,7 @@ public class IbbNeighborhoodMatcherTests
             new OsmNeighborhood(10, "kadikoy", "caferaga", "Caferağa Mahallesi"),
         };
 
-        var result = IbbNeighborhoodMatcher.Match(rows, osm);
+        var result = new IbbNeighborhoodMatcher(Aliases).Match(rows, osm);
 
         Assert.Equal(10, result.Rows[0].AdminAreaId);
         Assert.Null(result.Rows[1].AdminAreaId);

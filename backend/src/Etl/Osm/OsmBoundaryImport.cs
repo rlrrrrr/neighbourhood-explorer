@@ -1,11 +1,15 @@
-using System.Diagnostics;
+using System.Globalization;
+using NeighbourhoodExplorer.Etl.Infrastructure;
 using Npgsql;
 
 namespace NeighbourhoodExplorer.Etl.Osm;
 
 public sealed record OsmImportRequest(NpgsqlDataSource DataSource, string RawFilePath);
 
-public sealed class OsmBoundaryImport(OsmDatabaseTarget target, TextWriter output)
+public sealed class OsmBoundaryImport(
+    OsmDatabaseTarget target,
+    IExternalToolRunner toolRunner,
+    IEtlConsole console)
 {
     public async Task<string> RunAsync(OsmImportRequest request, CancellationToken cancellationToken)
     {
@@ -18,116 +22,60 @@ public sealed class OsmBoundaryImport(OsmDatabaseTarget target, TextWriter outpu
             throw new EtlFailureException($"style osm2pgsql introuvable : {stylePath}");
         }
 
-        var startInfo = new ProcessStartInfo("osm2pgsql")
-        {
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-        };
-        startInfo.ArgumentList.Add("--create");
-        startInfo.ArgumentList.Add("--output=flex");
-        startInfo.ArgumentList.Add($"--style={stylePath}");
-        startInfo.ArgumentList.Add("--slim");
-        startInfo.ArgumentList.Add("--drop");
-        startInfo.ArgumentList.Add("--cache=1024");
-        startInfo.ArgumentList.Add("--number-processes=2");
-        startInfo.ArgumentList.Add("-d");
-        startInfo.ArgumentList.Add(target.Database);
-        startInfo.ArgumentList.Add("-H");
-        startInfo.ArgumentList.Add(target.Host);
-        startInfo.ArgumentList.Add("-P");
-        startInfo.ArgumentList.Add(target.Port.ToString(System.Globalization.CultureInfo.InvariantCulture));
-        startInfo.ArgumentList.Add("-U");
-        startInfo.ArgumentList.Add(target.Username);
-        startInfo.ArgumentList.Add(request.RawFilePath);
-        startInfo.Environment["PGPASSWORD"] = target.Password;
+        console.WriteLine($"ETL: osm2pgsql {version}, import de {Path.GetFileName(request.RawFilePath)}");
 
-        output.WriteLine($"ETL: osm2pgsql {version}, import de {Path.GetFileName(request.RawFilePath)}");
-
-        using var process = Process.Start(startInfo)
-            ?? throw new EtlFailureException("impossible de démarrer osm2pgsql.");
-
-        var tail = new Queue<string>();
-        var errorPump = PumpAsync(process.StandardError, line =>
-        {
-            lock (tail)
-            {
-                tail.Enqueue(line);
-                while (tail.Count > 40)
+        var result = await toolRunner.RunAsync(
+            new ExternalToolCommand(
+                "osm2pgsql",
+                [
+                    "--create",
+                    "--output=flex",
+                    $"--style={stylePath}",
+                    "--slim",
+                    "--drop",
+                    "--cache=1024",
+                    "--number-processes=2",
+                    "-d",
+                    target.Database,
+                    "-H",
+                    target.Host,
+                    "-P",
+                    target.Port.ToString(CultureInfo.InvariantCulture),
+                    "-U",
+                    target.Username,
+                    request.RawFilePath,
+                ],
+                new Dictionary<string, string>(StringComparer.Ordinal)
                 {
-                    tail.Dequeue();
-                }
-            }
-        }, cancellationToken);
-        var outputPump = PumpAsync(process.StandardOutput, _ => { }, cancellationToken);
+                    ["PGPASSWORD"] = target.Password,
+                }),
+            cancellationToken);
 
-        try
+        if (result.ExitCode != 0)
         {
-            await Task.WhenAll(errorPump, outputPump, process.WaitForExitAsync(cancellationToken));
-        }
-        catch (OperationCanceledException)
-        {
-            process.Kill(entireProcessTree: true);
-            throw;
-        }
-
-        if (process.ExitCode != 0)
-        {
-            string details;
-            lock (tail)
-            {
-                details = string.Join(" | ", tail);
-            }
-
-            throw new EtlFailureException($"osm2pgsql a échoué (code {process.ExitCode}) : {details}");
+            throw new EtlFailureException(
+                $"osm2pgsql a échoué (code {result.ExitCode}) : {result.Tail()}");
         }
 
         return version;
     }
 
-    private static async Task PumpAsync(StreamReader reader, Action<string> onLine, CancellationToken cancellationToken)
+    private async Task<string> ReadVersionAsync(CancellationToken cancellationToken)
     {
-        while (await reader.ReadLineAsync(cancellationToken) is { } line)
-        {
-            onLine(line);
-        }
+        var result = await toolRunner.RunAsync(
+            new ExternalToolCommand("osm2pgsql", ["--version"]),
+            cancellationToken);
+
+        var firstLine = (result.StandardOutput + result.StandardError)
+            .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
+            .FirstOrDefault();
+
+        return firstLine ?? "version inconnue";
     }
 
-    private static async Task<string> ReadVersionAsync(CancellationToken cancellationToken)
-    {
-        var startInfo = new ProcessStartInfo("osm2pgsql")
-        {
-            RedirectStandardOutput = true,
-            RedirectStandardError = true,
-        };
-        startInfo.ArgumentList.Add("--version");
-
-        Process process;
-        try
-        {
-            process = Process.Start(startInfo)
-                ?? throw new EtlFailureException("impossible de démarrer osm2pgsql.");
-        }
-        catch (Exception exception) when (exception is System.ComponentModel.Win32Exception)
-        {
-            throw new EtlFailureException(
-                "osm2pgsql est absent du système : lancer l'ETL dans l'image Docker (mise etl).");
-        }
-
-        using (process)
-        {
-            var standardOutput = await process.StandardOutput.ReadToEndAsync(cancellationToken);
-            var standardError = await process.StandardError.ReadToEndAsync(cancellationToken);
-            await process.WaitForExitAsync(cancellationToken);
-
-            var firstLine = (standardOutput + standardError)
-                .Split('\n', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-                .FirstOrDefault();
-
-            return firstLine ?? "version inconnue";
-        }
-    }
-
-    private static async Task DropStagingTablesAsync(NpgsqlDataSource dataSource, CancellationToken cancellationToken)
+    private static async Task DropStagingTablesAsync(
+        NpgsqlDataSource dataSource,
+        CancellationToken cancellationToken)
     {
         await using var command = dataSource.CreateCommand(
             "DROP TABLE IF EXISTS osm_admin_boundaries CASCADE; DROP TABLE IF EXISTS osm2pgsql_properties CASCADE;");

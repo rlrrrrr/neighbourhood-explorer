@@ -10,13 +10,17 @@ public sealed record EtlRunResult(
     IReadOnlyDictionary<string, int> RowCounts,
     string? ErrorMessage);
 
-public sealed class EtlRunRecorder(NpgsqlDataSource dataSource, string sourceId)
+public sealed class EtlRunRecorder(
+    NpgsqlDataSource dataSource,
+    string sourceId,
+    TimeProvider timeProvider)
 {
     private static readonly string ToolVersion =
         typeof(EtlRunRecorder).Assembly.GetName().Version?.ToString() ?? "unknown";
 
-    public async Task<long> StartAsync(DateTimeOffset startedAt, CancellationToken cancellationToken)
+    public async Task<long> StartAsync(CancellationToken cancellationToken)
     {
+        var startedAt = timeProvider.GetUtcNow();
         const string closeInterruptedSql = """
             UPDATE etl_run
             SET finished_at = @started_at,
@@ -61,7 +65,7 @@ public sealed class EtlRunRecorder(NpgsqlDataSource dataSource, string sourceId)
 
         await using var command = dataSource.CreateCommand(sql);
         command.Parameters.AddWithValue("id", runId);
-        command.Parameters.AddWithValue("finished_at", DateTimeOffset.UtcNow);
+        command.Parameters.AddWithValue("finished_at", timeProvider.GetUtcNow());
         command.Parameters.AddWithValue("status", result.Success ? "succeeded" : "failed");
         command.Parameters.Add(new NpgsqlParameter("input_sha256", NpgsqlDbType.Text)
         {

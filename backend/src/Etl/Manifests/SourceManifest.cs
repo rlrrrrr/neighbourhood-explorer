@@ -1,3 +1,5 @@
+using NeighbourhoodExplorer.Etl.Pipelines;
+
 namespace NeighbourhoodExplorer.Etl.Manifests;
 
 public sealed record SourceManifest
@@ -46,8 +48,7 @@ public sealed record SourceManifest
 
     public required IReadOnlyList<string> Metrics { get; init; }
 
-    public required string Pipeline { get; init; }
+    public required PipelineId Pipeline { get; init; }
 
-    public IReadOnlyDictionary<string, int> ExpectedCounts { get; init; } =
-        new Dictionary<string, int>(StringComparer.Ordinal);
+    public ExpectedCounts ExpectedCounts { get; init; } = ExpectedCounts.Empty;
 }
