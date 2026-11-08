@@ -147,9 +147,9 @@ export interface components {
         City: {
             /**
              * Format: int32
-             * @description Code de province utilisé dans les chemins (34 = İstanbul)
+             * @description Code de plaque de la province, utilisé dans les chemins (34 = İstanbul)
              */
-            id: number;
+            plateCode: number;
             name: string;
             /** @example TR-34 */
             officialCode: string;
@@ -341,7 +341,7 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Code de province (34 = İstanbul), résolu via official_code = TR-{cityId} */
+                /** @description Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId} */
                 cityId: number;
             };
             cookie?: never;
@@ -532,7 +532,7 @@ export interface operations {
             };
             header?: never;
             path: {
-                /** @description Code de province (34 = İstanbul), résolu via official_code = TR-{cityId} */
+                /** @description Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId} */
                 cityId: number;
             };
             cookie?: never;

@@ -22,13 +22,13 @@ public class GeographyEndpointTests(MetricsApiFixture fixture) : IClassFixture<M
             payload.Cities,
             ankara =>
             {
-                Assert.Equal(6, ankara.Id);
+                Assert.Equal(6, ankara.PlateCode);
                 Assert.Equal("Ankara", ankara.Name);
                 Assert.Equal("TR-06", ankara.OfficialCode);
             },
             istanbul =>
             {
-                Assert.Equal(34, istanbul.Id);
+                Assert.Equal(34, istanbul.PlateCode);
                 Assert.Equal("İstanbul", istanbul.Name);
                 Assert.Equal("TR-34", istanbul.OfficialCode);
             });
@@ -127,7 +127,7 @@ public class GeographyEndpointTests(MetricsApiFixture fixture) : IClassFixture<M
         Assert.Equal("population_density", metric.Key);
         Assert.Equal(200, metric.Raw);
         Assert.Equal(0.5, metric.Normalized);
-        Assert.Equal("estimated", metric.QualityFlag);
+        Assert.Equal(QualityFlag.Estimated, metric.QualityFlag);
         Assert.Equal(new DateOnly(2025, 12, 31), metric.ObservedAt);
         Assert.Equal("2025", metric.ReferencePeriod);
         Assert.Equal("worldpop-test", metric.Source.Id);

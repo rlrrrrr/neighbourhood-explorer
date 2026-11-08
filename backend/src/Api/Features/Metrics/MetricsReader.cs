@@ -159,7 +159,7 @@ public static class MetricsReader
             grouped[key][neighborhoodId] = new MetricValueResponse(
                 Raw: reader.GetDouble(2),
                 Normalized: reader.GetDouble(3),
-                QualityFlag: reader.GetString(4));
+                QualityFlag: QualityFlagValues.Parse(reader.GetString(4)));
         }
 
         return grouped.ToDictionary(
@@ -208,7 +208,7 @@ public static class MetricsReader
                 Key: reader.GetString(0),
                 Raw: reader.GetDouble(1),
                 Normalized: reader.GetDouble(2),
-                QualityFlag: reader.GetString(3),
+                QualityFlag: QualityFlagValues.Parse(reader.GetString(3)),
                 ObservedAt: reader.GetFieldValue<DateOnly>(4),
                 ReferencePeriod: reader.GetString(5),
                 Source: new NeighborhoodMetricSourceResponse(

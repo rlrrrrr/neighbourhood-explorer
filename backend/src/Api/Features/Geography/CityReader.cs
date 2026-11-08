@@ -1,17 +1,16 @@
-using System.Globalization;
 using Npgsql;
 
 namespace NeighbourhoodExplorer.Api.Features.Geography;
 
 public sealed record CityReference(long Id, string Name);
 
-public sealed record CitySummary(int PlateCode, string Name, string OfficialCode, long AdminAreaId);
+public sealed record CitySummary(PlateCode PlateCode, string Name, string OfficialCode, long AdminAreaId);
 
 public static class CityReader
 {
-    public static async Task<CityReference?> FindByOfficialCodeAsync(
+    public static async Task<CityReference?> FindByPlateCodeAsync(
         NpgsqlDataSource dataSource,
-        string officialCode,
+        PlateCode plateCode,
         CancellationToken cancellationToken)
     {
         const string sql = """
@@ -21,7 +20,7 @@ public static class CityReader
             """;
 
         await using var command = dataSource.CreateCommand(sql);
-        command.Parameters.AddWithValue("official_code", officialCode);
+        command.Parameters.AddWithValue("official_code", plateCode.ToOfficialCode());
         await using var reader = await command.ExecuteReaderAsync(cancellationToken);
         return await reader.ReadAsync(cancellationToken)
             ? new CityReference(reader.GetInt64(0), reader.GetString(1))
@@ -45,17 +44,17 @@ public static class CityReader
         while (await reader.ReadAsync(cancellationToken))
         {
             var officialCode = reader.GetString(2);
-            if (officialCode.Length <= 3
-                || !int.TryParse(
-                    officialCode[3..],
-                    NumberStyles.Integer,
-                    CultureInfo.InvariantCulture,
-                    out var plateCode))
+            if (!PlateCode.TryParseOfficialCode(officialCode, out var plateCode))
             {
-                continue;
+                throw new InvalidOperationException(
+                    $"official_code de province invalide : « {officialCode} ».");
             }
 
-            cities.Add(new CitySummary(plateCode, reader.GetString(1), officialCode, reader.GetInt64(0)));
+            cities.Add(new CitySummary(
+                plateCode,
+                reader.GetString(1),
+                officialCode,
+                reader.GetInt64(0)));
         }
 
         return cities;

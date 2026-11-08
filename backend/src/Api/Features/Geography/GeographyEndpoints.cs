@@ -1,4 +1,3 @@
-using System.Globalization;
 using NeighbourhoodExplorer.Api.Http;
 
 namespace NeighbourhoodExplorer.Api.Features.Geography;
@@ -29,7 +28,10 @@ public static class GeographyEndpoints
         return CachedJsonResponse.Create(
             context,
             new CitiesResponse(cities
-                .Select(city => new CityResponse(city.PlateCode, city.Name, city.OfficialCode))
+                .Select(city => new CityResponse(
+                    city.PlateCode.Value,
+                    city.Name,
+                    city.OfficialCode))
                 .ToList()));
     }
 
@@ -44,13 +46,22 @@ public static class GeographyEndpoints
             return ApiProblems.DatabaseUnavailable();
         }
 
-        var officialCode = $"TR-{cityId.ToString("D2", CultureInfo.InvariantCulture)}";
-        var city = await CityReader.FindByOfficialCodeAsync(dataSource, officialCode, cancellationToken);
+        if (!PlateCode.TryCreate(cityId, out var plateCode))
+        {
+            return ApiProblems.NotFound(
+                "city_not_found",
+                $"Aucun code de province valide ne correspond à {cityId}.");
+        }
+
+        var city = await CityReader.FindByPlateCodeAsync(
+            dataSource,
+            plateCode,
+            cancellationToken);
         if (city is null)
         {
             return ApiProblems.NotFound(
                 "city_not_found",
-                $"Aucune province ne correspond à official_code {officialCode}.");
+                $"Aucune province ne correspond à official_code {plateCode.ToOfficialCode()}.");
         }
 
         var features = await NeighborhoodReader.ReadFeaturesAsync(dataSource, city.Id, cancellationToken);

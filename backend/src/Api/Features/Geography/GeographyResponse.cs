@@ -4,7 +4,7 @@ namespace NeighbourhoodExplorer.Api.Features.Geography;
 
 public sealed record CitiesResponse(IReadOnlyList<CityResponse> Cities);
 
-public sealed record CityResponse(int Id, string Name, string OfficialCode);
+public sealed record CityResponse(int PlateCode, string Name, string OfficialCode);
 
 public sealed record NeighborhoodFeatureCollection(string Type, IReadOnlyList<NeighborhoodFeature> Features);
 

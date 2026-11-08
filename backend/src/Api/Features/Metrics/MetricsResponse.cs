@@ -33,7 +33,7 @@ public sealed record MetricSourceResponse(
     DateOnly RetrievedAt,
     string Version);
 
-public sealed record MetricValueResponse(double Raw, double Normalized, string QualityFlag);
+public sealed record MetricValueResponse(double Raw, double Normalized, QualityFlag QualityFlag);
 
 public sealed record NeighborhoodMetricsResponse(
     long NeighborhoodId,
@@ -43,7 +43,7 @@ public sealed record NeighborhoodMetricResponse(
     string Key,
     double Raw,
     double Normalized,
-    string QualityFlag,
+    QualityFlag QualityFlag,
     DateOnly ObservedAt,
     string ReferencePeriod,
     NeighborhoodMetricSourceResponse Source);

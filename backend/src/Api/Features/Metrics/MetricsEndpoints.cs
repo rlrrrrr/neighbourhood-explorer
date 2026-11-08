@@ -1,4 +1,3 @@
-using System.Globalization;
 using NeighbourhoodExplorer.Api.Features.Geography;
 using NeighbourhoodExplorer.Api.Http;
 
@@ -35,8 +34,8 @@ public static class MetricsEndpoints
         HttpContext context,
         CancellationToken cancellationToken)
     {
-        var metricKeys = ParseMetricKeys(metrics);
-        if (metricKeys.Count == 0)
+        var metricKeys = MetricKeySet.Parse(metrics);
+        if (metricKeys.IsEmpty)
         {
             return ApiProblems.BadRequest(
                 "metrics_required",
@@ -48,17 +47,29 @@ public static class MetricsEndpoints
             return ApiProblems.DatabaseUnavailable();
         }
 
-        var officialCode = $"TR-{cityId.ToString("D2", CultureInfo.InvariantCulture)}";
-        var city = await CityReader.FindByOfficialCodeAsync(dataSource, officialCode, cancellationToken);
+        if (!PlateCode.TryCreate(cityId, out var plateCode))
+        {
+            return ApiProblems.NotFound(
+                "city_not_found",
+                $"Aucun code de province valide ne correspond à {cityId}.");
+        }
+
+        var city = await CityReader.FindByPlateCodeAsync(
+            dataSource,
+            plateCode,
+            cancellationToken);
         if (city is null)
         {
             return ApiProblems.NotFound(
                 "city_not_found",
-                $"Aucune province ne correspond à official_code {officialCode}.");
+                $"Aucune province ne correspond à official_code {plateCode.ToOfficialCode()}.");
         }
 
-        var knownKeys = await MetricsReader.ReadKnownKeysAsync(dataSource, metricKeys, cancellationToken);
-        var unknownKeys = metricKeys
+        var knownKeys = await MetricsReader.ReadKnownKeysAsync(
+            dataSource,
+            metricKeys.Keys,
+            cancellationToken);
+        var unknownKeys = metricKeys.Keys
             .Where(key => !knownKeys.Contains(key))
             .OrderBy(key => key, StringComparer.Ordinal)
             .ToList();
@@ -72,7 +83,7 @@ public static class MetricsEndpoints
         var values = await MetricsReader.ReadLatestValuesAsync(
             dataSource,
             city.Id,
-            metricKeys,
+            metricKeys.Keys,
             cancellationToken);
         return CachedJsonResponse.Create(context, values);
     }
@@ -102,16 +113,4 @@ public static class MetricsEndpoints
         return CachedJsonResponse.Create(context, metrics);
     }
 
-    private static IReadOnlyList<string> ParseMetricKeys(string? rawMetricKeys)
-    {
-        if (string.IsNullOrWhiteSpace(rawMetricKeys))
-        {
-            return [];
-        }
-
-        return rawMetricKeys
-            .Split(',', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries)
-            .Distinct(StringComparer.Ordinal)
-            .ToList();
-    }
 }

@@ -53,8 +53,13 @@
             "name": "cityId",
             "in": "path",
             "required": true,
-            "description": "Code de province (34 = İstanbul), résolu via official_code = TR-{cityId}",
-            "schema": { "type": "integer", "format": "int32" }
+            "description": "Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId}",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 81
+            }
           }
         ],
         "responses": {
@@ -256,8 +261,13 @@
             "name": "cityId",
             "in": "path",
             "required": true,
-            "description": "Code de province (34 = İstanbul), résolu via official_code = TR-{cityId}",
-            "schema": { "type": "integer", "format": "int32" }
+            "description": "Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId}",
+            "schema": {
+              "type": "integer",
+              "format": "int32",
+              "minimum": 1,
+              "maximum": 81
+            }
           },
           {
             "name": "metrics",
@@ -348,12 +358,14 @@
       },
       "City": {
         "type": "object",
-        "required": ["id", "name", "officialCode"],
+        "required": ["plateCode", "name", "officialCode"],
         "properties": {
-          "id": {
+          "plateCode": {
             "type": "integer",
             "format": "int32",
-            "description": "Code de province utilisé dans les chemins (34 = İstanbul)"
+            "minimum": 1,
+            "maximum": 81,
+            "description": "Code de plaque de la province, utilisé dans les chemins (34 = İstanbul)"
           },
           "name": { "type": "string" },
           "officialCode": { "type": "string", "example": "TR-34" }

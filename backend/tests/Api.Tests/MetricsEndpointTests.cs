@@ -67,7 +67,7 @@ public class MetricsEndpointTests(MetricsApiFixture fixture) : IClassFixture<Met
         var moda = values[fixture.ModaNeighborhoodId];
         Assert.Equal(200, moda.Raw);
         Assert.Equal(0.5, moda.Normalized);
-        Assert.Equal("estimated", moda.QualityFlag);
+        Assert.Equal(QualityFlag.Estimated, moda.QualityFlag);
 
         var fenerbahce = values[fixture.FenerbahceNeighborhoodId];
         Assert.Equal(300, fenerbahce.Raw);
