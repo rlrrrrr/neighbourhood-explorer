@@ -1,4 +1,7 @@
+using Microsoft.AspNetCore.Diagnostics;
 using NeighbourhoodExplorer.Api;
+using NeighbourhoodExplorer.Api.Features.Geography;
+using NeighbourhoodExplorer.Api.Features.Metrics;
 using Npgsql;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +17,7 @@ builder.Services.AddCors(options =>
 
 var databaseConnectionString = builder.Configuration["DATABASE_CONNECTION_STRING"];
 
-builder.Services.AddSingleton(_ => new DatabaseHealthProbe(
+builder.Services.AddSingleton(_ => new DatabaseConnection(
     string.IsNullOrWhiteSpace(databaseConnectionString)
         ? null
         : new NpgsqlDataSourceBuilder(databaseConnectionString).Build()));
@@ -23,14 +26,34 @@ var app = builder.Build();
 
 app.UseCors("frontend");
 
+app.UseExceptionHandler(errorApp => errorApp.Run(async context =>
+{
+    var exception = context.Features.Get<IExceptionHandlerFeature>()?.Error;
+    var databaseUnavailable = exception is TimeoutException
+        || exception is NpgsqlException { IsTransient: true };
+
+    await Results.Problem(
+        statusCode: databaseUnavailable
+            ? StatusCodes.Status503ServiceUnavailable
+            : StatusCodes.Status500InternalServerError,
+        title: databaseUnavailable ? "Service indisponible" : "Erreur interne",
+        detail: databaseUnavailable
+            ? "La base de données n'est pas joignable."
+            : "Une erreur interne est survenue.",
+        extensions: new Dictionary<string, object?>
+        {
+            ["code"] = databaseUnavailable ? "database_unavailable" : "internal_error",
+        }).ExecuteAsync(context);
+}));
+
 app.MapGet("/api/v1/health", async (
-    DatabaseHealthProbe databaseProbe,
+    DatabaseConnection databaseConnection,
     IConfiguration configuration,
     ILogger<Program> logger,
     CancellationToken cancellationToken) =>
 {
     var database = "unavailable";
-    var dataSource = databaseProbe.DataSource;
+    var dataSource = databaseConnection.DataSource;
     if (dataSource is not null)
     {
         try
@@ -52,6 +75,9 @@ app.MapGet("/api/v1/health", async (
 
     return Results.Ok(new HealthResponse(database, dataVersion, ai));
 });
+
+app.MapMetricsEndpoints();
+app.MapGeographyEndpoints();
 
 app.Run();
 

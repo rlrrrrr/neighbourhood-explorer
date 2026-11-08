@@ -14,6 +14,20 @@ export const ALL_THEME_NAMES = [
 
 export type ThemeName = (typeof ALL_THEME_NAMES)[number];
 
+const DARK_THEME_NAMES: ReadonlySet<ThemeName> = new Set(["fener", "sis", "gece"]);
+
+export function isDarkTheme(theme: ThemeName): boolean {
+  return DARK_THEME_NAMES.has(theme);
+}
+
+export function readCurrentTheme(): ThemeName {
+  if (typeof document === "undefined") {
+    return "moda";
+  }
+  const value = document.documentElement.dataset.theme;
+  return value !== undefined && isThemeName(value) ? value : "moda";
+}
+
 export const THEME_DISPLAY_NAMES: Record<ThemeName, string> = {
   moda: "Moda",
   gunes: "Güneş",

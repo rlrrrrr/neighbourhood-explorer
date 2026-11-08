@@ -16,7 +16,7 @@ interface DataViewProps {
   onRemoveCriterion: (metricKey: string) => void;
   sort: TableSort | null;
   onSortChange: (sort: TableSort) => void;
-  onShowOnMap: (neighborhood: string) => void;
+  onShowOnMap: (neighborhoodId: number) => void;
 }
 
 interface SampleColumn {
@@ -190,7 +190,11 @@ export function DataView({
                     </td>
                   ))}
                   <td className="px-4 py-3 text-right">
-                    <Button variant="outline" size="sm" onClick={() => onShowOnMap(row.name)}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => onShowOnMap(row.neighborhoodId)}
+                    >
                       <fbt desc="Button opening the map view from a data row">
                         Voir sur la carte
                       </fbt>

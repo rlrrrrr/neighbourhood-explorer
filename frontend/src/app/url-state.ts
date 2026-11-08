@@ -5,7 +5,7 @@ import { decodeCriteria, encodeCriteria } from "../features/criteria/criteria-ur
 export type ViewName = "home" | "chat" | "map" | "data";
 
 export type UrlSearch = {
-  neighborhood?: string;
+  neighborhood?: number;
   criteria?: string;
   sort?: string;
   order?: "asc" | "desc";
@@ -20,7 +20,7 @@ const VIEW_PATHS = {
 
 export type ViewPath = (typeof VIEW_PATHS)[ViewName];
 
-const MAX_NEIGHBORHOOD_LENGTH = 80;
+const MAX_NEIGHBORHOOD_ID_LENGTH = 10;
 
 const QUERY_PARAMETER_NAMES = [
   "neighborhood",
@@ -35,6 +35,18 @@ function readBoundedText(value: unknown, maxLength: number): string | undefined 
   }
   const text = value.trim();
   return text.length === 0 || text.length > maxLength ? undefined : text;
+}
+
+function readNeighborhoodId(value: unknown): number | undefined {
+  if (typeof value === "number") {
+    return Number.isSafeInteger(value) && value > 0 ? value : undefined;
+  }
+  const text = readBoundedText(value, MAX_NEIGHBORHOOD_ID_LENGTH);
+  if (text === undefined || !/^\d+$/.test(text)) {
+    return undefined;
+  }
+  const id = Number(text);
+  return Number.isSafeInteger(id) && id > 0 ? id : undefined;
 }
 
 export function viewPath(view: ViewName): ViewPath {
@@ -52,7 +64,7 @@ function encodeQueryValue(value: string): string {
 export function stringifySearchObject(search: UrlSearch): string {
   const parameters = QUERY_PARAMETER_NAMES.flatMap((name) => {
     const value = search[name];
-    return value === undefined ? [] : [`${name}=${encodeQueryValue(value)}`];
+    return value === undefined ? [] : [`${name}=${encodeQueryValue(String(value))}`];
   });
   return parameters.length === 0 ? "" : `?${parameters.join("&")}`;
 }
@@ -66,8 +78,8 @@ export function viewForPath(pathname: string): ViewName {
 
 export function validateSearch(search: Record<string, unknown>): UrlSearch {
   const result: UrlSearch = {};
-  const neighborhood = readBoundedText(search.neighborhood, MAX_NEIGHBORHOOD_LENGTH);
-  if (neighborhood) {
+  const neighborhood = readNeighborhoodId(search.neighborhood);
+  if (neighborhood !== undefined) {
     result.neighborhood = neighborhood;
   }
   const criteria = encodeCriteria(decodeCriteria(search.criteria));
@@ -105,6 +117,9 @@ export function searchWithTableSort(search: UrlSearch, tableSort: TableSort | nu
   };
 }
 
-export function searchWithNeighborhood(search: UrlSearch, neighborhood: string | null): UrlSearch {
-  return { ...search, neighborhood: neighborhood ?? undefined };
+export function searchWithNeighborhood(
+  search: UrlSearch,
+  neighborhoodId: number | null,
+): UrlSearch {
+  return { ...search, neighborhood: neighborhoodId ?? undefined };
 }

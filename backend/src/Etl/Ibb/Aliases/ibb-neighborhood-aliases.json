@@ -1,0 +1,157 @@
+[
+  {
+    "district": "kadikoy",
+    "neighborhood": "19.may",
+    "osmNeighborhood": "19 mayis"
+  },
+  {
+    "district": "buyukcekmece",
+    "neighborhood": "19.may",
+    "osmNeighborhood": "19 mayis"
+  },
+  {
+    "district": "sisli",
+    "neighborhood": "19.may",
+    "osmNeighborhood": "19 mayis"
+  },
+  {
+    "district": "beyoglu",
+    "neighborhood": "piripasa",
+    "osmNeighborhood": "piri pasa"
+  },
+  {
+    "district": "sariyer",
+    "neighborhood": "rumeli hisari",
+    "osmNeighborhood": "rumelihisari"
+  },
+  {
+    "district": "sariyer",
+    "neighborhood": "rumeli kavagi",
+    "osmNeighborhood": "rumelikavagi"
+  },
+  {
+    "district": "kagithane",
+    "neighborhood": "emniyet evleri",
+    "osmNeighborhood": "emniyetevleri"
+  },
+  {
+    "district": "kartal",
+    "neighborhood": "topselvi",
+    "osmNeighborhood": "topselvi mahalesi"
+  },
+  {
+    "district": "uskudar",
+    "neighborhood": "kucukcamlica",
+    "osmNeighborhood": "kucuk camlica"
+  },
+  {
+    "district": "arnavutkoy",
+    "neighborhood": "nenehatun",
+    "osmNeighborhood": "nene hatun"
+  },
+  {
+    "district": "avcilar",
+    "neighborhood": "mustafa kemalpasa",
+    "osmNeighborhood": "mustafa kemal pasa"
+  },
+  {
+    "district": "beyoglu",
+    "neighborhood": "katipmustafa celebi",
+    "osmNeighborhood": "katip mustafa celebi"
+  },
+  {
+    "district": "beyoglu",
+    "neighborhood": "kemankes karamustafapasa",
+    "osmNeighborhood": "kemankes karamustafa pasa"
+  },
+  {
+    "district": "beyoglu",
+    "neighborhood": "mueyyetzade",
+    "osmNeighborhood": "mueyyedzade"
+  },
+  {
+    "district": "sile",
+    "neighborhood": "degirmencayiri",
+    "osmNeighborhood": "degirmen cayiri"
+  },
+  {
+    "district": "beykoz",
+    "neighborhood": "anadolu feneri",
+    "osmNeighborhood": "anadolufeneri"
+  },
+  {
+    "district": "beykoz",
+    "neighborhood": "cumhuriyet",
+    "osmNeighborhood": "cumhuriyetkoy"
+  },
+  {
+    "district": "beykoz",
+    "neighborhood": "ciftlik",
+    "osmNeighborhood": "cavusbasi ciftlik"
+  },
+  {
+    "district": "buyukcekmece",
+    "neighborhood": "mimar sinan merkez",
+    "osmNeighborhood": "mimarsinan"
+  },
+  {
+    "district": "bagcilar",
+    "neighborhood": "evren",
+    "osmNeighborhood": "15 temmuz"
+  },
+  {
+    "district": "bayrampasa",
+    "neighborhood": "ortamahalle",
+    "osmNeighborhood": "orta"
+  },
+  {
+    "district": "esenler",
+    "neighborhood": "havaalani",
+    "osmNeighborhood": "atisalani"
+  },
+  {
+    "district": "sariyer",
+    "neighborhood": "sariyer merkez",
+    "osmNeighborhood": "merkez"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "balaban",
+    "osmNeighborhood": "canta balaban"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "fevzipasa",
+    "osmNeighborhood": "degirmenkoy fevzipasa"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "hurriyet",
+    "osmNeighborhood": "kavakli hurriyet"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "ismetpasa",
+    "osmNeighborhood": "degirmenkoy ismetpasa"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "kavakli",
+    "osmNeighborhood": "kavakli istiklal"
+  },
+  {
+    "district": "silivri",
+    "neighborhood": "sancaktepe",
+    "osmNeighborhood": "canta sancaktepe"
+  },
+  {
+    "district": "sile",
+    "neighborhood": "kizilca",
+    "osmNeighborhood": "kizilcakoy"
+  },
+  {
+    "district": "sisli",
+    "neighborhood": "izzet pasa",
+    "osmNeighborhood": "izzetpasa"
+  }
+]

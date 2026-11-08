@@ -1,0 +1,25 @@
+id: tuik-adnks
+name: Population ADNKS par ilçe (2025)
+organization: Türkiye İstatistik Kurumu (TÜİK)
+url: https://nsiws.tuik.gov.tr/rest/data/TR,DF_ADNKS_T22,1.1
+license: TÜİK Yasal Uyarı, réutilisation avec citation de la source — https://www.tuik.gov.tr/Kurumsal/Yasal_Uyari
+attribution_text: Kaynak : TÜİK, ADNKS 2025
+retrieved_at: 2026-11-03
+reference_period: 2025-12-31
+province_code: TR100
+province_name: İstanbul
+published_at: 2026-02-09
+source_version: DF_ADNKS_T22 1.1, DSD_ADNKS 1.7, CL_IBBS 1.2
+format: sdmx-ml-generic
+coordinate_system: none
+encoding: utf-8
+checksum_sha256: 8bd67a0c49ef79dd0a88f77a3f0a959fbbbef568d11d9a319cd5791d1e93f6be
+verified_by: humain — autorisation du 2026-10-31 (docs/data-istanbul.md)
+verified_at: 2026-10-31
+steps: [token, fetch-sdmx, parse-xml, control-sum]
+outputs: [data/processed/tuik-adnks/adnks-2025-ilce.csv]
+metrics: [population_density]
+pipeline: tuik-adnks
+expected_counts:
+  districts: 39
+  province_population: 15754053

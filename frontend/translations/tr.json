@@ -111,45 +111,12 @@
       ],
       "types": []
     },
-    "8DOPvWJKUvedj3D+yBhqEQ==": {
-      "description": "Title of the sample ranking on the map",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Kriterlerine göre ilk 3",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "HpPgpLng+C4a0ZCpnrRt+g==": {
       "description": "Title of the lens panel on the map",
       "tokens": [],
       "translations": [
         {
           "translation": "Mercek",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "EWOQTKKuZoEdeLmooEIl4w==": {
-      "description": "Placeholder shown while the map is not loaded",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Harita burada görünecek — Positron altlığı (OpenFreeMap)",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "XPtPjqJ91MUIOIjsi2+Y7Q==": {
-      "description": "Toggle showing the sample ranking",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Sıralama",
           "variations": {}
         }
       ],
@@ -271,17 +238,6 @@
       "translations": [
         {
           "translation": "Veri yok",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BJ/be6N/ugWqRZrcCTP4Pw==": {
-      "description": "Basemap and data attribution shown on the map",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Altlık: OpenFreeMap · Veriler © OpenStreetMap",
           "variations": {}
         }
       ],
@@ -909,6 +865,215 @@
       "translations": [
         {
           "translation": "Ölçüt ekle",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "I7tX9slx3Nf0+1QufajJtw==": {
+      "description": "Title of the neighborhood picker on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalleler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7aus4Kv2TONE+0QqGReBOg==": {
+      "description": "Shown while the map data is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalleler yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "z6TurVf2Dhw4rD7lOtJ1ww==": {
+      "description": "Shown when the neighborhood data cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita verileri yükleyemedi.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QsQlKoAfZniLD+TJOBXKJA==": {
+      "description": "Toggle showing the neighborhood picker",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalleler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6AGRuZ5AgpulTFp70BoLwA==": {
+      "description": "Retry loading the map data",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tekrar dene",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fn+qN8eXVQDmAZ8BMEaYnA==": {
+      "description": "Label of the neighborhood picker list",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bir mahalleye git",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5gEjTmbhijvMv4cqNkhcJg==": {
+      "description": "Empty option in the neighborhood picker",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bir mahalle seç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/vgNH23LRHlIXqAx/LELmQ==": {
+      "description": "Shown when the selected neighborhood has no value",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "I+5u1XNY0Eh5t4BonsSuOg==": {
+      "description": "Hint shown when no neighborhood is selected on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritada bir mahalleye tıkla veya listeden seç.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zpNqc/6xR9dNVY7rewwUVg==": {
+      "description": "Quality label for a value inherited from the district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçe değeri",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ZEpxnfIpzQTWtJXICac33g==": {
+      "description": "Quality label for an estimated value",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tahmin",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2/dpvuWAslSHufnbvTINuw==": {
+      "description": "Quality label for a stale value",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Eski veri",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "or9CUYOklLCg6LVKUNQujg==": {
+      "description": "Quality label for a value with low coverage",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Düşük kapsam",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Uc0U2RxmH8MKBSgXAxeHaQ==": {
+      "description": "Quality label for an observed value",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ölçüm",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "UVjkPE6chEdvwlJ3ttaRAA==": {
+      "description": "Summary of the data source and method panel on the map",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaynak ve yöntem",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Ot0LWYk7k/dpaw/e4nh8qA==": {
+      "description": "Observation date label in the source panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gözlem:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "uVw5UxXqlOY9y1Ns8yHoxQ==": {
+      "description": "Retrieval date label in the source panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Alınma:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "x6B5uk3LcAD3ayzExlj05Q==": {
+      "description": "Unit of population density, people per square kilometre",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "kişi/km²",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AVgeLV2AA+oklppQ68comg==": {
+      "description": "Button that recenters the map on Istanbul",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İstanbul'a odaklan",
           "variations": {}
         }
       ],

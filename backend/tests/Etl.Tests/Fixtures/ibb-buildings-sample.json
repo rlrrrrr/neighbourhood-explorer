@@ -1,0 +1,49 @@
+{
+  "help": "https://data.ibb.gov.tr/en/api/3/action/help_show?name=datastore_search",
+  "success": true,
+  "result": {
+    "include_total": true,
+    "limit": 1000,
+    "records_format": "objects",
+    "resource_id": "cef193d5-0bd2-4e8d-8a69-275c50288875",
+    "total": 3,
+    "records": [
+      {
+        "_id": 1,
+        "ilce_adi": "KADIKÖY",
+        "mahalle_adi": "CAFERAÐA",
+        "mahalle_uavt": 1,
+        "1980_oncesi": 10,
+        "1980-2000_arasi": 20,
+        "2000_sonrasi": 30,
+        "1-4 kat_arasi": 40,
+        "5-9 kat_arasi": 15,
+        "9-19 kat_arasi": 5
+      },
+      {
+        "_id": 2,
+        "ilce_adi": "ZEYTÝNBURNU",
+        "mahalle_adi": "YEÞÝLTEPE",
+        "mahalle_uavt": 2,
+        "1980_oncesi": 1,
+        "1980-2000_arasi": 2,
+        "2000_sonrasi": 3,
+        "1-4 kat_arasi": 4,
+        "5-9 kat_arasi": 1,
+        "9-19 kat_arasi": 1
+      },
+      {
+        "_id": 3,
+        "ilce_adi": "BEYOÐLU",
+        "mahalle_adi": "PÝRÝPAÞA",
+        "mahalle_uavt": 3,
+        "1980_oncesi": 0,
+        "1980-2000_arasi": 0,
+        "2000_sonrasi": 5,
+        "1-4 kat_arasi": 5,
+        "5-9 kat_arasi": 0,
+        "9-19 kat_arasi": 0
+      }
+    ]
+  }
+}

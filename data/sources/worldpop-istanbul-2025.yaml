@@ -1,0 +1,25 @@
+id: worldpop-istanbul-2025
+name: Population WorldPop 2025 (contrainte aux bâtiments), Turquie
+organization: WorldPop, University of Southampton
+url: https://data.worldpop.org/GIS/Population/Global_2015_2030/R2025A/2025/TUR/v1/100m/constrained/tur_pop_2025_CN_100m_R2025A_v1.tif
+license: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+attribution_text: WorldPop, University of Southampton (2025), R2025A v1, CC BY 4.0 ; valeurs modifiées (recalées sur les totaux ADNKS 2025 par ilçe)
+retrieved_at: 2026-11-04
+reference_period: 2025
+grid_year: 2025
+published_at: 2025-09-01
+source_version: R2025A v1, 100m constrained, Turkey
+format: GeoTIFF
+coordinate_system: EPSG:4326 (source), EPSG:32635 (calcul)
+encoding: binary
+checksum_sha256: dabb36ce32d839962aa521181f6c62be0c8a5114d2cbb3dd6efbf0bcfb2acdf8
+verified_by: humain — feu vert du 2026-11-04 (WorldPop)
+verified_at: 2026-11-04
+steps: [download, sha256, gdalwarp-epsg32635, raster2pgsql, zonal-sum, recalibrate, percentile]
+outputs: [data/processed/worldpop-istanbul-2025/population-density-mahalle.csv, data/processed/worldpop-istanbul-2025/worldpop-check.md, data/processed/worldpop-istanbul-2025/worldpop-check.json, data/processed/worldpop-istanbul-2025/worldpop-istanbul-2025-epsg32635.tif]
+metrics: [population_density]
+pipeline: worldpop-istanbul-2025
+expected_counts:
+  neighborhoods: 964
+  districts: 39
+  province_population: 15754053

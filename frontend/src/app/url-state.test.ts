@@ -44,23 +44,16 @@ describe("query string codec", () => {
   });
 
   it("decodes form encoding, plus signs and UTF-8", () => {
-    expect(parseSearchString("?neighborhood=Moda+Merkez")).toEqual({
-      neighborhood: "Moda Merkez",
-    });
-    expect(parseSearchString("?neighborhood=Yelde%C4%9Firmeni")).toEqual({
-      neighborhood: "Yeldeğirmeni",
-    });
-    expect(parseSearchString("?neighborhood=A%26B%3DC")).toEqual({ neighborhood: "A&B=C" });
+    expect(parseSearchString("?q=Moda+Merkez")).toEqual({ q: "Moda Merkez" });
+    expect(parseSearchString("?q=Yelde%C4%9Firmeni")).toEqual({ q: "Yeldeğirmeni" });
+    expect(parseSearchString("?q=A%26B%3DC")).toEqual({ q: "A&B=C" });
   });
 
   it("encodes reserved characters and keeps the separators readable", () => {
-    expect(
-      stringifySearchObject({ neighborhood: "Moda Merkez", sort: "green", order: "desc" }),
-    ).toBe("?neighborhood=Moda%20Merkez&sort=green&order=desc");
-    expect(stringifySearchObject({ neighborhood: "A&B=C" })).toBe("?neighborhood=A%26B%3DC");
-    expect(stringifySearchObject({ neighborhood: "Yeldeğirmeni" })).toBe(
-      "?neighborhood=Yelde%C4%9Firmeni",
+    expect(stringifySearchObject({ neighborhood: 1570, sort: "green", order: "desc" })).toBe(
+      "?neighborhood=1570&sort=green&order=desc",
     );
+    expect(stringifySearchObject({ neighborhood: 1272 })).toBe("?neighborhood=1272");
     expect(stringifySearchObject({ criteria: "cafes:0.6,quiet" })).toBe(
       "?criteria=cafes:0.6,quiet",
     );
@@ -74,21 +67,20 @@ describe("query string codec", () => {
         order: "desc",
         sort: "green",
         criteria: "quiet",
-        neighborhood: "Moda",
+        neighborhood: 1570,
       }),
-    ).toBe("?neighborhood=Moda&criteria=quiet&sort=green&order=desc");
+    ).toBe("?neighborhood=1570&criteria=quiet&sort=green&order=desc");
   });
 
   it("rebuilds the same state through the whole URL round trip", () => {
     const states: UrlSearch[] = [
       {},
-      { neighborhood: "Cihangir" },
-      { neighborhood: "Yeldeğirmeni", sort: "cafes", order: "asc" },
-      { neighborhood: "Moda Merkez", sort: "green", order: "desc" },
-      { neighborhood: "A&B=C ?" },
+      { neighborhood: 1272 },
+      { neighborhood: 1583, sort: "cafes", order: "asc" },
+      { neighborhood: 1570, sort: "green", order: "desc" },
       { sort: "metro", order: "desc" },
       { criteria: "quiet,cafes:0.6" },
-      { neighborhood: "Moda", criteria: "metro:0.25", sort: "cafes", order: "desc" },
+      { neighborhood: 1570, criteria: "metro:0.25", sort: "cafes", order: "desc" },
     ];
 
     for (const state of states) {
@@ -105,13 +97,17 @@ describe("query string codec", () => {
 });
 
 describe("search validation", () => {
-  it("keeps a neighborhood name and drops anything that is not a short string", () => {
-    expect(validateSearch({ neighborhood: " Cihangir " })).toEqual({ neighborhood: "Cihangir" });
+  it("keeps a positive integer neighborhood id and drops anything else", () => {
+    expect(validateSearch({ neighborhood: " 1272 " })).toEqual({ neighborhood: 1272 });
+    expect(validateSearch({ neighborhood: 1570 })).toEqual({ neighborhood: 1570 });
     expect(validateSearch({ neighborhood: "" })).toEqual({});
     expect(validateSearch({ neighborhood: "   " })).toEqual({});
-    expect(validateSearch({ neighborhood: 42 })).toEqual({});
-    expect(validateSearch({ neighborhood: ["Moda"] })).toEqual({});
-    expect(validateSearch({ neighborhood: "x".repeat(81) })).toEqual({});
+    expect(validateSearch({ neighborhood: "0" })).toEqual({});
+    expect(validateSearch({ neighborhood: "-1" })).toEqual({});
+    expect(validateSearch({ neighborhood: "1.5" })).toEqual({});
+    expect(validateSearch({ neighborhood: "abc" })).toEqual({});
+    expect(validateSearch({ neighborhood: ["1570"] })).toEqual({});
+    expect(validateSearch({ neighborhood: "12345678901" })).toEqual({});
     expect(validateSearch({})).toEqual({});
   });
 
@@ -142,9 +138,9 @@ describe("search validation", () => {
   it("rebuilds the same state when it validates its own output", () => {
     const searches: UrlSearch[] = [
       {},
-      { neighborhood: "Cihangir" },
+      { neighborhood: 1272 },
       { sort: "green", order: "desc" },
-      { neighborhood: "Moda", sort: "metro", order: "asc" },
+      { neighborhood: 1570, sort: "metro", order: "asc" },
     ];
 
     for (const search of searches) {
@@ -194,7 +190,7 @@ describe("criteria projection", () => {
 describe("table sort projection", () => {
   it("has no sort without a column", () => {
     expect(tableSortFromSearch({})).toBeNull();
-    expect(tableSortFromSearch({ neighborhood: "Moda" })).toBeNull();
+    expect(tableSortFromSearch({ neighborhood: 1570 })).toBeNull();
   });
 
   it("defaults to ascending", () => {
@@ -220,27 +216,24 @@ describe("table sort projection", () => {
   });
 
   it("drops the sort from the search when it is cleared", () => {
-    const search = searchWithTableSort(
-      { neighborhood: "Moda", sort: "cafes", order: "desc" },
-      null,
-    );
+    const search = searchWithTableSort({ neighborhood: 1570, sort: "cafes", order: "desc" }, null);
 
-    expect(search).toEqual({ neighborhood: "Moda", sort: undefined, order: undefined });
-    expect(validateSearch({ ...search })).toEqual({ neighborhood: "Moda" });
+    expect(search).toEqual({ neighborhood: 1570, sort: undefined, order: undefined });
+    expect(validateSearch({ ...search })).toEqual({ neighborhood: 1570 });
   });
 });
 
 describe("neighborhood projection", () => {
   it("keeps the other search entries", () => {
-    expect(searchWithNeighborhood({ sort: "cafes", order: "desc" }, "Cihangir")).toEqual({
+    expect(searchWithNeighborhood({ sort: "cafes", order: "desc" }, 1272)).toEqual({
       sort: "cafes",
       order: "desc",
-      neighborhood: "Cihangir",
+      neighborhood: 1272,
     });
   });
 
   it("drops the neighborhood when it is cleared", () => {
-    expect(searchWithNeighborhood({ neighborhood: "Moda" }, null)).toEqual({
+    expect(searchWithNeighborhood({ neighborhood: 1570 }, null)).toEqual({
       neighborhood: undefined,
     });
     expect(validateSearch({ neighborhood: undefined })).toEqual({});

@@ -256,3 +256,9 @@ body::before {
 #root {
   min-height: 100vh;
 }
+
+@media (max-width: 767px) {
+  .neighborhood-map .maplibregl-ctrl-bottom-right {
+    bottom: 9rem;
+  }
+}

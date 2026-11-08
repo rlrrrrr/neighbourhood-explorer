@@ -10,7 +10,7 @@ const lensOption = tv({
     label:
       "flex min-h-11 cursor-pointer items-center gap-2 rounded-full border border-border px-3 text-xs font-semibold text-text transition-[background-color,color] duration-150 ease-out has-[:checked]:bg-highlight has-[:checked]:text-highlight-text has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-action sm:min-h-9 sm:hover:bg-surface",
     indicator:
-      "flex size-4 shrink-0 items-center justify-center border border-border bg-surface text-action-text transition-colors duration-150 ease-out has-[:checked]:border-action has-[:checked]:bg-action",
+      "relative flex size-4 shrink-0 items-center justify-center border border-border bg-surface text-action-text transition-colors duration-150 ease-out has-[:checked]:border-action has-[:checked]:bg-action",
     glyph:
       "block size-2.5 opacity-0 transition-opacity duration-150 ease-out peer-checked:opacity-100",
     dot: "size-1.5 rounded-full bg-action-text opacity-0 transition-opacity duration-150 ease-out peer-checked:opacity-100",
@@ -124,11 +124,11 @@ export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPa
   const closeLabel = fbs("Fermer le panneau de la lentille", "Close button of the lens panel");
 
   return (
-    <div className="pointer-events-none absolute inset-0 flex flex-col items-end px-4 pb-28 pt-16 sm:pb-16">
+    <div className="pointer-events-none absolute inset-0 flex flex-col items-end px-4 pb-52 pt-16 md:pb-16">
       <aside
         data-open={open ? "" : undefined}
         inert={!open}
-        className="anchored-panel anchored-panel-origin-start material-panel grain pointer-events-auto flex max-h-full w-72 flex-col overflow-hidden rounded-2xl shadow-elevated"
+        className="anchored-panel anchored-panel-origin-start material-panel grain pointer-events-auto flex max-h-full w-72 flex-col overflow-clip rounded-2xl shadow-elevated"
         aria-label={title}
       >
         <div className="flex items-center justify-between gap-2 border-b border-border px-4 py-3">

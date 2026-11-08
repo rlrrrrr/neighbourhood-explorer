@@ -5,4 +5,13 @@
     <RootNamespace>NeighbourhoodExplorer.Etl</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Styles\*.lua" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+    <Content Include="Ibb\Aliases\*.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>

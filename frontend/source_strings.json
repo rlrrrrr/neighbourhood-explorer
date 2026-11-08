@@ -11,14 +11,14 @@
       "filename": "src/features/neighborhood-detail/sample-neighborhoods.ts",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 22,
           "column": 6,
-          "index": 415
+          "index": 467
         },
         "end": {
-          "line": 23,
+          "line": 25,
           "column": 7,
-          "index": 553
+          "index": 605
         }
       },
       "project": "",
@@ -40,14 +40,14 @@
       "filename": "src/features/neighborhood-detail/sample-neighborhoods.ts",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 35,
           "column": 6,
-          "index": 695
+          "index": 773
         },
         "end": {
-          "line": 35,
+          "line": 38,
           "column": 7,
-          "index": 834
+          "index": 912
         }
       },
       "project": "",
@@ -69,14 +69,14 @@
       "filename": "src/features/neighborhood-detail/sample-neighborhoods.ts",
       "loc": {
         "start": {
-          "line": 44,
+          "line": 48,
           "column": 6,
-          "index": 981
+          "index": 1085
         },
         "end": {
-          "line": 47,
+          "line": 51,
           "column": 7,
-          "index": 1134
+          "index": 1238
         }
       },
       "project": "",
@@ -612,22 +612,51 @@
     },
     {
       "hashToLeaf": {
+        "x6B5uk3LcAD3ayzExlj05Q==": {
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
+        }
+      },
+      "filename": "src/features/map-view/localized-unit.ts",
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 4,
+          "index": 151
+        },
+        "end": {
+          "line": 5,
+          "column": 83,
+          "index": 230
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "jSaV09hGCKW0jLG6Nz3pPA==": {
           "desc": "Title of the map region and its accessible name",
           "text": "Carte des quartiers"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 38,
+          "line": 63,
           "column": 19,
-          "index": 1262
+          "index": 2062
         },
         "end": {
-          "line": 38,
+          "line": 63,
           "column": 96,
-          "index": 1339
+          "index": 2139
         }
       },
       "project": "",
@@ -641,88 +670,117 @@
     },
     {
       "hashToLeaf": {
-        "8DOPvWJKUvedj3D+yBhqEQ==": {
-          "desc": "Title of the sample ranking on the map",
-          "text": "Top 3 pour tes critères"
+        "I7tX9slx3Nf0+1QufajJtw==": {
+          "desc": "Title of the neighborhood picker on the map",
+          "text": "Quartiers"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 39,
+          "line": 64,
+          "column": 21,
+          "index": 2162
+        },
+        "end": {
+          "line": 64,
+          "column": 84,
+          "index": 2225
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the neighborhood picker on the map",
+          "text": "Quartiers"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7aus4Kv2TONE+0QqGReBOg==": {
+          "desc": "Shown while the map data is loading",
+          "text": "Chargement des quartiers…"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 65,
           "column": 23,
-          "index": 1364
+          "index": 2250
         },
         "end": {
-          "line": 39,
-          "column": 95,
-          "index": 1436
+          "line": 65,
+          "column": 94,
+          "index": 2321
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Title of the sample ranking on the map",
-          "text": "Top 3 pour tes critères"
+          "desc": "Shown while the map data is loading",
+          "text": "Chargement des quartiers…"
         }
       }
     },
     {
       "hashToLeaf": {
-        "EWOQTKKuZoEdeLmooEIl4w==": {
-          "desc": "Placeholder shown while the map is not loaded",
-          "text": "La carte s'affichera ici — fond Positron (OpenFreeMap)"
+        "z6TurVf2Dhw4rD7lOtJ1ww==": {
+          "desc": "Shown when the neighborhood data cannot be loaded",
+          "text": "La carte n'a pas pu charger les données."
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 53,
-          "column": 10,
-          "index": 1840
+          "line": 66,
+          "column": 21,
+          "index": 2344
         },
         "end": {
-          "line": 55,
-          "column": 16,
-          "index": 1982
+          "line": 69,
+          "column": 3,
+          "index": 2457
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Placeholder shown while the map is not loaded",
-          "text": "La carte s'affichera ici — fond Positron (OpenFreeMap)"
+          "desc": "Shown when the neighborhood data cannot be loaded",
+          "text": "La carte n'a pas pu charger les données."
         }
       }
     },
     {
       "hashToLeaf": {
-        "XPtPjqJ91MUIOIjsi2+Y7Q==": {
-          "desc": "Toggle showing the sample ranking",
-          "text": "Classement"
+        "QsQlKoAfZniLD+TJOBXKJA==": {
+          "desc": "Toggle showing the neighborhood picker",
+          "text": "Quartiers"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 141,
           "column": 10,
-          "index": 2275
+          "index": 4777
         },
         "end": {
-          "line": 66,
-          "column": 72,
-          "index": 2337
+          "line": 141,
+          "column": 76,
+          "index": 4843
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Toggle showing the sample ranking",
-          "text": "Classement"
+          "desc": "Toggle showing the neighborhood picker",
+          "text": "Quartiers"
         }
       }
     },
@@ -733,17 +791,17 @@
           "text": "La lentille"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 74,
+          "line": 149,
           "column": 10,
-          "index": 2554
+          "index": 5060
         },
         "end": {
-          "line": 74,
+          "line": 149,
           "column": 69,
-          "index": 2613
+          "index": 5119
         }
       },
       "project": "",
@@ -757,22 +815,283 @@
     },
     {
       "hashToLeaf": {
+        "6AGRuZ5AgpulTFp70BoLwA==": {
+          "desc": "Retry loading the map data",
+          "text": "Réessayer"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 172,
+          "column": 14,
+          "index": 5994
+        },
+        "end": {
+          "line": 172,
+          "column": 68,
+          "index": 6048
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Retry loading the map data",
+          "text": "Réessayer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "fn+qN8eXVQDmAZ8BMEaYnA==": {
+          "desc": "Label of the neighborhood picker list",
+          "text": "Aller à un quartier"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 183,
+          "column": 14,
+          "index": 6322
+        },
+        "end": {
+          "line": 183,
+          "column": 89,
+          "index": 6397
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the neighborhood picker list",
+          "text": "Aller à un quartier"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "5gEjTmbhijvMv4cqNkhcJg==": {
+          "desc": "Empty option in the neighborhood picker",
+          "text": "Choisir un quartier"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 197,
+          "column": 18,
+          "index": 7062
+        },
+        "end": {
+          "line": 197,
+          "column": 95,
+          "index": 7139
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Empty option in the neighborhood picker",
+          "text": "Choisir un quartier"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "AVgeLV2AA+oklppQ68comg==": {
+          "desc": "Button that recenters the map on Istanbul",
+          "text": "Recentrer sur Istanbul"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 212,
+          "column": 14,
+          "index": 7853
+        },
+        "end": {
+          "line": 212,
+          "column": 96,
+          "index": 7935
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button that recenters the map on Istanbul",
+          "text": "Recentrer sur Istanbul"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "/vgNH23LRHlIXqAx/LELmQ==": {
+          "desc": "Shown when the selected neighborhood has no value",
+          "text": "Pas de donnée"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 223,
+          "column": 22,
+          "index": 8451
+        },
+        "end": {
+          "line": 223,
+          "column": 95,
+          "index": 8524
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when the selected neighborhood has no value",
+          "text": "Pas de donnée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "I+5u1XNY0Eh5t4BonsSuOg==": {
+          "desc": "Hint shown when no neighborhood is selected on the map",
+          "text": "Clique un quartier sur la carte ou choisis-le dans la liste."
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 235,
+          "column": 16,
+          "index": 9170
+        },
+        "end": {
+          "line": 237,
+          "column": 22,
+          "index": 9339
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Hint shown when no neighborhood is selected on the map",
+          "text": "Clique un quartier sur la carte ou choisis-le dans la liste."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "UVjkPE6chEdvwlJ3ttaRAA==": {
+          "desc": "Summary of the data source and method panel on the map",
+          "text": "Source et méthode"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 242,
+          "column": 16,
+          "index": 9558
+        },
+        "end": {
+          "line": 244,
+          "column": 22,
+          "index": 9684
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Summary of the data source and method panel on the map",
+          "text": "Source et méthode"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Ot0LWYk7k/dpaw/e4nh8qA==": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 251,
+          "column": 16,
+          "index": 10034
+        },
+        "end": {
+          "line": 251,
+          "column": 90,
+          "index": 10108
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "uVw5UxXqlOY9y1Ns8yHoxQ==": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 255,
+          "column": 16,
+          "index": 10232
+        },
+        "end": {
+          "line": 255,
+          "column": 89,
+          "index": 10305
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "7IKaZK88KVLe3WDGLbUfiA==": {
           "desc": "Low end of the score ramp legend",
           "text": "Faible"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 121,
+          "line": 287,
           "column": 12,
-          "index": 4496
+          "index": 11572
         },
         "end": {
-          "line": 121,
+          "line": 287,
           "column": 69,
-          "index": 4553
+          "index": 11629
         }
       },
       "project": "",
@@ -791,17 +1110,17 @@
           "text": "Élevé"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 127,
+          "line": 293,
           "column": 12,
-          "index": 4971
+          "index": 12047
         },
         "end": {
-          "line": 127,
+          "line": 293,
           "column": 69,
-          "index": 5028
+          "index": 12104
         }
       },
       "project": "",
@@ -820,17 +1139,17 @@
           "text": "Pas de donnée"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 131,
+          "line": 297,
           "column": 12,
-          "index": 5201
+          "index": 12277
         },
         "end": {
-          "line": 131,
+          "line": 297,
           "column": 87,
-          "index": 5276
+          "index": 12352
         }
       },
       "project": "",
@@ -844,30 +1163,146 @@
     },
     {
       "hashToLeaf": {
-        "BJ/be6N/ugWqRZrcCTP4Pw==": {
-          "desc": "Basemap and data attribution shown on the map",
-          "text": "Fond de carte : OpenFreeMap · Données © OpenStreetMap"
+        "zpNqc/6xR9dNVY7rewwUVg==": {
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
         }
       },
-      "filename": "src/features/map-view/map-view.tsx",
+      "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 136,
-          "column": 10,
-          "index": 5412
+          "line": 333,
+          "column": 13,
+          "index": 13396
         },
         "end": {
-          "line": 138,
-          "column": 16,
-          "index": 5553
+          "line": 333,
+          "column": 95,
+          "index": 13478
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Basemap and data attribution shown on the map",
-          "text": "Fond de carte : OpenFreeMap · Données © OpenStreetMap"
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ZEpxnfIpzQTWtJXICac33g==": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 335,
+          "column": 13,
+          "index": 13515
+        },
+        "end": {
+          "line": 335,
+          "column": 70,
+          "index": 13572
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2/dpvuWAslSHufnbvTINuw==": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 337,
+          "column": 13,
+          "index": 13605
+        },
+        "end": {
+          "line": 337,
+          "column": 70,
+          "index": 13662
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "or9CUYOklLCg6LVKUNQujg==": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 339,
+          "column": 13,
+          "index": 13702
+        },
+        "end": {
+          "line": 339,
+          "column": 84,
+          "index": 13773
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Uc0U2RxmH8MKBSgXAxeHaQ==": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
+        }
+      },
+      "filename": "src/features/map-view/map-view-content.tsx",
+      "loc": {
+        "start": {
+          "line": 341,
+          "column": 13,
+          "index": 13803
+        },
+        "end": {
+          "line": 341,
+          "column": 65,
+          "index": 13855
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
         }
       }
     },
@@ -1318,12 +1753,12 @@
         "start": {
           "line": 33,
           "column": 18,
-          "index": 1070
+          "index": 1072
         },
         "end": {
           "line": 33,
           "column": 81,
-          "index": 1133
+          "index": 1135
         }
       },
       "project": "",
@@ -1347,12 +1782,12 @@
         "start": {
           "line": 34,
           "column": 16,
-          "index": 1151
+          "index": 1153
         },
         "end": {
           "line": 34,
           "column": 69,
-          "index": 1204
+          "index": 1206
         }
       },
       "project": "",
@@ -1376,12 +1811,12 @@
         "start": {
           "line": 40,
           "column": 18,
-          "index": 1354
+          "index": 1356
         },
         "end": {
           "line": 40,
           "column": 91,
-          "index": 1427
+          "index": 1429
         }
       },
       "project": "",
@@ -1405,12 +1840,12 @@
         "start": {
           "line": 41,
           "column": 16,
-          "index": 1445
+          "index": 1447
         },
         "end": {
           "line": 41,
           "column": 85,
-          "index": 1514
+          "index": 1516
         }
       },
       "project": "",
@@ -1434,12 +1869,12 @@
         "start": {
           "line": 47,
           "column": 18,
-          "index": 1667
+          "index": 1669
         },
         "end": {
           "line": 47,
           "column": 68,
-          "index": 1717
+          "index": 1719
         }
       },
       "project": "",
@@ -1463,12 +1898,12 @@
         "start": {
           "line": 48,
           "column": 16,
-          "index": 1735
+          "index": 1737
         },
         "end": {
           "line": 48,
           "column": 65,
-          "index": 1784
+          "index": 1786
         }
       },
       "project": "",
@@ -1492,12 +1927,12 @@
         "start": {
           "line": 107,
           "column": 8,
-          "index": 3562
+          "index": 3564
         },
         "end": {
           "line": 107,
           "column": 63,
-          "index": 3617
+          "index": 3619
         }
       },
       "project": "",
@@ -1521,12 +1956,12 @@
         "start": {
           "line": 110,
           "column": 8,
-          "index": 3693
+          "index": 3695
         },
         "end": {
           "line": 112,
           "column": 14,
-          "index": 3862
+          "index": 3864
         }
       },
       "project": "",
@@ -1550,12 +1985,12 @@
         "start": {
           "line": 118,
           "column": 12,
-          "index": 4094
+          "index": 4096
         },
         "end": {
           "line": 120,
           "column": 18,
-          "index": 4217
+          "index": 4219
         }
       },
       "project": "",
@@ -1579,12 +2014,12 @@
         "start": {
           "line": 131,
           "column": 14,
-          "index": 4640
+          "index": 4642
         },
         "end": {
           "line": 133,
           "column": 20,
-          "index": 4812
+          "index": 4814
         }
       },
       "project": "",
@@ -1608,12 +2043,12 @@
         "start": {
           "line": 138,
           "column": 18,
-          "index": 5080
+          "index": 5082
         },
         "end": {
           "line": 138,
           "column": 83,
-          "index": 5145
+          "index": 5147
         }
       },
       "project": "",
@@ -1637,12 +2072,12 @@
         "start": {
           "line": 141,
           "column": 18,
-          "index": 5241
+          "index": 5243
         },
         "end": {
           "line": 141,
           "column": 79,
-          "index": 5302
+          "index": 5304
         }
       },
       "project": "",
@@ -1666,12 +2101,12 @@
         "start": {
           "line": 171,
           "column": 20,
-          "index": 6703
+          "index": 6705
         },
         "end": {
           "line": 171,
           "column": 86,
-          "index": 6769
+          "index": 6771
         }
       },
       "project": "",
@@ -1693,14 +2128,14 @@
       "filename": "src/features/data-view/data-view.tsx",
       "loc": {
         "start": {
-          "line": 194,
+          "line": 198,
           "column": 22,
-          "index": 7816
+          "index": 7915
         },
         "end": {
-          "line": 196,
+          "line": 200,
           "column": 28,
-          "index": 7943
+          "index": 8042
         }
       },
       "project": "",
@@ -1927,12 +2362,12 @@
         "start": {
           "line": 26,
           "column": 13,
-          "index": 921
+          "index": 923
         },
         "end": {
           "line": 26,
           "column": 84,
-          "index": 992
+          "index": 994
         }
       },
       "project": "",
@@ -1956,12 +2391,12 @@
         "start": {
           "line": 31,
           "column": 13,
-          "index": 1073
+          "index": 1075
         },
         "end": {
           "line": 31,
           "column": 83,
-          "index": 1143
+          "index": 1145
         }
       },
       "project": "",
@@ -1985,12 +2420,12 @@
         "start": {
           "line": 36,
           "column": 13,
-          "index": 1224
+          "index": 1226
         },
         "end": {
           "line": 36,
           "column": 79,
-          "index": 1290
+          "index": 1292
         }
       },
       "project": "",
@@ -2014,12 +2449,12 @@
         "start": {
           "line": 48,
           "column": 22,
-          "index": 1647
+          "index": 1649
         },
         "end": {
           "line": 51,
           "column": 3,
-          "index": 1741
+          "index": 1743
         }
       },
       "project": "",
@@ -2043,12 +2478,12 @@
         "start": {
           "line": 56,
           "column": 8,
-          "index": 1920
+          "index": 1922
         },
         "end": {
           "line": 56,
           "column": 100,
-          "index": 2012
+          "index": 2014
         }
       },
       "project": "",
@@ -2072,12 +2507,12 @@
         "start": {
           "line": 66,
           "column": 10,
-          "index": 2333
+          "index": 2335
         },
         "end": {
           "line": 68,
           "column": 16,
-          "index": 2509
+          "index": 2511
         }
       },
       "project": "",
@@ -2101,12 +2536,12 @@
         "start": {
           "line": 83,
           "column": 10,
-          "index": 2924
+          "index": 2926
         },
         "end": {
           "line": 85,
           "column": 16,
-          "index": 3043
+          "index": 3045
         }
       },
       "project": "",
@@ -2130,12 +2565,12 @@
         "start": {
           "line": 121,
           "column": 18,
-          "index": 4426
+          "index": 4428
         },
         "end": {
           "line": 121,
           "column": 92,
-          "index": 4500
+          "index": 4502
         }
       },
       "project": "",
@@ -2159,12 +2594,12 @@
         "start": {
           "line": 140,
           "column": 14,
-          "index": 5250
+          "index": 5262
         },
         "end": {
           "line": 140,
           "column": 97,
-          "index": 5333
+          "index": 5345
         }
       },
       "project": "",
@@ -2362,12 +2797,12 @@
         "start": {
           "line": 123,
           "column": 27,
-          "index": 3455
+          "index": 3465
         },
         "end": {
           "line": 126,
           "column": 3,
-          "index": 3554
+          "index": 3564
         }
       },
       "project": "",
@@ -2391,12 +2826,12 @@
         "start": {
           "line": 127,
           "column": 26,
-          "index": 3582
+          "index": 3592
         },
         "end": {
           "line": 130,
           "column": 3,
-          "index": 3696
+          "index": 3706
         }
       },
       "project": "",
