@@ -13,11 +13,14 @@ public static class GreeneryMetricCalculator
 {
     public static MetricCollection Calculate(IReadOnlyList<GreeneryNeighborhoodCount> neighborhoods)
     {
-        var shares = neighborhoods
-            .Select(neighborhood => Share(neighborhood))
+        var measured = neighborhoods
+            .Where(neighborhood => neighborhood.ValidPixels > 0)
+            .ToArray();
+        var shares = measured
+            .Select(neighborhood => Share(neighborhood)!.Value)
             .ToArray();
         var normalized = PercentileRank.Normalize(shares);
-        var values = neighborhoods
+        var values = measured
             .Select((neighborhood, index) => new MetricValue(
                 neighborhood.AdminAreaId,
                 shares[index],
@@ -28,8 +31,8 @@ public static class GreeneryMetricCalculator
             [new MetricSeries(GreeneryMetricCatalog.Greenery, values)]);
     }
 
-    public static double Share(GreeneryNeighborhoodCount neighborhood) =>
+    public static double? Share(GreeneryNeighborhoodCount neighborhood) =>
         neighborhood.ValidPixels == 0
-            ? 0
+            ? null
             : 100.0 * neighborhood.GreenPixels / neighborhood.ValidPixels;
 }
