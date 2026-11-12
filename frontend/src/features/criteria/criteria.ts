@@ -2,7 +2,7 @@ export const DEFAULT_WEIGHT = 1;
 export const MAX_WEIGHT = 1;
 export const MAX_METRIC_KEY_LENGTH = 32;
 
-const METRIC_KEY_PATTERN = /^[a-z][a-z0-9-]*$/;
+const METRIC_KEY_PATTERN = /^[a-z][a-z0-9_-]*$/;
 
 export interface Criterion {
   metricKey: string;

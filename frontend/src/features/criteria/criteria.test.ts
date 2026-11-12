@@ -92,4 +92,24 @@ describe("criterion lookups", () => {
     expect(isMetricKey("1cafes")).toBe(false);
     expect(isMetricKey("cafes;drop")).toBe(false);
   });
+
+  it("accepts every metric key served by the API", () => {
+    const servedMetricKeys = [
+      "cafes_density",
+      "culture",
+      "education_accessibility",
+      "greenery",
+      "healthcare_accessibility",
+      "land_use_diversity",
+      "nightlife",
+      "population_density",
+      "restaurant_density",
+      "transport_accessibility",
+      "walkability",
+    ];
+
+    for (const metricKey of servedMetricKeys) {
+      expect(isMetricKey(metricKey), metricKey).toBe(true);
+    }
+  });
 });
