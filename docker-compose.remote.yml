@@ -1,0 +1,10 @@
+# Base distante (primaire) : superposé au compose de base par scripts/compose-up.sh
+# et scripts/run-etl.sh quand la base hébergée est sélectionnée. Le service db local
+# reste lancé : il sert de repli et de destination des migrations.
+services:
+  api:
+    environment:
+      DATABASE_CONNECTION_STRING: ${REMOTE_DATABASE_CONNECTION_STRING}
+  etl:
+    environment:
+      DATABASE_CONNECTION_STRING: ${REMOTE_DATABASE_CONNECTION_STRING}
