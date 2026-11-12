@@ -6,6 +6,9 @@ public enum PipelineId
     IbbBuildings2017,
     TuikAdnks,
     WorldPopIstanbul2025,
+    OsmUrbanFeatures,
+    WorldCoverGreenery,
+    IbbTransport,
 }
 
 public static class PipelineIdExtensions
@@ -16,6 +19,9 @@ public static class PipelineIdExtensions
         PipelineId.IbbBuildings2017 => "ibb-buildings-2017",
         PipelineId.TuikAdnks => "tuik-adnks",
         PipelineId.WorldPopIstanbul2025 => "worldpop-istanbul-2025",
+        PipelineId.OsmUrbanFeatures => "osm-urban-features",
+        PipelineId.WorldCoverGreenery => "worldcover-greenery",
+        PipelineId.IbbTransport => "ibb-transport",
         _ => throw new ArgumentOutOfRangeException(nameof(pipelineId), pipelineId, null),
     };
 

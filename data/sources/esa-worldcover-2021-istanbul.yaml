@@ -1,0 +1,24 @@
+id: esa-worldcover-2021-istanbul
+data_source_id: esa-worldcover-2021-istanbul
+name: ESA WorldCover 2021 v200, tuile Istanbul (N39E027)
+organization: ESA WorldCover consortium (VITO, IIASA, Wageningen University)
+url: https://esa-worldcover.s3.eu-central-1.amazonaws.com/v200/2021/map/ESA_WorldCover_10m_2021_v200_N39E027_Map.tif
+license: CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/
+attribution_text: © ESA WorldCover project 2021 / Contains modified Copernicus Sentinel data (2021) processed by ESA WorldCover consortium
+retrieved_at: 2026-11-09
+reference_period: 2021
+published_at: 2022-10-26
+source_version: WorldCover 2021 v200, tile N39E027, 10 m
+format: GeoTIFF
+coordinate_system: EPSG:4326
+encoding: binary
+checksum_sha256: 6a27dcbc962e87a39fff839594b1a70c2e7ac1e8b5228c6031a32b1334f49831
+verified_by: humain — feu vert du 2026-11-09 (ESA WorldCover, CC BY 4.0)
+verified_at: 2026-11-09
+steps: [download, sha256, gdal-translate-crop, raster2pgsql, zonal-value-count, percentile]
+outputs: [data/processed/esa-worldcover-2021-istanbul/greenery-check.md, data/processed/esa-worldcover-2021-istanbul/greenery-check.json, data/processed/esa-worldcover-2021-istanbul/greenery-mahalle.csv]
+metrics: [greenery]
+pipeline: worldcover-greenery
+expected_counts:
+  district: 39
+  neighborhood: 964

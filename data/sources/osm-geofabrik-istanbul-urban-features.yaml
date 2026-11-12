@@ -1,0 +1,25 @@
+id: osm-geofabrik-istanbul-urban-features
+raw_source_id: osm-geofabrik-istanbul
+data_source_id: osm-geofabrik-istanbul
+name: OpenStreetMap, extrait Geofabrik Turquie (POI, réseau et usages)
+organization: OpenStreetMap contributors / Geofabrik GmbH
+url: https://download.geofabrik.de/europe/turkey-latest.osm.pbf
+license: ODbL 1.0 — https://opendatacommons.org/licenses/odbl/1-0/
+attribution_text: © les contributeurs d'OpenStreetMap, sous licence ODbL — https://www.openstreetmap.org/copyright
+retrieved_at: 2026-10-31
+reference_period: 2026-10-30
+published_at: 2026-10-30
+source_version: turkey-261030.osm.pbf
+format: pbf
+coordinate_system: EPSG:4326
+encoding: utf-8
+checksum_sha256: 505e495414ed6d6686c9e5f50f510b399a243061b3ef1c3ee0799c128503ebf8
+verified_by: humain — docs/data-istanbul.md, 18–31 octobre 2026
+verified_at: 2026-10-31
+steps: [osm2pgsql-flex-import-bbox, dedupe-poi, count-poi, count-intersections, compute-land-use-entropy, compute-walkability]
+outputs: [data/processed/osm-geofabrik-istanbul-urban-features/urban-features-check.md, data/processed/osm-geofabrik-istanbul-urban-features/urban-features-check.json, data/processed/osm-geofabrik-istanbul-urban-features/urban-features-mahalle.csv]
+metrics: [cafes_density, restaurant_density, nightlife, culture, education_accessibility, healthcare_accessibility, walkability, land_use_diversity]
+pipeline: osm-urban-features
+expected_counts:
+  district: 39
+  neighborhood: 964

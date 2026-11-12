@@ -19,6 +19,17 @@ const STATES: ReadonlyArray<[string, Criteria]> = [
       ],
     },
   ],
+  [
+    "metric keys with underscores",
+    {
+      weights: [
+        { metricKey: "population_density", weight: 1 },
+        { metricKey: "cafes_density", weight: 0.6 },
+        { metricKey: "transport_accessibility", weight: 1 },
+        { metricKey: "land_use_diversity", weight: 0.25 },
+      ],
+    },
+  ],
 ];
 
 describe("criteria encoding", () => {
@@ -91,6 +102,15 @@ describe("criteria decoding", () => {
   it("keeps the first weight of a metric listed twice", () => {
     expect(decodeCriteria("quiet:0.4,quiet:0.9")).toEqual({
       weights: [{ metricKey: "quiet", weight: 0.4 }],
+    });
+  });
+
+  it("keeps a criterion whose metric key contains an underscore", () => {
+    expect(decodeCriteria("population_density:0.6,land_use_diversity")).toEqual({
+      weights: [
+        { metricKey: "population_density", weight: 0.6 },
+        { metricKey: "land_use_diversity", weight: 1 },
+      ],
     });
   });
 

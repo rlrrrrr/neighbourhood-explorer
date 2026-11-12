@@ -17,6 +17,8 @@ public static class SourceManifestReader
         return new SourceManifest
         {
             Id = Require(document, "id"),
+            RawSourceId = document.Text("raw_source_id"),
+            DataSourceId = document.Text("data_source_id"),
             Name = Require(document, "name"),
             Organization = Require(document, "organization"),
             Url = Require(document, "url"),
@@ -96,48 +98,12 @@ public static class SourceManifestReader
                 throw new ManifestException($"expected_counts.{key} doit être un entier.");
             }
 
-            counts = key switch
-            {
-                "province" => counts with { Province = parsed },
-                "district" or "districts" => counts with
-                {
-                    Districts = MergeDistricts(counts.Districts, parsed, key),
-                },
-                "neighborhood" or "neighborhoods" => counts with
-                {
-                    Neighborhoods = MergeNeighborhoods(counts.Neighborhoods, parsed, key),
-                },
-                "rows" => counts with { Rows = parsed },
-                "uavt" => counts with { Uavt = parsed },
-                "buildings" => counts with { Buildings = parsed },
-                "province_population" => counts with { ProvincePopulation = parsed },
-                _ => throw new ManifestException($"expected_counts.{key} inconnu."),
-            };
+            counts = ExpectedCountFieldNames.TryParse(key, out var field)
+                ? counts.With(field, parsed)
+                : throw new ManifestException($"expected_counts.{key} inconnu.");
         }
 
         return counts;
-    }
-
-    private static int MergeDistricts(int? existing, int value, string key)
-    {
-        if (existing is { } current && current != value)
-        {
-            throw new ManifestException(
-                $"expected_counts.{key} ({value}) contredit expected_counts.districts ({current}).");
-        }
-
-        return value;
-    }
-
-    private static int MergeNeighborhoods(int? existing, int value, string key)
-    {
-        if (existing is { } current && current != value)
-        {
-            throw new ManifestException(
-                $"expected_counts.{key} ({value}) contredit expected_counts.neighborhoods ({current}).");
-        }
-
-        return value;
     }
 
     private static string Require(ManifestDocument document, string key) =>

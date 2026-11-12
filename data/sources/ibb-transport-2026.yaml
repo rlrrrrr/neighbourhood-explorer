@@ -1,0 +1,27 @@
+id: ibb-transport-2026
+data_source_id: ibb-transport-2026
+name: Transports en commun d'Istanbul (İETT, Metro İstanbul, Şehir Hatları)
+organization: İstanbul Büyükşehir Belediyesi (İBB)
+url: https://data.ibb.gov.tr/
+license: Istanbul Metropolitan Municipality Open Data License v1.0 (compatible CC BY 4.0) — https://data.ibb.gov.tr/license
+attribution_text: Contains public sector information licensed under the Attribution 4.0 International (CC BY 4.0). İBB Open Data Portal.
+retrieved_at: 2026-11-09
+reference_period: 2026-11-09
+published_at: 2026-03-17
+source_version: İETT GTFS 2026-03-17 ; Metro İstanbul API 2026-02-27 ; Şehir Hatları KML 2025-03-05
+format: bundle (csv + json + kml)
+coordinate_system: EPSG:4326
+encoding: utf-8 (BOM sur le CSV İETT)
+checksum_sha256: 13e1a8fc1ee214ac47ca2bb3bbc494526b9e743f15338baa24c4144b88e86d35
+verified_by: humain — feu vert du 2026-11-09 (licence İBB transport)
+verified_at: 2026-11-09
+steps: [download, sha256-bundle, parse-iett-csv, decode-iett-coordinates, parse-metro-json, parse-ferry-kml, dedupe-by-name-and-proximity, point-in-polygon, nearest-mahalle-under-500m, weighted-density, percentile]
+outputs: [data/processed/ibb-transport-2026/transport-check.md, data/processed/ibb-transport-2026/transport-check.json, data/processed/ibb-transport-2026/transport-mahalle.csv]
+metrics: [transport_accessibility]
+pipeline: ibb-transport
+expected_counts:
+  district: 39
+  neighborhood: 964
+  bus_stops: 15387
+  rail_stations: 245
+  ferry_piers: 56

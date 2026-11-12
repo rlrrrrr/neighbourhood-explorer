@@ -1,4 +1,5 @@
 using System.Globalization;
+using NeighbourhoodExplorer.Etl.Database;
 using Npgsql;
 
 namespace NeighbourhoodExplorer.Etl.WorldPop;
@@ -27,31 +28,11 @@ public sealed record WorldPopNeighborhoodResult(
     double Normalized,
     string QualityFlag);
 
-public sealed record WorldPopMetricTranslation(
-    string Locale,
-    string Name,
-    string Description,
-    string Subject);
-
 public sealed record WorldPopMetricMetadata(
-    string SourceId,
-    string SourceName,
-    string Organization,
-    string Url,
-    string License,
-    string AttributionText,
-    string Methodology,
-    DateOnly RetrievedAt,
-    string SourceVersion,
-    string MetricKey,
-    string Category,
-    string Unit,
-    string NormalizationMethod,
-    string NormalizationVersion,
-    int DisplayPrecision,
+    MetricCatalogSource Source,
+    MetricDefinition Definition,
     string ReferencePeriod,
-    DateOnly ObservedAt,
-    IReadOnlyList<WorldPopMetricTranslation> Translations);
+    DateOnly ObservedAt);
 
 public sealed record WorldPopRecalibrationResult(
     int DistrictCount,
@@ -126,9 +107,29 @@ public static class WorldPopRecalibrator
             return BuildFailureResult(plan, totalRaw, failures);
         }
 
-        var metricId = await UpsertMetricAsync(request, cancellationToken);
         var neighborhoodDensities = await ReadDensitiesAsync(request, cancellationToken);
-        await InsertMetricValuesAsync(request, metricId, neighborhoodDensities, cancellationToken);
+        var normalizedDensities = PercentileRank.Normalize(
+            neighborhoodDensities.Select(density => density.Density).ToList());
+        var metricWrite = await MetricSeriesWriter.WriteAsync(
+            new MetricSeriesWriteRequest(
+                request.Connection,
+                request.Transaction,
+                request.Metadata.Source,
+                request.Metadata.ReferencePeriod,
+                request.Metadata.ObservedAt,
+                request.ComputedAt,
+                [
+                    new MetricSeries(
+                        request.Metadata.Definition,
+                        neighborhoodDensities
+                            .Select((density, index) => new MetricValue(
+                                density.AdminAreaId,
+                                density.Density,
+                                normalizedDensities[index]))
+                            .ToArray()),
+                ]),
+            cancellationToken);
+        var metricId = metricWrite.MetricIds[request.Metadata.Definition.Key];
         var neighborhoods = await ReadNeighborhoodResultsAsync(request, metricId, cancellationToken);
         var totalEstimated = neighborhoods.Sum(neighborhood => neighborhood.PopulationEstimated);
         var totalAdnks = plan.TotalAdnks;
@@ -501,149 +502,6 @@ public static class WorldPopRecalibrator
                     $"recalage : {name} estime {estimated:F3} ≠ ADNKS {adnksTotal}.");
             }
         }
-    }
-
-    private static async Task<long> UpsertMetricAsync(
-        WorldPopRecalibrationRequest request,
-        CancellationToken cancellationToken)
-    {
-        var metadata = request.Metadata;
-        await using (var source = request.Connection.CreateCommand())
-        {
-            source.Transaction = request.Transaction;
-            source.CommandText = """
-                INSERT INTO data_source
-                    (id, name, organization, url, license, attribution_text, methodology,
-                     retrieved_at, source_version)
-                VALUES
-                    (@id, @name, @organization, @url, @license, @attribution_text, @methodology,
-                     @retrieved_at, @source_version)
-                ON CONFLICT (id) DO UPDATE SET
-                    name = EXCLUDED.name,
-                    organization = EXCLUDED.organization,
-                    url = EXCLUDED.url,
-                    license = EXCLUDED.license,
-                    attribution_text = EXCLUDED.attribution_text,
-                    methodology = EXCLUDED.methodology,
-                    retrieved_at = EXCLUDED.retrieved_at,
-                    source_version = EXCLUDED.source_version
-                """;
-            source.Parameters.AddWithValue("id", metadata.SourceId);
-            source.Parameters.AddWithValue("name", metadata.SourceName);
-            source.Parameters.AddWithValue("organization", metadata.Organization);
-            source.Parameters.AddWithValue("url", metadata.Url);
-            source.Parameters.AddWithValue("license", metadata.License);
-            source.Parameters.AddWithValue("attribution_text", metadata.AttributionText);
-            source.Parameters.AddWithValue("methodology", metadata.Methodology);
-            source.Parameters.AddWithValue("retrieved_at", metadata.RetrievedAt);
-            source.Parameters.AddWithValue("source_version", metadata.SourceVersion);
-            await source.ExecuteNonQueryAsync(cancellationToken);
-        }
-
-        await using var metric = request.Connection.CreateCommand();
-        metric.Transaction = request.Transaction;
-        metric.CommandText = """
-            INSERT INTO metric_definition
-                (key, category, unit, native_level, polarity, normalization_method,
-                 normalization_version, display_precision, source_id)
-            VALUES
-                (@key, @category, @unit, 'neighborhood', 'neutral', @normalization_method,
-                 @normalization_version, @display_precision, @source_id)
-            ON CONFLICT (key) DO UPDATE SET
-                category = EXCLUDED.category,
-                unit = EXCLUDED.unit,
-                native_level = EXCLUDED.native_level,
-                polarity = EXCLUDED.polarity,
-                normalization_method = EXCLUDED.normalization_method,
-                normalization_version = EXCLUDED.normalization_version,
-                display_precision = EXCLUDED.display_precision,
-                source_id = EXCLUDED.source_id
-            RETURNING id
-            """;
-        metric.Parameters.AddWithValue("key", metadata.MetricKey);
-        metric.Parameters.AddWithValue("category", metadata.Category);
-        metric.Parameters.AddWithValue("unit", metadata.Unit);
-        metric.Parameters.AddWithValue("normalization_method", metadata.NormalizationMethod);
-        metric.Parameters.AddWithValue("normalization_version", metadata.NormalizationVersion);
-        metric.Parameters.AddWithValue("display_precision", metadata.DisplayPrecision);
-        metric.Parameters.AddWithValue("source_id", metadata.SourceId);
-        var metricId = (long)(await metric.ExecuteScalarAsync(cancellationToken))!;
-
-        foreach (var translation in metadata.Translations)
-        {
-            await using var command = request.Connection.CreateCommand();
-            command.Transaction = request.Transaction;
-            command.CommandText = """
-                INSERT INTO metric_translation
-                    (metric_id, locale, name, description, subject)
-                VALUES
-                    (@metric_id, @locale, @name, @description, @subject)
-                ON CONFLICT (metric_id, locale) DO UPDATE SET
-                    name = EXCLUDED.name,
-                    description = EXCLUDED.description,
-                    subject = EXCLUDED.subject
-                """;
-            command.Parameters.AddWithValue("metric_id", metricId);
-            command.Parameters.AddWithValue("locale", translation.Locale);
-            command.Parameters.AddWithValue("name", translation.Name);
-            command.Parameters.AddWithValue("description", translation.Description);
-            command.Parameters.AddWithValue("subject", translation.Subject);
-            await command.ExecuteNonQueryAsync(cancellationToken);
-        }
-
-        return metricId;
-    }
-
-    private static async Task InsertMetricValuesAsync(
-        WorldPopRecalibrationRequest request,
-        long metricId,
-        IReadOnlyList<NeighborhoodDensity> densities,
-        CancellationToken cancellationToken)
-    {
-        if (densities.Count == 0)
-        {
-            return;
-        }
-
-        var metadata = request.Metadata;
-        var normalized = PercentileRank.Normalize(
-            densities.Select(density => density.Density).ToList());
-
-        await using var command = request.Connection.CreateCommand();
-        command.Transaction = request.Transaction;
-        command.CommandText = """
-            INSERT INTO metric_value
-                (admin_area_id, metric_id, observed_at, reference_period, raw_value,
-                 normalized_value, quality_flag, computed_at)
-            SELECT values.admin_area_id,
-                   @metric_id,
-                   @observed_at,
-                   @reference_period,
-                   values.density,
-                   values.normalized,
-                   'estimated',
-                   @computed_at
-            FROM unnest(@admin_area_ids, @densities, @normalized)
-                AS values(admin_area_id, density, normalized)
-            ON CONFLICT (admin_area_id, metric_id, observed_at) DO UPDATE SET
-                reference_period = EXCLUDED.reference_period,
-                raw_value = EXCLUDED.raw_value,
-                normalized_value = EXCLUDED.normalized_value,
-                quality_flag = EXCLUDED.quality_flag,
-                computed_at = EXCLUDED.computed_at
-            """;
-        command.Parameters.AddWithValue(
-            "admin_area_ids",
-            densities.Select(density => density.AdminAreaId).ToArray());
-        command.Parameters.AddWithValue(
-            "densities",
-            densities.Select(density => density.Density).ToArray());
-        command.Parameters.AddWithValue("normalized", normalized.ToArray());
-        command.Parameters.AddWithValue("metric_id", metricId);
-        command.Parameters.AddWithValue("observed_at", metadata.ObservedAt);
-        command.Parameters.AddWithValue("reference_period", metadata.ReferencePeriod);
-        command.Parameters.AddWithValue("computed_at", request.ComputedAt);
-        await command.ExecuteNonQueryAsync(cancellationToken);
     }
 
     private static async Task<IReadOnlyList<NeighborhoodDensity>> ReadDensitiesAsync(

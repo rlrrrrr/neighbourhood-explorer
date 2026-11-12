@@ -1,4 +1,4 @@
-namespace NeighbourhoodExplorer.Etl.WorldPop;
+namespace NeighbourhoodExplorer.Etl;
 
 public static class PercentileRank
 {

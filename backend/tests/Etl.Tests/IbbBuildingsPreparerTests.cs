@@ -12,13 +12,11 @@ public class IbbBuildingsPreparerTests
         return IbbDatastoreDocument.Parse(stream);
     }
 
-    private static ExpectedCounts ValidExpectedCounts() => new()
-    {
-        Rows = 3,
-        Districts = 3,
-        Uavt = 3,
-        Buildings = 71,
-    };
+    private static ExpectedCounts ValidExpectedCounts() => ExpectedCounts.Empty
+        .With(ExpectedCountField.Rows, 3)
+        .With(ExpectedCountField.Districts, 3)
+        .With(ExpectedCountField.Uavt, 3)
+        .With(ExpectedCountField.Buildings, 71);
 
     [Fact]
     public void Prepare_repairs_names_and_checks_counts()

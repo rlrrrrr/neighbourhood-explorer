@@ -165,27 +165,28 @@ public sealed class WorldPopTests : IAsyncLifetime
         await using var transaction = await connection.BeginTransactionAsync();
 
         var metadata = new WorldPopMetricMetadata(
-            "worldpop-test",
-            "WorldPop test",
-            "WorldPop",
-            "https://example.org/worldpop",
-            "CC BY 4.0",
-            "WorldPop test, valeurs modifiées",
-            "Somme des cases puis recalage ADNKS.",
-            new DateOnly(2026, 11, 4),
-            "test-v1",
-            "population_density",
-            "People",
-            "people/km²",
-            "percentile",
-            "percentile-v1",
-            0,
+            new MetricCatalogSource(
+                "worldpop-test",
+                "WorldPop test",
+                "WorldPop",
+                "https://example.org/worldpop",
+                "CC BY 4.0",
+                "WorldPop test, valeurs modifiées",
+                "Somme des cases puis recalage ADNKS.",
+                new DateOnly(2026, 11, 4),
+                "test-v1"),
+            new MetricDefinition(
+                "population_density",
+                "People",
+                "people/km²",
+                MetricPolarity.Neutral,
+                0,
+                MetricQualityFlag.Estimated,
+                "Somme des cases puis recalage ADNKS.",
+                new MetricTranslation("fr", "Densité", "Description", "la densité"),
+                new MetricTranslation("en", "Density", "Description", "density")),
             "2025",
-            new DateOnly(2025, 12, 31),
-            [
-                new WorldPopMetricTranslation("fr", "Densité", "Description", "la densité"),
-                new WorldPopMetricTranslation("en", "Density", "Description", "density"),
-            ]);
+            new DateOnly(2025, 12, 31));
 
         var result = await WorldPopRecalibrator.RecalculateAsync(
             new WorldPopRecalibrationRequest(

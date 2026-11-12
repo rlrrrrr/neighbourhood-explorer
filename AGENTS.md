@@ -66,6 +66,8 @@ Kadıköy est un **ilçe** ; Moda est un **mahalle**. Le modèle de données gè
 /
 ├── AGENTS.md
 ├── docker-compose.yml          # db + api ; profil "etl" (frontend lancé avec vp en local ; le modèle CLEF est hébergé sur une autre instance)
+├── docker-compose.remote.yml   # surcharge : API/ETL sur la base distante
+├── scripts/                    # choix de la base (locale ou distante), lancement Compose et ETL
 ├── .env.example
 ├── data/                       # raw/ processed/ normalized/ (ETL), hors Git sauf manifestes
 ├── docs/                       # documentation produit et technique
@@ -83,7 +85,10 @@ Kadıköy est un **ilçe** ; Moda est un **mahalle**. Le modèle de données gè
 
 ```bash
 # Infrastructure (PostgreSQL + PostGIS + API)
-docker compose up
+docker compose up                      # base Docker locale
+scripts/compose-up.sh                  # base locale ou distante selon DATABASE_TARGET (.env)
+scripts/run-etl.sh <source>            # ingestion sur la base retenue
+bash scripts/database-target.sh        # affiche la cible retenue (sans mot de passe)
 python benchmarks/clef/smoke-test.py     # test minimal de /v1/systemone sur le serveur CLEF distant (CLEF_URL = son adresse)
 
 # Frontend (depuis frontend/)

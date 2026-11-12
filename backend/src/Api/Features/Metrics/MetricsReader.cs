@@ -126,21 +126,23 @@ public static class MetricsReader
         CancellationToken cancellationToken)
     {
         const string sql = """
-            SELECT DISTINCT ON (m.key, v.admin_area_id)
-                m.key,
-                v.admin_area_id,
-                v.raw_value,
-                v.normalized_value,
-                v.quality_flag
-            FROM metric_value v
-            JOIN metric_definition m ON m.id = v.metric_id
-            JOIN admin_area n ON n.id = v.admin_area_id
-            JOIN admin_area d ON d.id = n.parent_id
-            WHERE n.level = 'neighborhood'
-              AND d.level = 'district'
-              AND d.parent_id = @city_id
-              AND m.key = ANY(@metric_keys)
-            ORDER BY m.key, v.admin_area_id, v.observed_at DESC
+            SELECT m.key,
+                   n.id,
+                   latest.raw_value,
+                   latest.normalized_value,
+                   latest.quality_flag
+            FROM metric_definition m
+            JOIN admin_area d ON d.level = 'district' AND d.parent_id = @city_id
+            JOIN admin_area n ON n.level = 'neighborhood' AND n.parent_id = d.id
+            CROSS JOIN LATERAL (
+                SELECT v.raw_value, v.normalized_value, v.quality_flag
+                FROM metric_value v
+                WHERE v.metric_id = m.id
+                  AND v.admin_area_id = n.id
+                ORDER BY v.observed_at DESC
+                LIMIT 1
+            ) latest
+            WHERE m.key = ANY(@metric_keys)
             """;
 
         var grouped = metricKeys.ToDictionary(
