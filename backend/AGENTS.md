@@ -57,7 +57,7 @@ name, official_name, official_code (nullable), geometry, display_geometry (nulla
 
 Les tables dérivées (`metric_value`, `worldpop_neighborhood_sum`, `worldpop_district_coefficient`, `staging_ibb_buildings_2017`) référencent `admin_area` avec `ON DELETE CASCADE` : réimporter les limites administratives efface les valeurs dérivées devenues obsolètes, sans bloquer sur une clé étrangère.
 
-La vue matérialisée des dernières valeurs n'est pas retenue : à 964 mahalles, un `DISTINCT ON` sur `metric_value` avec l'index `(metric_id, admin_area_id, observed_at DESC)` reste sous le budget et évite un `REFRESH` à maintenir. La normalisation percentile est calculée en C# (`PercentileRank`), pas en SQL, et testée contre `PERCENT_RANK()`.
+La vue matérialisée des dernières valeurs n'est pas retenue : à 964 mahalles, la dernière valeur par couple (métrique, mahalle) se lit avec l'index `(metric_id, admin_area_id, observed_at DESC)` et évite un `REFRESH` à maintenir. La requête `metric-values` part des métriques et utilise un `CROSS JOIN LATERAL … ORDER BY observed_at DESC LIMIT 1` (mesuré à p95 233 ms pour deux métriques, voir `../docs/infrastructure.md`). La normalisation percentile est calculée en C# (`PercentileRank`), pas en SQL, et testée contre `PERCENT_RANK()`.
 
 MetricDefinition
 ----------------
@@ -200,7 +200,9 @@ Règles :
 
 ## Isochrones
 
-Pas de serveur de routage auto-hébergé : on s'appuie sur un **service hébergé** derrière `IIsochroneProvider`. Stratégie complète (précalcul, cache, quotas, repli) dans `../docs/isochrones.md`.
+**Reporté le 11 novembre 2026** : rapport coût/pertinence défavorable, les densités déjà calculées suffisent (décision dans `../docs/isochrones.md`). Les endpoints et le dossier `Isochrones/` ci-dessus restent la cible **si la fonctionnalité est rouverte** ; ne rien implémenter sans décision explicite.
+
+Pas de serveur de routage auto-hébergé : on s'appuierait sur un **service hébergé** derrière `IIsochroneProvider`. Stratégie complète (précalcul, cache, quotas, repli) dans `../docs/isochrones.md`.
 
 ## Données et ETL
 
