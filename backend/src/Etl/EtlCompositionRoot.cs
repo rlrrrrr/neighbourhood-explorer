@@ -1,7 +1,9 @@
+using NeighbourhoodExplorer.Etl.Greenery;
 using NeighbourhoodExplorer.Etl.Ibb;
 using NeighbourhoodExplorer.Etl.Infrastructure;
 using NeighbourhoodExplorer.Etl.Osm;
 using NeighbourhoodExplorer.Etl.Pipelines;
+using NeighbourhoodExplorer.Etl.Transport;
 using Npgsql;
 
 namespace NeighbourhoodExplorer.Etl;
@@ -50,6 +52,22 @@ public static class EtlCompositionRoot
                 options.DataSource,
                 target,
                 toolRunner,
+                options.Console,
+                options.TimeProvider),
+            [PipelineId.OsmUrbanFeatures] = new OsmUrbanFeaturesPipeline(
+                options.DataSource,
+                target,
+                toolRunner,
+                options.Console,
+                options.TimeProvider),
+            [PipelineId.WorldCoverGreenery] = new WorldCoverGreeneryPipeline(
+                options.DataSource,
+                target,
+                toolRunner,
+                options.Console,
+                options.TimeProvider),
+            [PipelineId.IbbTransport] = new IbbTransportPipeline(
+                options.DataSource,
                 options.Console,
                 options.TimeProvider),
         };

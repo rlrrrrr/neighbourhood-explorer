@@ -48,7 +48,9 @@ public class SourceManifestReaderTests
 
         Assert.Empty(SourceManifestReader.FindMissingFields(manifest));
         Assert.Equal("humain", manifest.VerifiedBy);
-        Assert.Equal(39, manifest.ExpectedCounts.Districts);
+        Assert.Equal(
+            39,
+            manifest.ExpectedCounts.Require(ExpectedCountField.Districts, manifest.Id));
         Assert.Equal(["import"], manifest.Steps);
     }
 
@@ -62,6 +64,49 @@ public class SourceManifestReaderTests
         Assert.Equal("TR100", manifest.ProvinceCode);
         Assert.Equal("İstanbul", manifest.ProvinceName);
         Assert.Equal(2025, manifest.GridYear);
+    }
+
+    [Fact]
+    public void Reads_the_optional_raw_and_data_source_ids()
+    {
+        var manifest = ReadManifest(CompleteManifest.Replace(
+            "name: Test",
+            "raw_source_id: osm-geofabrik-istanbul\ndata_source_id: osm-geofabrik-istanbul\nname: Test"));
+
+        Assert.Equal("osm-geofabrik-istanbul", manifest.RawSourceId);
+        Assert.Equal("osm-geofabrik-istanbul", manifest.DataSourceId);
+    }
+
+    [Fact]
+    public void Leaves_the_raw_and_data_source_ids_empty_when_absent()
+    {
+        var manifest = ReadManifest(CompleteManifest);
+
+        Assert.Null(manifest.RawSourceId);
+        Assert.Null(manifest.DataSourceId);
+    }
+
+    [Fact]
+    public void Reads_transport_expected_counts()
+    {
+        var manifest = ReadManifest(CompleteManifest.Replace(
+            "  neighborhood: 964",
+            """
+              neighborhood: 964
+              bus_stops: 15387
+              rail_stations: 245
+              ferry_piers: 55
+            """));
+
+        Assert.Equal(
+            15387,
+            manifest.ExpectedCounts.Require(ExpectedCountField.BusStops, manifest.Id));
+        Assert.Equal(
+            245,
+            manifest.ExpectedCounts.Require(ExpectedCountField.RailStations, manifest.Id));
+        Assert.Equal(
+            55,
+            manifest.ExpectedCounts.Require(ExpectedCountField.FerryPiers, manifest.Id));
     }
 
     [Fact]

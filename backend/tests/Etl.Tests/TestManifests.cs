@@ -24,11 +24,9 @@ internal static class TestManifests
         Outputs = [],
         Metrics = [],
         Pipeline = PipelineId.OsmAdminBoundaries,
-        ExpectedCounts = new ExpectedCounts
-        {
-            Province = province,
-            Districts = district,
-            Neighborhoods = neighborhood,
-        },
+        ExpectedCounts = ExpectedCounts.Empty
+            .With(ExpectedCountField.Province, province)
+            .With(ExpectedCountField.Districts, district)
+            .With(ExpectedCountField.Neighborhoods, neighborhood),
     };
 }

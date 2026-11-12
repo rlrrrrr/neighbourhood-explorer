@@ -24,6 +24,14 @@ public static class TurkishText
         return CollapseWhitespace(builder.ToString());
     }
 
+    public static string SqlNormalizeExpression(string column) => $"""
+        translate(
+            regexp_replace(
+                lower(translate(btrim({column}), 'İI', 'iı')),
+                '\s+', ' ', 'g'),
+            'ışğçöüâîûêô', 'isgcouaiueo')
+        """;
+
     private static char FoldTurkishLetter(char character) => character switch
     {
         'ı' => 'i',

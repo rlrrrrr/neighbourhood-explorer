@@ -61,6 +61,52 @@ public sealed class ProcessExternalToolRunner : IExternalToolRunner
             await errorTask);
     }
 
+    public async Task<ExternalToolResult> RunWithDiagnosticsLogAsync(
+        ExternalToolCommand command,
+        string diagnosticsPath,
+        CancellationToken cancellationToken)
+    {
+        var startInfo = CreateStartInfo(command, redirectStandardOutput: true);
+        using var process = Start(startInfo, command.FileName);
+        var outputTask = process.StandardOutput.ReadToEndAsync(cancellationToken);
+
+        try
+        {
+            await using (var diagnostics = File.Create(diagnosticsPath))
+            {
+                await process.StandardError.BaseStream.CopyToAsync(diagnostics, cancellationToken);
+            }
+
+            await process.WaitForExitAsync(cancellationToken);
+        }
+        catch (OperationCanceledException)
+        {
+            process.Kill(entireProcessTree: true);
+            throw;
+        }
+
+        return new ExternalToolResult(
+            process.ExitCode,
+            await outputTask,
+            await ReadTailAsync(diagnosticsPath, cancellationToken));
+    }
+
+    private static async Task<string> ReadTailAsync(string path, CancellationToken cancellationToken)
+    {
+        const int tailBytes = 8192;
+
+        await using var stream = new FileStream(
+            path,
+            FileMode.Open,
+            FileAccess.Read,
+            FileShare.ReadWrite);
+        var start = Math.Max(0, stream.Length - tailBytes);
+        stream.Seek(start, SeekOrigin.Begin);
+
+        using var reader = new StreamReader(stream);
+        return await reader.ReadToEndAsync(cancellationToken);
+    }
+
     private static ProcessStartInfo CreateStartInfo(
         ExternalToolCommand command,
         bool redirectStandardOutput)

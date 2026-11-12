@@ -6,6 +6,10 @@ public sealed record SourceManifest
 {
     public required string Id { get; init; }
 
+    public string? RawSourceId { get; init; }
+
+    public string? DataSourceId { get; init; }
+
     public required string Name { get; init; }
 
     public required string Organization { get; init; }

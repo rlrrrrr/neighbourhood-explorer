@@ -47,4 +47,35 @@ public class PercentileRankTests
 
         Assert.Equal([0.0, 0.0, 0.0], normalized);
     }
+
+    [Fact]
+    public void Normalize_is_bounded_and_order_preserving_for_generated_values()
+    {
+        var random = new Random(20261111);
+        for (var run = 0; run < 200; run++)
+        {
+            var values = Enumerable.Range(0, random.Next(1, 40))
+                .Select(_ => Math.Round(random.NextDouble() * 100, 1))
+                .ToArray();
+
+            var normalized = PercentileRank.Normalize(values);
+
+            Assert.Equal(values.Length, normalized.Count);
+            Assert.All(normalized, value => Assert.InRange(value, 0, 1));
+            for (var left = 0; left < values.Length; left++)
+            {
+                for (var right = 0; right < values.Length; right++)
+                {
+                    if (values[left] < values[right])
+                    {
+                        Assert.True(normalized[left] <= normalized[right]);
+                    }
+                    else if (values[left] == values[right])
+                    {
+                        Assert.Equal(normalized[left], normalized[right]);
+                    }
+                }
+            }
+        }
+    }
 }

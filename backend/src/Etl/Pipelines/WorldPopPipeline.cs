@@ -1,5 +1,6 @@
 using System.Globalization;
 using NeighbourhoodExplorer.Etl.Data;
+using NeighbourhoodExplorer.Etl.Database;
 using NeighbourhoodExplorer.Etl.Infrastructure;
 using NeighbourhoodExplorer.Etl.Manifests;
 using NeighbourhoodExplorer.Etl.Osm;
@@ -98,40 +99,43 @@ public sealed class WorldPopPipeline(
 
         var observedAt = new DateOnly(referenceYear, 12, 31);
         var referencePeriod = referenceYear.ToString(CultureInfo.InvariantCulture);
-        var metadata = new WorldPopMetricMetadata(
-            request.Manifest.Id,
-            request.Manifest.Name,
-            request.Manifest.Organization,
-            request.Manifest.Url,
-            request.Manifest.License,
-            request.Manifest.AttributionText,
+        var methodology =
             $"Somme des cases WorldPop {gridYear} (100 m, contrainte aux bâtiments) par mahalle, " +
             "avec pondération par la fraction de case recouverte ; recalage par ilçe sur les " +
-            $"totaux ADNKS {referenceYear}.",
-            DateOnly.Parse(request.Manifest.RetrievedAt!, CultureInfo.InvariantCulture),
-            request.Manifest.SourceVersion ?? string.Empty,
-            "population_density",
-            "People",
-            "people/km²",
-            "percentile",
-            "percentile-v1",
-            0,
-            referencePeriod,
-            observedAt,
-            [
-                new WorldPopMetricTranslation(
+            $"totaux ADNKS {referenceYear}.";
+        var metadata = new WorldPopMetricMetadata(
+            new MetricCatalogSource(
+                request.Manifest.Id,
+                request.Manifest.Name,
+                request.Manifest.Organization,
+                request.Manifest.Url,
+                request.Manifest.License,
+                request.Manifest.AttributionText,
+                methodology,
+                DateOnly.Parse(request.Manifest.RetrievedAt!, CultureInfo.InvariantCulture),
+                request.Manifest.SourceVersion ?? string.Empty),
+            new MetricDefinition(
+                "population_density",
+                "People",
+                "people/km²",
+                MetricPolarity.Neutral,
+                0,
+                MetricQualityFlag.Estimated,
+                methodology,
+                new MetricTranslation(
                     "fr",
                     "Densité de population",
                     $"Population estimée par km² (WorldPop {gridYear} recalée sur les totaux ADNKS " +
                     $"{referenceYear} par ilçe). Estimation, pas un recensement.",
                     "la densité de population"),
-                new WorldPopMetricTranslation(
+                new MetricTranslation(
                     "en",
                     "Population density",
                     $"Estimated population per km² (WorldPop {gridYear} recalibrated to " +
                     $"{referenceYear} ADNKS district totals). An estimate, not a census.",
-                    "population density"),
-            ]);
+                    "population density")),
+            referencePeriod,
+            observedAt);
 
         var recalibration = await WorldPopRecalibrator.RecalculateAsync(
             new WorldPopRecalibrationRequest(
@@ -195,7 +199,7 @@ public sealed class WorldPopPipeline(
             recalibration.MaxDensity,
             recalibration.MedianDensity,
             recalibration.MetricId,
-            metadata.MetricKey,
+            metadata.Definition.Key,
             computedAt,
             recalibration.Coefficients,
             recalibration.Neighborhoods,

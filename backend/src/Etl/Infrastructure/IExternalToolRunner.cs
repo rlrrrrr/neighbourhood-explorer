@@ -25,4 +25,9 @@ public interface IExternalToolRunner
         ExternalToolCommand command,
         string outputPath,
         CancellationToken cancellationToken);
+
+    Task<ExternalToolResult> RunWithDiagnosticsLogAsync(
+        ExternalToolCommand command,
+        string diagnosticsPath,
+        CancellationToken cancellationToken);
 }
