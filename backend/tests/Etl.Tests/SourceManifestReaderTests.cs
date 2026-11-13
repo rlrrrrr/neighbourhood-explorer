@@ -87,6 +87,25 @@ public class SourceManifestReaderTests
     }
 
     [Fact]
+    public void Reads_the_optional_observed_at_date()
+    {
+        var manifest = ReadManifest(CompleteManifest.Replace(
+            "reference_period: 2026-10-30",
+            "reference_period: 2025-03-05/2026-03-17\nobserved_at: 2025-03-05"));
+
+        Assert.Equal("2025-03-05/2026-03-17", manifest.ReferencePeriod);
+        Assert.Equal("2025-03-05", manifest.ObservedAt);
+    }
+
+    [Fact]
+    public void Leaves_observed_at_empty_when_absent()
+    {
+        var manifest = ReadManifest(CompleteManifest);
+
+        Assert.Null(manifest.ObservedAt);
+    }
+
+    [Fact]
     public void Reads_transport_expected_counts()
     {
         var manifest = ReadManifest(CompleteManifest.Replace(

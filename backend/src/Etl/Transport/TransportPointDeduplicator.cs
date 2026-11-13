@@ -35,51 +35,30 @@ public static class TransportPointDeduplicator
                 _ => throw new ArgumentOutOfRangeException(nameof(points), mode, null),
             };
 
-            var groups = Cluster(modePoints, radius);
-            distinct.AddRange(groups.Select(group => group[0]));
-            stats.Add(new TransportModeDedupeStats(mode, modePoints.Length, groups.Count));
+            var keptPoints = KeepDistinctPoints(modePoints, radius);
+            distinct.AddRange(keptPoints);
+            stats.Add(new TransportModeDedupeStats(mode, modePoints.Length, keptPoints.Count));
         }
 
         return new TransportDedupeResult(distinct, stats);
     }
 
-    private static List<List<TransportPoint>> Cluster(
+    private static List<TransportPoint> KeepDistinctPoints(
         IReadOnlyList<TransportPoint> points,
         double radiusMetres)
     {
-        var parent = Enumerable.Range(0, points.Count).ToArray();
+        var keptPoints = new List<TransportPoint>();
+        var grid = new Dictionary<(string Name, int Column, int Row), List<TransportPoint>>();
 
-        int Find(int index)
+        foreach (var point in points)
         {
-            while (parent[index] != index)
-            {
-                parent[index] = parent[parent[index]];
-                index = parent[index];
-            }
-
-            return index;
-        }
-
-        void Union(int left, int right)
-        {
-            var leftRoot = Find(left);
-            var rightRoot = Find(right);
-            if (leftRoot != rightRoot)
-            {
-                parent[rightRoot] = leftRoot;
-            }
-        }
-
-        var grid = new Dictionary<(string Name, int Column, int Row), List<int>>();
-        for (var index = 0; index < points.Count; index++)
-        {
-            var point = points[index];
             var name = NormalizeName(point);
             var column = Cell(point.Longitude);
             var row = Cell(point.Latitude);
-            for (var columnOffset = -1; columnOffset <= 1; columnOffset++)
+            var duplicates = false;
+            for (var columnOffset = -1; columnOffset <= 1 && !duplicates; columnOffset++)
             {
-                for (var rowOffset = -1; rowOffset <= 1; rowOffset++)
+                for (var rowOffset = -1; rowOffset <= 1 && !duplicates; rowOffset++)
                 {
                     if (!grid.TryGetValue(
                             (name, column + columnOffset, row + rowOffset),
@@ -90,14 +69,21 @@ public static class TransportPointDeduplicator
 
                     foreach (var neighbour in neighbours)
                     {
-                        if (DistanceMetres(points[neighbour], point) <= radiusMetres)
+                        if (DistanceMetres(neighbour, point) <= radiusMetres)
                         {
-                            Union(index, neighbour);
+                            duplicates = true;
+                            break;
                         }
                     }
                 }
             }
 
+            if (duplicates)
+            {
+                continue;
+            }
+
+            keptPoints.Add(point);
             var key = (name, column, row);
             if (!grid.TryGetValue(key, out var bucket))
             {
@@ -105,23 +91,10 @@ public static class TransportPointDeduplicator
                 grid[key] = bucket;
             }
 
-            bucket.Add(index);
+            bucket.Add(point);
         }
 
-        var groups = new SortedDictionary<int, List<TransportPoint>>();
-        for (var index = 0; index < points.Count; index++)
-        {
-            var root = Find(index);
-            if (!groups.TryGetValue(root, out var group))
-            {
-                group = [];
-                groups[root] = group;
-            }
-
-            group.Add(points[index]);
-        }
-
-        return groups.Values.ToList();
+        return keptPoints;
     }
 
     private static int Cell(double degrees) => (int)Math.Floor(degrees / GridCellDegrees);

@@ -29,6 +29,7 @@ public static class SourceManifestReader
             ProvinceName = document.Text("province_name"),
             GridYear = ReadOptionalInt(document, "grid_year"),
             ReferencePeriod = Require(document, "reference_period"),
+            ObservedAt = document.Text("observed_at"),
             PublishedAt = Require(document, "published_at"),
             SourceVersion = document.Text("source_version"),
             Format = Require(document, "format"),
