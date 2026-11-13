@@ -70,6 +70,27 @@ describe("table sort", () => {
     ]);
   });
 
+  it("keeps missing values last in both directions", () => {
+    const rows = [
+      { name: "Moda", cafes: 24.1 },
+      { name: "Cihangir", cafes: null },
+      { name: "Yeldeğirmeni", cafes: 15.2 },
+    ];
+    const sortValueOf = (row: (typeof rows)[number], key: string) =>
+      key === "cafes" ? row.cafes : null;
+
+    expect(
+      sortRows({ rows, sort: { key: "cafes", direction: "ascending" }, sortValueOf }).map(
+        (row) => row.name,
+      ),
+    ).toEqual(["Yeldeğirmeni", "Moda", "Cihangir"]);
+    expect(
+      sortRows({ rows, sort: { key: "cafes", direction: "descending" }, sortValueOf }).map(
+        (row) => row.name,
+      ),
+    ).toEqual(["Moda", "Yeldeğirmeni", "Cihangir"]);
+  });
+
   it("does not mutate the source rows", () => {
     sortRows({ rows: ROWS, sort: { key: "cafes", direction: "descending" }, sortValueOf });
 

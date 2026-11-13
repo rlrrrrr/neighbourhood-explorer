@@ -2,7 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { setupLocaleContext } from "fbtee";
 import { describe, expect, it } from "vite-plus/test";
 import { AVAILABLE_LANGUAGES, SOURCE_LANGUAGE, loadLocale } from "../../app/locale-runtime";
-import { localizedUnit } from "./localized-unit";
+import { localizedUnit } from "./metric-presentation";
 
 async function renderUnit({ unit, clientLocale }: { unit: string; clientLocale: string }) {
   const { preloadLocale } = setupLocaleContext({

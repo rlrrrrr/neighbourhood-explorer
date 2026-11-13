@@ -1958,6 +1958,116 @@
         }
       ],
       "types": []
+    },
+    "zWj5HRRa35PgTqZhs7GEZQ==": {
+      "description": "Subtitle of the data view, promising raw values with their unit, date and source",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ham değerler; birim, gözlem tarihi ve kaynakla birlikte, bileşik puan olmadan",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BDNtsE0Lcep99paZJc83jQ==": {
+      "description": "Shown while the raw values table is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Değerler yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8j1Jl5VZVCp0V6v5ESghXw==": {
+      "description": "Shown in the data view when no criterion is active",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Etkin ölçüt yok: ham değerleri görmek için sohbetten veya haritadan bir ölçüt ekle.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5lPNgBPMXM/G9wgZmM/Znw==": {
+      "description": "Shown when the raw values cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Değerler yüklenemedi.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zw65yeLmQyFa+rMlp/tHjA==": {
+      "description": "Label before the API error code",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kod:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+T+S4LHhUSCN1KzfhfU27Q==": {
+      "description": "Button retrying the raw values request",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tekrar dene",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "s8hGL02fBz83P/Cow4vmVw==": {
+      "description": "Notice listing the active criteria that the API does not publish",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "API tarafından yayımlanmayan ölçütler:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SlHVWKRn0tQQ5phVrOe7gA==": {
+      "description": "Accessible label of the unit and observation date in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Birim ve gözlem tarihi:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+TtKgA798Vd98Hc5X36v2w==": {
+      "description": "Shown when a neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fxZzfkWlHJdkeaAUHWEoWA==": {
+      "description": "Summary of the sources and dates panel under the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaynaklar ve tarihler",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

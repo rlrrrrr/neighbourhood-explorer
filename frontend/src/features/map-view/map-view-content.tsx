@@ -5,17 +5,21 @@ import { Map, MapControls, type MapRef } from "../../components/ui/map";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
 import type { Criteria } from "../criteria/criteria";
-import type { components } from "../../generated/api";
 import {
   collectionBounds,
   selectFeaturesById,
   type ChoroplethFeatureCollection,
-  type ChoroplethProperties,
 } from "./choropleth";
 import type { ChoroplethColors } from "./choropleth-style";
 import { ChoroplethLayers } from "./choropleth-layers";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
-import { localizedUnit } from "./localized-unit";
+import {
+  formatMetricValue,
+  localizedMetricName,
+  localizedUnit,
+  metricQualityLabel,
+  shortLicense,
+} from "../metrics/metric-presentation";
 import type { MapDataState } from "./use-map-data";
 import { LensPanel } from "./lens-panel";
 
@@ -31,9 +35,6 @@ const basemapStyles = basemapStyleUrl
       dark: basemapDarkStyleUrl ?? basemapStyleUrl,
     }
   : undefined;
-
-type MetricDefinition = components["schemas"]["MetricDefinition"];
-type QualityFlag = ChoroplethProperties["qualityFlag"];
 
 interface MapViewContentProps {
   criteria: Criteria;
@@ -84,7 +85,7 @@ export function MapViewContent({
     () => (data === null ? [] : sortFeaturesByName(data.collection, locale)),
     [data, locale],
   );
-  const localizedMetricName = data === null ? "" : localizedName(data.metric, locale);
+  const metricName = data === null ? "" : localizedMetricName(data.metric, locale);
 
   function recenterOnIstanbul() {
     const clearsAnimatedSelection =
@@ -237,12 +238,12 @@ export function MapViewContent({
                 <p className="mt-2 text-2xl font-bold tabular-nums">
                   {selectedFeature.properties.raw === null
                     ? fbt("Pas de donnée", "Shown when the selected neighborhood has no value")
-                    : `${formatValue(selectedFeature.properties.raw, locale, data.metric.displayPrecision)} ${localizedUnit(data.metric.unit)}`}
+                    : `${formatMetricValue({ value: selectedFeature.properties.raw, locale, maximumFractionDigits: data.metric.displayPrecision })} ${localizedUnit(data.metric.unit)}`}
                 </p>
-                <p className="mt-1 text-xs text-text-secondary">{localizedMetricName}</p>
+                <p className="mt-1 text-xs text-text-secondary">{metricName}</p>
                 {selectedFeature.properties.qualityFlag !== null ? (
                   <p className="mt-1 text-xs text-text-secondary">
-                    {qualityDescription(selectedFeature.properties.qualityFlag)}
+                    {metricQualityLabel(selectedFeature.properties.qualityFlag)}
                   </p>
                 ) : null}
               </div>
@@ -294,7 +295,7 @@ export function MapViewContent({
       <div className="pointer-events-none absolute bottom-0 left-0 z-10 flex max-w-[min(100%,28rem)] flex-col gap-2 p-3 sm:p-4">
         {data !== null ? (
           <p className="material-panel pointer-events-auto rounded-2xl px-3 py-1.5 text-xs text-text-secondary">
-            {localizedMetricName} · {data.metric.source.organization} ·{" "}
+            {metricName} · {data.metric.source.organization} ·{" "}
             {shortLicense(data.metric.source.license)} · {data.metric.observedAt ?? "—"}
           </p>
         ) : null}
@@ -325,37 +326,4 @@ function sortFeaturesByName(
   return [...collection.features].sort((left, right) =>
     left.properties.name.localeCompare(right.properties.name, locale),
   );
-}
-
-function localizedName(metric: MetricDefinition, locale: string): string {
-  const translation =
-    metric.translations.find((candidate) => candidate.locale === locale) ??
-    metric.translations.find((candidate) => candidate.locale === "fr") ??
-    metric.translations[0];
-  return translation?.name ?? metric.key;
-}
-
-function formatValue(value: number, locale: string, maximumFractionDigits: number): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits }).format(value);
-}
-
-function shortLicense(license: string): string {
-  return license.split(/\s+[—–-]\s+/)[0].trim();
-}
-
-function qualityDescription(flag: QualityFlag): string {
-  switch (flag) {
-    case "inherited":
-      return fbt("Valeur du district", "Quality label for a value inherited from the district");
-    case "estimated":
-      return fbt("Estimation", "Quality label for an estimated value");
-    case "stale":
-      return fbt("Donnée ancienne", "Quality label for a stale value");
-    case "low_coverage":
-      return fbt("Couverture faible", "Quality label for a value with low coverage");
-    case "ok":
-      return fbt("Mesure", "Quality label for an observed value");
-    default:
-      return "";
-  }
 }

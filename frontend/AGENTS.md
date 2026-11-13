@@ -44,6 +44,7 @@ src/
 ├── app/                      # coque : routage (router, routes, url-state), barre de navigation, fournisseurs, thème, locales (locale-runtime, locale-context, language-switcher)
 ├── features/
 │   ├── criteria/             # état des critères partagé, encodage dans l'URL
+│   ├── metrics/              # schéma de réponse et présentation des métriques (carte + données)
 │   ├── chat-view/            # vue Chat
 │   ├── map-view/             # vue Carte (couches, commandes de carte, fiches)
 │   ├── data-view/            # vue Données (tableau de classement)
@@ -118,7 +119,7 @@ Erreurs : `application/problem+json` avec un `code` stable pour les endpoints de
 - **Cadrage** : la carte se cale sur les limites des géométries reçues ; sélectionner un quartier (liste ou clic) cadre sur son polygone ; le bouton « Recentrer sur Istanbul » du sélecteur recadre sur l'ensemble des géométries chargées **et remet la sélection à zéro** (paramètre `neighborhood` retiré de l'URL). L'instance MapLibre n'est pas recréée : le premier cadrage est instantané, les suivants (sélection, recentrage) animent la caméra sur 700 ms (instantané si `prefers-reduced-motion`). Le cadrage n'est pas réappliqué lors d'un changement de thème.
 - **Sélection et URL** : le paramètre `neighborhood` stocke l'**id** du mahalle (entier positif validé et borné dans `app/url-state.ts`), jamais son nom. Carte, chat et vue Données partagent cet id : les résultats d'exemple portent le `neighborhoodId` de leur mahalle officiel (`Moda` → `Caferağa`, `Yeldeğirmeni` → `Rasimpaşa`). Un id inconnu n'affiche aucune sélection ; des mahalles homonymes dans deux ilçe restent distinguables.
 - **Sélecteur « Aller à un quartier »** : le popup natif n'est pas animable ; c'est le contrôle qui répond. Pendant l'ouverture (`select:open`), le chevron pivote à 180° et la bordure prend `--action`, sur 160 ms `--ease-out` ; `prefers-reduced-motion` supprime la transition et applique l'état instantanément.
-- **Unité** : `metric.unit` reste la valeur canonique du contrat (`people/km²`). L'affichage passe par `localized-unit.ts`, qui associe les unités connues à des chaînes fbtee (`habitants/km²`, `people/km²`, `kişi/km²`, `نسمة/كم²`) ; une unité inconnue est affichée brute, sans traduction inventée.
+- **Unité** : `metric.unit` reste la valeur canonique du contrat (`people/km²`). L'affichage passe par `features/metrics/metric-presentation.ts` (`localizedUnit`), qui associe les unités connues à des chaînes fbtee (`habitants/km²`, `people/km²`, `kişi/km²`, `نسمة/كم²`) ; une unité inconnue est affichée brute, sans traduction inventée.
 - Trois niveaux de zoom : districts, mahalles, lieux. La couleur des quartiers est pilotée par `feature-state` : changer de couche ne recrée pas les couches. A2 ne rend que le niveau mahalle.
 - Rampe de scores à **une seule teinte** (clarté croissante), valeur manquante en gris avec motif distinct ; la couleur n'est jamais le seul porteur d'information (libellé, valeur, rang numéroté).
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
@@ -134,6 +135,7 @@ Erreurs : `application/problem+json` avec un `code` stable pour les endpoints de
 - La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
 - Chaque ligne a un bouton **« Voir sur la carte »**.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
+- Implémentation actuelle : `use-data-table.ts` lit `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods`, avec les mêmes gardes de réponse que la carte (`features/metrics/metric-api-schema.ts`) et sans TanStack Query. Les colonnes sont les critères actifs, dans leur ordre ; un critère absent de `/metrics` est nommé au-dessus du tableau, jamais ignoré en silence. Sans critère actif : état vide qui renvoie vers le chat ou la carte, jamais un classement par défaut. La colonne composite attend toujours `POST /api/v1/match`.
 
 ## Graphiques
 

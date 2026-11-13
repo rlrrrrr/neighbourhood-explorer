@@ -90,6 +90,180 @@
     },
     {
       "hashToLeaf": {
+        "x6B5uk3LcAD3ayzExlj05Q==": {
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 4,
+          "index": 273
+        },
+        "end": {
+          "line": 8,
+          "column": 83,
+          "index": 352
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "zpNqc/6xR9dNVY7rewwUVg==": {
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 13,
+          "index": 1273
+        },
+        "end": {
+          "line": 42,
+          "column": 95,
+          "index": 1355
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ZEpxnfIpzQTWtJXICac33g==": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 13,
+          "index": 1392
+        },
+        "end": {
+          "line": 44,
+          "column": 70,
+          "index": 1449
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2/dpvuWAslSHufnbvTINuw==": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 46,
+          "column": 13,
+          "index": 1482
+        },
+        "end": {
+          "line": 46,
+          "column": 70,
+          "index": 1539
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "or9CUYOklLCg6LVKUNQujg==": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 48,
+          "column": 13,
+          "index": 1579
+        },
+        "end": {
+          "line": 48,
+          "column": 84,
+          "index": 1650
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Uc0U2RxmH8MKBSgXAxeHaQ==": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 13,
+          "index": 1680
+        },
+        "end": {
+          "line": 50,
+          "column": 65,
+          "index": 1732
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "RhKKygaH4G/v+0eDciNiKg==": {
           "desc": "Lens filter category: mobility",
           "text": "Mobilité"
@@ -612,35 +786,6 @@
     },
     {
       "hashToLeaf": {
-        "x6B5uk3LcAD3ayzExlj05Q==": {
-          "desc": "Unit of population density, people per square kilometre",
-          "text": "habitants/km²"
-        }
-      },
-      "filename": "src/features/map-view/localized-unit.ts",
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 4,
-          "index": 151
-        },
-        "end": {
-          "line": 5,
-          "column": 83,
-          "index": 230
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit of population density, people per square kilometre",
-          "text": "habitants/km²"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "jSaV09hGCKW0jLG6Nz3pPA==": {
           "desc": "Title of the map region and its accessible name",
           "text": "Carte des quartiers"
@@ -649,14 +794,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 19,
-          "index": 2137
+          "index": 2028
         },
         "end": {
-          "line": 64,
+          "line": 65,
           "column": 96,
-          "index": 2214
+          "index": 2105
         }
       },
       "project": "",
@@ -678,14 +823,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 65,
+          "line": 66,
           "column": 21,
-          "index": 2237
+          "index": 2128
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 84,
-          "index": 2300
+          "index": 2191
         }
       },
       "project": "",
@@ -707,14 +852,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 67,
           "column": 23,
-          "index": 2325
+          "index": 2216
         },
         "end": {
-          "line": 66,
+          "line": 67,
           "column": 94,
-          "index": 2396
+          "index": 2287
         }
       },
       "project": "",
@@ -736,14 +881,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 67,
+          "line": 68,
           "column": 21,
-          "index": 2419
+          "index": 2310
         },
         "end": {
-          "line": 70,
+          "line": 71,
           "column": 3,
-          "index": 2532
+          "index": 2423
         }
       },
       "project": "",
@@ -765,14 +910,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 152,
+          "line": 153,
           "column": 10,
-          "index": 5169
+          "index": 5057
         },
         "end": {
-          "line": 152,
+          "line": 153,
           "column": 76,
-          "index": 5235
+          "index": 5123
         }
       },
       "project": "",
@@ -794,14 +939,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 160,
+          "line": 161,
           "column": 10,
-          "index": 5452
+          "index": 5340
         },
         "end": {
-          "line": 160,
+          "line": 161,
           "column": 69,
-          "index": 5511
+          "index": 5399
         }
       },
       "project": "",
@@ -823,14 +968,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 183,
+          "line": 184,
           "column": 14,
-          "index": 6386
+          "index": 6274
         },
         "end": {
-          "line": 183,
+          "line": 184,
           "column": 68,
-          "index": 6440
+          "index": 6328
         }
       },
       "project": "",
@@ -852,14 +997,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 194,
+          "line": 195,
           "column": 14,
-          "index": 6714
+          "index": 6602
         },
         "end": {
-          "line": 194,
+          "line": 195,
           "column": 89,
-          "index": 6789
+          "index": 6677
         }
       },
       "project": "",
@@ -881,14 +1026,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 208,
+          "line": 209,
           "column": 18,
-          "index": 7565
+          "index": 7453
         },
         "end": {
-          "line": 208,
+          "line": 209,
           "column": 95,
-          "index": 7642
+          "index": 7530
         }
       },
       "project": "",
@@ -910,14 +1055,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 228,
+          "line": 229,
           "column": 14,
-          "index": 8537
+          "index": 8425
         },
         "end": {
-          "line": 228,
+          "line": 229,
           "column": 96,
-          "index": 8619
+          "index": 8507
         }
       },
       "project": "",
@@ -939,14 +1084,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 239,
+          "line": 240,
           "column": 22,
-          "index": 9135
+          "index": 9023
         },
         "end": {
-          "line": 239,
+          "line": 240,
           "column": 95,
-          "index": 9208
+          "index": 9096
         }
       },
       "project": "",
@@ -968,14 +1113,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 251,
+          "line": 252,
           "column": 16,
-          "index": 9854
+          "index": 9773
         },
         "end": {
-          "line": 253,
+          "line": 254,
           "column": 22,
-          "index": 10023
+          "index": 9942
         }
       },
       "project": "",
@@ -997,14 +1142,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 258,
+          "line": 259,
           "column": 16,
-          "index": 10242
+          "index": 10161
         },
         "end": {
-          "line": 260,
+          "line": 261,
           "column": 22,
-          "index": 10368
+          "index": 10287
         }
       },
       "project": "",
@@ -1026,14 +1171,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 267,
+          "line": 268,
           "column": 16,
-          "index": 10718
+          "index": 10637
         },
         "end": {
-          "line": 267,
+          "line": 268,
           "column": 90,
-          "index": 10792
+          "index": 10711
         }
       },
       "project": "",
@@ -1055,14 +1200,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 271,
+          "line": 272,
           "column": 16,
-          "index": 10916
+          "index": 10835
         },
         "end": {
-          "line": 271,
+          "line": 272,
           "column": 89,
-          "index": 10989
+          "index": 10908
         }
       },
       "project": "",
@@ -1084,14 +1229,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 303,
+          "line": 304,
           "column": 12,
-          "index": 12256
+          "index": 12166
         },
         "end": {
-          "line": 303,
+          "line": 304,
           "column": 69,
-          "index": 12313
+          "index": 12223
         }
       },
       "project": "",
@@ -1113,14 +1258,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 309,
+          "line": 310,
           "column": 12,
-          "index": 12731
+          "index": 12641
         },
         "end": {
-          "line": 309,
+          "line": 310,
           "column": 69,
-          "index": 12788
+          "index": 12698
         }
       },
       "project": "",
@@ -1142,14 +1287,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 313,
+          "line": 314,
           "column": 12,
-          "index": 12961
+          "index": 12871
         },
         "end": {
-          "line": 313,
+          "line": 314,
           "column": 87,
-          "index": 13036
+          "index": 12946
         }
       },
       "project": "",
@@ -1158,151 +1303,6 @@
         "t": {
           "desc": "Legend label for neighborhoods without data",
           "text": "Pas de donnée"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "zpNqc/6xR9dNVY7rewwUVg==": {
-          "desc": "Quality label for a value inherited from the district",
-          "text": "Valeur du district"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 349,
-          "column": 13,
-          "index": 14080
-        },
-        "end": {
-          "line": 349,
-          "column": 95,
-          "index": 14162
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Quality label for a value inherited from the district",
-          "text": "Valeur du district"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "ZEpxnfIpzQTWtJXICac33g==": {
-          "desc": "Quality label for an estimated value",
-          "text": "Estimation"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 351,
-          "column": 13,
-          "index": 14199
-        },
-        "end": {
-          "line": 351,
-          "column": 70,
-          "index": 14256
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Quality label for an estimated value",
-          "text": "Estimation"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "2/dpvuWAslSHufnbvTINuw==": {
-          "desc": "Quality label for a stale value",
-          "text": "Donnée ancienne"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 353,
-          "column": 13,
-          "index": 14289
-        },
-        "end": {
-          "line": 353,
-          "column": 70,
-          "index": 14346
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Quality label for a stale value",
-          "text": "Donnée ancienne"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "or9CUYOklLCg6LVKUNQujg==": {
-          "desc": "Quality label for a value with low coverage",
-          "text": "Couverture faible"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 355,
-          "column": 13,
-          "index": 14386
-        },
-        "end": {
-          "line": 355,
-          "column": 84,
-          "index": 14457
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Quality label for a value with low coverage",
-          "text": "Couverture faible"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "Uc0U2RxmH8MKBSgXAxeHaQ==": {
-          "desc": "Quality label for an observed value",
-          "text": "Mesure"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 357,
-          "column": 13,
-          "index": 14487
-        },
-        "end": {
-          "line": 357,
-          "column": 65,
-          "index": 14539
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Quality label for an observed value",
-          "text": "Mesure"
         }
       }
     },
@@ -2091,196 +2091,22 @@
     },
     {
       "hashToLeaf": {
-        "J6thJMaSahqdigYonXOZBA==": {
-          "desc": "Column header of the cafés per square kilometer",
-          "text": "Cafés"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 33,
-          "column": 18,
-          "index": 1072
-        },
-        "end": {
-          "line": 33,
-          "column": 81,
-          "index": 1135
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the cafés per square kilometer",
-          "text": "Cafés"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "3pm+jSiAKziqh/Y7M60mFA==": {
-          "desc": "Unit suffix of the café density column",
-          "text": "/km²"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 16,
-          "index": 1153
-        },
-        "end": {
-          "line": 34,
-          "column": 69,
-          "index": 1206
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the café density column",
-          "text": "/km²"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "zBo4aaR+KHHvIsOmhz5H6Q==": {
-          "desc": "Column header of the walking distance to the metro",
-          "text": "Métro à pied"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 40,
-          "column": 18,
-          "index": 1356
-        },
-        "end": {
-          "line": 40,
-          "column": 91,
-          "index": 1429
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the walking distance to the metro",
-          "text": "Métro à pied"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "BUjEfKVrbn4pBkYTP7ZaRg==": {
-          "desc": "Unit suffix of the walking distance to the metro column",
-          "text": "min"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 41,
-          "column": 16,
-          "index": 1447
-        },
-        "end": {
-          "line": 41,
-          "column": 85,
-          "index": 1516
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the walking distance to the metro column",
-          "text": "min"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "AuiGZ9KZG79XBfDahxW+gQ==": {
-          "desc": "Column header of the green cover",
-          "text": "Verdure"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 47,
-          "column": 18,
-          "index": 1669
-        },
-        "end": {
-          "line": 47,
-          "column": 68,
-          "index": 1719
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the green cover",
-          "text": "Verdure"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "rV7bs/rHL0cJ0AEZ6vAW2w==": {
-          "desc": "Unit suffix of the green cover column",
-          "text": "%"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 48,
-          "column": 16,
-          "index": 1737
-        },
-        "end": {
-          "line": 48,
-          "column": 65,
-          "index": 1786
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the green cover column",
-          "text": "%"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "zMZLinNitZ+JlmBvBAUx6w==": {
           "desc": "Title of the data view",
           "text": "Valeurs brutes"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 107,
+          "line": 57,
           "column": 8,
-          "index": 3564
+          "index": 1829
         },
         "end": {
-          "line": 107,
+          "line": 57,
           "column": 63,
-          "index": 3619
+          "index": 1884
         }
       },
       "project": "",
@@ -2294,30 +2120,30 @@
     },
     {
       "hashToLeaf": {
-        "2jkvby7kc9oKmMDfhn1H+w==": {
-          "desc": "Subtitle of the data view, with the year and the raw-value promise",
-          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
+        "zWj5HRRa35PgTqZhs7GEZQ==": {
+          "desc": "Subtitle of the data view, promising raw values with their unit, date and source",
+          "text": "Valeurs brutes avec unité, date d'observation et source, sans score composite"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 110,
+          "line": 60,
           "column": 8,
-          "index": 3695
+          "index": 1960
         },
         "end": {
-          "line": 112,
+          "line": 62,
           "column": 14,
-          "index": 3864
+          "index": 2156
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Subtitle of the data view, with the year and the raw-value promise",
-          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
+          "desc": "Subtitle of the data view, promising raw values with their unit, date and source",
+          "text": "Valeurs brutes avec unité, date d'observation et source, sans score composite"
         }
       }
     },
@@ -2328,17 +2154,17 @@
           "text": "Critères actifs"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 118,
+          "line": 68,
           "column": 12,
-          "index": 4096
+          "index": 2388
         },
         "end": {
-          "line": 120,
+          "line": 70,
           "column": 18,
-          "index": 4219
+          "index": 2511
         }
       },
       "project": "",
@@ -2352,22 +2178,196 @@
     },
     {
       "hashToLeaf": {
+        "BDNtsE0Lcep99paZJc83jQ==": {
+          "desc": "Shown while the raw values table is loading",
+          "text": "Chargement des valeurs…"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 85,
+          "column": 10,
+          "index": 2941
+        },
+        "end": {
+          "line": 85,
+          "column": 95,
+          "index": 3026
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown while the raw values table is loading",
+          "text": "Chargement des valeurs…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "8j1Jl5VZVCp0V6v5ESghXw==": {
+          "desc": "Shown in the data view when no criterion is active",
+          "text": "Aucun critère actif : ajoute un critère depuis le chat ou la carte pour afficher les valeurs brutes."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 109,
+          "column": 6,
+          "index": 3652
+        },
+        "end": {
+          "line": 112,
+          "column": 12,
+          "index": 3845
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown in the data view when no criterion is active",
+          "text": "Aucun critère actif : ajoute un critère depuis le chat ou la carte pour afficher les valeurs brutes."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "5lPNgBPMXM/G9wgZmM/Znw==": {
+          "desc": "Shown when the raw values cannot be loaded",
+          "text": "Les valeurs n'ont pas pu être chargées."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 121,
+          "column": 8,
+          "index": 4095
+        },
+        "end": {
+          "line": 123,
+          "column": 14,
+          "index": 4215
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when the raw values cannot be loaded",
+          "text": "Les valeurs n'ont pas pu être chargées."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "zw65yeLmQyFa+rMlp/tHjA==": {
+          "desc": "Label before the API error code",
+          "text": "Code :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 126,
+          "column": 8,
+          "index": 4290
+        },
+        "end": {
+          "line": 126,
+          "column": 64,
+          "index": 4346
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label before the API error code",
+          "text": "Code :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+T+S4LHhUSCN1KzfhfU27Q==": {
+          "desc": "Button retrying the raw values request",
+          "text": "Réessayer"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 129,
+          "column": 8,
+          "index": 4465
+        },
+        "end": {
+          "line": 129,
+          "column": 74,
+          "index": 4531
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button retrying the raw values request",
+          "text": "Réessayer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "s8hGL02fBz83P/Cow4vmVw==": {
+          "desc": "Notice listing the active criteria that the API does not publish",
+          "text": "Critères non publiés par l'API :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 160,
+          "column": 10,
+          "index": 5182
+        },
+        "end": {
+          "line": 162,
+          "column": 16,
+          "index": 5321
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Notice listing the active criteria that the API does not publish",
+          "text": "Critères non publiés par l'API :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "a/LDD8vWAgWnsecOf/N/SA==": {
           "desc": "Accessible caption of the raw values table",
           "text": "Valeurs brutes par quartier : nom, district et un critère par colonne, triable."
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 131,
-          "column": 14,
-          "index": 4642
+          "line": 173,
+          "column": 18,
+          "index": 5769
         },
         "end": {
-          "line": 133,
-          "column": 20,
-          "index": 4814
+          "line": 175,
+          "column": 24,
+          "index": 5949
         }
       },
       "project": "",
@@ -2386,17 +2386,17 @@
           "text": "Quartier"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 138,
-          "column": 18,
-          "index": 5082
+          "line": 180,
+          "column": 22,
+          "index": 6237
         },
         "end": {
-          "line": 138,
-          "column": 83,
-          "index": 5147
+          "line": 180,
+          "column": 87,
+          "index": 6302
         }
       },
       "project": "",
@@ -2415,17 +2415,17 @@
           "text": "District"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 141,
-          "column": 18,
-          "index": 5243
+          "line": 183,
+          "column": 22,
+          "index": 6431
         },
         "end": {
-          "line": 141,
-          "column": 79,
-          "index": 5304
+          "line": 183,
+          "column": 83,
+          "index": 6492
         }
       },
       "project": "",
@@ -2439,22 +2439,51 @@
     },
     {
       "hashToLeaf": {
+        "SlHVWKRn0tQQ5phVrOe7gA==": {
+          "desc": "Accessible label of the unit and observation date in a column header",
+          "text": "Unité et date d'observation :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 211,
+          "column": 32,
+          "index": 8139
+        },
+        "end": {
+          "line": 213,
+          "column": 38,
+          "index": 8323
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the unit and observation date in a column header",
+          "text": "Unité et date d'observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "wdWYCZdzZXWclvibTOgrBg==": {
           "desc": "Accessible column header of the map action",
           "text": "Carte"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 171,
-          "column": 20,
-          "index": 6705
+          "line": 225,
+          "column": 24,
+          "index": 8823
         },
         "end": {
-          "line": 171,
-          "column": 86,
-          "index": 6771
+          "line": 225,
+          "column": 90,
+          "index": 8889
         }
       },
       "project": "",
@@ -2468,22 +2497,51 @@
     },
     {
       "hashToLeaf": {
+        "+TtKgA798Vd98Hc5X36v2w==": {
+          "desc": "Shown when a neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 261,
+          "column": 34,
+          "index": 10501
+        },
+        "end": {
+          "line": 263,
+          "column": 40,
+          "index": 10656
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when a neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "YouxXrTs+wXbwjB7MrrMUg==": {
           "desc": "Button opening the map view from a data row",
           "text": "Voir sur la carte"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 198,
-          "column": 22,
-          "index": 7915
+          "line": 295,
+          "column": 26,
+          "index": 12199
         },
         "end": {
-          "line": 200,
-          "column": 28,
-          "index": 8042
+          "line": 297,
+          "column": 32,
+          "index": 12334
         }
       },
       "project": "",
@@ -2492,6 +2550,93 @@
         "t": {
           "desc": "Button opening the map view from a data row",
           "text": "Voir sur la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "fxZzfkWlHJdkeaAUHWEoWA==": {
+          "desc": "Summary of the sources and dates panel under the data table",
+          "text": "Sources et dates"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 324,
+          "column": 14,
+          "index": 13356
+        },
+        "end": {
+          "line": 326,
+          "column": 20,
+          "index": 13482
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Summary of the sources and dates panel under the data table",
+          "text": "Sources et dates"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Ot0LWYk7k/dpaw/e4nh8qA==": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 339,
+          "column": 20,
+          "index": 14142
+        },
+        "end": {
+          "line": 339,
+          "column": 94,
+          "index": 14216
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "uVw5UxXqlOY9y1Ns8yHoxQ==": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 341,
+          "column": 20,
+          "index": 14296
+        },
+        "end": {
+          "line": 341,
+          "column": 93,
+          "index": 14369
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
         }
       }
     },
@@ -2505,14 +2650,14 @@
       "filename": "src/features/criteria/criteria-chips.tsx",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 24,
           "column": 19,
-          "index": 597
+          "index": 714
         },
         "end": {
-          "line": 23,
+          "line": 27,
           "column": 7,
-          "index": 703
+          "index": 820
         }
       },
       "project": "",
@@ -3322,9 +3467,9 @@
           "index": 5436
         },
         "end": {
-          "line": 144,
-          "column": 101,
-          "index": 5513
+          "line": 146,
+          "column": 30,
+          "index": 5565
         }
       },
       "project": "",
@@ -3346,14 +3491,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 146,
+          "line": 148,
           "column": 24,
-          "index": 5566
+          "index": 5618
         },
         "end": {
-          "line": 146,
+          "line": 148,
           "column": 95,
-          "index": 5637
+          "index": 5689
         }
       },
       "project": "",
@@ -3375,14 +3520,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 155,
+          "line": 157,
           "column": 22,
-          "index": 5945
+          "index": 5997
         },
         "end": {
-          "line": 155,
+          "line": 157,
           "column": 91,
-          "index": 6014
+          "index": 6066
         }
       },
       "project": "",
@@ -3404,14 +3549,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 164,
+          "line": 166,
           "column": 20,
-          "index": 6294
+          "index": 6346
         },
         "end": {
-          "line": 164,
+          "line": 166,
           "column": 87,
-          "index": 6361
+          "index": 6413
         }
       },
       "project": "",
