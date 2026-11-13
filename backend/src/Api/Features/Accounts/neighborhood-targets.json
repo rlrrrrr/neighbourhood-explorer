@@ -1,0 +1,16 @@
+{
+  "_note": "Favorite targets for tests and demo. Ids = mahalle_uavt from the İBB CSV (stable). Replace FixtureTargetCatalog with the ETL catalog once mahalles are loaded.",
+  "targetType": "neighborhood",
+  "items": [
+    { "targetId": "40512", "ilce": "Kadıköy", "name": "Caferağa" },
+    { "targetId": "40514", "ilce": "Kadıköy", "name": "Fenerbahçe" },
+    { "targetId": "40520", "ilce": "Kadıköy", "name": "Göztepe" },
+    { "targetId": "40232", "ilce": "Beşiktaş", "name": "Bebek" },
+    { "targetId": "40233", "ilce": "Beşiktaş", "name": "Etiler" },
+    { "targetId": "40275", "ilce": "Beyoğlu", "name": "Cihangir" },
+    { "targetId": "40806", "ilce": "Üsküdar", "name": "Kandilli" },
+    { "targetId": "40851", "ilce": "Esenyurt", "name": "Fatih" },
+    { "targetId": "40139", "ilce": "Adalar", "name": "Burgazada" }
+  ],
+  "unknownTargetId": "99999999"
+}
