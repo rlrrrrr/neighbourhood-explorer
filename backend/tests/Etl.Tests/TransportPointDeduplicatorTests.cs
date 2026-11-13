@@ -94,7 +94,7 @@ public class TransportPointDeduplicatorTests
     }
 
     [Fact]
-    public void Merges_a_chain_of_same_named_stops_through_transitive_proximity()
+    public void Keeps_a_third_same_named_stop_beyond_the_radius_of_the_kept_point()
     {
         TransportPoint[] points =
         [
@@ -105,9 +105,11 @@ public class TransportPointDeduplicatorTests
 
         var result = TransportPointDeduplicator.Deduplicate(points);
 
-        Assert.Single(result.Points);
+        Assert.Equal(2, result.Points.Count);
+        Assert.Equal(29.0000, result.Points[0].Longitude, 6);
+        Assert.Equal(29.0012, result.Points[1].Longitude, 6);
         Assert.Equal(3, result.Stats[0].Input);
-        Assert.Equal(1, result.Stats[0].Distinct);
+        Assert.Equal(2, result.Stats[0].Distinct);
     }
 
     [Fact]

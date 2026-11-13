@@ -57,9 +57,7 @@ public sealed class IbbTransportPipeline(
         RequireCount(bundle.Ferry.Points.Count, expectedFerryPiers, "ferry_piers");
 
         var computedAt = timeProvider.GetUtcNow();
-        var observedAt = DateOnly.Parse(
-            request.Manifest.ReferencePeriod,
-            CultureInfo.InvariantCulture);
+        var observedAt = ParseObservedAt(request.Manifest);
 
         await using var connection = await dataSource.OpenConnectionAsync(cancellationToken);
         await using var transaction =
@@ -265,5 +263,22 @@ public sealed class IbbTransportPipeline(
                 $"transports : {actual} points pour « {field} » au lieu de {expected} " +
                 "(mettre le manifeste à jour si la source a changé).");
         }
+    }
+
+    private static DateOnly ParseObservedAt(SourceManifest manifest)
+    {
+        if (string.IsNullOrWhiteSpace(manifest.ObservedAt)
+            || !DateOnly.TryParse(
+                manifest.ObservedAt,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out var observedAt))
+        {
+            throw new EtlFailureException(
+                $"observed_at manquant ou illisible dans le manifeste : " +
+                $"« {manifest.ObservedAt} ».");
+        }
+
+        return observedAt;
     }
 }
