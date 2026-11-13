@@ -419,17 +419,6 @@
       ],
       "types": []
     },
-    "2jkvby7kc9oKmMDfhn1H+w==": {
-      "description": "Subtitle of the data view, with the year and the raw-value promise",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "2024 edition · raw values with units, no composite score",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "0KkpLNCYqZCQwzgc7AH3GA==": {
       "description": "Column header of the neighborhood name",
       "tokens": [],
@@ -447,28 +436,6 @@
       "translations": [
         {
           "translation": "District",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "zBo4aaR+KHHvIsOmhz5H6Q==": {
-      "description": "Column header of the walking distance to the metro",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Metro on foot",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "AuiGZ9KZG79XBfDahxW+gQ==": {
-      "description": "Column header of the green cover",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Greenery",
           "variations": {}
         }
       ],
@@ -711,50 +678,6 @@
       "translations": [
         {
           "translation": "Neighborhood map",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "J6thJMaSahqdigYonXOZBA==": {
-      "description": "Column header of the cafés per square kilometer",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Cafés",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "3pm+jSiAKziqh/Y7M60mFA==": {
-      "description": "Unit suffix of the café density column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "/km²",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BUjEfKVrbn4pBkYTP7ZaRg==": {
-      "description": "Unit suffix of the walking distance to the metro column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "min",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "rV7bs/rHL0cJ0AEZ6vAW2w==": {
-      "description": "Unit suffix of the green cover column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "%",
           "variations": {}
         }
       ],
@@ -1074,6 +997,116 @@
       "translations": [
         {
           "translation": "Recenter on Istanbul",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zWj5HRRa35PgTqZhs7GEZQ==": {
+      "description": "Subtitle of the data view, promising raw values with their unit, date and source",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw values with their unit, observation date and source, without a composite score",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BDNtsE0Lcep99paZJc83jQ==": {
+      "description": "Shown while the raw values table is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Loading values…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8j1Jl5VZVCp0V6v5ESghXw==": {
+      "description": "Shown in the data view when no criterion is active",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No active criterion: add one from the chat or the map to display raw values.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5lPNgBPMXM/G9wgZmM/Znw==": {
+      "description": "Shown when the raw values cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The values could not be loaded.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zw65yeLmQyFa+rMlp/tHjA==": {
+      "description": "Label before the API error code",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Code:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+T+S4LHhUSCN1KzfhfU27Q==": {
+      "description": "Button retrying the raw values request",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Try again",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "s8hGL02fBz83P/Cow4vmVw==": {
+      "description": "Notice listing the active criteria that the API does not publish",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Criteria not published by the API:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SlHVWKRn0tQQ5phVrOe7gA==": {
+      "description": "Accessible label of the unit and observation date in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Unit and observation date:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+TtKgA798Vd98Hc5X36v2w==": {
+      "description": "Shown when a neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No data",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fxZzfkWlHJdkeaAUHWEoWA==": {
+      "description": "Summary of the sources and dates panel under the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sources and dates",
           "variations": {}
         }
       ],

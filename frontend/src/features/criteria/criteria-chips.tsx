@@ -6,12 +6,16 @@ import { metricLabel } from "./sample-metrics";
 interface CriteriaChipsProps {
   criteria: Criteria;
   onRemove: (metricKey: string) => void;
+  metricNames?: ReadonlyMap<string, string>;
 }
 
-export function CriteriaChips({ criteria, onRemove }: CriteriaChipsProps) {
+export function CriteriaChips({ criteria, onRemove, metricNames }: CriteriaChipsProps) {
   const chips: Chip[] = criteria.weights.map((criterion) => ({
     key: criterion.metricKey,
-    label: metricLabel(criterion.metricKey) ?? criterion.metricKey,
+    label:
+      metricNames?.get(criterion.metricKey) ??
+      metricLabel(criterion.metricKey) ??
+      criterion.metricKey,
   }));
 
   return (
