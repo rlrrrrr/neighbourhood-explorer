@@ -41,7 +41,7 @@ public static class UrbanFeatureTagCatalog
     ];
 
     public static IReadOnlyList<string> LandUseCategories { get; } =
-        ["residential", "commercial", "food", "culture", "office", "green"];
+        ["residential", "commercial", "food", "culture", "office", "industry", "green"];
 
     public static IReadOnlyList<string> FoodLandUseAmenities { get; } =
         ["cafe", "restaurant", "fast_food", "bakery", "bar", "pub", "biergarten", "food_court"];

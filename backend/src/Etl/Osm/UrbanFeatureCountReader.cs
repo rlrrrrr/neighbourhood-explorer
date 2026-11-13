@@ -20,6 +20,7 @@ public sealed record UrbanFeatureNeighborhoodCounts(
     int FoodCount,
     int LandUseCultureCount,
     int OfficeCount,
+    int IndustryCount,
     int GreenCount);
 
 public sealed record UrbanFeaturePoiCategoryTotal(
@@ -97,7 +98,8 @@ public static class UrbanFeatureCountReader
                 reader.GetInt32(14),
                 reader.GetInt32(15),
                 reader.GetInt32(16),
-                reader.GetInt32(17)));
+                reader.GetInt32(17),
+                reader.GetInt32(18)));
         }
 
         return neighborhoods;
@@ -236,8 +238,9 @@ public static class UrbanFeatureCountReader
                        WHEN a.tags->>'tourism' IN ({UrbanFeatureTagCatalog.SqlList(UrbanFeatureTagCatalog.CultureTourism)})
                                 OR a.tags->>'amenity' IN ({UrbanFeatureTagCatalog.SqlList([.. UrbanFeatureTagCatalog.CultureAmenities, "library"])})
                            THEN 'culture'
+                       WHEN a.tags->>'landuse' = 'industrial'
+                           THEN 'industry'
                        WHEN a.tags->>'office' IS NOT NULL
-                                OR a.tags->>'landuse' = 'industrial'
                            THEN 'office'
                        WHEN a.tags->>'shop' IS NOT NULL
                                 OR a.tags->>'landuse' IN ({UrbanFeatureTagCatalog.SqlList(UrbanFeatureTagCatalog.CommercialLandUses)})
@@ -274,6 +277,7 @@ public static class UrbanFeatureCountReader
                    coalesce(max(feature_count) FILTER (WHERE category = 'food'), 0) AS food_count,
                    coalesce(max(feature_count) FILTER (WHERE category = 'culture'), 0) AS culture_count,
                    coalesce(max(feature_count) FILTER (WHERE category = 'office'), 0) AS office_count,
+                   coalesce(max(feature_count) FILTER (WHERE category = 'industry'), 0) AS industry_count,
                    coalesce(max(feature_count) FILTER (WHERE category = 'green'), 0) AS green_count
             FROM land_use_counts
             GROUP BY admin_area_id
@@ -322,6 +326,7 @@ public static class UrbanFeatureCountReader
                coalesce(l.food_count, 0),
                coalesce(l.culture_count, 0),
                coalesce(l.office_count, 0),
+               coalesce(l.industry_count, 0),
                coalesce(l.green_count, 0)
         FROM neighborhoods n
         LEFT JOIN poi_pivot p ON p.admin_area_id = n.id
