@@ -205,15 +205,16 @@ function DataTableContent({
           header: () => fbt("Quartier", "Column header of the neighborhood name"),
           enableSorting: false,
           cell: ({ row }) => (
-            <span className="flex items-baseline gap-2 whitespace-nowrap">
+            <span className="flex max-w-[9.5rem] items-baseline gap-2 whitespace-nowrap sm:max-w-none">
               <button
                 type="button"
+                title={row.original.name}
                 onClick={() => onShowOnMap(row.original.neighborhoodId)}
-                className="cursor-pointer text-start font-medium text-text transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+                className="min-w-0 cursor-pointer truncate text-start font-medium text-text transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
               >
                 {row.original.name}
               </button>
-              <span className="text-xs font-normal text-text-secondary">
+              <span className="hidden text-xs font-normal text-text-secondary sm:inline">
                 {row.original.districtName}
               </span>
             </span>
