@@ -1,40 +1,43 @@
-import { useCallback, useEffect, useState } from "react";
-import { fetchMapData, MapDataRequestError, type MapData } from "./map-data-client";
+import { useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ApiRequestError } from "../metrics/api-json";
+import { fetchMapData, type MapData } from "./map-data-client";
 
 export type MapDataState =
   | { status: "loading" }
   | { status: "error"; code: string }
   | { status: "ready"; data: MapData };
 
-export function useMapData({ cityId, metricKey }: { cityId: number; metricKey: string }): {
-  state: MapDataState;
-  reload: () => void;
-} {
-  const [state, setState] = useState<MapDataState>({ status: "loading" });
-  const [reloadToken, setReloadToken] = useState(0);
+export function useMapData({
+  cityId,
+  metricKey,
+  fallbackMetricKey,
+}: {
+  cityId: number;
+  metricKey: string;
+  fallbackMetricKey: string;
+}): { state: MapDataState; reload: () => void } {
+  const query = useQuery({
+    queryKey: ["map-data", cityId, metricKey],
+    queryFn: ({ signal }) => fetchMapData({ cityId, metricKey, fallbackMetricKey, signal }),
+  });
 
-  useEffect(() => {
-    const controller = new AbortController();
-
-    fetchMapData({ cityId, metricKey, signal: controller.signal })
-      .then((data) => setState({ status: "ready", data }))
-      .catch((error: unknown) => {
-        if (controller.signal.aborted) {
-          return;
-        }
-        setState({
-          status: "error",
-          code: error instanceof MapDataRequestError ? error.code : "network_error",
-        });
-      });
-
-    return () => controller.abort();
-  }, [cityId, metricKey, reloadToken]);
-
+  const { refetch } = query;
   const reload = useCallback(() => {
-    setState({ status: "loading" });
-    setReloadToken((token) => token + 1);
-  }, []);
+    void refetch();
+  }, [refetch]);
 
-  return { state, reload };
+  if (query.status === "pending") {
+    return { state: { status: "loading" }, reload };
+  }
+  if (query.status === "error") {
+    return {
+      state: {
+        status: "error",
+        code: query.error instanceof ApiRequestError ? query.error.code : "network_error",
+      },
+      reload,
+    };
+  }
+  return { state: { status: "ready", data: query.data }, reload };
 }

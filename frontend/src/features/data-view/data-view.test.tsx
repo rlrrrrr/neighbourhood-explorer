@@ -69,7 +69,6 @@ const CAFES_DENSITY: MetricDefinition = {
 
 const DATA: DataTableData = {
   metrics: [CAFES_DENSITY, GREENERY],
-  unknownMetricKeys: [],
   rows: [
     {
       neighborhoodId: 1570,
@@ -135,7 +134,7 @@ function bodyOf(markup: string): string {
 }
 
 describe("data view", () => {
-  it("shows one sortable column per active criterion, labelled by the API", () => {
+  it("shows one sortable column per published metric, labelled by the API", () => {
     const markup = renderTable();
 
     expect(markup.match(/aria-sort="none"/g)).toHaveLength(2);
@@ -174,7 +173,32 @@ describe("data view", () => {
     const body = bodyOf(markup);
 
     expect(body).not.toContain("bg-highlight");
-    expect(body).toContain("odd:bg-surface");
+    expect(body).toContain("hover:bg-surface");
+  });
+
+  it("titles the table according to the shared ranking metric", () => {
+    expect(renderTable()).toContain("Valeurs par quartier");
+    expect(renderTable({ sort: { key: "greenery", direction: "descending" } })).toContain(
+      "Classement des quartiers",
+    );
+  });
+
+  it("numbers the rows and marks the first three only when the order rewards the best value", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
+    const body = bodyOf(markup);
+
+    expect(body).toMatch(/data-rank="1" data-merit="true"/);
+    expect(body).toMatch(/data-rank="2" data-merit="true"/);
+    expect(body).toMatch(/data-rank="3" data-merit="true"/);
+    expect(body).toContain("bg-highlight/10");
+  });
+
+  it("keeps the rank numerals plain when the order does not put the best value first", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "ascending" } });
+    const body = bodyOf(markup);
+
+    expect(body).not.toContain('data-merit="true"');
+    expect(body).toContain("bg-highlight/10");
   });
 
   it("ranks by the column chosen in the URL and keeps missing values last", () => {
@@ -206,10 +230,6 @@ describe("data view", () => {
           { metricKey: "quiet", weight: 1 },
         ],
       },
-      state: {
-        status: "ready",
-        data: { metrics: [GREENERY], unknownMetricKeys: ["quiet"], rows: DATA.rows },
-      },
     });
 
     expect(markup).toContain("Critères actifs");
@@ -229,12 +249,39 @@ describe("data view", () => {
     expect(markup).toContain("2026-10-31");
   });
 
-  it("asks for a criterion when none is active instead of ranking by default", () => {
-    const markup = renderTable({ criteria: { weights: [] }, state: { status: "idle" } });
+  it("still shows every published metric when no criterion is active", () => {
+    const markup = renderTable({ criteria: { weights: [] } });
 
-    expect(markup).toContain("Aucun critère actif");
-    expect(markup).not.toContain("<table");
-    expect(markup).not.toContain("Meilleur résultat");
+    expect(markup).toContain("<table");
+    expect(markup).toContain("Densité de cafés");
+    expect(markup).toContain("Verdure");
+    expect(markup).not.toContain("Aucun critère actif");
+  });
+
+  it("filters the table by neighborhood or district name", () => {
+    const markup = renderTable({ state: { status: "ready", data: DATA } });
+
+    expect(markup).toContain("Rechercher un quartier");
+    expect(markup).toContain("Quartiers affichés");
+  });
+
+  it("shows fifty rows per page, numbers ranks across pages and counts the pages", () => {
+    const manyRows = Array.from({ length: 120 }, (_, index) => ({
+      neighborhoodId: index + 1,
+      name: `Quartier ${index + 1}`,
+      districtName: "Kadıköy",
+      values: { greenery: { raw: index, qualityFlag: "ok" as const } },
+    }));
+    const markup = renderTable({ state: { status: "ready", data: { ...DATA, rows: manyRows } } });
+
+    expect(markup.match(/Quartier \d+/g)).toHaveLength(50);
+    expect(markup.match(/data-rank="/g)).toHaveLength(50);
+    expect(markup).toContain('data-rank="50"');
+    expect(markup).toContain('aria-label="Pagination du tableau des quartiers"');
+    expect(markup).toContain(">3</span>");
+    expect(markup).toContain("Précédent");
+    expect(markup).toContain("disabled");
+    expect(markup).toContain("Suivant");
   });
 
   it("reports a loading state", () => {

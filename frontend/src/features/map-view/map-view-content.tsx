@@ -13,14 +13,11 @@ import {
 import type { ChoroplethColors } from "./choropleth-style";
 import { ChoroplethLayers } from "./choropleth-layers";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
-import {
-  formatMetricValue,
-  localizedMetricName,
-  localizedUnit,
-  metricQualityLabel,
-  shortLicense,
-} from "../metrics/metric-presentation";
+import { localizedMetricName, shortLicense } from "../metrics/metric-presentation";
 import type { MapDataState } from "./use-map-data";
+import type { NeighborhoodMetricsState } from "./use-neighborhood-metrics";
+import { buildNeighborhoodMetricRows } from "./neighborhood-metric-rows";
+import { NeighborhoodMetricsPanel } from "./neighborhood-metrics-panel";
 import { LensPanel } from "./lens-panel";
 
 const ISTANBUL_MAP_CENTER: [number, number] = [28.97, 41.01];
@@ -43,6 +40,8 @@ interface MapViewContentProps {
   onSelectNeighborhood: (neighborhoodId: number | null) => void;
   state: MapDataState;
   onReload: () => void;
+  neighborhoodMetrics: NeighborhoodMetricsState;
+  onReloadNeighborhoodMetrics: () => void;
   colors: ChoroplethColors | null;
   documentTheme: "light" | "dark";
 }
@@ -54,6 +53,8 @@ export function MapViewContent({
   onSelectNeighborhood,
   state,
   onReload,
+  neighborhoodMetrics,
+  onReloadNeighborhoodMetrics,
   colors,
   documentTheme,
 }: MapViewContentProps) {
@@ -84,6 +85,17 @@ export function MapViewContent({
   const sortedFeatures = useMemo(
     () => (data === null ? [] : sortFeaturesByName(data.collection, locale)),
     [data, locale],
+  );
+  const neighborhoodRows = useMemo(
+    () =>
+      data !== null && neighborhoodMetrics.status === "ready"
+        ? buildNeighborhoodMetricRows({
+            definitions: data.metrics,
+            metrics: neighborhoodMetrics.data.metrics,
+            locale,
+          })
+        : [],
+    [data, neighborhoodMetrics, locale],
   );
   const metricName = data === null ? "" : localizedMetricName(data.metric, locale);
 
@@ -230,22 +242,15 @@ export function MapViewContent({
             </Button>
 
             {selectedFeature !== undefined ? (
-              <div className="mt-3 rounded-xl bg-surface p-3">
-                <p className="text-sm font-semibold">{selectedFeature.properties.name}</p>
-                <p className="text-xs text-text-secondary">
-                  {selectedFeature.properties.districtName}
-                </p>
-                <p className="mt-2 text-2xl font-bold tabular-nums">
-                  {selectedFeature.properties.raw === null
-                    ? fbt("Pas de donnée", "Shown when the selected neighborhood has no value")
-                    : `${formatMetricValue({ value: selectedFeature.properties.raw, locale, maximumFractionDigits: data.metric.displayPrecision })} ${localizedUnit(data.metric.unit)}`}
-                </p>
-                <p className="mt-1 text-xs text-text-secondary">{metricName}</p>
-                {selectedFeature.properties.qualityFlag !== null ? (
-                  <p className="mt-1 text-xs text-text-secondary">
-                    {metricQualityLabel(selectedFeature.properties.qualityFlag)}
-                  </p>
-                ) : null}
+              <div className="mt-3">
+                <NeighborhoodMetricsPanel
+                  neighborhoodName={selectedFeature.properties.name}
+                  districtName={selectedFeature.properties.districtName}
+                  rows={neighborhoodRows}
+                  state={neighborhoodMetrics}
+                  locale={locale}
+                  onReload={onReloadNeighborhoodMetrics}
+                />
               </div>
             ) : (
               <p className="px-2 pt-3 text-sm text-text-secondary">

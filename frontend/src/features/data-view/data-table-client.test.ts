@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
-import { DataTableRequestError, fetchDataTable } from "./data-table-client";
+import { ApiRequestError } from "../metrics/api-json";
+import { fetchDataTable } from "./data-table-client";
 
 const metricsPayload = {
   metrics: [
@@ -148,16 +149,14 @@ function respondFromFixtures(input: RequestInfo | URL): Promise<Response> {
 }
 
 describe("data table client", () => {
-  it("joins the definitions, values and neighborhoods in the requested order", async () => {
+  it("loads every published metric in API order, without any active criterion", async () => {
     await withFetch(respondFromFixtures, async () => {
       const data = await fetchDataTable({
         cityId: 34,
-        metricKeys: ["greenery", "cafes_density", "quiet"],
         signal: new AbortController().signal,
       });
 
       expect(data.metrics.map((metric) => metric.key)).toEqual(["greenery", "cafes_density"]);
-      expect(data.unknownMetricKeys).toEqual(["quiet"]);
       expect(data.rows).toEqual([
         {
           neighborhoodId: 1272,
@@ -178,7 +177,7 @@ describe("data table client", () => {
     });
   });
 
-  it("requests values only for the metrics published by the API", async () => {
+  it("requests values for every published metric", async () => {
     const requests: string[] = [];
 
     await withFetch(
@@ -187,53 +186,27 @@ describe("data table client", () => {
         return respondFromFixtures(input);
       },
       async () => {
-        await fetchDataTable({
-          cityId: 34,
-          metricKeys: ["greenery", "quiet"],
-          signal: new AbortController().signal,
-        });
+        await fetchDataTable({ cityId: 34, signal: new AbortController().signal });
       },
     );
 
     const valuesRequest = requests.find((url) => url.includes("/metric-values"));
-    expect(valuesRequest).toContain("metrics=greenery");
-    expect(valuesRequest).not.toContain("quiet");
+    expect(valuesRequest).toContain("metrics=greenery,cafes_density");
   });
 
-  it("does not download the neighborhoods when no active criterion is published", async () => {
-    const requests: string[] = [];
-
+  it("returns an empty table when the API publishes no metric", async () => {
     await withFetch(
-      (input) => {
-        requests.push(requestUrl(input));
-        return respondFromFixtures(input);
-      },
+      (input) =>
+        requestUrl(input).endsWith("/api/v1/metrics")
+          ? Promise.resolve(jsonResponse({ metrics: [] }))
+          : Promise.reject(new Error("no other request expected")),
       async () => {
         const data = await fetchDataTable({
           cityId: 34,
-          metricKeys: ["quiet"],
           signal: new AbortController().signal,
         });
 
-        expect(data).toEqual({ metrics: [], rows: [], unknownMetricKeys: ["quiet"] });
-      },
-    );
-
-    expect(requests.some((url) => url.includes("/neighborhoods"))).toBe(false);
-    expect(requests.some((url) => url.includes("/metric-values"))).toBe(false);
-  });
-
-  it("does not call the API when no metric is active", async () => {
-    await withFetch(
-      () => Promise.reject(new Error("no request expected")),
-      async () => {
-        const data = await fetchDataTable({
-          cityId: 34,
-          metricKeys: [],
-          signal: new AbortController().signal,
-        });
-
-        expect(data).toEqual({ metrics: [], rows: [], unknownMetricKeys: [] });
+        expect(data).toEqual({ metrics: [], rows: [] });
       },
     );
   });
@@ -257,7 +230,6 @@ describe("data table client", () => {
         await expect(
           fetchDataTable({
             cityId: 34,
-            metricKeys: ["greenery"],
             signal: new AbortController().signal,
           }),
         ).rejects.toMatchObject({ code: "invalid_response" });
@@ -274,11 +246,10 @@ describe("data table client", () => {
       async () => {
         const rejection = fetchDataTable({
           cityId: 34,
-          metricKeys: ["greenery"],
           signal: new AbortController().signal,
         });
 
-        await expect(rejection).rejects.toBeInstanceOf(DataTableRequestError);
+        await expect(rejection).rejects.toBeInstanceOf(ApiRequestError);
         await expect(rejection).rejects.toMatchObject({ code: "database_unavailable" });
       },
     );

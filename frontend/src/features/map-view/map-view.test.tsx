@@ -1,16 +1,21 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { describe, expect, it } from "vite-plus/test";
 import "../../app/locale-runtime";
+import { createQueryClient } from "../../app/query-client";
 import { MapView } from "./map-view";
 
 function renderMap({ selectedNeighborhoodId }: { selectedNeighborhoodId: number | null }) {
   return renderToStaticMarkup(
-    <MapView
-      criteria={{ weights: [] }}
-      onRemoveCriterion={() => {}}
-      selectedNeighborhoodId={selectedNeighborhoodId}
-      onSelectNeighborhood={() => {}}
-    />,
+    <QueryClientProvider client={createQueryClient()}>
+      <MapView
+        criteria={{ weights: [] }}
+        onRemoveCriterion={() => {}}
+        selectedNeighborhoodId={selectedNeighborhoodId}
+        onSelectNeighborhood={() => {}}
+        rankingMetricKey={null}
+      />
+    </QueryClientProvider>,
   );
 }
 

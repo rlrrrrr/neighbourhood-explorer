@@ -8,8 +8,22 @@ const KNOWN_UNITS: Readonly<Record<string, () => TranslatedString>> = {
     fbt("habitants/km²", "Unit of population density, people per square kilometre"),
 };
 
+const KNOWN_CATEGORIES: Readonly<Record<string, () => TranslatedString>> = {
+  Lifestyle: () => fbt("Vie locale", "Metric category: shops, cafés, culture and nightlife"),
+  Education: () => fbt("Éducation", "Metric category: schools and education"),
+  Environment: () => fbt("Environnement", "Metric category: greenery and environment"),
+  Health: () => fbt("Santé", "Metric category: healthcare"),
+  Urban: () => fbt("Forme urbaine", "Metric category: urban form and land use"),
+  People: () => fbt("Population", "Metric category: population"),
+  Mobility: () => fbt("Mobilité", "Metric category: transport and walkability"),
+};
+
 export function localizedUnit(unit: string): string {
   return KNOWN_UNITS[unit]?.() ?? unit;
+}
+
+export function localizedCategory(category: string): string {
+  return KNOWN_CATEGORIES[category]?.() ?? category;
 }
 
 export function localizedMetricName(metric: MetricDefinition, locale: string): string {

@@ -1,62 +1,38 @@
-import { useCallback, useEffect, useState } from "react";
-import { fetchDataTable, DataTableRequestError, type DataTableData } from "./data-table-client";
+import { useCallback } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ApiRequestError } from "../metrics/api-json";
+import { fetchDataTable, type DataTableData } from "./data-table-client";
 
 export type DataTableState =
-  | { status: "idle" }
   | { status: "loading" }
   | { status: "error"; code: string }
   | { status: "ready"; data: DataTableData };
 
-type SettledState = Exclude<DataTableState, { status: "idle" } | { status: "loading" }>;
+export function useDataTable({ cityId }: { cityId: number }): {
+  state: DataTableState;
+  reload: () => void;
+} {
+  const query = useQuery({
+    queryKey: ["data-table", cityId],
+    queryFn: ({ signal }) => fetchDataTable({ cityId, signal }),
+  });
 
-type SettledResult = {
-  requestKey: string;
-  state: SettledState;
-};
+  const { refetch } = query;
+  const reload = useCallback(() => {
+    void refetch();
+  }, [refetch]);
 
-export function useDataTable({
-  cityId,
-  metricKeys,
-}: {
-  cityId: number;
-  metricKeys: readonly string[];
-}): { state: DataTableState; reload: () => void } {
-  const [reloadToken, setReloadToken] = useState(0);
-  const [result, setResult] = useState<SettledResult | null>(null);
-  const metricKeyList = metricKeys.join(",");
-  const requestKey = `${cityId}:${reloadToken}:${metricKeyList}`;
-
-  useEffect(() => {
-    if (metricKeyList === "") {
-      return;
-    }
-
-    const controller = new AbortController();
-
-    fetchDataTable({ cityId, metricKeys: metricKeyList.split(","), signal: controller.signal })
-      .then((data) => setResult({ requestKey, state: { status: "ready", data } }))
-      .catch((error: unknown) => {
-        if (controller.signal.aborted) {
-          return;
-        }
-        setResult({
-          requestKey,
-          state: {
-            status: "error",
-            code: error instanceof DataTableRequestError ? error.code : "network_error",
-          },
-        });
-      });
-
-    return () => controller.abort();
-  }, [cityId, metricKeyList, requestKey]);
-
-  const state: DataTableState =
-    metricKeyList === ""
-      ? { status: "idle" }
-      : result?.requestKey === requestKey
-        ? result.state
-        : { status: "loading" };
-
-  return { state, reload: useCallback(() => setReloadToken((token) => token + 1), []) };
+  if (query.status === "pending") {
+    return { state: { status: "loading" }, reload };
+  }
+  if (query.status === "error") {
+    return {
+      state: {
+        status: "error",
+        code: query.error instanceof ApiRequestError ? query.error.code : "network_error",
+      },
+      reload,
+    };
+  }
+  return { state: { status: "ready", data: query.data }, reload };
 }

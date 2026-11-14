@@ -22,10 +22,7 @@ export function DataView({
   onShowOnMap,
 }: DataViewProps) {
   const { locale } = useLocaleContext();
-  const { state, reload } = useDataTable({
-    cityId: ISTANBUL_CITY_ID,
-    metricKeys: criteria.weights.map((criterion) => criterion.metricKey),
-  });
+  const { state, reload } = useDataTable({ cityId: ISTANBUL_CITY_ID });
 
   return (
     <DataTableView

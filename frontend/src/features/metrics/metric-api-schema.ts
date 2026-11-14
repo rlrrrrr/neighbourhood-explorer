@@ -5,6 +5,8 @@ export type MetricValue = components["schemas"]["MetricValue"];
 export type MetricValues = components["schemas"]["MetricValues"];
 export type MetricsResponse = components["schemas"]["MetricsResponse"];
 export type NeighborhoodCollection = components["schemas"]["NeighborhoodFeatureCollection"];
+export type NeighborhoodMetrics = components["schemas"]["NeighborhoodMetrics"];
+export type NeighborhoodMetric = components["schemas"]["NeighborhoodMetric"];
 export type ProblemDetails = components["schemas"]["ProblemDetails"];
 
 const QUALITY_FLAGS = new Set(["ok", "estimated", "stale", "low_coverage", "inherited"]);
@@ -20,6 +22,15 @@ export function isMetricValues(value: unknown): value is MetricValues {
       (valuesByNeighborhood) =>
         isRecord(valuesByNeighborhood) && Object.values(valuesByNeighborhood).every(isMetricValue),
     )
+  );
+}
+
+export function isNeighborhoodMetrics(value: unknown): value is NeighborhoodMetrics {
+  return (
+    isRecord(value) &&
+    typeof value.neighborhoodId === "number" &&
+    Array.isArray(value.metrics) &&
+    value.metrics.every(isNeighborhoodMetric)
   );
 }
 
@@ -103,6 +114,25 @@ function isMetricValue(value: unknown): value is MetricValue {
     typeof value.normalized === "number" &&
     typeof value.qualityFlag === "string" &&
     QUALITY_FLAGS.has(value.qualityFlag)
+  );
+}
+
+function isNeighborhoodMetric(value: unknown): value is NeighborhoodMetric {
+  return (
+    isRecord(value) &&
+    typeof value.key === "string" &&
+    typeof value.raw === "number" &&
+    typeof value.normalized === "number" &&
+    typeof value.qualityFlag === "string" &&
+    QUALITY_FLAGS.has(value.qualityFlag) &&
+    typeof value.observedAt === "string" &&
+    typeof value.referencePeriod === "string" &&
+    isRecord(value.source) &&
+    typeof value.source.id === "string" &&
+    typeof value.source.name === "string" &&
+    typeof value.source.organization === "string" &&
+    typeof value.source.license === "string" &&
+    typeof value.source.attribution === "string"
   );
 }
 

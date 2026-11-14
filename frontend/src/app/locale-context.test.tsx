@@ -14,7 +14,14 @@ async function renderWithClientLocale(clientLocale: string): Promise<string> {
   });
   await preloadLocale();
   return renderToStaticMarkup(
-    <AppShell view="home" onNavigate={() => {}}>
+    <AppShell
+      view="home"
+      onNavigate={() => {}}
+      metrics={[]}
+      rankingMetricKey={null}
+      locale={SOURCE_LANGUAGE}
+      onRankingMetricChange={() => {}}
+    >
       <HomeView onNavigate={() => {}} />
     </AppShell>,
   );
