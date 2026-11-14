@@ -1233,28 +1233,6 @@
       ],
       "types": []
     },
-    "YrKIf6zUZoJzS0KBSh4Dzg==": {
-      "description": "Accessible label of the shared metric filter in the header",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Sıralama metriği",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "S1IZ/evroslimYfIV+8yAg==": {
-      "description": "Option of the shared metric filter that disables metric ranking",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Tüm metrikler",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "5h3NnQae5oBYM+LZhfXCEw==": {
       "description": "Label of the field filtering the selected neighborhood metrics by name",
       "tokens": [],
@@ -1426,6 +1404,17 @@
       "translations": [
         {
           "translation": "Sonraki",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "y91elk8+J3dQasQFSlbjvA==": {
+      "description": "Legend of the metric selector group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gösterilen metrik",
           "variations": {}
         }
       ],

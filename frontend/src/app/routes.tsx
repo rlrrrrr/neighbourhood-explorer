@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-router";
-import { fbt, useLocaleContext } from "fbtee";
+import { fbt } from "fbtee";
 import { AppShell } from "./app-shell";
 import {
   criteriaFromSearch,
@@ -12,7 +12,6 @@ import {
   type ViewName,
   type ViewPath,
 } from "./url-state";
-import { useMetricDefinitions } from "../features/metrics/use-metric-definitions";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
 import { MapView } from "../features/map-view/map-view";
@@ -49,31 +48,11 @@ function useCriterionWriter(to: ViewPath) {
 
 export function AppLayout() {
   const location = useLocation();
-  const search = useSearch({ from: "__root__" });
-  const navigate = useNavigate();
   const openView = useOpenView();
-  const metrics = useMetricDefinitions();
-  const { locale } = useLocaleContext();
   const view = viewForPath(location.pathname);
 
   return (
-    <AppShell
-      view={view}
-      onNavigate={openView}
-      metrics={metrics}
-      rankingMetricKey={search.sort ?? null}
-      locale={locale}
-      onRankingMetricChange={(metricKey) => {
-        void navigate({
-          to: viewPath(view),
-          search: (previous) =>
-            searchWithTableSort(
-              previous,
-              metricKey === null ? null : { key: metricKey, direction: "descending" },
-            ),
-        });
-      }}
-    >
+    <AppShell view={view} onNavigate={openView}>
       <Outlet />
     </AppShell>
   );
@@ -110,6 +89,13 @@ export function MapRoute() {
       onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
       selectedNeighborhoodId={search.neighborhood ?? null}
       rankingMetricKey={search.sort ?? null}
+      onMetricChange={(metricKey) => {
+        void navigate({
+          to: viewPath("map"),
+          search: (previous) =>
+            searchWithTableSort(previous, { key: metricKey, direction: "descending" }),
+        });
+      }}
       onSelectNeighborhood={(neighborhoodId) => {
         void navigate({
           to: viewPath("map"),

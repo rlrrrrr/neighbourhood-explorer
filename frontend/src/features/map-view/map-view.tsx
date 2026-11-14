@@ -16,6 +16,7 @@ interface MapViewProps {
   selectedNeighborhoodId: number | null;
   onSelectNeighborhood: (neighborhoodId: number | null) => void;
   rankingMetricKey: string | null;
+  onMetricChange: (metricKey: string) => void;
 }
 
 export function MapView({
@@ -24,6 +25,7 @@ export function MapView({
   selectedNeighborhoodId,
   onSelectNeighborhood,
   rankingMetricKey,
+  onMetricChange,
 }: MapViewProps) {
   const themeName = useDocumentTheme();
   const { state, reload } = useMapData({
@@ -46,6 +48,7 @@ export function MapView({
       onRemoveCriterion={onRemoveCriterion}
       selectedNeighborhoodId={selectedNeighborhoodId}
       onSelectNeighborhood={onSelectNeighborhood}
+      onMetricChange={onMetricChange}
       state={state}
       onReload={reload}
       neighborhoodMetrics={neighborhoodMetrics}

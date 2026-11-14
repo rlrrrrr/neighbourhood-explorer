@@ -1,9 +1,11 @@
 import { useState, type ReactNode } from "react";
-import { fbs, fbt, type TranslatedString } from "fbtee";
+import { fbs, fbt, type TranslatedString, useLocaleContext } from "fbtee";
 import { tv } from "tailwind-variants";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
 import { CriteriaChips } from "../criteria/criteria-chips";
 import type { Criteria } from "../criteria/criteria";
+import type { MetricDefinition } from "../metrics/metric-api-schema";
+import { localizedMetricName } from "../metrics/metric-presentation";
 
 const lensOption = tv({
   slots: {
@@ -54,13 +56,22 @@ function toggleKey(selected: ReadonlySet<string>, key: string): Set<string> {
 interface LensOptionProps {
   type: "checkbox" | "radio";
   name?: string;
+  value?: string;
   checked: boolean;
   onChange: () => void;
   label: ReactNode;
   shape?: "box" | "dot";
 }
 
-function LensOption({ type, name, checked, onChange, label, shape = "box" }: LensOptionProps) {
+function LensOption({
+  type,
+  name,
+  value,
+  checked,
+  onChange,
+  label,
+  shape = "box",
+}: LensOptionProps) {
   const slots = lensOption({ shape });
 
   return (
@@ -69,6 +80,7 @@ function LensOption({ type, name, checked, onChange, label, shape = "box" }: Len
         <input
           type={type}
           name={name}
+          value={value}
           className="peer sr-only"
           checked={checked}
           onChange={onChange}
@@ -108,11 +120,22 @@ function LensFieldset({ legend, children }: { legend: TranslatedString; children
 interface LensPanelProps {
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
+  metrics: readonly MetricDefinition[];
+  selectedMetricKey: string;
+  onSelectMetric: (metricKey: string) => void;
   open: boolean;
   onClose: () => void;
 }
 
-export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPanelProps) {
+export function LensPanel({
+  criteria,
+  onRemoveCriterion,
+  metrics,
+  selectedMetricKey,
+  onSelectMetric,
+  open,
+  onClose,
+}: LensPanelProps) {
   const [selectedCategories, setSelectedCategories] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
@@ -120,6 +143,7 @@ export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPa
   const [basemapStyle, setBasemapStyle] =
     useState<(typeof LENS_BASEMAP_STYLES)[number]>("Positron");
   const { containerRef, hasMore } = useScrollOverflowHint({ axis: "vertical" });
+  const { locale } = useLocaleContext();
   const title = fbt("La lentille", "Title of the lens panel on the map");
   const closeLabel = fbs("Fermer le panneau de la lentille", "Close button of the lens panel");
 
@@ -166,6 +190,28 @@ export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPa
                 Période masquée : aucune donnée en cours n'a de dimension temporelle
               </fbt>
             </p>
+
+            {metrics.length > 0 && (
+              <LensFieldset
+                legend={fbt(
+                  "Métrique affichée",
+                  "Legend of the metric selector group in the lens panel",
+                )}
+              >
+                {metrics.map((metric) => (
+                  <LensOption
+                    key={metric.key}
+                    type="radio"
+                    name="lens-metric"
+                    value={metric.key}
+                    shape="dot"
+                    checked={selectedMetricKey === metric.key}
+                    onChange={() => onSelectMetric(metric.key)}
+                    label={localizedMetricName(metric, locale)}
+                  />
+                ))}
+              </LensFieldset>
+            )}
 
             <LensFieldset
               legend={fbt("Catégories", "Legend of the category filter group in the lens panel")}

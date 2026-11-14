@@ -54,7 +54,7 @@ interface DataTableViewProps {
   sort: TableSort | null;
   locale: string;
   onRemoveCriterion: (metricKey: string) => void;
-  onSortChange: (sort: TableSort) => void;
+  onSortChange: (sort: TableSort | null) => void;
   onShowOnMap: (neighborhoodId: number) => void;
   onReload: () => void;
 }
@@ -180,7 +180,7 @@ function DataTableContent({
   overflows: boolean;
   containerRef: (element: HTMLElement | null) => void;
   hasMore: boolean;
-  onSortChange: (sort: TableSort) => void;
+  onSortChange: (sort: TableSort | null) => void;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
   const rows = useMemo(
@@ -276,14 +276,16 @@ function DataTableContent({
     onSortingChange: (updater) => {
       const nextSorting = typeof updater === "function" ? updater(sorting) : updater;
       const first = nextSorting[0];
-      if (first !== undefined) {
-        onSortChange({
-          key: first.id,
-          direction: first.desc ? "descending" : "ascending",
-        });
+      if (first === undefined) {
+        onSortChange(null);
+        return;
       }
+      onSortChange({
+        key: first.id,
+        direction: first.desc ? "descending" : "ascending",
+      });
     },
-    enableSortingRemoval: false,
+    enableSortingRemoval: true,
     enableMultiSort: false,
     globalFilterFn: "includesString",
     getColumnCanGlobalFilter: (column) => column.id === "name",

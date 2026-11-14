@@ -118,14 +118,14 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
 - **Fiche de quartier** : `GET /api/v1/neighborhoods/{id}/metrics` renvoie toutes les métriques du quartier, sans nom ni unité ; la fiche les joint aux définitions de `GET /api/v1/metrics` (`neighborhood-metric-rows.ts`). Présentation choisie le 14/11/2026 après comparaison de cinq variantes : **liste compacte** (une ligne par métrique, valeur brute + unité, tout visible sans défiler), **filtre local** par nom de métrique (`filterNeighborhoodMetricRows`), **jauge de position normalisée** sous chaque ligne et **provenance dépliable** (catégorie, source, date d'observation, période, valeur normalisée sur 1). Pas de regroupement par catégorie : il coûtait trop de hauteur pour l'information apportée. La jauge porte `normalized` (0–1), jamais un score inventé, et la valeur normalisée est aussi écrite en texte pour l'accessibilité. Une métrique sans valeur s'affiche « pas de donnée », jamais un zéro.
 - Une **vue liste** synchronisée avec la carte est toujours disponible (accessibilité, petits écrans).
-- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend. Son en-tête reste fixe : le panneau est `overflow-clip` et seul son contenu interne défile, pour qu'un focus sur un filtre ne déplace pas le panneau lui-même.
+- La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; son groupe **« Métrique affichée »** choisit la métrique de la couche choroplèthe et écrit `sort`/`order` (même état que la vue Données) ; les curseurs de poids viendront avec le classement du backend. Son en-tête reste fixe : le panneau est `overflow-clip` et seul son contenu interne défile, pour qu'un focus sur un filtre ne déplace pas le panneau lui-même.
 - Budgets : changement de couche < 100 ms sans requête réseau ; premier affichage < 2 s.
 - Mobile : feuille basse à trois crans, zones tactiles ≥ 44 px, rien ne dépend du survol.
 
 ## Vue Données
 
 - Tableau de **toutes les métriques publiées** : une ligne par quartier, une colonne par métrique de `GET /api/v1/metrics` dans l'ordre de l'API, sans état vide ni colonne conditionnée par les critères. Chaque colonne porte son unité et sa date d'observation dans l'en-tête ; les sources et licences sont accessibles sous le tableau.
-- Tri par colonne, **état dans l'URL** (`sort`, `order`) donc partageable ; le tri est aussi le **filtre de métrique global** de l'en-tête (voir plus bas). Valeur manquante : toujours en fin de tri, jamais un zéro.
+- Tri par colonne, **état dans l'URL** (`sort`, `order`) donc partageable ; le tri est aussi le **choix de la métrique affichée sur la carte** (voir plus bas). Un troisième clic sur l'en-tête actif retire le tri : le tableau repasse à l'ordre alphabétique et la carte à la densité de population. Valeur manquante : toujours en fin de tri, jamais un zéro.
 - Le filtre texte (nom de quartier ou de district) est **local à la table** et ne va pas dans l'URL : il ne change pas la carte et n'a pas à survivre à un partage.
 - Les critères actifs restent rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) et un critère que `/metrics` ne publie pas est nommé, jamais ignoré en silence ; ils ne décident plus des colonnes.
 - La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
@@ -134,11 +134,13 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
 - Implémentation : TanStack Table v9 (`features/data-view/data-table-view.tsx`) pour le tri et le filtrage, TanStack Query pour le chargement (`use-data-table.ts` → `data-table-client.ts`, qui lit `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods` avec les gardes de `features/metrics/metric-api-schema.ts`). La table reste pilotée par le rendu (pas de `createTableHook`) ; seuls les composants dont l'état change souvent méritent un abonnement étroit.
 
-## Filtre de métrique partagé
+## Métrique affichée : un seul état, sans sélecteur d'en-tête
 
-- Un sélecteur dans l'en-tête (`app/metric-filter.tsx`, alimenté par `GET /api/v1/metrics`) écrit `sort=<clé>&order=desc` : c'est le **même état d'URL** que le tri de la vue Données. La carte colore selon cette métrique, la vue Données classe selon elle, un clic sur un en-tête de colonne met le sélecteur à jour.
-- « Toutes les métriques » retire `sort` et `order` ; la carte retombe alors sur `population_density` (clé de repli explicite dans `features/map-view/choropleth.ts`) et le tableau garde son ordre alphabétique par nom localisé.
-- Le filtre ne crée **aucun classement composite** : il choisit une seule métrique brute, ce qui reste conforme à la règle « pas de meilleur quartier universel ».
+- Il n'y a **plus de sélecteur de métrique dans l'en-tête**. La métrique qui colore la carte est l'état d'URL `sort` (`sort=<clé>&order=<asc|desc>`), écrit par deux commandes seulement :
+  - la vue Données, en cliquant l'en-tête d'une colonne de métrique (le tri et la carte changent ensemble ; un troisième clic retire `sort` et `order`) ;
+  - la lentille de la carte, groupe « Métrique affichée », en choisissant une métrique dans la liste de `GET /api/v1/metrics`.
+- Sans `sort`, la carte retombe sur `population_density` (clé de repli explicite dans `features/map-view/choropleth.ts`) et le tableau garde son ordre alphabétique par nom localisé. La lentille affiche alors la densité de population comme métrique courante.
+- Le choix ne crée **aucun classement composite** : il sélectionne une seule métrique brute, ce qui reste conforme à la règle « pas de meilleur quartier universel ».
 
 ## Graphiques
 
