@@ -3,7 +3,9 @@ import { fbs, fbt, type TranslatedString } from "fbtee";
 import { applyTheme, readStoredTheme, type ThemeName } from "./theme";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
+import { MetricFilter } from "./metric-filter";
 import { Button } from "../components/ui/button";
+import type { MetricDefinition } from "../features/metrics/metric-api-schema";
 import type { ViewName } from "./url-state";
 
 type NavigationView = Exclude<ViewName, "home">;
@@ -13,6 +15,10 @@ const NAV_VIEWS: readonly NavigationView[] = ["chat", "map", "data"];
 interface AppShellProps {
   view: ViewName;
   onNavigate: (view: ViewName) => void;
+  metrics: readonly MetricDefinition[];
+  rankingMetricKey: string | null;
+  locale: string;
+  onRankingMetricChange: (metricKey: string | null) => void;
   children: ReactNode;
 }
 
@@ -27,7 +33,15 @@ function navigationLabel(view: NavigationView): TranslatedString {
   }
 }
 
-export function AppShell({ view, onNavigate, children }: AppShellProps) {
+export function AppShell({
+  view,
+  onNavigate,
+  metrics,
+  rankingMetricKey,
+  locale,
+  onRankingMetricChange,
+  children,
+}: AppShellProps) {
   const [theme, setTheme] = useState<ThemeName>(() => readStoredTheme());
 
   useEffect(() => {
@@ -62,6 +76,14 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
             ))}
           </nav>
           <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-1 sm:col-start-3 sm:flex-nowrap">
+            {view === "home" ? null : (
+              <MetricFilter
+                metrics={metrics}
+                selectedKey={rankingMetricKey}
+                locale={locale}
+                onChange={onRankingMetricChange}
+              />
+            )}
             <LanguageSwitcher />
             <ThemeSwitcher theme={theme} onChange={setTheme} />
           </div>

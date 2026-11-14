@@ -408,34 +408,12 @@
       ],
       "types": []
     },
-    "zMZLinNitZ+JlmBvBAUx6w==": {
-      "description": "Title of the data view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "القيم الخام",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "0KkpLNCYqZCQwzgc7AH3GA==": {
       "description": "Column header of the neighborhood name",
       "tokens": [],
       "translations": [
         {
           "translation": "الحي",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "T150YTHTRegXDT0WB8hLHA==": {
-      "description": "Column header of the district name",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "المنطقة",
           "variations": {}
         }
       ],
@@ -683,17 +661,6 @@
       ],
       "types": []
     },
-    "a/LDD8vWAgWnsecOf/N/SA==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "القيم الخام لكل حي: الاسم والقضاء ومعيار واحد في كل عمود، قابلة للفرز.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "MziqoB5OZg5QNF0OXqNCBw==": {
       "description": "Accessibility label of the chat input",
       "tokens": [],
@@ -870,17 +837,6 @@
       ],
       "types": []
     },
-    "/vgNH23LRHlIXqAx/LELmQ==": {
-      "description": "Shown when the selected neighborhood has no value",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "لا توجد بيانات",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "I+5u1XNY0Eh5t4BonsSuOg==": {
       "description": "Hint shown when no neighborhood is selected on the map",
       "tokens": [],
@@ -1002,34 +958,12 @@
       ],
       "types": []
     },
-    "zWj5HRRa35PgTqZhs7GEZQ==": {
-      "description": "Subtitle of the data view, promising raw values with their unit, date and source",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "قيم خام مع الوحدة وتاريخ الملاحظة والمصدر، دون درجة مركبة",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "BDNtsE0Lcep99paZJc83jQ==": {
       "description": "Shown while the raw values table is loading",
       "tokens": [],
       "translations": [
         {
           "translation": "جارٍ تحميل القيم…",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "8j1Jl5VZVCp0V6v5ESghXw==": {
-      "description": "Shown in the data view when no criterion is active",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "لا يوجد معيار نشط: أضف معيارًا من الدردشة أو الخريطة لعرض القيم الخام.",
           "variations": {}
         }
       ],
@@ -1107,6 +1041,391 @@
       "translations": [
         {
           "translation": "المصادر والتواريخ",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9AlhLd3XmlzsdpTPRDOiJA==": {
+      "description": "Metric category: shops, cafés, culture and nightlife",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الحياة المحلية",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WlQyT5l5Ktvn5aVwow37MQ==": {
+      "description": "Metric category: schools and education",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التعليم",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QzSgQ+5bo624IBa6UvvN5w==": {
+      "description": "Metric category: greenery and environment",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "البيئة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Trdue90Itw3nj87XOEEOOw==": {
+      "description": "Metric category: healthcare",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الصحة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LozGih/MvXEroPwOkt51EA==": {
+      "description": "Metric category: urban form and land use",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الشكل الحضري",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QibTgF1eYwkD9/zN/4HAPg==": {
+      "description": "Metric category: population",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "السكان",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "tj/rAPtmIyznFVxTIOPwcw==": {
+      "description": "Metric category: transport and walkability",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التنقل",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EeSX78ApL5C53MlZKzDsJg==": {
+      "description": "Shown while every metric of the selected neighborhood is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "جارٍ تحميل بيانات الحي…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+FhW5Vf3O6Dtx+Zz9AnCVQ==": {
+      "description": "Shown when the metrics of the selected neighborhood cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "تعذّر تحميل بيانات الحي.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dqu0+dR68tvfkpeXMH7r7w==": {
+      "description": "Retry loading the selected neighborhood metrics",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إعادة المحاولة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ygmbqEfYzVhq5+Eff8o0oQ==": {
+      "description": "Shown when a selected neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا توجد بيانات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nXCg+kcdjCrq8CATwVkYmA==": {
+      "description": "Subtitle of the data view, promising every published raw value with its unit, date and source",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "جميع المؤشرات المنشورة، مع الوحدة وتاريخ الرصد والمصدر، دون نتيجة مركّبة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oj/YgH55vmB1iX02ecrfow==": {
+      "description": "Label of the search field filtering the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ابحث عن حي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "OHgJkl88QN6OmsIwSKrqaw==": {
+      "description": "Placeholder of the raw values table search field",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "اسم الحي أو القضاء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3C6K7xX+DqLRUXvX/KWkFQ==": {
+      "description": "Count of neighborhoods currently displayed in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الأحياء المعروضة:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "w1PuY2GDPxFpaHlzZgLmJQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "القيم الخام حسب الحي: الاسم والقضاء وعمود لكل مؤشر منشور، قابل للفرز.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "K/CCzDUAffe7tdCvFCeMmw==": {
+      "description": "Shown when the neighborhood search matches nothing in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا يوجد حي يطابق هذا البحث.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YrKIf6zUZoJzS0KBSh4Dzg==": {
+      "description": "Accessible label of the shared metric filter in the header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مؤشر الترتيب",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "S1IZ/evroslimYfIV+8yAg==": {
+      "description": "Option of the shared metric filter that disables metric ranking",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "جميع المؤشرات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5h3NnQae5oBYM+LZhfXCEw==": {
+      "description": "Label of the field filtering the selected neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "تصفية المؤشرات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxpISH/HvXJsl7QBku2L8Q==": {
+      "description": "Placeholder of the field filtering the neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "تصفية المؤشرات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5sLBNDx6A1wcbH9beEijbw==": {
+      "description": "Count of metrics shown in the selected neighborhood panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المؤشرات المعروضة:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzX3O/b+mRESU/OpG7Ypgg==": {
+      "description": "Shown when the neighborhood metric filter matches nothing",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "لا يوجد مؤشر يطابق هذا الفلتر.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "smjeXytRu3GL28gcCu9xEg==": {
+      "description": "Shown when a neighborhood metric has no source name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مصدر غير معروف",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7puORYtI1ZFbPqPZ5R1ZVw==": {
+      "description": "Observation date label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الرصد:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8fkhfAZtOCPWqgfZTVxCLg==": {
+      "description": "Reference period label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الفترة:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AOeathNT+OMAEaV2fXektw==": {
+      "description": "Hint explaining that a metric row opens its source and date",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التفاصيل بالنقر",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2+8bQRgT8Fq33dzet8ALfg==": {
+      "description": "Label of the normalized value drawn as a bar under the metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "القيمة المطبّعة:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qD5r4g06eXT755wIcHjLsw==": {
+      "description": "Title of the data view when the rows are in alphabetical order",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "القيم حسب الحي",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7Os0vosK56jwQtYuADx3LA==": {
+      "description": "Title of the data view when the rows are ranked by a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ترتيب الأحياء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6gSAD4i7zEnrYLcmvlUBoQ==": {
+      "description": "Header of the ranking column in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "#",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3O2TDwNvFyzS0mJs6jm+CA==": {
+      "description": "Accessible label of the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ترقيم جدول الأحياء",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LhD6pDikpH2M2UeRfFBtOA==": {
+      "description": "Label of the current page in the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "صفحة",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qA+bL6BHLCbO+t4dw7dpLA==": {
+      "description": "Button showing the previous page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "السابق",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/FWABZ+fb2Q28l7KpvzRtg==": {
+      "description": "Button showing the next page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "التالي",
           "variations": {}
         }
       ],

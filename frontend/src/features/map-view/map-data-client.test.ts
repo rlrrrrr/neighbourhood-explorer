@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
-import { fetchMapData, MapDataRequestError } from "./map-data-client";
+import { ApiRequestError } from "../metrics/api-json";
+import { fetchMapData } from "./map-data-client";
 
 const metricsPayload = {
   metrics: [
@@ -106,10 +107,12 @@ describe("map data client", () => {
       const data = await fetchMapData({
         cityId: 34,
         metricKey: "population_density",
+        fallbackMetricKey: "population_density",
         signal: new AbortController().signal,
       });
 
       expect(data.metric.key).toBe("population_density");
+      expect(data.metrics.map((definition) => definition.key)).toEqual(["population_density"]);
       expect(data.collection.features[0].properties).toEqual({
         id: 1,
         name: "Caferağa Mahallesi",
@@ -141,6 +144,7 @@ describe("map data client", () => {
           fetchMapData({
             cityId: 34,
             metricKey: "population_density",
+            fallbackMetricKey: "population_density",
             signal: new AbortController().signal,
           }),
         ).rejects.toMatchObject({ code: "invalid_response" });
@@ -156,10 +160,11 @@ describe("map data client", () => {
         const rejection = fetchMapData({
           cityId: 34,
           metricKey: "population_density",
+          fallbackMetricKey: "population_density",
           signal: new AbortController().signal,
         });
 
-        await expect(rejection).rejects.toBeInstanceOf(MapDataRequestError);
+        await expect(rejection).rejects.toBeInstanceOf(ApiRequestError);
         await expect(rejection).rejects.toMatchObject({ code: "ai_disabled" });
       },
     );

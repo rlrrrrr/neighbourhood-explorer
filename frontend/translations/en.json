@@ -408,34 +408,12 @@
       ],
       "types": []
     },
-    "zMZLinNitZ+JlmBvBAUx6w==": {
-      "description": "Title of the data view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Raw values",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "0KkpLNCYqZCQwzgc7AH3GA==": {
       "description": "Column header of the neighborhood name",
       "tokens": [],
       "translations": [
         {
           "translation": "Neighborhood",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "T150YTHTRegXDT0WB8hLHA==": {
-      "description": "Column header of the district name",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "District",
           "variations": {}
         }
       ],
@@ -683,17 +661,6 @@
       ],
       "types": []
     },
-    "a/LDD8vWAgWnsecOf/N/SA==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Raw values per neighborhood: name, district and one criterion per column, sortable.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "MziqoB5OZg5QNF0OXqNCBw==": {
       "description": "Accessibility label of the chat input",
       "tokens": [],
@@ -870,17 +837,6 @@
       ],
       "types": []
     },
-    "/vgNH23LRHlIXqAx/LELmQ==": {
-      "description": "Shown when the selected neighborhood has no value",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "No data",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "I+5u1XNY0Eh5t4BonsSuOg==": {
       "description": "Hint shown when no neighborhood is selected on the map",
       "tokens": [],
@@ -1002,34 +958,12 @@
       ],
       "types": []
     },
-    "zWj5HRRa35PgTqZhs7GEZQ==": {
-      "description": "Subtitle of the data view, promising raw values with their unit, date and source",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Raw values with their unit, observation date and source, without a composite score",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "BDNtsE0Lcep99paZJc83jQ==": {
       "description": "Shown while the raw values table is loading",
       "tokens": [],
       "translations": [
         {
           "translation": "Loading values…",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "8j1Jl5VZVCp0V6v5ESghXw==": {
-      "description": "Shown in the data view when no criterion is active",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "No active criterion: add one from the chat or the map to display raw values.",
           "variations": {}
         }
       ],
@@ -1107,6 +1041,391 @@
       "translations": [
         {
           "translation": "Sources and dates",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9AlhLd3XmlzsdpTPRDOiJA==": {
+      "description": "Metric category: shops, cafés, culture and nightlife",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Local life",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WlQyT5l5Ktvn5aVwow37MQ==": {
+      "description": "Metric category: schools and education",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Education",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QzSgQ+5bo624IBa6UvvN5w==": {
+      "description": "Metric category: greenery and environment",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Environment",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Trdue90Itw3nj87XOEEOOw==": {
+      "description": "Metric category: healthcare",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Health",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LozGih/MvXEroPwOkt51EA==": {
+      "description": "Metric category: urban form and land use",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Urban form",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QibTgF1eYwkD9/zN/4HAPg==": {
+      "description": "Metric category: population",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Population",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "tj/rAPtmIyznFVxTIOPwcw==": {
+      "description": "Metric category: transport and walkability",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mobility",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EeSX78ApL5C53MlZKzDsJg==": {
+      "description": "Shown while every metric of the selected neighborhood is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Loading the neighbourhood data…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+FhW5Vf3O6Dtx+Zz9AnCVQ==": {
+      "description": "Shown when the metrics of the selected neighborhood cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The neighbourhood data could not be loaded.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dqu0+dR68tvfkpeXMH7r7w==": {
+      "description": "Retry loading the selected neighborhood metrics",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Try again",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ygmbqEfYzVhq5+Eff8o0oQ==": {
+      "description": "Shown when a selected neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No data",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nXCg+kcdjCrq8CATwVkYmA==": {
+      "description": "Subtitle of the data view, promising every published raw value with its unit, date and source",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Every published metric, with unit, observation date and source, without a composite score",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oj/YgH55vmB1iX02ecrfow==": {
+      "description": "Label of the search field filtering the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Search for a neighbourhood",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "OHgJkl88QN6OmsIwSKrqaw==": {
+      "description": "Placeholder of the raw values table search field",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhood or district name",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3C6K7xX+DqLRUXvX/KWkFQ==": {
+      "description": "Count of neighborhoods currently displayed in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighbourhoods shown:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "w1PuY2GDPxFpaHlzZgLmJQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw values by neighbourhood: name, district and one column per published metric, sortable.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "K/CCzDUAffe7tdCvFCeMmw==": {
+      "description": "Shown when the neighborhood search matches nothing in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No neighbourhood matches this search.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YrKIf6zUZoJzS0KBSh4Dzg==": {
+      "description": "Accessible label of the shared metric filter in the header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ranking metric",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "S1IZ/evroslimYfIV+8yAg==": {
+      "description": "Option of the shared metric filter that disables metric ranking",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "All metrics",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5h3NnQae5oBYM+LZhfXCEw==": {
+      "description": "Label of the field filtering the selected neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Filter metrics",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxpISH/HvXJsl7QBku2L8Q==": {
+      "description": "Placeholder of the field filtering the neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Filter metrics",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5sLBNDx6A1wcbH9beEijbw==": {
+      "description": "Count of metrics shown in the selected neighborhood panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metrics shown:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzX3O/b+mRESU/OpG7Ypgg==": {
+      "description": "Shown when the neighborhood metric filter matches nothing",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No metric matches this filter.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "smjeXytRu3GL28gcCu9xEg==": {
+      "description": "Shown when a neighborhood metric has no source name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Unknown source",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7puORYtI1ZFbPqPZ5R1ZVw==": {
+      "description": "Observation date label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Observation:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8fkhfAZtOCPWqgfZTVxCLg==": {
+      "description": "Reference period label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Period:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AOeathNT+OMAEaV2fXektw==": {
+      "description": "Hint explaining that a metric row opens its source and date",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "details on click",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2+8bQRgT8Fq33dzet8ALfg==": {
+      "description": "Label of the normalized value drawn as a bar under the metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Normalized value:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qD5r4g06eXT755wIcHjLsw==": {
+      "description": "Title of the data view when the rows are in alphabetical order",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Values by neighborhood",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7Os0vosK56jwQtYuADx3LA==": {
+      "description": "Title of the data view when the rows are ranked by a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighborhood rankings",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6gSAD4i7zEnrYLcmvlUBoQ==": {
+      "description": "Header of the ranking column in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "#",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3O2TDwNvFyzS0mJs6jm+CA==": {
+      "description": "Accessible label of the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Neighborhood table pagination",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LhD6pDikpH2M2UeRfFBtOA==": {
+      "description": "Label of the current page in the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Page",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qA+bL6BHLCbO+t4dw7dpLA==": {
+      "description": "Button showing the previous page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Previous",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/FWABZ+fb2Q28l7KpvzRtg==": {
+      "description": "Button showing the next page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Next",
           "variations": {}
         }
       ],

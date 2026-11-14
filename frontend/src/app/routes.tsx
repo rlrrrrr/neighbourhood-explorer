@@ -1,5 +1,5 @@
 import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-router";
-import { fbt } from "fbtee";
+import { fbt, useLocaleContext } from "fbtee";
 import { AppShell } from "./app-shell";
 import {
   criteriaFromSearch,
@@ -12,6 +12,7 @@ import {
   type ViewName,
   type ViewPath,
 } from "./url-state";
+import { useMetricDefinitions } from "../features/metrics/use-metric-definitions";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
 import { MapView } from "../features/map-view/map-view";
@@ -48,10 +49,31 @@ function useCriterionWriter(to: ViewPath) {
 
 export function AppLayout() {
   const location = useLocation();
+  const search = useSearch({ from: "__root__" });
+  const navigate = useNavigate();
   const openView = useOpenView();
+  const metrics = useMetricDefinitions();
+  const { locale } = useLocaleContext();
+  const view = viewForPath(location.pathname);
 
   return (
-    <AppShell view={viewForPath(location.pathname)} onNavigate={openView}>
+    <AppShell
+      view={view}
+      onNavigate={openView}
+      metrics={metrics}
+      rankingMetricKey={search.sort ?? null}
+      locale={locale}
+      onRankingMetricChange={(metricKey) => {
+        void navigate({
+          to: viewPath(view),
+          search: (previous) =>
+            searchWithTableSort(
+              previous,
+              metricKey === null ? null : { key: metricKey, direction: "descending" },
+            ),
+        });
+      }}
+    >
       <Outlet />
     </AppShell>
   );
@@ -87,6 +109,7 @@ export function MapRoute() {
       criteria={criteriaFromSearch(search)}
       onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
       selectedNeighborhoodId={search.neighborhood ?? null}
+      rankingMetricKey={search.sort ?? null}
       onSelectNeighborhood={(neighborhoodId) => {
         void navigate({
           to: viewPath("map"),

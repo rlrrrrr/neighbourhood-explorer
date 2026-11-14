@@ -16,7 +16,7 @@ Trois vues de même niveau, reliées par une barre de navigation toujours visibl
 
 Navigation mobile : la barre reste **en haut**, sur deux lignes sous `sm` (marque et sélecteurs, puis les trois vues), ce qui supprime le débordement horizontal. La variante **barre en bas est abandonnée** (décision du 17/10/2026) ; `../docs/ux-ui-review.md` reste le tableau de suivi (document de travail local : `docs/` est ignoré par Git).
 
-Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et le tri du tableau (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue.
+Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et la métrique de classement (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue.
 
 ## Pile
 
@@ -27,6 +27,7 @@ Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le qua
 | UI                   | React + TypeScript en mode strict                                                                                              |
 | Internationalisation | fbtee 5 : traductions inline (`<fbt>`, `fbt()`, `fbs()`), compilées par le plugin Vite ; locales fr (source), en, tr, ar       |
 | Données serveur      | TanStack Query                                                                                                                 |
+| Tableau              | TanStack Table v9 (`@tanstack/react-table`) pour le tri et le filtrage de la vue Données                                       |
 | Carte                | mapcn (composants React au-dessus de MapLibre GL), fond OpenFreeMap                                                            |
 | Graphiques           | TanStack Charts (**pré-alpha, version épinglée, usage isolé** dans `features/charts`)                                          |
 | Styles               | Tailwind + shadcn/ui ; variantes avec tailwind-variants                                                                        |
@@ -106,7 +107,7 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - **Worker MapLibre auto-hébergé** : `node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs` est copié dans `public/` et chargé depuis `${import.meta.env.BASE_URL}maplibre-gl-worker.mjs` ; jamais depuis un CDN. Recopier le worker après toute mise à jour de `maplibre-gl`.
 - **Fond de carte** : OpenFreeMap, style _Positron_ par défaut (fond calme sous les quartiers colorés), _Dark_ pour le thème sombre ; URL dans `VITE_BASEMAP_STYLE_URL` et `VITE_BASEMAP_DARK_STYLE_URL` (jamais en dur). L'attribution (OpenFreeMap, OpenMapTiles, OpenStreetMap) est regroupée dans le contrôle d'attribution MapLibre, sans doublon fixe dans l'interface.
 - **Configuration locale** : Vite charge le `.env` de la racine (`envDir: ".."`). `VITE_API_URL` vide = URLs relatives, servies en développement par le proxy Vite `/api` → `http://127.0.0.1:5080` ; le renseigner pour viser une API distante. Le build statique suppose le même proxy inverse en production.
-- **État A2** : une seule couche, `population_density`, lue depuis `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods`. Pas encore de TanStack Query : `use-map-data.ts` expose une union `loading | error | ready` avec `reload`. Les géométries sont déjà simplifiées côté ETL (`display_geometry`), l'API ne simplifie pas à la volée.
+- **État A2** : une seule couche, celle de la métrique de classement (`sort` de l'URL, repli `population_density`), lue depuis `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods`. TanStack Query porte le chargement (`use-map-data.ts`, union `loading | error | ready` + `reload`). Les géométries sont déjà simplifiées côté ETL (`display_geometry`), l'API ne simplifie pas à la volée.
 - **Couleurs de la carte** : les jetons `--ramp-1..5`, `--no-data`, `--text`, `--border` sont lus sur `document.documentElement` et convertis en couleurs MapLibre (`color(srgb …)` → `rgba(...)`). Aucune couleur hexadécimale dans les composants de carte. La rampe reste à une teinte, valeur manquante en gris avec motif.
 - **Cadrage** : la carte se cale sur les limites des géométries reçues ; sélectionner un quartier (liste ou clic) cadre sur son polygone ; le bouton « Recentrer sur Istanbul » du sélecteur recadre sur l'ensemble des géométries chargées **et remet la sélection à zéro** (paramètre `neighborhood` retiré de l'URL). L'instance MapLibre n'est pas recréée : le premier cadrage est instantané, les suivants (sélection, recentrage) animent la caméra sur 700 ms (instantané si `prefers-reduced-motion`). Le cadrage n'est pas réappliqué lors d'un changement de thème.
 - **Sélection et URL** : le paramètre `neighborhood` stocke l'**id** du mahalle (entier positif validé et borné dans `app/url-state.ts`), jamais son nom. Carte, chat et vue Données partagent cet id : les résultats d'exemple portent le `neighborhoodId` de leur mahalle officiel (`Moda` → `Caferağa`, `Yeldeğirmeni` → `Rasimpaşa`). Un id inconnu n'affiche aucune sélection ; des mahalles homonymes dans deux ilçe restent distinguables.
@@ -115,6 +116,7 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Trois niveaux de zoom : districts, mahalles, lieux. La couleur des quartiers est pilotée par `feature-state` : changer de couche ne recrée pas les couches. A2 ne rend que le niveau mahalle.
 - Rampe de scores à **une seule teinte** (clarté croissante), valeur manquante en gris avec motif distinct ; la couleur n'est jamais le seul porteur d'information (libellé, valeur, rang numéroté).
 - Une valeur héritée du district (`quality_flag = inherited`) est étiquetée « valeur du district ».
+- **Fiche de quartier** : `GET /api/v1/neighborhoods/{id}/metrics` renvoie toutes les métriques du quartier, sans nom ni unité ; la fiche les joint aux définitions de `GET /api/v1/metrics` (`neighborhood-metric-rows.ts`). Présentation choisie le 14/11/2026 après comparaison de cinq variantes : **liste compacte** (une ligne par métrique, valeur brute + unité, tout visible sans défiler), **filtre local** par nom de métrique (`filterNeighborhoodMetricRows`), **jauge de position normalisée** sous chaque ligne et **provenance dépliable** (catégorie, source, date d'observation, période, valeur normalisée sur 1). Pas de regroupement par catégorie : il coûtait trop de hauteur pour l'information apportée. La jauge porte `normalized` (0–1), jamais un score inventé, et la valeur normalisée est aussi écrite en texte pour l'accessibilité. Une métrique sans valeur s'affiche « pas de donnée », jamais un zéro.
 - Une **vue liste** synchronisée avec la carte est toujours disponible (accessibilité, petits écrans).
 - La lentille rappelle les **critères partagés** (les mêmes que le chat et la vue Données) et permet d'en retirer ; les curseurs de poids viendront avec le classement du backend. Son en-tête reste fixe : le panneau est `overflow-clip` et seul son contenu interne défile, pour qu'un focus sur un filtre ne déplace pas le panneau lui-même.
 - Budgets : changement de couche < 100 ms sans requête réseau ; premier affichage < 2 s.
@@ -122,12 +124,20 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 
 ## Vue Données
 
-- Tableau : une ligne par quartier, une colonne par critère actif, tri par colonne (état dans l'URL, donc partageable), valeurs brutes avec unité, date d'observation et source accessible.
-- Les critères actifs sont rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) : la vue lit le même état que le chat et la carte.
+- Tableau de **toutes les métriques publiées** : une ligne par quartier, une colonne par métrique de `GET /api/v1/metrics` dans l'ordre de l'API, sans état vide ni colonne conditionnée par les critères. Chaque colonne porte son unité et sa date d'observation dans l'en-tête ; les sources et licences sont accessibles sous le tableau.
+- Tri par colonne, **état dans l'URL** (`sort`, `order`) donc partageable ; le tri est aussi le **filtre de métrique global** de l'en-tête (voir plus bas). Valeur manquante : toujours en fin de tri, jamais un zéro.
+- Le filtre texte (nom de quartier ou de district) est **local à la table** et ne va pas dans l'URL : il ne change pas la carte et n'a pas à survivre à un partage.
+- Les critères actifs restent rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) et un critère que `/metrics` ne publie pas est nommé, jamais ignoré en silence ; ils ne décident plus des colonnes.
 - La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
 - Chaque ligne a un bouton **« Voir sur la carte »**.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
-- Implémentation actuelle : `use-data-table.ts` lit `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods`, avec les mêmes gardes de réponse que la carte (`features/metrics/metric-api-schema.ts`) et sans TanStack Query. Les colonnes sont les critères actifs, dans leur ordre ; un critère absent de `/metrics` est nommé au-dessus du tableau, jamais ignoré en silence. Sans critère actif : état vide qui renvoie vers le chat ou la carte, jamais un classement par défaut. La colonne composite attend toujours `POST /api/v1/match`.
+- Implémentation : TanStack Table v9 (`features/data-view/data-table-view.tsx`) pour le tri et le filtrage, TanStack Query pour le chargement (`use-data-table.ts` → `data-table-client.ts`, qui lit `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods` avec les gardes de `features/metrics/metric-api-schema.ts`). La table reste pilotée par le rendu (pas de `createTableHook`) ; seuls les composants dont l'état change souvent méritent un abonnement étroit.
+
+## Filtre de métrique partagé
+
+- Un sélecteur dans l'en-tête (`app/metric-filter.tsx`, alimenté par `GET /api/v1/metrics`) écrit `sort=<clé>&order=desc` : c'est le **même état d'URL** que le tri de la vue Données. La carte colore selon cette métrique, la vue Données classe selon elle, un clic sur un en-tête de colonne met le sélecteur à jour.
+- « Toutes les métriques » retire `sort` et `order` ; la carte retombe alors sur `population_density` (clé de repli explicite dans `features/map-view/choropleth.ts`) et le tableau garde son ordre alphabétique par nom localisé.
+- Le filtre ne crée **aucun classement composite** : il choisit une seule métrique brute, ce qui reste conforme à la règle « pas de meilleur quartier universel ».
 
 ## Graphiques
 
