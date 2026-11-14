@@ -130,6 +130,7 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Les critères actifs restent rappelés **au-dessus du tableau** (groupe « Critères actifs », retirables) et un critère que `/metrics` ne publie pas est nommé, jamais ignoré en silence ; ils ne décident plus des colonnes.
 - La colonne composite s'appelle « Score selon tes critères » et **n'existe que si des poids sont réglés** ; il n'y a jamais de score global par défaut (règle de `../AGENTS.md`). Le score venant du backend, cette colonne attend `POST /api/v1/match`.
 - Chaque ligne a un bouton **« Voir sur la carte »**.
+- La table affiche **50 quartiers par page** (pagination locale, jamais dans l'URL) ; le rang reste global (la page 2 commence au rang 51) et la navigation se fait par « Précédent / Suivant ». Changer de tri ou de recherche revient à la première page. La pagination borne le rendu : les 964 mahalles d'Istanbul ne sont jamais toutes montées en même temps.
 - Précision d'affichage maîtrisée : `8,2 cafés/km²`, pas `8,237491`.
 - Implémentation : TanStack Table v9 (`features/data-view/data-table-view.tsx`) pour le tri et le filtrage, TanStack Query pour le chargement (`use-data-table.ts` → `data-table-client.ts`, qui lit `GET /metrics`, `GET /cities/{cityId}/metric-values` et `GET /cities/{cityId}/neighborhoods` avec les gardes de `features/metrics/metric-api-schema.ts`). La table reste pilotée par le rendu (pas de `createTableHook`) ; seuls les composants dont l'état change souvent méritent un abonnement étroit.
 

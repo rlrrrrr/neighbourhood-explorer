@@ -274,9 +274,9 @@ describe("data view", () => {
     }));
     const markup = renderTable({ state: { status: "ready", data: { ...DATA, rows: manyRows } } });
 
-    expect(markup.match(/Quartier \d+/g)).toHaveLength(50);
     expect(markup.match(/data-rank="/g)).toHaveLength(50);
     expect(markup).toContain('data-rank="50"');
+    expect(markup).not.toContain('data-rank="51"');
     expect(markup).toContain('aria-label="Pagination du tableau des quartiers"');
     expect(markup).toContain(">3</span>");
     expect(markup).toContain("Précédent");
