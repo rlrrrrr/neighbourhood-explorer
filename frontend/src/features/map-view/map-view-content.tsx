@@ -38,6 +38,7 @@ interface MapViewContentProps {
   onRemoveCriterion: (metricKey: string) => void;
   selectedNeighborhoodId: number | null;
   onSelectNeighborhood: (neighborhoodId: number | null) => void;
+  onMetricChange: (metricKey: string) => void;
   state: MapDataState;
   onReload: () => void;
   neighborhoodMetrics: NeighborhoodMetricsState;
@@ -51,6 +52,7 @@ export function MapViewContent({
   onRemoveCriterion,
   selectedNeighborhoodId,
   onSelectNeighborhood,
+  onMetricChange,
   state,
   onReload,
   neighborhoodMetrics,
@@ -293,6 +295,9 @@ export function MapViewContent({
       <LensPanel
         criteria={criteria}
         onRemoveCriterion={onRemoveCriterion}
+        metrics={data?.metrics ?? []}
+        selectedMetricKey={data?.metric.key ?? ""}
+        onSelectMetric={onMetricChange}
         open={showLens}
         onClose={() => setShowLens(false)}
       />

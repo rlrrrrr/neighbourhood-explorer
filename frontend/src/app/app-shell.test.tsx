@@ -9,14 +9,7 @@ import { MapView } from "../features/map-view/map-view";
 function renderShell(view: "home" | "map") {
   return renderToStaticMarkup(
     <QueryClientProvider client={createQueryClient()}>
-      <AppShell
-        view={view}
-        onNavigate={() => {}}
-        metrics={[]}
-        rankingMetricKey={null}
-        locale="fr"
-        onRankingMetricChange={() => {}}
-      >
+      <AppShell view={view} onNavigate={() => {}}>
         {view === "home" ? (
           <HomeView onNavigate={() => {}} />
         ) : (
@@ -26,6 +19,7 @@ function renderShell(view: "home" | "map") {
             selectedNeighborhoodId={null}
             onSelectNeighborhood={() => {}}
             rankingMetricKey={null}
+            onMetricChange={() => {}}
           />
         )}
       </AppShell>

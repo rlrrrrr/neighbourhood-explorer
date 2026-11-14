@@ -475,14 +475,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 34,
           "column": 34,
-          "index": 1546
+          "index": 1704
         },
         "end": {
-          "line": 32,
+          "line": 34,
           "column": 83,
-          "index": 1595
+          "index": 1753
         }
       },
       "project": "",
@@ -504,14 +504,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 33,
+          "line": 35,
           "column": 36,
-          "index": 1635
+          "index": 1793
         },
         "end": {
-          "line": 33,
+          "line": 35,
           "column": 89,
-          "index": 1688
+          "index": 1846
         }
       },
       "project": "",
@@ -533,14 +533,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 34,
+          "line": 36,
           "column": 32,
-          "index": 1724
+          "index": 1882
         },
         "end": {
-          "line": 34,
+          "line": 36,
           "column": 77,
-          "index": 1769
+          "index": 1927
         }
       },
       "project": "",
@@ -562,14 +562,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 35,
+          "line": 37,
           "column": 34,
-          "index": 1807
+          "index": 1965
         },
         "end": {
-          "line": 35,
+          "line": 37,
           "column": 83,
-          "index": 1856
+          "index": 2014
         }
       },
       "project": "",
@@ -591,14 +591,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 39,
+          "line": 41,
           "column": 31,
-          "index": 1917
+          "index": 2075
         },
         "end": {
-          "line": 39,
+          "line": 41,
           "column": 64,
-          "index": 1950
+          "index": 2108
         }
       },
       "project": "",
@@ -620,14 +620,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 40,
+          "line": 42,
           "column": 31,
-          "index": 1985
+          "index": 2143
         },
         "end": {
-          "line": 40,
+          "line": 42,
           "column": 64,
-          "index": 2018
+          "index": 2176
         }
       },
       "project": "",
@@ -649,14 +649,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 41,
+          "line": 43,
           "column": 35,
-          "index": 2057
+          "index": 2215
         },
         "end": {
-          "line": 41,
+          "line": 43,
           "column": 76,
-          "index": 2098
+          "index": 2256
         }
       },
       "project": "",
@@ -678,14 +678,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 147,
           "column": 16,
-          "index": 4427
+          "index": 4865
         },
         "end": {
-          "line": 123,
+          "line": 147,
           "column": 72,
-          "index": 4483
+          "index": 4921
         }
       },
       "project": "",
@@ -707,14 +707,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 124,
+          "line": 148,
           "column": 21,
-          "index": 4506
+          "index": 4944
         },
         "end": {
-          "line": 124,
+          "line": 148,
           "column": 94,
-          "index": 4579
+          "index": 5017
         }
       },
       "project": "",
@@ -736,14 +736,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 160,
+          "line": 184,
           "column": 16,
-          "index": 6211
+          "index": 6649
         },
         "end": {
-          "line": 160,
+          "line": 184,
           "column": 81,
-          "index": 6276
+          "index": 6714
         }
       },
       "project": "",
@@ -765,14 +765,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 165,
+          "line": 189,
           "column": 14,
-          "index": 6463
+          "index": 6901
         },
         "end": {
-          "line": 167,
+          "line": 191,
           "column": 20,
-          "index": 6638
+          "index": 7076
         }
       },
       "project": "",
@@ -786,6 +786,35 @@
     },
     {
       "hashToLeaf": {
+        "y91elk8+J3dQasQFSlbjvA==": {
+          "desc": "Legend of the metric selector group in the lens panel",
+          "text": "Métrique affichée"
+        }
+      },
+      "filename": "src/features/map-view/lens-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 196,
+          "column": 24,
+          "index": 7184
+        },
+        "end": {
+          "line": 199,
+          "column": 17,
+          "index": 7320
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the metric selector group in the lens panel",
+          "text": "Métrique affichée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "HS8ubz9BcGaKlUt8ng5+cg==": {
           "desc": "Legend of the category filter group in the lens panel",
           "text": "Catégories"
@@ -794,14 +823,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 171,
+          "line": 217,
           "column": 22,
-          "index": 6705
+          "index": 7917
         },
         "end": {
-          "line": 171,
+          "line": 217,
           "column": 96,
-          "index": 6779
+          "index": 7991
         }
       },
       "project": "",
@@ -823,14 +852,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 188,
+          "line": 234,
           "column": 16,
-          "index": 7453
+          "index": 8665
         },
         "end": {
-          "line": 188,
+          "line": 234,
           "column": 96,
-          "index": 7533
+          "index": 8745
         }
       },
       "project": "",
@@ -852,14 +881,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 192,
+          "line": 238,
           "column": 18,
-          "index": 7718
+          "index": 8930
         },
         "end": {
-          "line": 194,
+          "line": 240,
           "column": 24,
-          "index": 7883
+          "index": 9095
         }
       },
       "project": "",
@@ -881,14 +910,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 205,
+          "line": 251,
           "column": 16,
-          "index": 8306
+          "index": 9518
         },
         "end": {
-          "line": 205,
+          "line": 251,
           "column": 96,
-          "index": 8386
+          "index": 9598
         }
       },
       "project": "",
@@ -910,14 +939,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 208,
+          "line": 254,
           "column": 16,
-          "index": 8518
+          "index": 9730
         },
         "end": {
-          "line": 210,
+          "line": 256,
           "column": 22,
-          "index": 8665
+          "index": 9877
         }
       },
       "project": "",
@@ -939,14 +968,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 215,
+          "line": 261,
           "column": 22,
-          "index": 8757
+          "index": 9969
         },
         "end": {
-          "line": 215,
+          "line": 261,
           "column": 97,
-          "index": 8832
+          "index": 10044
         }
       },
       "project": "",
@@ -968,14 +997,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 230,
+          "line": 276,
           "column": 34,
-          "index": 9298
+          "index": 10510
         },
         "end": {
-          "line": 230,
+          "line": 276,
           "column": 95,
-          "index": 9359
+          "index": 10571
         }
       },
       "project": "",
@@ -997,14 +1026,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 68,
           "column": 19,
-          "index": 2332
+          "index": 2397
         },
         "end": {
-          "line": 66,
+          "line": 68,
           "column": 96,
-          "index": 2409
+          "index": 2474
         }
       },
       "project": "",
@@ -1026,14 +1055,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 67,
+          "line": 69,
           "column": 21,
-          "index": 2432
+          "index": 2497
         },
         "end": {
-          "line": 67,
+          "line": 69,
           "column": 84,
-          "index": 2495
+          "index": 2560
         }
       },
       "project": "",
@@ -1055,14 +1084,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 68,
+          "line": 70,
           "column": 23,
-          "index": 2520
+          "index": 2585
         },
         "end": {
-          "line": 68,
+          "line": 70,
           "column": 94,
-          "index": 2591
+          "index": 2656
         }
       },
       "project": "",
@@ -1084,14 +1113,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 69,
+          "line": 71,
           "column": 21,
-          "index": 2614
+          "index": 2679
         },
         "end": {
-          "line": 72,
+          "line": 74,
           "column": 3,
-          "index": 2727
+          "index": 2792
         }
       },
       "project": "",
@@ -1113,14 +1142,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 165,
+          "line": 167,
           "column": 10,
-          "index": 5696
+          "index": 5761
         },
         "end": {
-          "line": 165,
+          "line": 167,
           "column": 76,
-          "index": 5762
+          "index": 5827
         }
       },
       "project": "",
@@ -1142,14 +1171,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 173,
+          "line": 175,
           "column": 10,
-          "index": 5979
+          "index": 6044
         },
         "end": {
-          "line": 173,
+          "line": 175,
           "column": 69,
-          "index": 6038
+          "index": 6103
         }
       },
       "project": "",
@@ -1171,14 +1200,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 196,
+          "line": 198,
           "column": 14,
-          "index": 6913
+          "index": 6978
         },
         "end": {
-          "line": 196,
+          "line": 198,
           "column": 68,
-          "index": 6967
+          "index": 7032
         }
       },
       "project": "",
@@ -1200,14 +1229,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 207,
+          "line": 209,
           "column": 14,
-          "index": 7241
+          "index": 7306
         },
         "end": {
-          "line": 207,
+          "line": 209,
           "column": 89,
-          "index": 7316
+          "index": 7381
         }
       },
       "project": "",
@@ -1229,14 +1258,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 221,
+          "line": 223,
           "column": 18,
-          "index": 8092
+          "index": 8157
         },
         "end": {
-          "line": 221,
+          "line": 223,
           "column": 95,
-          "index": 8169
+          "index": 8234
         }
       },
       "project": "",
@@ -1258,14 +1287,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 241,
+          "line": 243,
           "column": 14,
-          "index": 9064
+          "index": 9129
         },
         "end": {
-          "line": 241,
+          "line": 243,
           "column": 96,
-          "index": 9146
+          "index": 9211
         }
       },
       "project": "",
@@ -1287,14 +1316,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 257,
+          "line": 259,
           "column": 16,
-          "index": 9759
+          "index": 9824
         },
         "end": {
-          "line": 259,
+          "line": 261,
           "column": 22,
-          "index": 9928
+          "index": 9993
         }
       },
       "project": "",
@@ -1316,14 +1345,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 264,
+          "line": 266,
           "column": 16,
-          "index": 10147
+          "index": 10212
         },
         "end": {
-          "line": 266,
+          "line": 268,
           "column": 22,
-          "index": 10273
+          "index": 10338
         }
       },
       "project": "",
@@ -1345,14 +1374,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 273,
+          "line": 275,
           "column": 16,
-          "index": 10623
+          "index": 10688
         },
         "end": {
-          "line": 273,
+          "line": 275,
           "column": 90,
-          "index": 10697
+          "index": 10762
         }
       },
       "project": "",
@@ -1374,14 +1403,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 277,
+          "line": 279,
           "column": 16,
-          "index": 10821
+          "index": 10886
         },
         "end": {
-          "line": 277,
+          "line": 279,
           "column": 89,
-          "index": 10894
+          "index": 10959
         }
       },
       "project": "",
@@ -1403,14 +1432,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 309,
+          "line": 314,
           "column": 12,
-          "index": 12152
+          "index": 12346
         },
         "end": {
-          "line": 309,
+          "line": 314,
           "column": 69,
-          "index": 12209
+          "index": 12403
         }
       },
       "project": "",
@@ -1432,14 +1461,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 315,
+          "line": 320,
           "column": 12,
-          "index": 12627
+          "index": 12821
         },
         "end": {
-          "line": 315,
+          "line": 320,
           "column": 69,
-          "index": 12684
+          "index": 12878
         }
       },
       "project": "",
@@ -1461,14 +1490,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 319,
+          "line": 324,
           "column": 12,
-          "index": 12857
+          "index": 13051
         },
         "end": {
-          "line": 319,
+          "line": 324,
           "column": 87,
-          "index": 12932
+          "index": 13126
         }
       },
       "project": "",
@@ -2681,12 +2710,12 @@
         "start": {
           "line": 91,
           "column": 10,
-          "index": 2918
+          "index": 2925
         },
         "end": {
           "line": 93,
           "column": 16,
-          "index": 3043
+          "index": 3050
         }
       },
       "project": "",
@@ -2710,12 +2739,12 @@
         "start": {
           "line": 95,
           "column": 10,
-          "index": 3068
+          "index": 3075
         },
         "end": {
           "line": 97,
           "column": 16,
-          "index": 3194
+          "index": 3201
         }
       },
       "project": "",
@@ -2739,12 +2768,12 @@
         "start": {
           "line": 101,
           "column": 8,
-          "index": 3291
+          "index": 3298
         },
         "end": {
           "line": 104,
           "column": 14,
-          "index": 3526
+          "index": 3533
         }
       },
       "project": "",
@@ -2768,12 +2797,12 @@
         "start": {
           "line": 110,
           "column": 12,
-          "index": 3758
+          "index": 3765
         },
         "end": {
           "line": 112,
           "column": 18,
-          "index": 3881
+          "index": 3888
         }
       },
       "project": "",
@@ -2797,12 +2826,12 @@
         "start": {
           "line": 126,
           "column": 10,
-          "index": 4256
+          "index": 4263
         },
         "end": {
           "line": 126,
           "column": 95,
-          "index": 4341
+          "index": 4348
         }
       },
       "project": "",
@@ -2826,12 +2855,12 @@
         "start": {
           "line": 151,
           "column": 8,
-          "index": 5070
+          "index": 5077
         },
         "end": {
           "line": 153,
           "column": 14,
-          "index": 5190
+          "index": 5197
         }
       },
       "project": "",
@@ -2855,12 +2884,12 @@
         "start": {
           "line": 156,
           "column": 8,
-          "index": 5265
+          "index": 5272
         },
         "end": {
           "line": 156,
           "column": 64,
-          "index": 5321
+          "index": 5328
         }
       },
       "project": "",
@@ -2884,12 +2913,12 @@
         "start": {
           "line": 159,
           "column": 8,
-          "index": 5440
+          "index": 5447
         },
         "end": {
           "line": 159,
           "column": 74,
-          "index": 5506
+          "index": 5513
         }
       },
       "project": "",
@@ -2913,12 +2942,12 @@
         "start": {
           "line": 205,
           "column": 24,
-          "index": 6788
+          "index": 6802
         },
         "end": {
           "line": 205,
           "column": 81,
-          "index": 6845
+          "index": 6859
         }
       },
       "project": "",
@@ -2940,14 +2969,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 242,
+          "line": 243,
           "column": 14,
-          "index": 8324
+          "index": 8443
         },
         "end": {
-          "line": 242,
+          "line": 243,
           "column": 80,
-          "index": 8390
+          "index": 8509
         }
       },
       "project": "",
@@ -2969,14 +2998,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 253,
+          "line": 254,
           "column": 14,
-          "index": 8706
+          "index": 8825
         },
         "end": {
-          "line": 253,
+          "line": 254,
           "column": 93,
-          "index": 8785
+          "index": 8904
         }
       },
       "project": "",
@@ -2998,14 +3027,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 306,
+          "line": 309,
           "column": 10,
-          "index": 10651
+          "index": 10805
         },
         "end": {
-          "line": 308,
+          "line": 311,
           "column": 16,
-          "index": 10790
+          "index": 10944
         }
       },
       "project": "",
@@ -3027,14 +3056,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 316,
+          "line": 319,
           "column": 12,
-          "index": 11180
+          "index": 11334
         },
         "end": {
-          "line": 318,
+          "line": 321,
           "column": 18,
-          "index": 11305
+          "index": 11459
         }
       },
       "project": "",
@@ -3056,14 +3085,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 324,
+          "line": 327,
           "column": 25,
-          "index": 11499
+          "index": 11653
         },
         "end": {
-          "line": 327,
+          "line": 330,
           "column": 13,
-          "index": 11631
+          "index": 11785
         }
       },
       "project": "",
@@ -3085,14 +3114,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 332,
+          "line": 335,
           "column": 10,
-          "index": 11871
+          "index": 12025
         },
         "end": {
-          "line": 334,
+          "line": 337,
           "column": 16,
-          "index": 12000
+          "index": 12154
         }
       },
       "project": "",
@@ -3114,14 +3143,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 345,
+          "line": 348,
           "column": 14,
-          "index": 12379
+          "index": 12533
         },
         "end": {
-          "line": 348,
+          "line": 351,
           "column": 20,
-          "index": 12577
+          "index": 12731
         }
       },
       "project": "",
@@ -3143,14 +3172,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 359,
+          "line": 362,
           "column": 18,
-          "index": 12989
+          "index": 13143
         },
         "end": {
-          "line": 359,
+          "line": 362,
           "column": 84,
-          "index": 13055
+          "index": 13209
         }
       },
       "project": "",
@@ -3172,14 +3201,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 422,
+          "line": 425,
           "column": 28,
-          "index": 16062
+          "index": 16216
         },
         "end": {
-          "line": 424,
+          "line": 427,
           "column": 34,
-          "index": 16238
+          "index": 16392
         }
       },
       "project": "",
@@ -3201,14 +3230,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 494,
+          "line": 497,
           "column": 10,
-          "index": 18860
+          "index": 19014
         },
         "end": {
-          "line": 496,
+          "line": 499,
           "column": 16,
-          "index": 19024
+          "index": 19178
         }
       },
       "project": "",
@@ -3230,14 +3259,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 502,
+          "line": 505,
           "column": 22,
-          "index": 19109
+          "index": 19263
         },
         "end": {
-          "line": 505,
+          "line": 508,
           "column": 11,
-          "index": 19237
+          "index": 19391
         }
       },
       "project": "",
@@ -3259,14 +3288,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 509,
+          "line": 512,
           "column": 12,
-          "index": 19410
+          "index": 19564
         },
         "end": {
-          "line": 509,
+          "line": 512,
           "column": 89,
-          "index": 19487
+          "index": 19641
         }
       },
       "project": "",
@@ -3288,14 +3317,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 522,
+          "line": 525,
           "column": 14,
-          "index": 20037
+          "index": 20191
         },
         "end": {
-          "line": 522,
+          "line": 525,
           "column": 92,
-          "index": 20115
+          "index": 20269
         }
       },
       "project": "",
@@ -3317,14 +3346,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 530,
+          "line": 533,
           "column": 14,
-          "index": 20336
+          "index": 20490
         },
         "end": {
-          "line": 530,
+          "line": 533,
           "column": 86,
-          "index": 20408
+          "index": 20562
         }
       },
       "project": "",
@@ -3346,14 +3375,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 548,
+          "line": 551,
           "column": 10,
-          "index": 21092
+          "index": 21246
         },
         "end": {
-          "line": 550,
+          "line": 553,
           "column": 16,
-          "index": 21210
+          "index": 21364
         }
       },
       "project": "",
@@ -3375,14 +3404,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 563,
+          "line": 566,
           "column": 16,
-          "index": 21818
+          "index": 21972
         },
         "end": {
-          "line": 563,
+          "line": 566,
           "column": 90,
-          "index": 21892
+          "index": 22046
         }
       },
       "project": "",
@@ -3404,14 +3433,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 565,
+          "line": 568,
           "column": 16,
-          "index": 21964
+          "index": 22118
         },
         "end": {
-          "line": 565,
+          "line": 568,
           "column": 89,
-          "index": 22037
+          "index": 22191
         }
       },
       "project": "",
@@ -3433,14 +3462,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 602,
+          "line": 605,
           "column": 10,
-          "index": 22829
+          "index": 22983
         },
         "end": {
-          "line": 602,
+          "line": 605,
           "column": 93,
-          "index": 22912
+          "index": 23066
         }
       },
       "project": "",
@@ -5898,14 +5927,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 28,
+          "line": 22,
           "column": 13,
-          "index": 1018
+          "index": 737
         },
         "end": {
-          "line": 28,
+          "line": 22,
           "column": 62,
-          "index": 1067
+          "index": 786
         }
       },
       "project": "",
@@ -5927,14 +5956,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 30,
+          "line": 24,
           "column": 13,
-          "index": 1098
+          "index": 817
         },
         "end": {
-          "line": 30,
+          "line": 24,
           "column": 62,
-          "index": 1147
+          "index": 866
         }
       },
       "project": "",
@@ -5956,14 +5985,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 26,
           "column": 13,
-          "index": 1179
+          "index": 898
         },
         "end": {
-          "line": 32,
+          "line": 26,
           "column": 65,
-          "index": 1231
+          "index": 950
         }
       },
       "project": "",
@@ -5985,14 +6014,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 60,
+          "line": 46,
           "column": 12,
-          "index": 2176
+          "index": 1822
         },
         "end": {
-          "line": 60,
+          "line": 46,
           "column": 85,
-          "index": 2249
+          "index": 1895
         }
       },
       "project": "",
@@ -6014,14 +6043,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 63,
+          "line": 49,
           "column": 24,
-          "index": 2309
+          "index": 1955
         },
         "end": {
-          "line": 63,
+          "line": 49,
           "column": 99,
-          "index": 2384
+          "index": 2030
         }
       },
       "project": "",
@@ -6064,64 +6093,6 @@
     },
     {
       "hashToLeaf": {
-        "YrKIf6zUZoJzS0KBSh4Dzg==": {
-          "desc": "Accessible label of the shared metric filter in the header",
-          "text": "Métrique de classement"
-        }
-      },
-      "filename": "src/app/metric-filter.tsx",
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 8,
-          "index": 588
-        },
-        "end": {
-          "line": 18,
-          "column": 14,
-          "index": 707
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Accessible label of the shared metric filter in the header",
-          "text": "Métrique de classement"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "S1IZ/evroslimYfIV+8yAg==": {
-          "desc": "Option of the shared metric filter that disables metric ranking",
-          "text": "Toutes les métriques"
-        }
-      },
-      "filename": "src/app/metric-filter.tsx",
-      "loc": {
-        "start": {
-          "line": 27,
-          "column": 10,
-          "index": 1277
-        },
-        "end": {
-          "line": 29,
-          "column": 16,
-          "index": 1403
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Option of the shared metric filter that disables metric ranking",
-          "text": "Toutes les métriques"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "25ghNilGi+yElBjVhIwWAw==": {
           "desc": "Title of the page shown when the URL matches no view",
           "text": "Cette page n'existe pas"
@@ -6130,14 +6101,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 146,
+          "line": 132,
           "column": 27,
-          "index": 4219
+          "index": 3766
         },
         "end": {
-          "line": 149,
+          "line": 135,
           "column": 3,
-          "index": 4318
+          "index": 3865
         }
       },
       "project": "",
@@ -6159,14 +6130,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 150,
+          "line": 136,
           "column": 26,
-          "index": 4346
+          "index": 3893
         },
         "end": {
-          "line": 153,
+          "line": 139,
           "column": 3,
-          "index": 4460
+          "index": 4007
         }
       },
       "project": "",

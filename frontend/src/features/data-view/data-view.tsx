@@ -10,7 +10,7 @@ interface DataViewProps {
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
   sort: TableSort | null;
-  onSortChange: (sort: TableSort) => void;
+  onSortChange: (sort: TableSort | null) => void;
   onShowOnMap: (neighborhoodId: number) => void;
 }
 

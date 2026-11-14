@@ -162,6 +162,7 @@ function renderContent({
       onRemoveCriterion={() => {}}
       selectedNeighborhoodId={selectedNeighborhoodId}
       onSelectNeighborhood={() => {}}
+      onMetricChange={() => {}}
       state={state}
       onReload={() => {}}
       neighborhoodMetrics={metrics}

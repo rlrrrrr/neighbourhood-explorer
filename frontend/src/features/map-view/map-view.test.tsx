@@ -14,6 +14,7 @@ function renderMap({ selectedNeighborhoodId }: { selectedNeighborhoodId: number 
         selectedNeighborhoodId={selectedNeighborhoodId}
         onSelectNeighborhood={() => {}}
         rankingMetricKey={null}
+        onMetricChange={() => {}}
       />
     </QueryClientProvider>,
   );
