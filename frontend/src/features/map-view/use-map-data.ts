@@ -20,6 +20,7 @@ export function useMapData({
   const query = useQuery({
     queryKey: ["map-data", cityId, metricKey],
     queryFn: ({ signal }) => fetchMapData({ cityId, metricKey, fallbackMetricKey, signal }),
+    placeholderData: (previousData) => previousData,
   });
 
   const { refetch } = query;

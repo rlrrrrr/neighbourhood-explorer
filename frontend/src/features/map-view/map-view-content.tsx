@@ -318,7 +318,10 @@ export function MapViewContent({
 
       <div className="pointer-events-none absolute bottom-0 left-0 z-10 flex max-w-[min(100%,28rem)] flex-col gap-2 p-3 sm:p-4">
         {data !== null ? (
-          <p className="material-panel pointer-events-auto rounded-2xl px-3 py-1.5 text-xs text-text-secondary">
+          <p
+            key={data.metric.key}
+            className="metric-caption-enter material-panel pointer-events-auto rounded-2xl px-3 py-1.5 text-xs text-text-secondary"
+          >
             {metricName} · {data.metric.source.organization} ·{" "}
             {shortLicense(data.metric.source.license)} · {data.metric.observedAt ?? "—"}
           </p>
