@@ -314,7 +314,10 @@ const Map = forwardRef<MapRef, MapProps>(function Map(
   const isControlled = viewport !== undefined && onViewportChange !== undefined;
 
   const onViewportChangeRef = useRef(onViewportChange);
-  onViewportChangeRef.current = onViewportChange;
+
+  useEffect(() => {
+    onViewportChangeRef.current = onViewportChange;
+  }, [onViewportChange]);
 
   const stableStyles = useStableValue(styles);
   const isGlobe = projection?.type === "globe";
@@ -339,7 +342,10 @@ const Map = forwardRef<MapRef, MapProps>(function Map(
   }, [stableStyles, blank, isGlobe]);
 
   const initOptionsRef = useRef({ props, viewport, resolvedTheme, mapStyles });
-  initOptionsRef.current = { props, viewport, resolvedTheme, mapStyles };
+
+  useEffect(() => {
+    initOptionsRef.current = { props, viewport, resolvedTheme, mapStyles };
+  }, [props, viewport, resolvedTheme, mapStyles]);
 
   // Expose the map instance to the parent component
   useImperativeHandle(ref, () => mapInstance as MapLibreGL.Map, [mapInstance]);
@@ -554,14 +560,16 @@ function MapMarker({
     onDragEnd,
   });
 
-  callbacksRef.current = {
-    onClick,
-    onMouseEnter,
-    onMouseLeave,
-    onDragStart,
-    onDrag,
-    onDragEnd,
-  };
+  useEffect(() => {
+    callbacksRef.current = {
+      onClick,
+      onMouseEnter,
+      onMouseLeave,
+      onDragStart,
+      onDrag,
+      onDragEnd,
+    };
+  }, [onClick, onMouseEnter, onMouseLeave, onDragStart, onDrag, onDragEnd]);
 
   const marker = useMemo(() => {
     const markerInstance = new Marker({
@@ -1101,7 +1109,11 @@ function MapPopup({
   const { map } = useMap();
   const { Popup } = useMapLib();
   const onCloseRef = useRef(onClose);
-  onCloseRef.current = onClose;
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+  }, [onClose]);
+
   const container = useMemo(() => document.createElement("div"), []);
   const { offset, maxWidth } = popupOptions;
 
@@ -1889,7 +1901,10 @@ function MapGeoJSON<P extends GeoJSON.GeoJsonProperties = GeoJSON.GeoJsonPropert
   );
 
   const latestRef = useRef({ onClick, onHover });
-  latestRef.current = { onClick, onHover };
+
+  useEffect(() => {
+    latestRef.current = { onClick, onHover };
+  }, [onClick, onHover]);
 
   // Add source on mount.
   useEffect(() => {
@@ -2240,7 +2255,10 @@ function MapArc<T extends MapArcDatum = MapArcDatum>({
   );
 
   const latestRef = useRef({ data, onClick, onHover });
-  latestRef.current = { data, onClick, onHover };
+
+  useEffect(() => {
+    latestRef.current = { data, onClick, onHover };
+  }, [data, onClick, onHover]);
 
   // Add source and layers on mount.
   useEffect(() => {
