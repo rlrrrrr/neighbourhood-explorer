@@ -48,7 +48,7 @@ export function DataTableView({
   onShowOnMap,
   onReload,
 }: DataTableViewProps) {
-  const { containerRef, hasMore, overflows } = useScrollOverflowHint({ axis: "horizontal" });
+  const { containerRef, hasMore } = useScrollOverflowHint({ axis: "horizontal" });
   const data = state.status === "ready" ? state.data : null;
 
   const metricNames = new Map(
@@ -110,7 +110,6 @@ export function DataTableView({
           sort={sort}
           locale={locale}
           unknownMetricKeys={unknownMetricKeys}
-          overflows={overflows}
           containerRef={containerRef}
           hasMore={hasMore}
           onSortChange={onSortChange}
@@ -144,7 +143,6 @@ function DataTableContent({
   sort,
   locale,
   unknownMetricKeys,
-  overflows,
   containerRef,
   hasMore,
   onSortChange,
@@ -154,7 +152,6 @@ function DataTableContent({
   sort: TableSort | null;
   locale: string;
   unknownMetricKeys: readonly string[];
-  overflows: boolean;
   containerRef: (element: HTMLElement | null) => void;
   hasMore: boolean;
   onSortChange: (sort: TableSort | null) => void;
@@ -174,6 +171,7 @@ function DataTableContent({
     data,
     locale,
     sortedMetricKey: sortedMetric?.key,
+    highlightsMerit,
     onShowOnMap,
   });
 
@@ -257,10 +255,7 @@ function DataTableContent({
               <TableRow>
                 <TableHead
                   scope="col"
-                  className={cn(
-                    "sticky start-0 z-10 w-12 bg-bg text-center text-sm text-text-secondary",
-                    overflows && "border-e",
-                  )}
+                  className="sticky start-0 z-10 w-12 bg-bg text-center text-xs text-text-secondary"
                 >
                   <fbt desc="Header of the ranking column in the data table">#</fbt>
                 </TableHead>
@@ -280,7 +275,7 @@ function DataTableContent({
                       <TableHead
                         key={header.id}
                         scope="col"
-                        className="sticky start-12 z-10 border-e border-border bg-bg text-start text-sm text-text"
+                        className="sticky start-12 z-10 border-e border-border/50 bg-bg text-start text-sm font-medium text-text"
                       >
                         <table.FlexRender header={header} />
                       </TableHead>
@@ -304,19 +299,21 @@ function DataTableContent({
                       key={header.id}
                       scope="col"
                       aria-sort={ariaSort}
-                      className={cn(highlighted && "bg-highlight/10")}
+                      className={cn("text-end", highlighted && "bg-action/[0.04]")}
                     >
                       <button
                         type="button"
                         onClick={column.getToggleSortingHandler()}
-                        className={cn(
-                          "flex min-h-11 w-full cursor-pointer flex-col items-end justify-end gap-0.5 px-1 py-1.5 text-end transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0",
-                          highlighted
-                            ? "font-semibold text-text"
-                            : "font-medium text-text-secondary hover:text-text",
-                        )}
+                        className="-mx-1 -my-0.5 inline-flex w-full cursor-pointer flex-col items-end gap-0.5 rounded px-1 py-0.5 text-end transition-colors duration-150 ease-out hover:bg-surface focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action"
                       >
-                        <span className="flex items-center gap-1">
+                        <span
+                          className={cn(
+                            "flex items-center gap-1",
+                            highlighted
+                              ? "font-semibold text-text"
+                              : "font-medium text-text-secondary",
+                          )}
+                        >
                           <table.FlexRender header={header} />
                           <SortIcon
                             direction={sorted === "asc" || sorted === "desc" ? sorted : null}
@@ -341,12 +338,7 @@ function DataTableContent({
             <TableBody>
               {pageRows.map((row, index) => (
                 <TableRow key={row.id} className="group hover:bg-surface">
-                  <TableCell
-                    className={cn(
-                      "sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface",
-                      overflows && "border-e",
-                    )}
-                  >
+                  <TableCell className="sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface">
                     <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
                   </TableCell>
                   {row.getAllCells().map((cell) => {
@@ -358,7 +350,7 @@ function DataTableContent({
                       return (
                         <TableRowHeader
                           key={cell.id}
-                          className="sticky start-12 z-10 border-e border-border bg-bg text-sm group-hover:bg-surface"
+                          className="sticky start-12 z-10 border-e border-border/50 bg-bg text-sm font-medium text-text group-hover:bg-surface"
                         >
                           {content}
                         </TableRowHeader>
@@ -370,7 +362,7 @@ function DataTableContent({
                         key={cell.id}
                         className={cn(
                           "text-end",
-                          isMetric && sortedMetric?.key === cell.column.id && "bg-highlight/10",
+                          isMetric && sortedMetric?.key === cell.column.id && "bg-action/[0.04]",
                         )}
                       >
                         {content}
@@ -429,8 +421,8 @@ function RankBadge({ rank, highlightMerit }: { rank: number; highlightMerit: boo
       data-merit="true"
       className={cn(
         "inline-flex size-6 items-center justify-center rounded-full font-mono text-xs font-semibold tabular-nums",
-        rank === 1 && "bg-action text-action-text",
-        rank === 2 && "bg-highlight text-highlight-text",
+        rank === 1 && "bg-highlight text-highlight-text",
+        rank === 2 && "bg-highlight/60 text-text",
         rank === 3 && "bg-surface text-text ring-1 ring-border ring-inset",
       )}
     >

@@ -22,7 +22,10 @@ export function HeaderMenu({ id, menuLabel, trigger, panelClassName, children }:
     }
 
     function handlePointerDown(event: PointerEvent): void {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target instanceof Node ? event.target : null)
+      ) {
         setOpen(false);
       }
     }

@@ -193,7 +193,7 @@ describe("data view", () => {
     expect(body).toMatch(/data-rank="1" data-merit="true"/);
     expect(body).toMatch(/data-rank="2" data-merit="true"/);
     expect(body).toMatch(/data-rank="3" data-merit="true"/);
-    expect(body).toContain("bg-highlight/10");
+    expect(body).toContain("bg-action/[0.04]");
   });
 
   it("keeps the rank numerals plain when the order does not put the best value first", () => {
@@ -201,7 +201,23 @@ describe("data view", () => {
     const body = bodyOf(markup);
 
     expect(body).not.toContain('data-merit="true"');
-    expect(body).toContain("bg-highlight/10");
+    expect(body).toContain("bg-action/[0.04]");
+  });
+
+  it("badges only the three best values of the sorted column", () => {
+    const manyRows = Array.from({ length: 6 }, (_, index) => ({
+      neighborhoodId: index + 1,
+      name: `Quartier ${index + 1}`,
+      districtName: "Kadıköy",
+      values: { greenery: { raw: index * 10, qualityFlag: "ok" as const } },
+    }));
+
+    const markup = renderTable({
+      state: { status: "ready", data: { ...DATA, rows: manyRows } },
+      sort: { key: "greenery", direction: "descending" },
+    });
+
+    expect(markup.match(/bg-action px-2/g)).toHaveLength(3);
   });
 
   it("ranks by the column chosen in the URL and keeps missing values last", () => {
