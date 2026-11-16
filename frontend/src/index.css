@@ -203,6 +203,24 @@ body::before {
   }
 }
 
+/* Changement de métrique dans la lentille : la légende remonte avec un fondu court,
+   sans déplacement — elle reste ancrée au bas de la carte. */
+.metric-caption-enter {
+  transition: opacity 200ms var(--ease-out);
+}
+
+@starting-style {
+  .metric-caption-enter {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .metric-caption-enter {
+    transition: opacity 150ms var(--ease-out);
+  }
+}
+
 /* Pagination du tableau : le fondu est piloté par l'API View Transition de React
    (frontière « table-update »), pas par une animation des lignes. */
 ::view-transition-old(.table-update),
