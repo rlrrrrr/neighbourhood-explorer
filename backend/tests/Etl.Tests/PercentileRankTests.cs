@@ -49,6 +49,38 @@ public class PercentileRankTests
     }
 
     [Fact]
+    public void Normalize_pins_zeros_and_ranks_positive_values_among_themselves()
+    {
+        var normalized = PercentileRank.Normalize([0.0, 0.0, 0.0, 0.1, 0.2, 1.0]);
+
+        Assert.Equal([0.0, 0.0, 0.0, 1.0 / 3.0, 2.0 / 3.0, 1.0], normalized);
+    }
+
+    [Fact]
+    public void Normalize_gives_the_only_positive_value_the_top_of_the_scale()
+    {
+        var normalized = PercentileRank.Normalize([0.0, 0.0, 0.5]);
+
+        Assert.Equal([0.0, 0.0, 1.0], normalized);
+    }
+
+    [Fact]
+    public void Normalize_shares_the_rank_of_tied_positive_values()
+    {
+        var normalized = PercentileRank.Normalize([0.0, 0.3, 0.3, 0.6]);
+
+        Assert.Equal([0.0, 1.0 / 3.0, 1.0 / 3.0, 1.0], normalized);
+    }
+
+    [Fact]
+    public void Normalize_keeps_the_percent_rank_formula_when_no_value_is_zero()
+    {
+        var normalized = PercentileRank.Normalize([0.2, 0.2, 0.4]);
+
+        Assert.Equal([0.0, 0.0, 1.0], normalized);
+    }
+
+    [Fact]
     public void Normalize_is_bounded_and_order_preserving_for_generated_values()
     {
         var random = new Random(20261111);

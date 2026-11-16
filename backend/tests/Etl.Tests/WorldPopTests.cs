@@ -68,7 +68,7 @@ public sealed class WorldPopTests : IAsyncLifetime
     }
 
     [Fact]
-    public async Task PercentileNormalization_matches_postgres_percent_rank()
+    public async Task PercentileNormalization_matches_postgres_percent_rank_without_zeros()
     {
         var values = new[] { 10.0, 10.0, 20.0, 40.0, 80.0 };
         var sortedValues = values.OrderBy(value => value).ToArray();
