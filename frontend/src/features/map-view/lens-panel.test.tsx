@@ -96,16 +96,16 @@ describe("lens panel", () => {
     expect(markup).toContain("Métrique affichée");
     expect(markup).toContain("Catégories");
     expect(markup).toContain("Sélection");
-    expect(markup).toContain("Fond de carte");
-    expect(markup).toContain("Couches");
     expect(markup).toContain("Fermer le panneau de la lentille");
   });
 
-  it("selects Positron as the default basemap style", () => {
+  it("offers the categories published by the API, translated and unchecked", () => {
     const markup = renderLens();
 
-    expect(markup).toMatch(/<input[^>]*type="radio"[^>]*name="lens-basemap"[^>]*checked/);
-    expect(markup.match(/type="radio"/g)).toHaveLength(5);
+    expect(markup).toContain("Population");
+    expect(markup).toContain("Vie locale");
+    expect(markup.match(/type="checkbox"/g)).toHaveLength(2);
+    expect(markup).not.toMatch(/type="checkbox"[^>]*checked/);
   });
 
   it("checks the metric currently driving the map", () => {
@@ -116,17 +116,10 @@ describe("lens panel", () => {
     expect(markup).toContain("Densité de population");
   });
 
-  it("renders categories and layers as unchecked by default", () => {
+  it("keeps the metric controls reachable by keyboard under a styled indicator", () => {
     const markup = renderLens();
 
-    expect(markup.match(/type="checkbox"/g)).toHaveLength(7);
-    expect(markup).not.toMatch(/type="checkbox"[^>]*checked/);
-  });
-
-  it("keeps the filter controls reachable by keyboard under a styled indicator", () => {
-    const markup = renderLens();
-
-    expect(markup.match(/peer sr-only/g)).toHaveLength(12);
+    expect(markup.match(/peer sr-only/g)).toHaveLength(4);
     expect(markup).toContain("has-[:checked]:bg-highlight");
     expect(markup).toContain("peer-checked:opacity-100");
   });
