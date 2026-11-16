@@ -203,6 +203,21 @@ body::before {
   }
 }
 
+/* Pagination du tableau : le fondu est piloté par l'API View Transition de React
+   (frontière « table-update »), pas par une animation des lignes. */
+::view-transition-old(.table-update),
+::view-transition-new(.table-update) {
+  animation-duration: 160ms;
+  animation-timing-function: var(--ease-out);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(.table-update),
+  ::view-transition-new(.table-update) {
+    animation: none;
+  }
+}
+
 .skeleton {
   background-color: var(--surface);
   background-image: linear-gradient(
