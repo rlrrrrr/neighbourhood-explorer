@@ -132,6 +132,7 @@ function renderTable({
 function bodyOf(markup: string): string {
   const start = markup.indexOf("<tbody");
   const end = markup.indexOf("</tbody>");
+
   return start === -1 || end === -1 ? "" : markup.slice(start, end);
 }
 
@@ -207,6 +208,7 @@ describe("data view", () => {
     const markup = renderTable({
       sort: { key: "greenery", direction: "descending" },
     });
+
     const body = bodyOf(markup);
 
     expect(body.indexOf("Caferağa")).toBeLessThan(body.indexOf("Cihangir"));
@@ -274,6 +276,7 @@ describe("data view", () => {
       districtName: "Kadıköy",
       values: { greenery: { raw: index, qualityFlag: "ok" as const } },
     }));
+
     const markup = renderTable({ state: { status: "ready", data: { ...DATA, rows: manyRows } } });
 
     expect(markup.match(/data-rank="/g)).toHaveLength(50);

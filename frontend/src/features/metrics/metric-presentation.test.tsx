@@ -11,6 +11,7 @@ async function renderUnit({ unit, clientLocale }: { unit: string; clientLocale: 
     sourceLocale: SOURCE_LANGUAGE,
     loadLocale,
   });
+
   await preloadLocale();
 
   function UnitLabel() {

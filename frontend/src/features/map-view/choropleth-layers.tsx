@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { MapGeoJSON, useMap } from "../../components/ui/map";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
 import {
@@ -16,17 +16,17 @@ import {
   type ChoroplethColors,
 } from "./choropleth-style";
 
-type InsertionPoint = { ready: boolean; beforeId?: string };
-
 function createNoDataPattern(backgroundColor: string, stripeColor: string): ImageData | null {
   const size = 8;
   const canvas = document.createElement("canvas");
   canvas.width = size;
   canvas.height = size;
   const context = canvas.getContext("2d");
+
   if (context === null) {
     return null;
   }
+
   context.fillStyle = backgroundColor;
   context.fillRect(0, 0, size, size);
   context.globalAlpha = 0.35;
@@ -36,6 +36,7 @@ function createNoDataPattern(backgroundColor: string, stripeColor: string): Imag
   context.moveTo(-1, size + 1);
   context.lineTo(size + 1, -1);
   context.stroke();
+
   return context.getImageData(0, 0, size, size);
 }
 
@@ -51,21 +52,23 @@ export function ChoroplethLayers({
   onSelectNeighborhood: (neighborhoodId: number) => void;
 }) {
   const { map, isLoaded } = useMap();
-  const [insertionPoint, setInsertionPoint] = useState<InsertionPoint>({ ready: false });
+  const isReady = map !== null && isLoaded;
+  const [beforeId, setBeforeId] = useState<string | undefined>(undefined);
   const fittedSelectionRef = useRef<string | null>(null);
   const hasCompletedInitialFitRef = useRef(false);
+
   const { withValue, withoutValue } = useMemo(
     () => splitFeaturesByMetricValue(collection),
     [collection],
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!map || !isLoaded) {
-      setInsertionPoint({ ready: false });
       return;
     }
 
     const hatch = createNoDataPattern(colors.noData, colors.text);
+
     if (hatch !== null) {
       try {
         if (map.hasImage(NO_DATA_PATTERN_IMAGE_ID)) {
@@ -79,21 +82,28 @@ export function ChoroplethLayers({
     }
 
     const firstSymbolLayer = map.getStyle().layers.find((layer) => layer.type === "symbol");
-    setInsertionPoint({ ready: true, beforeId: firstSymbolLayer?.id });
+    // MapLibre style layers only exist after the map loads, so this read stays in the effect.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setBeforeId(firstSymbolLayer?.id);
   }, [map, isLoaded, colors.noData, colors.text]);
 
   const hasSelection = selectedCollection !== null && selectedCollection.features.length > 0;
+
   const selectionKey = hasSelection
     ? `selection:${selectedCollection.features.map((feature) => feature.properties.id).join(",")}`
     : "all";
+
   useEffect(() => {
     if (!map || !isLoaded || fittedSelectionRef.current === selectionKey) {
       return;
     }
+
     const bounds = collectionBounds(hasSelection ? selectedCollection : collection);
+
     if (bounds === null) {
       return;
     }
+
     const isInitialFit = !hasCompletedInitialFitRef.current;
     const animateCamera = hasSelection || !isInitialFit;
     fittedSelectionRef.current = selectionKey;
@@ -105,7 +115,7 @@ export function ChoroplethLayers({
     });
   }, [map, isLoaded, collection, selectedCollection, hasSelection, selectionKey]);
 
-  if (!insertionPoint.ready) {
+  if (!isReady) {
     return null;
   }
 
@@ -115,7 +125,7 @@ export function ChoroplethLayers({
         id="population-density"
         data={withValue}
         promoteId="id"
-        beforeId={insertionPoint.beforeId}
+        beforeId={beforeId}
         fillPaint={buildFillPaint(colors)}
         linePaint={buildBorderPaint(colors)}
         interactive
@@ -126,7 +136,7 @@ export function ChoroplethLayers({
           id="population-density-no-data"
           data={withoutValue}
           promoteId="id"
-          beforeId={insertionPoint.beforeId}
+          beforeId={beforeId}
           fillPaint={buildNoDataFillPaint()}
           linePaint={buildBorderPaint(colors)}
           interactive
@@ -137,7 +147,7 @@ export function ChoroplethLayers({
         <MapGeoJSON<ChoroplethProperties>
           id="selected-neighborhood"
           data={selectedCollection}
-          beforeId={insertionPoint.beforeId}
+          beforeId={beforeId}
           fillPaint={false}
           linePaint={buildSelectionPaint(colors)}
         />

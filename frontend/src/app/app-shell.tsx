@@ -29,6 +29,7 @@ function navigationLabel(view: NavigationView): TranslatedString {
 
 export function AppShell({ view, onNavigate, children }: AppShellProps) {
   const [theme, setTheme] = useState<ThemeName>(readCurrentTheme);
+
   const changeTheme = (nextTheme: ThemeName) => {
     applyTheme(nextTheme);
     setTheme(nextTheme);

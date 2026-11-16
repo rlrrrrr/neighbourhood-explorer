@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { isDarkTheme } from "../../app/theme";
 import type { Criteria } from "../criteria/criteria";
 import { readChoroplethColors, type ChoroplethColors } from "./choropleth-style";
@@ -28,17 +28,22 @@ export function MapView({
   onMetricChange,
 }: MapViewProps) {
   const themeName = useDocumentTheme();
+
   const { state, reload } = useMapData({
     cityId: ISTANBUL_CITY_ID,
     metricKey: rankingMetricKey ?? POPULATION_DENSITY_METRIC_KEY,
     fallbackMetricKey: POPULATION_DENSITY_METRIC_KEY,
   });
+
   const { state: neighborhoodMetrics, reload: reloadNeighborhoodMetrics } = useNeighborhoodMetrics({
     neighborhoodId: selectedNeighborhoodId,
   });
+
   const [colors, setColors] = useState<ChoroplethColors | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+    // getComputedStyle only reflects the new theme after React commits it to the DOM.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setColors(readChoroplethColors(document.documentElement));
   }, [themeName]);
 

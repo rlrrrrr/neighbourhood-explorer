@@ -1,12 +1,19 @@
 import type { components } from "../../generated/api";
 
 export type MetricDefinition = components["schemas"]["MetricDefinition"];
+
 export type MetricValue = components["schemas"]["MetricValue"];
+
 export type MetricValues = components["schemas"]["MetricValues"];
+
 export type MetricsResponse = components["schemas"]["MetricsResponse"];
+
 export type NeighborhoodCollection = components["schemas"]["NeighborhoodFeatureCollection"];
+
 export type NeighborhoodMetrics = components["schemas"]["NeighborhoodMetrics"];
+
 export type NeighborhoodMetric = components["schemas"]["NeighborhoodMetric"];
+
 export type ProblemDetails = components["schemas"]["ProblemDetails"];
 
 const QUALITY_FLAGS = new Set(["ok", "estimated", "stale", "low_coverage", "inherited"]);

@@ -68,26 +68,31 @@ export function MapViewContent({
   const mapTitle = fbt("Carte des quartiers", "Title of the map region and its accessible name");
   const panelTitle = fbt("Quartiers", "Title of the neighborhood picker on the map");
   const loadingLabel = fbt("Chargement des quartiers…", "Shown while the map data is loading");
+
   const errorLabel = fbt(
     "La carte n'a pas pu charger les données.",
     "Shown when the neighborhood data cannot be loaded",
   );
 
   const data = state.status === "ready" ? state.data : null;
+
   const selectedFeature =
     data === null || selectedNeighborhoodId === null
       ? undefined
       : data.collection.features.find(
           (feature) => feature.properties.id === selectedNeighborhoodId,
         );
+
   const selectedCollection = useMemo(
     () => (data === null ? null : selectFeaturesById(data.collection, selectedNeighborhoodId)),
     [data, selectedNeighborhoodId],
   );
+
   const sortedFeatures = useMemo(
     () => (data === null ? [] : sortFeaturesByName(data.collection, locale)),
     [data, locale],
   );
+
   const neighborhoodRows = useMemo(
     () =>
       data !== null && neighborhoodMetrics.status === "ready"
@@ -99,28 +104,37 @@ export function MapViewContent({
         : [],
     [data, neighborhoodMetrics, locale],
   );
+
   const metricName = data === null ? "" : localizedMetricName(data.metric, locale);
 
   function recenterOnIstanbul() {
     const clearsAnimatedSelection =
       colors !== null && selectedCollection !== null && selectedCollection.features.length > 0;
+
     onSelectNeighborhood(null);
+
     if (clearsAnimatedSelection) {
       return;
     }
+
     const map = mapRef.current;
+
     if (map === null || data === null) {
       return;
     }
+
     const bounds = collectionBounds(data.collection);
+
     if (bounds === null) {
       map.flyTo({
         center: ISTANBUL_MAP_CENTER,
         zoom: ISTANBUL_MAP_ZOOM,
         duration: mapCameraAnimationDuration(),
       });
+
       return;
     }
+
     map.fitBounds(bounds, { padding: 32, maxZoom: 11, duration: mapCameraAnimationDuration() });
   }
 

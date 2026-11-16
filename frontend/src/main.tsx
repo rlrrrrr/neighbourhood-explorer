@@ -7,6 +7,7 @@ import { LocaleContext } from "./app/locale-runtime";
 import { applyStoredTheme } from "./app/theme";
 
 await LocaleContext.preload();
+
 applyStoredTheme();
 
 createRoot(document.getElementById("root")!).render(

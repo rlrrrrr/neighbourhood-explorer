@@ -32,6 +32,7 @@ export async function getApiJson(path: string, signal: AbortSignal): Promise<unk
 async function readProblemDetails(response: Response): Promise<ProblemDetails | null> {
   try {
     const payload: unknown = await response.json();
+
     return isProblemDetails(payload) ? payload : null;
   } catch {
     return null;

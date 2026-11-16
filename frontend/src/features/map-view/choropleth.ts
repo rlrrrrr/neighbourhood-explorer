@@ -18,7 +18,9 @@ export type ChoroplethFeatureCollection = FeatureCollection<
 >;
 
 type NeighborhoodCollection = components["schemas"]["NeighborhoodFeatureCollection"];
+
 type GeoJsonGeometry = components["schemas"]["GeoJsonGeometry"];
+
 type MetricValues = components["schemas"]["MetricValues"];
 
 export function buildChoroplethFeatureCollection({
@@ -35,6 +37,7 @@ export function buildChoroplethFeatureCollection({
 
   for (const feature of neighborhoods.features) {
     const geometry = readGeometry(feature.geometry);
+
     if (geometry === null) {
       continue;
     }
@@ -112,6 +115,7 @@ export function collectionBounds(collection: ChoroplethFeatureCollection): MapBo
       feature.geometry.type === "Polygon"
         ? [feature.geometry.coordinates]
         : feature.geometry.coordinates;
+
     for (const polygon of polygons) {
       for (const ring of polygon) {
         for (const position of ring) {

@@ -25,6 +25,7 @@ function clampWeight(weight: number): number {
   if (!Number.isFinite(weight)) {
     return 0;
   }
+
   return Math.round(Math.min(Math.max(weight, 0), MAX_WEIGHT) * 100) / 100;
 }
 
@@ -38,6 +39,7 @@ export function hasCriterion(criteria: Criteria, metricKey: string): boolean {
 
 export function withoutCriterion(criteria: Criteria, metricKey: string): Criteria {
   const weights = criteria.weights.filter((criterion) => criterion.metricKey !== metricKey);
+
   return weights.length === criteria.weights.length ? criteria : { weights };
 }
 
@@ -45,16 +47,21 @@ export function withWeight(criteria: Criteria, metricKey: string, weight: number
   if (!isMetricKey(metricKey) || !Number.isFinite(weight)) {
     return criteria;
   }
+
   const rounded = clampWeight(weight);
+
   if (rounded === 0) {
     return withoutCriterion(criteria, metricKey);
   }
+
   if (!hasCriterion(criteria, metricKey)) {
     return { weights: [...criteria.weights, { metricKey, weight: rounded }] };
   }
+
   if (weightOf(criteria, metricKey) === rounded) {
     return criteria;
   }
+
   return {
     weights: criteria.weights.map((criterion) =>
       criterion.metricKey === metricKey ? { metricKey, weight: rounded } : criterion,

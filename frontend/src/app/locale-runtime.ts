@@ -24,7 +24,9 @@ function readClientLocales(): ReadonlyArray<string | null> {
   if (typeof window === "undefined") {
     return navigator.languages;
   }
+
   const storedLocale = readStoredLocale();
+
   return storedLocale ? [storedLocale, ...navigator.languages] : navigator.languages;
 }
 

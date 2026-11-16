@@ -18,6 +18,7 @@ export function useDataTable({ cityId }: { cityId: number }): {
   });
 
   const { refetch } = query;
+
   const reload = useCallback(() => {
     void refetch();
   }, [refetch]);
@@ -25,6 +26,7 @@ export function useDataTable({ cityId }: { cityId: number }): {
   if (query.status === "pending") {
     return { state: { status: "loading" }, reload };
   }
+
   if (query.status === "error") {
     return {
       state: {
@@ -34,5 +36,6 @@ export function useDataTable({ cityId }: { cityId: number }): {
       reload,
     };
   }
+
   return { state: { status: "ready", data: query.data }, reload };
 }

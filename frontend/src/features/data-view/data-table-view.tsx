@@ -1,4 +1,4 @@
-import { ViewTransition, startTransition, useMemo, useState } from "react";
+import { ViewTransition, startTransition, useState } from "react";
 import { useTable, type PaginationState, type SortingState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "../../components/ui/button";
@@ -50,19 +50,17 @@ export function DataTableView({
 }: DataTableViewProps) {
   const { containerRef, hasMore, overflows } = useScrollOverflowHint({ axis: "horizontal" });
   const data = state.status === "ready" ? state.data : null;
-  const metricNames = useMemo(
-    () =>
-      new Map(
-        (data?.metrics ?? []).map((metric) => [metric.key, localizedMetricName(metric, locale)]),
-      ),
-    [data, locale],
+
+  const metricNames = new Map(
+    (data?.metrics ?? []).map((metric) => [metric.key, localizedMetricName(metric, locale)]),
   );
-  const unknownMetricKeys = useMemo(() => {
-    const publishedKeys = new Set((data?.metrics ?? []).map((metric) => metric.key));
-    return criteria.weights
-      .map((criterion) => criterion.metricKey)
-      .filter((metricKey) => !publishedKeys.has(metricKey));
-  }, [criteria, data]);
+
+  const publishedKeys = new Set((data?.metrics ?? []).map((metric) => metric.key));
+
+  const unknownMetricKeys = criteria.weights
+    .map((criterion) => criterion.metricKey)
+    .filter((metricKey) => !publishedKeys.has(metricKey));
+
   return (
     <div className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 sm:px-8">
       <h1 className="text-4xl font-semibold tracking-tight text-balance">
@@ -162,38 +160,31 @@ function DataTableContent({
   onSortChange: (sort: TableSort | null) => void;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
-  const rows = useMemo(
-    () => [...data.rows].sort((left, right) => left.name.localeCompare(right.name, locale)),
-    [data, locale],
-  );
-  const metricByKey = useMemo(
-    () => new Map(data.metrics.map((metric) => [metric.key, metric])),
-    [data.metrics],
-  );
+  const rows = [...data.rows].sort((left, right) => left.name.localeCompare(right.name, locale));
+  const metricByKey = new Map(data.metrics.map((metric) => [metric.key, metric]));
   const sortedMetric = sort === null ? undefined : metricByKey.get(sort.key);
+
   const highlightsMerit =
     sort !== null &&
     sortedMetric !== undefined &&
     ((sort.direction === "descending" && sortedMetric.polarity === "higher_is_better") ||
       (sort.direction === "ascending" && sortedMetric.polarity === "lower_is_better"));
-  const columns = useMemo(
-    () =>
-      createDataTableColumns({
-        data,
-        locale,
-        sortedMetricKey: sortedMetric?.key,
-        onShowOnMap,
-      }),
-    [data, locale, onShowOnMap, sortedMetric?.key],
-  );
-  const sorting = useMemo<SortingState>(
-    () => (sort === null ? [] : [{ id: sort.key, desc: sort.direction === "descending" }]),
-    [sort],
-  );
+
+  const columns = createDataTableColumns({
+    data,
+    locale,
+    sortedMetricKey: sortedMetric?.key,
+    onShowOnMap,
+  });
+
+  const sorting: SortingState =
+    sort === null ? [] : [{ id: sort.key, desc: sort.direction === "descending" }];
+
   const [pagination, setPagination] = useState<PaginationState>({
     pageIndex: 0,
     pageSize: PAGE_SIZE,
   });
+
   const table = useTable({
     features: dataTableFeatures,
     columns,
@@ -204,10 +195,13 @@ function DataTableContent({
     onSortingChange: (updater) => {
       const nextSorting = typeof updater === "function" ? updater(sorting) : updater;
       const first = nextSorting[0];
+
       if (first === undefined) {
         onSortChange(null);
+
         return;
       }
+
       onSortChange({
         key: first.id,
         direction: first.desc ? "descending" : "ascending",
@@ -218,6 +212,7 @@ function DataTableContent({
     globalFilterFn: "includesString",
     getColumnCanGlobalFilter: (column) => column.id === "name",
   });
+
   const searchText = typeof table.state.globalFilter === "string" ? table.state.globalFilter : "";
   const pageRows = table.getRowModel().rows;
   const pageCount = table.getPageCount();
@@ -225,6 +220,7 @@ function DataTableContent({
 
   const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}`;
   const [previousPageResetKey, setPreviousPageResetKey] = useState(pageResetKey);
+
   if (previousPageResetKey !== pageResetKey) {
     setPreviousPageResetKey(pageResetKey);
     setPagination((current) => (current.pageIndex === 0 ? current : { ...current, pageIndex: 0 }));
@@ -273,8 +269,10 @@ function DataTableContent({
                   const isName = column.id === "name";
                   const metric = metricByKey.get(column.id);
                   const sorted = column.getIsSorted();
+
                   const ariaSort: "ascending" | "descending" | "none" =
                     sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
+
                   const highlighted = sortedMetric?.key === column.id;
 
                   if (isName) {
@@ -445,8 +443,10 @@ function SortIcon({ direction }: { direction: "asc" | "desc" | null }) {
   if (direction === "asc") {
     return <ChevronUp aria-hidden="true" className="size-3.5 shrink-0 text-action" />;
   }
+
   if (direction === "desc") {
     return <ChevronDown aria-hidden="true" className="size-3.5 shrink-0 text-action" />;
   }
+
   return <ArrowUpDown aria-hidden="true" className="size-3.5 shrink-0 opacity-20" />;
 }

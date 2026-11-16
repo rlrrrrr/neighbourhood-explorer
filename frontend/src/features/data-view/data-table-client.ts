@@ -43,6 +43,7 @@ export async function fetchDataTable({
   }
 
   const metrics = metricsPayload.metrics;
+
   if (metrics.length === 0) {
     return { metrics, rows: [] };
   }
@@ -75,6 +76,7 @@ async function fetchMetricValues({
   signal: AbortSignal;
 }): Promise<MetricValues> {
   const encodedKeys = metricKeys.map((metricKey) => encodeURIComponent(metricKey)).join(",");
+
   const payload = await getApiJson(
     `/api/v1/cities/${cityId}/metric-values?metrics=${encodedKeys}`,
     signal,
@@ -113,11 +115,14 @@ function readValues({
   neighborhoodId: number;
 }): Record<string, DataTableValue> {
   const values: Record<string, DataTableValue> = {};
+
   for (const [metricKey, valuesByNeighborhood] of Object.entries(valuesPayload)) {
     const value = valuesByNeighborhood[String(neighborhoodId)];
+
     if (value !== undefined) {
       values[metricKey] = { raw: value.raw, qualityFlag: value.qualityFlag };
     }
   }
+
   return values;
 }
