@@ -1,24 +1,8 @@
-import { useMemo, useState } from "react";
-import { fbs, fbt } from "fbtee";
-import { ArrowUpDown, ChevronDown, ChevronLeft, ChevronRight, ChevronUp } from "lucide-react";
-import {
-  columnFilteringFeature,
-  createColumnHelper,
-  createFilteredRowModel,
-  createPaginatedRowModel,
-  createSortedRowModel,
-  filterFn_includesString,
-  globalFilteringFeature,
-  rowPaginationFeature,
-  rowSortingFeature,
-  tableFeatures,
-  useTable,
-  type PaginationState,
-  type SortingState,
-} from "@tanstack/react-table";
+import { ViewTransition, startTransition, useMemo, useState } from "react";
+import { useTable, type PaginationState, type SortingState } from "@tanstack/react-table";
+import { ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
-import { Input } from "../../components/ui/input";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
 import {
   Table,
@@ -32,32 +16,16 @@ import {
 } from "../../components/ui/table";
 import { CriteriaChips } from "../criteria/criteria-chips";
 import type { Criteria } from "../criteria/criteria";
-import {
-  formatMetricValue,
-  localizedMetricName,
-  localizedUnit,
-  metricQualityLabel,
-  shortLicense,
-} from "../metrics/metric-presentation";
-import type { MetricDefinition } from "../metrics/metric-api-schema";
+import { localizedMetricName, localizedUnit } from "../metrics/metric-presentation";
 import type { TableSort } from "./table-sort";
-import type { DataTableData, DataTableRow, DataTableValue } from "./data-table-client";
+import { createDataTableColumns, dataTableFeatures } from "./data-table-columns";
+import { DataTablePagination } from "./data-table-pagination";
+import { DataTableSources } from "./data-table-sources";
+import { DataTableToolbar } from "./data-table-toolbar";
+import type { DataTableData } from "./data-table-client";
 import type { DataTableState } from "./use-data-table";
 
 const PAGE_SIZE = 50;
-
-const features = tableFeatures({
-  rowSortingFeature,
-  columnFilteringFeature,
-  globalFilteringFeature,
-  rowPaginationFeature,
-  sortedRowModel: createSortedRowModel(),
-  filteredRowModel: createFilteredRowModel(),
-  paginatedRowModel: createPaginatedRowModel(),
-  filterFns: { includesString: filterFn_includesString },
-});
-
-const columnHelper = createColumnHelper<typeof features, DataTableRow>();
 
 interface DataTableViewProps {
   criteria: Criteria;
@@ -210,64 +178,13 @@ function DataTableContent({
       (sort.direction === "ascending" && sortedMetric.polarity === "lower_is_better"));
   const columns = useMemo(
     () =>
-      columnHelper.columns([
-        columnHelper.accessor((row) => `${row.name} ${row.districtName}`, {
-          id: "name",
-          header: () => fbt("Quartier", "Column header of the neighborhood name"),
-          enableSorting: false,
-          cell: ({ row }) => (
-            <span className="flex max-w-[9.5rem] items-baseline gap-2 whitespace-nowrap sm:max-w-none">
-              <button
-                type="button"
-                title={row.original.name}
-                onClick={() => onShowOnMap(row.original.neighborhoodId)}
-                className="min-w-0 cursor-pointer truncate text-start font-medium text-text transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-              >
-                {row.original.name}
-              </button>
-              <span className="hidden text-xs font-normal text-text-secondary sm:inline">
-                {row.original.districtName}
-              </span>
-            </span>
-          ),
-        }),
-        ...data.metrics.map((metric) =>
-          columnHelper.accessor((row) => row.values[metric.key]?.raw, {
-            id: metric.key,
-            header: () => localizedMetricName(metric, locale),
-            enableGlobalFilter: false,
-            sortUndefined: "last" as const,
-            cell: ({ row }) => (
-              <MetricCell
-                value={row.original.values[metric.key]}
-                metric={metric}
-                locale={locale}
-                highlighted={sortedMetric?.key === metric.key}
-              />
-            ),
-          }),
-        ),
-        columnHelper.display({
-          id: "actions",
-          header: () => (
-            <span className="sr-only">
-              <fbt desc="Accessible column header of the map action">Carte</fbt>
-            </span>
-          ),
-          enableSorting: false,
-          cell: ({ row }) => (
-            <Button
-              variant="outline"
-              size="sm"
-              className="whitespace-nowrap"
-              onClick={() => onShowOnMap(row.original.neighborhoodId)}
-            >
-              <fbt desc="Button opening the map view from a data row">Voir sur la carte</fbt>
-            </Button>
-          ),
-        }),
-      ]),
-    [data.metrics, locale, onShowOnMap, sortedMetric?.key],
+      createDataTableColumns({
+        data,
+        locale,
+        sortedMetricKey: sortedMetric?.key,
+        onShowOnMap,
+      }),
+    [data, locale, onShowOnMap, sortedMetric?.key],
   );
   const sorting = useMemo<SortingState>(
     () => (sort === null ? [] : [{ id: sort.key, desc: sort.direction === "descending" }]),
@@ -278,7 +195,7 @@ function DataTableContent({
     pageSize: PAGE_SIZE,
   });
   const table = useTable({
-    features,
+    features: dataTableFeatures,
     columns,
     data: rows,
     getRowId: (row) => String(row.neighborhoodId),
@@ -324,174 +241,156 @@ function DataTableContent({
         </p>
       )}
 
-      <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <label className="w-full max-w-sm">
-          <span className="sr-only">
-            <fbt desc="Label of the search field filtering the raw values table">
-              Rechercher un quartier
-            </fbt>
-          </span>
-          <Input
-            type="search"
-            value={searchText}
-            onChange={(event) => table.setGlobalFilter(event.target.value)}
-            placeholder={fbs(
-              "Nom du quartier ou du district",
-              "Placeholder of the raw values table search field",
-            )}
-          />
-        </label>
-        <p role="status" className="text-xs text-text-secondary">
-          <fbt desc="Count of neighborhoods currently displayed in the raw values table">
-            Quartiers affichés :
-          </fbt>{" "}
-          <span className="font-mono tabular-nums">
-            {pageRows.length} / {data.rows.length}
-          </span>
-        </p>
-      </div>
+      <DataTableToolbar
+        searchText={searchText}
+        shownCount={pageRows.length}
+        totalCount={data.rows.length}
+        onSearchChange={(value) => table.setGlobalFilter(value)}
+      />
 
-      <div className="relative mt-3">
-        <Table containerRef={containerRef}>
-          <TableCaption className="sr-only">
-            <fbt desc="Accessible caption of the raw values table">
-              Valeurs brutes par quartier : nom, district et une colonne par métrique publiée,
-              triable.
-            </fbt>
-          </TableCaption>
-          <TableHeader>
-            <TableRow>
-              <TableHead
-                scope="col"
-                className={cn(
-                  "sticky start-0 z-10 w-12 bg-bg text-center text-sm text-text-secondary",
-                  overflows && "border-e",
-                )}
-              >
-                <fbt desc="Header of the ranking column in the data table">#</fbt>
-              </TableHead>
-              {table.getHeaderGroups()[0]?.headers.map((header) => {
-                const column = header.column;
-                const isName = column.id === "name";
-                const metric = metricByKey.get(column.id);
-                const sorted = column.getIsSorted();
-                const ariaSort: "ascending" | "descending" | "none" =
-                  sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
-                const highlighted = sortedMetric?.key === column.id;
-
-                if (isName) {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      scope="col"
-                      className="sticky start-12 z-10 border-e border-border bg-bg text-start text-sm text-text"
-                    >
-                      <table.FlexRender header={header} />
-                    </TableHead>
-                  );
-                }
-
-                if (metric === undefined) {
-                  return (
-                    <TableHead
-                      key={header.id}
-                      scope="col"
-                      className="text-end text-sm text-text-secondary"
-                    >
-                      <table.FlexRender header={header} />
-                    </TableHead>
-                  );
-                }
-
-                return (
-                  <TableHead
-                    key={header.id}
-                    scope="col"
-                    aria-sort={ariaSort}
-                    className={cn(highlighted && "bg-highlight/10")}
-                  >
-                    <button
-                      type="button"
-                      onClick={column.getToggleSortingHandler()}
-                      className={cn(
-                        "flex min-h-11 w-full cursor-pointer flex-col items-end justify-end gap-0.5 px-1 py-1.5 text-end transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0",
-                        highlighted
-                          ? "font-semibold text-text"
-                          : "font-medium text-text-secondary hover:text-text",
-                      )}
-                    >
-                      <span className="flex items-center gap-1">
-                        <table.FlexRender header={header} />
-                        <SortIcon
-                          direction={sorted === "asc" || sorted === "desc" ? sorted : null}
-                        />
-                      </span>
-                      <span className="text-[11px] font-normal whitespace-nowrap text-text-secondary">
-                        <span className="sr-only">
-                          <fbt desc="Accessible label of the unit and observation date in a column header">
-                            Unité et date d'observation :
-                          </fbt>{" "}
-                        </span>
-                        <bdi dir="ltr">
-                          {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
-                        </bdi>
-                      </span>
-                    </button>
-                  </TableHead>
-                );
-              })}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {pageRows.map((row, index) => (
-              <TableRow key={row.id} className="group hover:bg-surface">
-                <TableCell
+      <ViewTransition default="none" update="table-update">
+        <div className="relative mt-3">
+          <Table containerRef={containerRef}>
+            <TableCaption className="sr-only">
+              <fbt desc="Accessible caption of the raw values table">
+                Valeurs brutes par quartier : nom, district et une colonne par métrique publiée,
+                triable.
+              </fbt>
+            </TableCaption>
+            <TableHeader>
+              <TableRow>
+                <TableHead
+                  scope="col"
                   className={cn(
-                    "sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface",
+                    "sticky start-0 z-10 w-12 bg-bg text-center text-sm text-text-secondary",
                     overflows && "border-e",
                   )}
                 >
-                  <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
-                </TableCell>
-                {row.getAllCells().map((cell) => {
-                  const isName = cell.column.id === "name";
-                  const isMetric = metricByKey.has(cell.column.id);
-                  const content = <table.FlexRender cell={cell} />;
+                  <fbt desc="Header of the ranking column in the data table">#</fbt>
+                </TableHead>
+                {table.getHeaderGroups()[0]?.headers.map((header) => {
+                  const column = header.column;
+                  const isName = column.id === "name";
+                  const metric = metricByKey.get(column.id);
+                  const sorted = column.getIsSorted();
+                  const ariaSort: "ascending" | "descending" | "none" =
+                    sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
+                  const highlighted = sortedMetric?.key === column.id;
 
                   if (isName) {
                     return (
-                      <TableRowHeader
-                        key={cell.id}
-                        className="sticky start-12 z-10 border-e border-border bg-bg text-sm group-hover:bg-surface"
+                      <TableHead
+                        key={header.id}
+                        scope="col"
+                        className="sticky start-12 z-10 border-e border-border bg-bg text-start text-sm text-text"
                       >
-                        {content}
-                      </TableRowHeader>
+                        <table.FlexRender header={header} />
+                      </TableHead>
+                    );
+                  }
+
+                  if (metric === undefined) {
+                    return (
+                      <TableHead
+                        key={header.id}
+                        scope="col"
+                        className="text-end text-sm text-text-secondary"
+                      >
+                        <table.FlexRender header={header} />
+                      </TableHead>
                     );
                   }
 
                   return (
-                    <TableCell
-                      key={cell.id}
-                      className={cn(
-                        "text-end",
-                        isMetric && sortedMetric?.key === cell.column.id && "bg-highlight/10",
-                      )}
+                    <TableHead
+                      key={header.id}
+                      scope="col"
+                      aria-sort={ariaSort}
+                      className={cn(highlighted && "bg-highlight/10")}
                     >
-                      {content}
-                    </TableCell>
+                      <button
+                        type="button"
+                        onClick={column.getToggleSortingHandler()}
+                        className={cn(
+                          "flex min-h-11 w-full cursor-pointer flex-col items-end justify-end gap-0.5 px-1 py-1.5 text-end transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0",
+                          highlighted
+                            ? "font-semibold text-text"
+                            : "font-medium text-text-secondary hover:text-text",
+                        )}
+                      >
+                        <span className="flex items-center gap-1">
+                          <table.FlexRender header={header} />
+                          <SortIcon
+                            direction={sorted === "asc" || sorted === "desc" ? sorted : null}
+                          />
+                        </span>
+                        <span className="text-[11px] font-normal whitespace-nowrap text-text-secondary">
+                          <span className="sr-only">
+                            <fbt desc="Accessible label of the unit and observation date in a column header">
+                              Unité et date d'observation :
+                            </fbt>{" "}
+                          </span>
+                          <bdi dir="ltr">
+                            {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
+                          </bdi>
+                        </span>
+                      </button>
+                    </TableHead>
                   );
                 })}
               </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-        {hasMore && (
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 end-0 z-20 w-10 scroll-fade-inline-end"
-          />
-        )}
-      </div>
+            </TableHeader>
+            <TableBody>
+              {pageRows.map((row, index) => (
+                <TableRow key={row.id} className="group hover:bg-surface">
+                  <TableCell
+                    className={cn(
+                      "sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface",
+                      overflows && "border-e",
+                    )}
+                  >
+                    <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
+                  </TableCell>
+                  {row.getAllCells().map((cell) => {
+                    const isName = cell.column.id === "name";
+                    const isMetric = metricByKey.has(cell.column.id);
+                    const content = <table.FlexRender cell={cell} />;
+
+                    if (isName) {
+                      return (
+                        <TableRowHeader
+                          key={cell.id}
+                          className="sticky start-12 z-10 border-e border-border bg-bg text-sm group-hover:bg-surface"
+                        >
+                          {content}
+                        </TableRowHeader>
+                      );
+                    }
+
+                    return (
+                      <TableCell
+                        key={cell.id}
+                        className={cn(
+                          "text-end",
+                          isMetric && sortedMetric?.key === cell.column.id && "bg-highlight/10",
+                        )}
+                      >
+                        {content}
+                      </TableCell>
+                    );
+                  })}
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+          {hasMore && (
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 end-0 z-20 w-10 scroll-fade-inline-end"
+            />
+          )}
+        </div>
+      </ViewTransition>
 
       {pageRows.length === 0 && (
         <p role="status" className="mt-4 text-sm text-text-secondary">
@@ -502,135 +401,18 @@ function DataTableContent({
       )}
 
       {pageCount > 1 && (
-        <nav
-          aria-label={fbs(
-            "Pagination du tableau des quartiers",
-            "Accessible label of the data table pagination",
-          )}
-          className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-4"
-        >
-          <p className="text-xs text-text-secondary">
-            <fbt desc="Label of the current page in the data table pagination">Page</fbt>{" "}
-            <span className="font-mono tabular-nums">{pagination.pageIndex + 1}</span>
-            <span> / </span>
-            <span className="font-mono tabular-nums">{pageCount}</span>
-          </p>
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="sm"
-              disabled={!table.getCanPreviousPage()}
-              onClick={() => table.previousPage()}
-            >
-              <ChevronLeft aria-hidden="true" className="size-4 rtl:rotate-180" />
-              <fbt desc="Button showing the previous page of the data table">Précédent</fbt>
-            </Button>
-            <Button
-              variant="ghost"
-              size="sm"
-              disabled={!table.getCanNextPage()}
-              onClick={() => table.nextPage()}
-            >
-              <fbt desc="Button showing the next page of the data table">Suivant</fbt>
-              <ChevronRight aria-hidden="true" className="size-4 rtl:rotate-180" />
-            </Button>
-          </div>
-        </nav>
+        <DataTablePagination
+          pageIndex={pagination.pageIndex}
+          pageCount={pageCount}
+          canPreviousPage={table.getCanPreviousPage()}
+          canNextPage={table.getCanNextPage()}
+          onPreviousPage={() => startTransition(() => table.previousPage())}
+          onNextPage={() => startTransition(() => table.nextPage())}
+        />
       )}
 
-      <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-secondary">
-        {data.metrics.map((metric) => (
-          <li key={metric.key}>
-            {localizedMetricName(metric, locale)} · {metric.source.organization} ·{" "}
-            {shortLicense(metric.source.license)} · {metric.observedAt ?? "—"}
-          </li>
-        ))}
-      </ul>
-
-      <details className="mt-6 border-t border-border pt-4 text-xs text-text-secondary">
-        <summary className="cursor-pointer font-semibold text-text">
-          <fbt desc="Summary of the sources and dates panel under the data table">
-            Sources et dates
-          </fbt>
-        </summary>
-        <ul className="mt-3 flex flex-col gap-4">
-          {data.metrics.map((metric) => (
-            <li key={metric.key}>
-              <p className="font-semibold text-text">{localizedMetricName(metric, locale)}</p>
-              <p className="mt-1">
-                {metric.source.name} — {metric.source.organization}
-              </p>
-              <p className="mt-1">{metric.source.attribution}</p>
-              <p className="mt-1">{metric.source.license}</p>
-              <p className="mt-1">{metric.source.methodology}</p>
-              <p className="mt-1">
-                <fbt desc="Observation date label in the source panel">Observation :</fbt>{" "}
-                {metric.observedAt ?? "—"} ·{" "}
-                <fbt desc="Retrieval date label in the source panel">Récupération :</fbt>{" "}
-                {metric.source.retrievedAt}
-              </p>
-              <a
-                href={metric.source.url}
-                target="_blank"
-                rel="noreferrer"
-                className="mt-1 block break-all underline"
-              >
-                {metric.source.url}
-              </a>
-            </li>
-          ))}
-        </ul>
-      </details>
+      <DataTableSources metrics={data.metrics} locale={locale} />
     </>
-  );
-}
-
-function MetricCell({
-  value,
-  metric,
-  locale,
-  highlighted,
-}: {
-  value: DataTableValue | undefined;
-  metric: MetricDefinition;
-  locale: string;
-  highlighted: boolean;
-}) {
-  if (value === undefined) {
-    return (
-      <>
-        <span aria-hidden="true" className="font-mono text-xs text-text-secondary">
-          —
-        </span>
-        <span className="sr-only">
-          <fbt desc="Shown when a neighborhood has no value for a metric">Pas de donnée</fbt>
-        </span>
-      </>
-    );
-  }
-
-  const formatted = formatMetricValue({
-    value: value.raw,
-    locale,
-    maximumFractionDigits: metric.displayPrecision,
-  });
-
-  return (
-    <bdi dir="ltr">
-      {highlighted ? (
-        <span className="inline-flex h-5 items-center justify-center rounded-full bg-action px-2 font-mono text-xs font-medium text-action-text tabular-nums">
-          {formatted}
-        </span>
-      ) : (
-        <span className="font-mono text-xs text-text-secondary tabular-nums">{formatted}</span>
-      )}
-      <span className="sr-only"> {localizedUnit(metric.unit)}</span>
-      {value.qualityFlag === "ok" ? null : (
-        <span className="block font-sans text-[10px] font-normal text-text-secondary">
-          {metricQualityLabel(value.qualityFlag)}
-        </span>
-      )}
-    </bdi>
   );
 }
 
