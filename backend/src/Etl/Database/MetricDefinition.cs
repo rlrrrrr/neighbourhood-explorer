@@ -12,4 +12,4 @@ public sealed record MetricDefinition(
     MetricTranslation English,
     MetricNativeLevel NativeLevel = MetricNativeLevel.Neighborhood,
     MetricNormalizationMethod NormalizationMethod = MetricNormalizationMethod.Percentile,
-    string NormalizationVersion = "percentile-v1");
+    string NormalizationVersion = "percentile-v2");
