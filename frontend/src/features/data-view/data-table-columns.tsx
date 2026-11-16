@@ -11,7 +11,6 @@ import {
   rowSortingFeature,
   tableFeatures,
 } from "@tanstack/react-table";
-import { Button } from "../../components/ui/button";
 import { localizedMetricName } from "../metrics/metric-presentation";
 import type { DataTableData, DataTableRow } from "./data-table-client";
 import { MetricCell } from "./metric-cell";
@@ -33,11 +32,13 @@ export function createDataTableColumns({
   data,
   locale,
   sortedMetricKey,
+  highlightsMerit,
   onShowOnMap,
 }: {
   data: DataTableData;
   locale: string;
   sortedMetricKey: string | undefined;
+  highlightsMerit: boolean;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
   return columnHelper.columns([
@@ -67,12 +68,17 @@ export function createDataTableColumns({
         header: () => localizedMetricName(metric, locale),
         enableGlobalFilter: false,
         sortUndefined: "last" as const,
-        cell: ({ row }) => (
+        cell: ({ row, table }) => (
           <MetricCell
             value={row.original.values[metric.key]}
             metric={metric}
             locale={locale}
             highlighted={sortedMetricKey === metric.key}
+            featured={
+              highlightsMerit &&
+              sortedMetricKey === metric.key &&
+              table.getRowModel().rows.indexOf(row) < 3
+            }
           />
         ),
       }),
@@ -86,14 +92,13 @@ export function createDataTableColumns({
       ),
       enableSorting: false,
       cell: ({ row }) => (
-        <Button
-          variant="outline"
-          size="sm"
-          className="whitespace-nowrap"
+        <button
+          type="button"
           onClick={() => onShowOnMap(row.original.neighborhoodId)}
+          className="cursor-pointer whitespace-nowrap text-xs font-medium text-text-secondary transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
         >
           <fbt desc="Button opening the map view from a data row">Voir sur la carte</fbt>
-        </Button>
+        </button>
       ),
     }),
   ]);

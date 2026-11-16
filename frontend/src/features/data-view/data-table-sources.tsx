@@ -10,7 +10,7 @@ export function DataTableSources({
 }) {
   return (
     <>
-      <ul className="mt-6 flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-secondary">
+      <ul className="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-text-secondary">
         {metrics.map((metric) => (
           <li key={metric.key}>
             {localizedMetricName(metric, locale)} · {metric.source.organization} ·{" "}
@@ -19,7 +19,7 @@ export function DataTableSources({
         ))}
       </ul>
 
-      <details className="mt-6 border-t border-border pt-4 text-xs text-text-secondary">
+      <details className="mt-5 border-t border-border pt-4 text-xs text-text-secondary">
         <summary className="cursor-pointer font-semibold text-text">
           <fbt desc="Summary of the sources and dates panel under the data table">
             Sources et dates

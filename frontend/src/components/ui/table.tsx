@@ -40,7 +40,7 @@ function TableRow({ className, ...props }: ComponentProps<"tr">) {
   return (
     <tr
       data-slot="table-row"
-      className={cn("border-b border-border transition-colors duration-150 ease-out", className)}
+      className={cn("border-b border-border/50 transition-colors duration-150 ease-out", className)}
       {...props}
     />
   );

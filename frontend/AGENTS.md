@@ -137,6 +137,7 @@ Erreurs : `application/problem+json` avec un `code` stable. États à gérer exp
 - Les dérivations du tableau (lignes triées, `metricByKey`, colonnes, `sorting`) sont écrites **sans `useMemo`** : React Compiler mémoïse automatiquement ces valeurs. Ne pas réintroduire de `useMemo` manuel dans cette vue.
 - La pagination change de page dans `startTransition` et le tableau est enveloppé dans `<ViewTransition default="none" update="table-update">` (API `react` 19.3) : le fondu entre deux pages vient du navigateur, pas d'une animation de lignes ; le CSS `::view-transition-*` de `index.css` fixe 160 ms et désactive l'animation sous `prefers-reduced-motion`.
 - Une valeur positive plus petite que la précision d'affichage s'écrit `< 0,1`, jamais `0` : un quartier avec 0,03 lieu/km² ne doit pas se lire comme un quartier sans rien.
+- Style visuel calqué sur le classement de [quartier.sh](https://www.quartier.sh/leaderboard) (16 novembre 2026) : tableau dense à rules horizontales fines, colonnes `#` et quartier collantes, colonne triée à peine teintée (`bg-action/[0.04]`) avec pastilles uniquement sur les trois premières valeurs et pastilles de rang claires. Le bouton « Voir sur la carte » est un lien discret, pas un bouton encadré. Aucune colonne « score global » n'est ajoutée : la colonne mise en évidence est la métrique brute choisie par `sort`.
 
 ## Métrique affichée : un seul état, sans sélecteur d'en-tête
 

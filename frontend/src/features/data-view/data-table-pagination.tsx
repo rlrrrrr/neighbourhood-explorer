@@ -23,7 +23,7 @@ export function DataTablePagination({
         "Pagination du tableau des quartiers",
         "Accessible label of the data table pagination",
       )}
-      className="mt-4 flex items-center justify-between gap-3 border-t border-border pt-4"
+      className="mt-3 flex items-center justify-between gap-3 border-t border-border pt-3"
     >
       <p className="text-xs text-text-secondary">
         <fbt desc="Label of the current page in the data table pagination">Page</fbt>{" "}
