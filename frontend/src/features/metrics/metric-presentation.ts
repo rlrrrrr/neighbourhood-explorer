@@ -43,7 +43,12 @@ export function formatMetricValue({
   locale: string;
   maximumFractionDigits: number;
 }): string {
-  return new Intl.NumberFormat(locale, { maximumFractionDigits }).format(value);
+  const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits });
+  const roundingThreshold = 10 ** -maximumFractionDigits;
+  if (value > 0 && value < roundingThreshold / 2) {
+    return `< ${formatter.format(roundingThreshold)}`;
+  }
+  return formatter.format(value);
 }
 
 export function shortLicense(license: string): string {
