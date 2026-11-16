@@ -18,7 +18,18 @@ import {
 } from "@tanstack/react-table";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
+import { Input } from "../../components/ui/input";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+  TableRowHeader,
+} from "../../components/ui/table";
 import { CriteriaChips } from "../criteria/criteria-chips";
 import type { Criteria } from "../criteria/criteria";
 import {
@@ -314,13 +325,13 @@ function DataTableContent({
       )}
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <label className="flex w-full max-w-sm items-center gap-2 border-b border-border text-sm focus-within:border-action">
+        <label className="w-full max-w-sm">
           <span className="sr-only">
             <fbt desc="Label of the search field filtering the raw values table">
               Rechercher un quartier
             </fbt>
           </span>
-          <input
+          <Input
             type="search"
             value={searchText}
             onChange={(event) => table.setGlobalFilter(event.target.value)}
@@ -328,7 +339,6 @@ function DataTableContent({
               "Nom du quartier ou du district",
               "Placeholder of the raw values table search field",
             )}
-            className="h-9 w-full bg-transparent px-0 text-sm text-text placeholder:text-text-secondary focus-visible:outline-none"
           />
         </label>
         <p role="status" className="text-xs text-text-secondary">
@@ -342,148 +352,139 @@ function DataTableContent({
       </div>
 
       <div className="relative mt-3">
-        <div ref={containerRef} className="relative overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <caption className="sr-only">
-              <fbt desc="Accessible caption of the raw values table">
-                Valeurs brutes par quartier : nom, district et une colonne par métrique publiée,
-                triable.
-              </fbt>
-            </caption>
-            <thead>
-              <tr className="border-b border-border">
-                <th
-                  scope="col"
+        <Table containerRef={containerRef}>
+          <TableCaption className="sr-only">
+            <fbt desc="Accessible caption of the raw values table">
+              Valeurs brutes par quartier : nom, district et une colonne par métrique publiée,
+              triable.
+            </fbt>
+          </TableCaption>
+          <TableHeader>
+            <TableRow>
+              <TableHead
+                scope="col"
+                className={cn(
+                  "sticky start-0 z-10 w-12 bg-bg text-center text-sm text-text-secondary",
+                  overflows && "border-e",
+                )}
+              >
+                <fbt desc="Header of the ranking column in the data table">#</fbt>
+              </TableHead>
+              {table.getHeaderGroups()[0]?.headers.map((header) => {
+                const column = header.column;
+                const isName = column.id === "name";
+                const metric = metricByKey.get(column.id);
+                const sorted = column.getIsSorted();
+                const ariaSort: "ascending" | "descending" | "none" =
+                  sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
+                const highlighted = sortedMetric?.key === column.id;
+
+                if (isName) {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      scope="col"
+                      className="sticky start-12 z-10 border-e border-border bg-bg text-start text-sm text-text"
+                    >
+                      <table.FlexRender header={header} />
+                    </TableHead>
+                  );
+                }
+
+                if (metric === undefined) {
+                  return (
+                    <TableHead
+                      key={header.id}
+                      scope="col"
+                      className="text-end text-sm text-text-secondary"
+                    >
+                      <table.FlexRender header={header} />
+                    </TableHead>
+                  );
+                }
+
+                return (
+                  <TableHead
+                    key={header.id}
+                    scope="col"
+                    aria-sort={ariaSort}
+                    className={cn(highlighted && "bg-highlight/10")}
+                  >
+                    <button
+                      type="button"
+                      onClick={column.getToggleSortingHandler()}
+                      className={cn(
+                        "flex min-h-11 w-full cursor-pointer flex-col items-end justify-end gap-0.5 px-1 py-1.5 text-end transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0",
+                        highlighted
+                          ? "font-semibold text-text"
+                          : "font-medium text-text-secondary hover:text-text",
+                      )}
+                    >
+                      <span className="flex items-center gap-1">
+                        <table.FlexRender header={header} />
+                        <SortIcon
+                          direction={sorted === "asc" || sorted === "desc" ? sorted : null}
+                        />
+                      </span>
+                      <span className="text-[11px] font-normal whitespace-nowrap text-text-secondary">
+                        <span className="sr-only">
+                          <fbt desc="Accessible label of the unit and observation date in a column header">
+                            Unité et date d'observation :
+                          </fbt>{" "}
+                        </span>
+                        <bdi dir="ltr">
+                          {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
+                        </bdi>
+                      </span>
+                    </button>
+                  </TableHead>
+                );
+              })}
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            {pageRows.map((row, index) => (
+              <TableRow key={row.id} className="group hover:bg-surface">
+                <TableCell
                   className={cn(
-                    "sticky start-0 z-10 w-12 bg-bg px-2 py-2 text-center align-middle text-sm font-medium text-text-secondary",
+                    "sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface",
                     overflows && "border-e",
                   )}
                 >
-                  <fbt desc="Header of the ranking column in the data table">#</fbt>
-                </th>
-                {table.getHeaderGroups()[0]?.headers.map((header) => {
-                  const column = header.column;
-                  const isName = column.id === "name";
-                  const metric = metricByKey.get(column.id);
-                  const sorted = column.getIsSorted();
-                  const ariaSort: "ascending" | "descending" | "none" =
-                    sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
-                  const highlighted = sortedMetric?.key === column.id;
+                  <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
+                </TableCell>
+                {row.getAllCells().map((cell) => {
+                  const isName = cell.column.id === "name";
+                  const isMetric = metricByKey.has(cell.column.id);
+                  const content = <table.FlexRender cell={cell} />;
 
                   if (isName) {
                     return (
-                      <th
-                        key={header.id}
-                        scope="col"
-                        className="sticky start-12 z-10 border-e border-border bg-bg px-2 py-2 text-left align-middle text-sm font-medium text-text"
+                      <TableRowHeader
+                        key={cell.id}
+                        className="sticky start-12 z-10 border-e border-border bg-bg text-sm group-hover:bg-surface"
                       >
-                        <table.FlexRender header={header} />
-                      </th>
-                    );
-                  }
-
-                  if (metric === undefined) {
-                    return (
-                      <th
-                        key={header.id}
-                        scope="col"
-                        className="px-2 py-2 text-right align-middle text-sm font-medium text-text-secondary"
-                      >
-                        <table.FlexRender header={header} />
-                      </th>
+                        {content}
+                      </TableRowHeader>
                     );
                   }
 
                   return (
-                    <th
-                      key={header.id}
-                      scope="col"
-                      aria-sort={ariaSort}
+                    <TableCell
+                      key={cell.id}
                       className={cn(
-                        "px-2 align-middle whitespace-nowrap",
-                        highlighted && "bg-highlight/10",
+                        "text-end",
+                        isMetric && sortedMetric?.key === cell.column.id && "bg-highlight/10",
                       )}
                     >
-                      <button
-                        type="button"
-                        onClick={column.getToggleSortingHandler()}
-                        className={cn(
-                          "flex min-h-11 w-full cursor-pointer flex-col items-end justify-end gap-0.5 px-1 py-1.5 text-right transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action sm:min-h-0",
-                          highlighted
-                            ? "font-semibold text-text"
-                            : "font-medium text-text-secondary hover:text-text",
-                        )}
-                      >
-                        <span className="flex items-center gap-1">
-                          <table.FlexRender header={header} />
-                          <SortIcon
-                            direction={sorted === "asc" || sorted === "desc" ? sorted : null}
-                          />
-                        </span>
-                        <span className="text-[11px] font-normal whitespace-nowrap text-text-secondary">
-                          <span className="sr-only">
-                            <fbt desc="Accessible label of the unit and observation date in a column header">
-                              Unité et date d'observation :
-                            </fbt>{" "}
-                          </span>
-                          <bdi dir="ltr">
-                            {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
-                          </bdi>
-                        </span>
-                      </button>
-                    </th>
+                      {content}
+                    </TableCell>
                   );
                 })}
-              </tr>
-            </thead>
-            <tbody>
-              {pageRows.map((row, index) => (
-                <tr
-                  key={row.id}
-                  className="group border-b border-border transition-colors duration-150 ease-out hover:bg-surface"
-                >
-                  <td
-                    className={cn(
-                      "sticky start-0 z-10 w-12 bg-bg px-2 py-2 text-center align-middle group-hover:bg-surface",
-                      overflows && "border-e",
-                    )}
-                  >
-                    <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
-                  </td>
-                  {row.getAllCells().map((cell) => {
-                    const isName = cell.column.id === "name";
-                    const isMetric = metricByKey.has(cell.column.id);
-                    const content = <table.FlexRender cell={cell} />;
-
-                    if (isName) {
-                      return (
-                        <th
-                          key={cell.id}
-                          scope="row"
-                          className="sticky start-12 z-10 border-e border-border bg-bg px-2 py-2 text-left align-middle text-sm font-medium group-hover:bg-surface"
-                        >
-                          {content}
-                        </th>
-                      );
-                    }
-
-                    return (
-                      <td
-                        key={cell.id}
-                        className={cn(
-                          "px-2 py-2 text-right align-middle whitespace-nowrap",
-                          isMetric && sortedMetric?.key === cell.column.id && "bg-highlight/10",
-                        )}
-                      >
-                        {content}
-                      </td>
-                    );
-                  })}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
         {hasMore && (
           <div
             aria-hidden="true"
