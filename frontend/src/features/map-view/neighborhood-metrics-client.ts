@@ -9,11 +9,13 @@ export async function fetchNeighborhoodMetrics({
   signal: AbortSignal;
 }): Promise<NeighborhoodMetrics> {
   const payload = await getApiJson(`/api/v1/neighborhoods/${neighborhoodId}/metrics`, signal);
+
   if (!isNeighborhoodMetrics(payload)) {
     throw new ApiRequestError({
       code: "invalid_response",
       message: "La réponse des métriques du quartier est invalide.",
     });
   }
+
   return payload;
 }

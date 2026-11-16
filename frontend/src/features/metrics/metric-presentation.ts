@@ -31,6 +31,7 @@ export function localizedMetricName(metric: MetricDefinition, locale: string): s
     metric.translations.find((candidate) => candidate.locale === locale) ??
     metric.translations.find((candidate) => candidate.locale === "fr") ??
     metric.translations[0];
+
   return translation?.name ?? metric.key;
 }
 
@@ -45,9 +46,11 @@ export function formatMetricValue({
 }): string {
   const formatter = new Intl.NumberFormat(locale, { maximumFractionDigits });
   const roundingThreshold = 10 ** -maximumFractionDigits;
+
   if (value > 0 && value < roundingThreshold / 2) {
     return `< ${formatter.format(roundingThreshold)}`;
   }
+
   return formatter.format(value);
 }
 

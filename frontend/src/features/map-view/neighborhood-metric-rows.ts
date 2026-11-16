@@ -36,6 +36,7 @@ export function buildNeighborhoodMetricRows({
 
   return definitions.map((definition) => {
     const value = valuesByKey.get(definition.key);
+
     return {
       key: definition.key,
       name: localizedMetricName(definition, locale),
@@ -62,8 +63,10 @@ export function filterNeighborhoodMetricRows({
   locale: string;
 }): NeighborhoodMetricRow[] {
   const needle = query.trim().toLocaleLowerCase(locale);
+
   if (needle === "") {
     return [...rows];
   }
+
   return rows.filter((row) => row.name.toLocaleLowerCase(locale).includes(needle));
 }

@@ -16,6 +16,7 @@ export function filterMetricsByCategory({
   if (selectedCategories.size === 0) {
     return metrics;
   }
+
   return metrics.filter(
     (metric) => selectedCategories.has(metric.category) || metric.key === currentMetricKey,
   );

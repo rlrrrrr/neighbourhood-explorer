@@ -76,6 +76,7 @@ async function withFetch(
 ): Promise<void> {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async (input) => fetchReplacement(input);
+
   try {
     await run();
   } finally {
@@ -87,17 +88,21 @@ function requestUrl(input: RequestInfo | URL): string {
   if (typeof input === "string") {
     return input;
   }
+
   return input instanceof URL ? input.toString() : input.url;
 }
 
 function respondFromFixtures(input: RequestInfo | URL): Promise<Response> {
   const url = requestUrl(input);
+
   if (url.endsWith("/api/v1/metrics")) {
     return Promise.resolve(jsonResponse(metricsPayload));
   }
+
   if (url.includes("/metric-values")) {
     return Promise.resolve(jsonResponse(valuesPayload));
   }
+
   return Promise.resolve(jsonResponse(neighborhoodsPayload));
 }
 

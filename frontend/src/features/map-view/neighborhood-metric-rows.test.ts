@@ -8,6 +8,7 @@ import {
 } from "./neighborhood-metric-rows";
 
 type MetricDefinition = components["schemas"]["MetricDefinition"];
+
 type NeighborhoodMetric = components["schemas"]["NeighborhoodMetric"];
 
 const CAFES: MetricDefinition = {

@@ -23,6 +23,7 @@ export function useMapData({
   });
 
   const { refetch } = query;
+
   const reload = useCallback(() => {
     void refetch();
   }, [refetch]);
@@ -30,6 +31,7 @@ export function useMapData({
   if (query.status === "pending") {
     return { state: { status: "loading" }, reload };
   }
+
   if (query.status === "error") {
     return {
       state: {
@@ -39,5 +41,6 @@ export function useMapData({
       reload,
     };
   }
+
   return { state: { status: "ready", data: query.data }, reload };
 }

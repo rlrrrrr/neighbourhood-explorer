@@ -26,6 +26,7 @@ export function NeighborhoodMetricsPanel({
   onReload,
 }: NeighborhoodMetricsPanelProps) {
   const [query, setQuery] = useState("");
+
   const visibleRows = useMemo(
     () => filterNeighborhoodMetricRows({ rows, query, locale }),
     [rows, query, locale],

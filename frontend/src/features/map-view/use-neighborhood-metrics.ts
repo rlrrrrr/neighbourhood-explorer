@@ -20,12 +20,14 @@ export function useNeighborhoodMetrics({ neighborhoodId }: { neighborhoodId: num
       if (neighborhoodId === null) {
         return Promise.reject(new Error("no neighborhood selected"));
       }
+
       return fetchNeighborhoodMetrics({ neighborhoodId, signal });
     },
     enabled: neighborhoodId !== null,
   });
 
   const { refetch } = query;
+
   const reload = useCallback(() => {
     void refetch();
   }, [refetch]);
@@ -33,9 +35,11 @@ export function useNeighborhoodMetrics({ neighborhoodId }: { neighborhoodId: num
   if (neighborhoodId === null) {
     return { state: { status: "idle" }, reload };
   }
+
   if (query.status === "pending") {
     return { state: { status: "loading" }, reload };
   }
+
   if (query.status === "error") {
     return {
       state: {
@@ -45,5 +49,6 @@ export function useNeighborhoodMetrics({ neighborhoodId }: { neighborhoodId: num
       reload,
     };
   }
+
   return { state: { status: "ready", data: query.data }, reload };
 }

@@ -23,6 +23,7 @@ export function readChoroplethColors(root: HTMLElement): ChoroplethColors {
 
   const read = (name: string) => {
     probe.style.color = `var(${name})`;
+
     return toMapLibreColor(getComputedStyle(probe).color);
   };
 
@@ -46,6 +47,7 @@ export function readChoroplethColors(root: HTMLElement): ChoroplethColors {
 
 export function toMapLibreColor(value: string): string {
   const srgb = value.match(/^color\(srgb\s+([\d.]+)\s+([\d.]+)\s+([\d.]+)(?:\s*\/\s*([\d.]+))?\)$/);
+
   if (srgb === null) {
     return value;
   }
@@ -53,7 +55,9 @@ export function toMapLibreColor(value: string): string {
   const [red, green, blue] = [srgb[1], srgb[2], srgb[3]].map((channel) =>
     Math.round(Number(channel) * 255),
   );
+
   const alpha = srgb[4] === undefined ? 1 : Number(srgb[4]);
+
   return `rgba(${red}, ${green}, ${blue}, ${alpha})`;
 }
 

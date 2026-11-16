@@ -16,9 +16,11 @@ export function ChatComposer({ onSubmit }: ChatComposerProps) {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const text = draft.trim();
+
     if (text.length === 0 || !onSubmit) {
       return;
     }
+
     setDraft("");
     onSubmit(text);
   }

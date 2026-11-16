@@ -28,12 +28,14 @@
   "devDependencies": {
     "@nkzw/fbtee-compiler": "5.0.0",
     "@nkzw/vite-plugin-fbtee": "5.0.0",
+    "@oxlint/plugins": "1.88.0",
     "@types/geojson": "^7946.0.16",
     "@types/node": "^24.13.3",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "openapi-typescript": "^7.13.0",
+    "oxc-transform-react": "^0.152.0",
     "typescript": "~6.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:"

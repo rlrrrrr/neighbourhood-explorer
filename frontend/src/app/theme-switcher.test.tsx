@@ -11,6 +11,7 @@ describe("theme switcher", () => {
     for (const theme of ALL_THEME_NAMES) {
       expect(markup).toContain(THEME_DISPLAY_NAMES[theme]);
     }
+
     expect(markup).toContain('aria-pressed="true"');
     expect(markup.match(/aria-pressed/g)).toHaveLength(ALL_THEME_NAMES.length);
   });

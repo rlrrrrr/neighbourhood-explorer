@@ -25,9 +25,11 @@ export async function fetchMapData({
   signal: AbortSignal;
 }): Promise<MapData> {
   const requestedMetricKeys = [...new Set([metricKey, fallbackMetricKey])];
+
   const encodedMetricKeys = requestedMetricKeys
     .map((requestedKey) => encodeURIComponent(requestedKey))
     .join(",");
+
   const [metricsPayload, valuesPayload, neighborhoodsPayload] = await Promise.all([
     getApiJson("/api/v1/metrics", signal),
     getApiJson(`/api/v1/cities/${cityId}/metric-values?metrics=${encodedMetricKeys}`, signal),
@@ -44,6 +46,7 @@ export async function fetchMapData({
   const metric =
     metricsPayload.metrics.find((candidate) => candidate.key === metricKey) ??
     metricsPayload.metrics.find((candidate) => candidate.key === fallbackMetricKey);
+
   if (metric === undefined) {
     throw new ApiRequestError({
       code: "metric_not_found",

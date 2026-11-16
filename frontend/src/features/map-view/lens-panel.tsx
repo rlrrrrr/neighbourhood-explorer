@@ -31,11 +31,13 @@ const lensOption = tv({
 
 function toggleKey(selected: ReadonlySet<string>, key: string): Set<string> {
   const next = new Set(selected);
+
   if (next.has(key)) {
     next.delete(key);
   } else {
     next.add(key);
   }
+
   return next;
 }
 
@@ -125,9 +127,11 @@ export function LensPanel({
   const [selectedCategories, setSelectedCategories] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
+
   const { containerRef, hasMore } = useScrollOverflowHint({ axis: "vertical" });
   const { locale } = useLocaleContext();
   const categories = useMemo(() => listMetricCategories(metrics), [metrics]);
+
   const visibleMetrics = useMemo(
     () =>
       filterMetricsByCategory({
@@ -137,6 +141,7 @@ export function LensPanel({
       }),
     [metrics, selectedCategories, selectedMetricKey],
   );
+
   const title = fbt("La lentille", "Title of the lens panel on the map");
   const closeLabel = fbs("Fermer le panneau de la lentille", "Close button of the lens panel");
 
