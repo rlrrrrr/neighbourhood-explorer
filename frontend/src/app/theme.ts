@@ -61,6 +61,12 @@ export function readStoredTheme(): ThemeName {
   }
 }
 
+export function applyStoredTheme(): ThemeName {
+  const theme = readStoredTheme();
+  document.documentElement.dataset.theme = theme;
+  return theme;
+}
+
 export function applyTheme(theme: ThemeName): void {
   const root = document.documentElement;
   root.classList.add("theme-switching");
