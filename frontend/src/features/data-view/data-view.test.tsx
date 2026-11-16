@@ -130,7 +130,9 @@ function renderTable({
 }
 
 function bodyOf(markup: string): string {
-  return markup.slice(markup.indexOf("<tbody>"), markup.indexOf("</tbody>"));
+  const start = markup.indexOf("<tbody");
+  const end = markup.indexOf("</tbody>");
+  return start === -1 || end === -1 ? "" : markup.slice(start, end);
 }
 
 describe("data view", () => {
