@@ -1,6 +1,6 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { fbs, fbt, type TranslatedString } from "fbtee";
-import { applyTheme, readStoredTheme, type ThemeName } from "./theme";
+import { applyTheme, readCurrentTheme, type ThemeName } from "./theme";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { Button } from "../components/ui/button";
@@ -28,11 +28,11 @@ function navigationLabel(view: NavigationView): TranslatedString {
 }
 
 export function AppShell({ view, onNavigate, children }: AppShellProps) {
-  const [theme, setTheme] = useState<ThemeName>(() => readStoredTheme());
-
-  useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+  const [theme, setTheme] = useState<ThemeName>(readCurrentTheme);
+  const changeTheme = (nextTheme: ThemeName) => {
+    applyTheme(nextTheme);
+    setTheme(nextTheme);
+  };
 
   return (
     <div className="interface-enter flex min-h-screen flex-col text-text">
@@ -63,7 +63,7 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
           </nav>
           <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-1 sm:col-start-3 sm:flex-nowrap">
             <LanguageSwitcher />
-            <ThemeSwitcher theme={theme} onChange={setTheme} />
+            <ThemeSwitcher theme={theme} onChange={changeTheme} />
           </div>
         </div>
       </header>
