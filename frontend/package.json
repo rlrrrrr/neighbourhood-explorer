@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vp dev",
     "build": "tsc -b && vp build",
+    "doctor": "react-doctor",
     "generate:api": "vp exec openapi-typescript ../backend/openapi/openapi.v1.json -o src/generated/api.d.ts",
     "lint": "vp lint",
     "preview": "vp preview"
@@ -37,6 +38,7 @@
     "@vitejs/plugin-react": "^6.1.1",
     "openapi-typescript": "^7.13.0",
     "oxc-transform-react": "^0.152.0",
+    "react-doctor": "0.9.23",
     "typescript": "~6.0.2",
     "vite": "catalog:",
     "vite-plus": "catalog:"
