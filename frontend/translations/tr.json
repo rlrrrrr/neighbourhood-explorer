@@ -1353,6 +1353,17 @@
         }
       ],
       "types": []
+    },
+    "xl/FrSQ2Axr1Sa4KVjaFyA==": {
+      "description": "Accessible label of the button expanding a neighborhood row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle ayrıntılarını göster veya gizle",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }
