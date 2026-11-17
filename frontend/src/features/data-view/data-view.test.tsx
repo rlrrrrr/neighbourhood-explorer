@@ -131,21 +131,20 @@ function renderTable({
 
 function bodyOf(markup: string): string {
   const start = markup.indexOf("<tbody");
-  const end = markup.indexOf("</tbody>");
+  const end = markup.lastIndexOf("</tbody>");
 
   return start === -1 || end === -1 ? "" : markup.slice(start, end);
 }
 
 describe("data view", () => {
-  it("shows compact columns and a disclosure button next to every neighborhood", () => {
+  it("keeps two compact metric columns and a map action instead of a row disclosure", () => {
     const markup = renderTable();
 
     expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
     expect(markup).toContain("Verdure");
-    expect(markup.match(/aria-label="Afficher ou masquer les détails du quartier"/g)).toHaveLength(
-      3,
-    );
-    expect(markup.match(/aria-controls="metric-detail-/g)).toHaveLength(3);
+    expect(markup.match(/Afficher ou masquer les quartiers du district/g)).toHaveLength(2);
+    expect(markup.match(/aria-controls="district-rows-/g)).toHaveLength(2);
+    expect(markup.match(/aria-label="Voir sur la carte"/g)).toHaveLength(3);
   });
 
   it("keeps the unit and the observation date of the visible metric", () => {
@@ -157,10 +156,12 @@ describe("data view", () => {
     expect(markup).toContain("2021-12-31");
   });
 
-  it("flags estimated values and leaves missing values explicit", () => {
+  it("prints a uniform quality flag once in the header and flags exceptions in the cells", () => {
     const markup = renderTable();
+    const body = bodyOf(markup);
 
-    expect(markup.match(/Estimation/g)).toHaveLength(2);
+    expect(markup.match(/Estimation/g)).toHaveLength(1);
+    expect(body).not.toContain("Estimation");
     expect(markup).toContain("Pas de donnée");
   });
 
@@ -170,7 +171,7 @@ describe("data view", () => {
     expect(markup).toContain("sticky start-0");
     expect(markup).toContain('scope="row"');
     expect(markup.match(/scope="col"/g)).toHaveLength(4);
-    expect(markup.match(/Voir sur la carte/g)).toHaveLength(3);
+    expect(markup.match(/aria-label="Voir sur la carte"/g)).toHaveLength(3);
   });
 
   it("never highlights a row as the best one", () => {
@@ -287,13 +288,14 @@ describe("data view", () => {
     expect(markup).toContain("Quartiers affichés");
   });
 
-  it("groups rows by district and shows the average of the sorted metric", () => {
+  it("groups rows by district and collapses each group from its header", () => {
     const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
 
     expect(markup).toContain("Beyoğlu");
     expect(markup).toContain("Kadıköy");
     expect(markup).toContain("moy.");
     expect(markup).toContain('aria-pressed="true"');
+    expect(markup.match(/aria-expanded="true"/g)).toHaveLength(2);
     expect(markup).toContain('colSpan="4"');
   });
 

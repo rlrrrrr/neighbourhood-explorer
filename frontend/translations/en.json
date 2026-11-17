@@ -2091,17 +2091,6 @@
       ],
       "types": []
     },
-    "nXCg+kcdjCrq8CATwVkYmA==": {
-      "description": "Subtitle of the data view, promising every published raw value with its unit, date and source",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Every published metric, with unit, observation date and source, without a composite score",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "oj/YgH55vmB1iX02ecrfow==": {
       "description": "Label of the search field filtering the raw values table",
       "tokens": [],
@@ -2130,17 +2119,6 @@
       "translations": [
         {
           "translation": "Neighbourhoods shown:",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "w1PuY2GDPxFpaHlzZgLmJQ==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Raw values by neighbourhood: name, district and one column per published metric, sortable.",
           "variations": {}
         }
       ],
@@ -2377,12 +2355,45 @@
       ],
       "types": []
     },
-    "xl/FrSQ2Axr1Sa4KVjaFyA==": {
-      "description": "Accessible label of the button expanding a neighborhood row",
+    "6V830xOD38Rnoo2g4w7CHg==": {
+      "description": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
       "tokens": [],
       "translations": [
         {
-          "translation": "Show or hide neighborhood details",
+          "translation": "Compare one raw metric at a time, without a composite score. A neighborhood's sheet on the map gathers all its values.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oYpYV6N/Wz43C7atqU3QmQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Raw neighborhood values, grouped by district and sortable by metric.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "C16iCOS88Fof0dYHS2kRcQ==": {
+      "description": "Accessible label of the button collapsing a district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Show or hide the neighborhood rows of this district",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "mDLBkvoO2/99ZLpd2q4Obg==": {
+      "description": "Accessible label of the metric quality in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Quality:",
           "variations": {}
         }
       ],

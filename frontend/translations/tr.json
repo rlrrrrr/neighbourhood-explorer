@@ -2091,17 +2091,6 @@
       ],
       "types": []
     },
-    "nXCg+kcdjCrq8CATwVkYmA==": {
-      "description": "Subtitle of the data view, promising every published raw value with its unit, date and source",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Yayımlanan tüm metrikler; birim, gözlem tarihi ve kaynakla, bileşik puan olmadan",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "oj/YgH55vmB1iX02ecrfow==": {
       "description": "Label of the search field filtering the raw values table",
       "tokens": [],
@@ -2130,17 +2119,6 @@
       "translations": [
         {
           "translation": "Gösterilen mahalleler:",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "w1PuY2GDPxFpaHlzZgLmJQ==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Mahalleye göre ham değerler: ad, ilçe ve yayımlanan her metrik için bir sütun, sıralanabilir.",
           "variations": {}
         }
       ],
@@ -2377,12 +2355,45 @@
       ],
       "types": []
     },
-    "xl/FrSQ2Axr1Sa4KVjaFyA==": {
-      "description": "Accessible label of the button expanding a neighborhood row",
+    "6V830xOD38Rnoo2g4w7CHg==": {
+      "description": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
       "tokens": [],
       "translations": [
         {
-          "translation": "Mahalle ayrıntılarını göster veya gizle",
+          "translation": "Tek seferde tek bir ham metriği karşılaştırın, bileşik puan yok. Bir mahallenin tüm değerleri haritadaki kartında yer alır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oYpYV6N/Wz43C7atqU3QmQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçeye göre gruplanmış, metrikle sıralanabilen ham mahalle değerleri.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "C16iCOS88Fof0dYHS2kRcQ==": {
+      "description": "Accessible label of the button collapsing a district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu ilçenin mahalle satırlarını göster veya gizle",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "mDLBkvoO2/99ZLpd2q4Obg==": {
+      "description": "Accessible label of the metric quality in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kalite:",
           "variations": {}
         }
       ],

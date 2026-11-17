@@ -2091,17 +2091,6 @@
       ],
       "types": []
     },
-    "nXCg+kcdjCrq8CATwVkYmA==": {
-      "description": "Subtitle of the data view, promising every published raw value with its unit, date and source",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "جميع المؤشرات المنشورة، مع الوحدة وتاريخ الرصد والمصدر، دون نتيجة مركّبة",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "oj/YgH55vmB1iX02ecrfow==": {
       "description": "Label of the search field filtering the raw values table",
       "tokens": [],
@@ -2130,17 +2119,6 @@
       "translations": [
         {
           "translation": "الأحياء المعروضة:",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "w1PuY2GDPxFpaHlzZgLmJQ==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "القيم الخام حسب الحي: الاسم والقضاء وعمود لكل مؤشر منشور، قابل للفرز.",
           "variations": {}
         }
       ],
@@ -2377,12 +2355,45 @@
       ],
       "types": []
     },
-    "xl/FrSQ2Axr1Sa4KVjaFyA==": {
-      "description": "Accessible label of the button expanding a neighborhood row",
+    "6V830xOD38Rnoo2g4w7CHg==": {
+      "description": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
       "tokens": [],
       "translations": [
         {
-          "translation": "إظهار تفاصيل الحي أو إخفاؤها",
+          "translation": "قارن مؤشرًا خامًا واحدًا في كل مرة، دون نتيجة مركبة. تجمع بطاقة الحي على الخريطة جميع قيمه.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oYpYV6N/Wz43C7atqU3QmQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "قيم الأحياء الخام، مجمّعة حسب المنطقة وقابلة للفرز حسب المؤشر.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "C16iCOS88Fof0dYHS2kRcQ==": {
+      "description": "Accessible label of the button collapsing a district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "إظهار صفوف أحياء هذه المنطقة أو إخفاؤها",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "mDLBkvoO2/99ZLpd2q4Obg==": {
+      "description": "Accessible label of the metric quality in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "الجودة:",
           "variations": {}
         }
       ],
