@@ -34,83 +34,6 @@
       ],
       "types": []
     },
-    "RhKKygaH4G/v+0eDciNiKg==": {
-      "description": "Lens filter category: mobility",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "التنقل",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "E0VtZmvDKoWI/1At1hCjwg==": {
-      "description": "Lens filter category: local life",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الحياة المحلية",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "6RY/SWc3y5TuHG4gwxHjYg==": {
-      "description": "Lens filter category: nature",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الطبيعة",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "KIQ12L1WCVj/uT2kMmZxKA==": {
-      "description": "Lens filter category: services",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الخدمات",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Ev6SgGb6AhY/aydwJ0aLaw==": {
-      "description": "Lens layer: metro",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "المترو",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Z2lriz15KkNPSWvxfHXU1w==": {
-      "description": "Lens layer: parks",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الحدائق",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "4S96U+dLdyKaqVrzR0ETpQ==": {
-      "description": "Lens layer: isochrone",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الأيزوكرون",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "HpPgpLng+C4a0ZCpnrRt+g==": {
       "description": "Title of the lens panel on the map",
       "tokens": [],
@@ -183,28 +106,6 @@
       "translations": [
         {
           "translation": "لا يوجد حي محفوظ حتى الآن",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "R56DH+uA4v3NOU5K0JdzBg==": {
-      "description": "Legend of the basemap style group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الأساس",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "7O+xvX1MIhjJQNhoOjXSyw==": {
-      "description": "Legend of the layer group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "الطبقات",
           "variations": {}
         }
       ],
@@ -2438,6 +2339,39 @@
       "translations": [
         {
           "translation": "المقياس المعروض",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wyWm6Hy6uEg+B2z+36+rZQ==": {
+      "description": "Button grouping the data table rows by district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "تجميع",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4bEtKYA4tvWxnsLqvFcIAQ==": {
+      "description": "Button showing the average of each district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "المتوسطات",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fF8Ubj51s+uHRDWSWoRi6w==": {
+      "description": "Label of the district average in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "مت.",
           "variations": {}
         }
       ],

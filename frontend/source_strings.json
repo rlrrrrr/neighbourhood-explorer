@@ -1171,14 +1171,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 328,
+          "line": 331,
           "column": 12,
-          "index": 12360
+          "index": 12438
         },
         "end": {
-          "line": 328,
+          "line": 331,
           "column": 69,
-          "index": 12417
+          "index": 12495
         }
       },
       "project": "",
@@ -1200,14 +1200,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 334,
+          "line": 337,
           "column": 12,
-          "index": 12835
+          "index": 12913
         },
         "end": {
-          "line": 334,
+          "line": 337,
           "column": 69,
-          "index": 12892
+          "index": 12970
         }
       },
       "project": "",
@@ -1229,14 +1229,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 338,
+          "line": 341,
           "column": 12,
-          "index": 13065
+          "index": 13143
         },
         "end": {
-          "line": 338,
+          "line": 341,
           "column": 87,
-          "index": 13140
+          "index": 13218
         }
       },
       "project": "",
@@ -2447,14 +2447,14 @@
       "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 46,
+          "line": 47,
           "column": 20,
-          "index": 1353
+          "index": 1347
         },
         "end": {
-          "line": 46,
+          "line": 47,
           "column": 77,
-          "index": 1410
+          "index": 1404
         }
       },
       "project": "",
@@ -2476,14 +2476,14 @@
       "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 84,
+          "line": 90,
           "column": 10,
-          "index": 2840
+          "index": 3015
         },
         "end": {
-          "line": 84,
+          "line": 90,
           "column": 76,
-          "index": 2906
+          "index": 3081
         }
       },
       "project": "",
@@ -2505,14 +2505,14 @@
       "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 95,
+          "line": 100,
           "column": 10,
-          "index": 3178
+          "index": 3542
         },
         "end": {
-          "line": 95,
+          "line": 100,
           "column": 89,
-          "index": 3257
+          "index": 3621
         }
       },
       "project": "",
@@ -2737,14 +2737,14 @@
       "filename": "src/features/data-view/data-table-toolbar.tsx",
       "loc": {
         "start": {
-          "line": 19,
+          "line": 28,
           "column": 10,
-          "index": 487
+          "index": 781
         },
         "end": {
-          "line": 21,
+          "line": 30,
           "column": 16,
-          "index": 608
+          "index": 902
         }
       },
       "project": "",
@@ -2766,14 +2766,14 @@
       "filename": "src/features/data-view/data-table-toolbar.tsx",
       "loc": {
         "start": {
-          "line": 27,
+          "line": 36,
           "column": 23,
-          "index": 783
+          "index": 1077
         },
         "end": {
-          "line": 30,
+          "line": 39,
           "column": 11,
-          "index": 909
+          "index": 1203
         }
       },
       "project": "",
@@ -2787,6 +2787,64 @@
     },
     {
       "hashToLeaf": {
+        "wyWm6Hy6uEg+B2z+36+rZQ==": {
+          "desc": "Button grouping the data table rows by district",
+          "text": "Regrouper"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 53,
+          "column": 10,
+          "index": 1809
+        },
+        "end": {
+          "line": 53,
+          "column": 85,
+          "index": 1884
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button grouping the data table rows by district",
+          "text": "Regrouper"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "4bEtKYA4tvWxnsLqvFcIAQ==": {
+          "desc": "Button showing the average of each district group",
+          "text": "Moyennes"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 10,
+          "index": 2382
+        },
+        "end": {
+          "line": 64,
+          "column": 86,
+          "index": 2458
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button showing the average of each district group",
+          "text": "Moyennes"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "3C6K7xX+DqLRUXvX/KWkFQ==": {
           "desc": "Count of neighborhoods currently displayed in the raw values table",
           "text": "Quartiers affichés :"
@@ -2795,14 +2853,14 @@
       "filename": "src/features/data-view/data-table-toolbar.tsx",
       "loc": {
         "start": {
-          "line": 34,
-          "column": 8,
-          "index": 1009
+          "line": 67,
+          "column": 10,
+          "index": 2553
         },
         "end": {
-          "line": 36,
-          "column": 14,
-          "index": 1134
+          "line": 69,
+          "column": 16,
+          "index": 2682
         }
       },
       "project": "",
@@ -2824,14 +2882,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 68,
+          "line": 73,
           "column": 10,
-          "index": 2375
+          "index": 2484
         },
         "end": {
-          "line": 70,
+          "line": 75,
           "column": 16,
-          "index": 2500
+          "index": 2609
         }
       },
       "project": "",
@@ -2853,14 +2911,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 72,
+          "line": 77,
           "column": 10,
-          "index": 2525
+          "index": 2634
         },
         "end": {
-          "line": 74,
+          "line": 79,
           "column": 16,
-          "index": 2651
+          "index": 2760
         }
       },
       "project": "",
@@ -2882,14 +2940,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 78,
+          "line": 83,
           "column": 8,
-          "index": 2748
+          "index": 2857
         },
         "end": {
-          "line": 81,
+          "line": 86,
           "column": 14,
-          "index": 2983
+          "index": 3092
         }
       },
       "project": "",
@@ -2911,14 +2969,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 87,
+          "line": 92,
           "column": 12,
-          "index": 3215
+          "index": 3324
         },
         "end": {
-          "line": 89,
+          "line": 94,
           "column": 18,
-          "index": 3338
+          "index": 3447
         }
       },
       "project": "",
@@ -2940,14 +2998,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 103,
+          "line": 108,
           "column": 10,
-          "index": 3713
+          "index": 3822
         },
         "end": {
-          "line": 103,
+          "line": 108,
           "column": 95,
-          "index": 3798
+          "index": 3907
         }
       },
       "project": "",
@@ -2969,14 +3027,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 128,
+          "line": 132,
           "column": 8,
-          "index": 4527
+          "index": 4604
         },
         "end": {
-          "line": 130,
+          "line": 134,
           "column": 14,
-          "index": 4647
+          "index": 4724
         }
       },
       "project": "",
@@ -2998,14 +3056,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 133,
+          "line": 137,
           "column": 8,
-          "index": 4722
+          "index": 4799
         },
         "end": {
-          "line": 133,
+          "line": 137,
           "column": 64,
-          "index": 4778
+          "index": 4855
         }
       },
       "project": "",
@@ -3027,14 +3085,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 136,
+          "line": 140,
           "column": 8,
-          "index": 4897
+          "index": 4974
         },
         "end": {
-          "line": 136,
+          "line": 140,
           "column": 74,
-          "index": 4963
+          "index": 5040
         }
       },
       "project": "",
@@ -3056,14 +3114,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 233,
+          "line": 274,
           "column": 10,
-          "index": 7877
+          "index": 9131
         },
         "end": {
-          "line": 235,
+          "line": 276,
           "column": 16,
-          "index": 8016
+          "index": 9270
         }
       },
       "project": "",
@@ -3085,14 +3143,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 251,
+          "line": 296,
           "column": 14,
-          "index": 8548
+          "index": 10038
         },
         "end": {
-          "line": 254,
+          "line": 299,
           "column": 20,
-          "index": 8746
+          "index": 10236
         }
       },
       "project": "",
@@ -3114,14 +3172,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 265,
+          "line": 307,
           "column": 18,
-          "index": 9112
+          "index": 10510
         },
         "end": {
-          "line": 265,
+          "line": 307,
           "column": 84,
-          "index": 9178
+          "index": 10576
         }
       },
       "project": "",
@@ -3143,14 +3201,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 327,
+          "line": 371,
           "column": 28,
-          "index": 12044
+          "index": 13529
         },
         "end": {
-          "line": 329,
+          "line": 373,
           "column": 34,
-          "index": 12220
+          "index": 13705
         }
       },
       "project": "",
@@ -3164,6 +3222,35 @@
     },
     {
       "hashToLeaf": {
+        "fF8Ubj51s+uHRDWSWoRi6w==": {
+          "desc": "Label of the district average in the data table",
+          "text": "moy."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 423,
+          "column": 28,
+          "index": 15927
+        },
+        "end": {
+          "line": 423,
+          "column": 98,
+          "index": 15997
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the district average in the data table",
+          "text": "moy."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "K/CCzDUAffe7tdCvFCeMmw==": {
           "desc": "Shown when the neighborhood search matches nothing in the raw values table",
           "text": "Aucun quartier ne correspond à cette recherche."
@@ -3172,14 +3259,14 @@
       "filename": "src/features/data-view/data-table-view.tsx",
       "loc": {
         "start": {
-          "line": 395,
+          "line": 492,
           "column": 10,
-          "index": 14691
+          "index": 18738
         },
         "end": {
-          "line": 397,
+          "line": 494,
           "column": 16,
-          "index": 14855
+          "index": 18902
         }
       },
       "project": "",
@@ -3201,14 +3288,14 @@
       "filename": "src/features/data-view/metric-cell.tsx",
       "loc": {
         "start": {
-          "line": 27,
+          "line": 30,
           "column": 10,
-          "index": 638
+          "index": 716
         },
         "end": {
-          "line": 27,
+          "line": 30,
           "column": 93,
-          "index": 721
+          "index": 799
         }
       },
       "project": "",

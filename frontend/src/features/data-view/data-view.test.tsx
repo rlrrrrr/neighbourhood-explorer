@@ -227,8 +227,8 @@ describe("data view", () => {
 
     const body = bodyOf(markup);
 
-    expect(body.indexOf("Caferağa")).toBeLessThan(body.indexOf("Cihangir"));
     expect(body.indexOf("Cihangir")).toBeLessThan(body.indexOf("Asmalı Mescit"));
+    expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Caferağa"));
     expect(markup).toContain('aria-sort="descending"');
     expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
   });
@@ -238,8 +238,8 @@ describe("data view", () => {
     const body = bodyOf(markup);
 
     expect(markup).not.toContain('aria-sort="descending"');
-    expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Caferağa"));
-    expect(body.indexOf("Caferağa")).toBeLessThan(body.indexOf("Cihangir"));
+    expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Cihangir"));
+    expect(body.indexOf("Cihangir")).toBeLessThan(body.indexOf("Caferağa"));
   });
 
   it("shows the active criteria and names the ones the API does not publish", () => {
@@ -283,6 +283,16 @@ describe("data view", () => {
 
     expect(markup).toContain("Rechercher un quartier");
     expect(markup).toContain("Quartiers affichés");
+  });
+
+  it("groups rows by district and shows the average of the sorted metric", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
+
+    expect(markup).toContain("Beyoğlu");
+    expect(markup).toContain("Kadıköy");
+    expect(markup).toContain("moy.");
+    expect(markup).toContain('aria-pressed="true"');
+    expect(markup).toContain('colSpan="5"');
   });
 
   it("shows fifty rows per page, numbers ranks across pages and counts the pages", () => {
