@@ -2376,6 +2376,17 @@
         }
       ],
       "types": []
+    },
+    "xl/FrSQ2Axr1Sa4KVjaFyA==": {
+      "description": "Accessible label of the button expanding a neighborhood row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Show or hide neighborhood details",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

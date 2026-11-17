@@ -137,19 +137,21 @@ function bodyOf(markup: string): string {
 }
 
 describe("data view", () => {
-  it("shows one sortable column per published metric, labelled by the API", () => {
+  it("shows compact columns and a disclosure button next to every neighborhood", () => {
     const markup = renderTable();
 
-    expect(markup.match(/aria-sort="none"/g)).toHaveLength(2);
-    expect(markup).toContain("Densité de cafés");
+    expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
     expect(markup).toContain("Verdure");
+    expect(markup.match(/aria-label="Afficher ou masquer les détails du quartier"/g)).toHaveLength(
+      3,
+    );
+    expect(markup.match(/aria-controls="metric-detail-/g)).toHaveLength(3);
   });
 
-  it("repeats the unit next to every value and shows the observation date", () => {
+  it("keeps the unit and the observation date of the visible metric", () => {
     const markup = renderTable();
     const body = bodyOf(markup);
 
-    expect(body.match(/cafés\/km²/g)).toHaveLength(3);
     expect(body.match(/% de la surface/g)).toHaveLength(2);
     expect(markup).toContain("2026-10-30");
     expect(markup).toContain("2021-12-31");
@@ -167,7 +169,7 @@ describe("data view", () => {
 
     expect(markup).toContain("sticky start-0");
     expect(markup).toContain('scope="row"');
-    expect(markup.match(/scope="col"/g)).toHaveLength(5);
+    expect(markup.match(/scope="col"/g)).toHaveLength(4);
     expect(markup.match(/Voir sur la carte/g)).toHaveLength(3);
   });
 
@@ -230,7 +232,7 @@ describe("data view", () => {
     expect(body.indexOf("Cihangir")).toBeLessThan(body.indexOf("Asmalı Mescit"));
     expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Caferağa"));
     expect(markup).toContain('aria-sort="descending"');
-    expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
+    expect(markup.match(/aria-sort="none"/g)).toBeNull();
   });
 
   it("ignores a sort key that is not an active column", () => {
@@ -292,7 +294,7 @@ describe("data view", () => {
     expect(markup).toContain("Kadıköy");
     expect(markup).toContain("moy.");
     expect(markup).toContain('aria-pressed="true"');
-    expect(markup).toContain('colSpan="5"');
+    expect(markup).toContain('colSpan="4"');
   });
 
   it("shows fifty rows per page, numbers ranks across pages and counts the pages", () => {

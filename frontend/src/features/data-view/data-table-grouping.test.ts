@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vite-plus/test";
 import type { DataTableRow } from "./data-table-client";
-import { districtGroups, orderGroupedRows } from "./data-table-grouping";
+import { districtGroups, orderGroupedRows, visibleMetricKeys } from "./data-table-grouping";
 
 const ROWS: DataTableRow[] = [
   {
@@ -52,6 +52,24 @@ describe("data table grouping", () => {
     expect(groups).toEqual([
       { districtName: "Beyoğlu", count: 2, average: 30, maximum: 40 },
       { districtName: "Kadıköy", count: 2, average: 60, maximum: 60 },
+    ]);
+  });
+
+  it("keeps two compact columns and adds the sorted metric", () => {
+    const metrics = [
+      { key: "cafes_density" },
+      { key: "greenery" },
+      { key: "transport_accessibility" },
+    ];
+
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined })).toEqual([
+      "greenery",
+      "transport_accessibility",
+    ]);
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density" })).toEqual([
+      "greenery",
+      "transport_accessibility",
+      "cafes_density",
     ]);
   });
 

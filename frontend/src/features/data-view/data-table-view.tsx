@@ -20,8 +20,14 @@ import {
   formatMetricValue,
   localizedMetricName,
   localizedUnit,
+  metricQualityLabel,
 } from "../metrics/metric-presentation";
-import { districtGroups, orderGroupedRows, type DistrictGroup } from "./data-table-grouping";
+import {
+  districtGroups,
+  orderGroupedRows,
+  visibleMetricKeys,
+  type DistrictGroup,
+} from "./data-table-grouping";
 import type { TableSort } from "./table-sort";
 import { createDataTableColumns, dataTableFeatures } from "./data-table-columns";
 import { DataTablePagination } from "./data-table-pagination";
@@ -164,6 +170,7 @@ function DataTableContent({
 }) {
   const [groupByDistrict, setGroupByDistrict] = useState(true);
   const [showGroupAverage, setShowGroupAverage] = useState(true);
+  const [expandedNeighborhoodId, setExpandedNeighborhoodId] = useState<number | null>(null);
 
   const rows = groupByDistrict
     ? orderGroupedRows({ rows: data.rows, sort, locale })
@@ -178,11 +185,20 @@ function DataTableContent({
     ((sort.direction === "descending" && sortedMetric.polarity === "higher_is_better") ||
       (sort.direction === "ascending" && sortedMetric.polarity === "lower_is_better"));
 
+  const visibleKeys = visibleMetricKeys({
+    metrics: data.metrics,
+    sortedMetricKey: sortedMetric?.key,
+  });
+
   const columns = createDataTableColumns({
     data,
     locale,
+    visibleMetricKeys: visibleKeys,
     sortedMetricKey: sortedMetric?.key,
     highlightsMerit,
+    expandedNeighborhoodId,
+    onToggleExpanded: (neighborhoodId) =>
+      setExpandedNeighborhoodId((current) => (current === neighborhoodId ? null : neighborhoodId)),
     onShowOnMap,
   });
 
@@ -238,7 +254,9 @@ function DataTableContent({
   );
 
   const renderedRows: Array<
-    { kind: "group"; group: DistrictGroup } | { kind: "row"; row: TableRow; rank: number }
+    | { kind: "group"; group: DistrictGroup }
+    | { kind: "row"; row: TableRow; rank: number }
+    | { kind: "detail"; row: TableRow }
   > = [];
 
   let previousDistrict: string | null = null;
@@ -257,6 +275,10 @@ function DataTableContent({
     }
 
     renderedRows.push({ kind: "row", row, rank: firstRank + index + 1 });
+
+    if (expandedNeighborhoodId === row.original.neighborhoodId) {
+      renderedRows.push({ kind: "detail", row });
+    }
   }
 
   const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}|${groupByDistrict}`;
@@ -404,7 +426,7 @@ function DataTableContent({
                   return (
                     <TableRow key={`group-${group.districtName}`} className="bg-surface">
                       <TableCell
-                        colSpan={data.metrics.length + 3}
+                        colSpan={visibleKeys.length + 3}
                         className="bg-surface text-sm font-semibold text-text"
                       >
                         <span aria-hidden="true" className="me-2 text-text-secondary">
@@ -433,6 +455,54 @@ function DataTableContent({
                             </span>
                           </span>
                         )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                if (entry.kind === "detail") {
+                  const { row } = entry;
+
+                  return (
+                    <TableRow
+                      key={`detail-${row.id}`}
+                      id={`metric-detail-${row.original.neighborhoodId}`}
+                      className="bg-surface"
+                    >
+                      <TableCell colSpan={visibleKeys.length + 3} className="bg-surface p-0">
+                        <div className="metric-detail-content grid grid-cols-2 gap-x-6 gap-y-2 px-4 py-3 sm:grid-cols-3 lg:grid-cols-4">
+                          {data.metrics.map((metric) => {
+                            const value = row.original.values[metric.key];
+
+                            const detail =
+                              value === undefined
+                                ? null
+                                : formatMetricValue({
+                                    value: value.raw,
+                                    locale,
+                                    maximumFractionDigits: metric.displayPrecision,
+                                  });
+
+                            return (
+                              <div key={metric.key} className="border-b border-border/50 pb-1">
+                                <p className="text-[10px] text-text-secondary">
+                                  {localizedMetricName(metric, locale)} ·{" "}
+                                  {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
+                                </p>
+                                <p className="font-mono text-xs tabular-nums text-text">
+                                  {detail ?? "—"}
+                                  {detail !== null &&
+                                    value?.qualityFlag !== "ok" &&
+                                    value !== undefined && (
+                                      <span className="ms-1 font-sans text-[10px] font-normal text-text-secondary">
+                                        {metricQualityLabel(value.qualityFlag)}
+                                      </span>
+                                    )}
+                                </p>
+                              </div>
+                            );
+                          })}
+                        </div>
                       </TableCell>
                     </TableRow>
                   );

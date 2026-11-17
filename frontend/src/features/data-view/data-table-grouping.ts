@@ -45,6 +45,23 @@ export function orderGroupedRows({
   });
 }
 
+export function visibleMetricKeys({
+  metrics,
+  sortedMetricKey,
+}: {
+  metrics: ReadonlyArray<{ key: string }>;
+  sortedMetricKey: string | undefined;
+}): string[] {
+  const preferred = metrics
+    .filter((metric) => ["transport_accessibility", "greenery"].includes(metric.key))
+    .map((metric) => metric.key);
+
+  const primary =
+    preferred.length > 0 ? preferred.slice(0, 2) : metrics.slice(0, 2).map((metric) => metric.key);
+
+  return [...new Set([...primary, ...(sortedMetricKey === undefined ? [] : [sortedMetricKey])])];
+}
+
 export function districtGroups({
   rows,
   metricKey,
