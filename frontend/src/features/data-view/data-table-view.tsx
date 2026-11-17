@@ -16,7 +16,12 @@ import {
 } from "../../components/ui/table";
 import { CriteriaChips } from "../criteria/criteria-chips";
 import type { Criteria } from "../criteria/criteria";
-import { localizedMetricName, localizedUnit } from "../metrics/metric-presentation";
+import {
+  formatMetricValue,
+  localizedMetricName,
+  localizedUnit,
+} from "../metrics/metric-presentation";
+import { districtGroups, orderGroupedRows, type DistrictGroup } from "./data-table-grouping";
 import type { TableSort } from "./table-sort";
 import { createDataTableColumns, dataTableFeatures } from "./data-table-columns";
 import { DataTablePagination } from "./data-table-pagination";
@@ -157,7 +162,13 @@ function DataTableContent({
   onSortChange: (sort: TableSort | null) => void;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
-  const rows = [...data.rows].sort((left, right) => left.name.localeCompare(right.name, locale));
+  const [groupByDistrict, setGroupByDistrict] = useState(true);
+  const [showGroupAverage, setShowGroupAverage] = useState(true);
+
+  const rows = groupByDistrict
+    ? orderGroupedRows({ rows: data.rows, sort, locale })
+    : [...data.rows].sort((left, right) => left.name.localeCompare(right.name, locale));
+
   const metricByKey = new Map(data.metrics.map((metric) => [metric.key, metric]));
   const sortedMetric = sort === null ? undefined : metricByKey.get(sort.key);
 
@@ -188,6 +199,7 @@ function DataTableContent({
     columns,
     data: rows,
     getRowId: (row) => String(row.neighborhoodId),
+    manualSorting: groupByDistrict,
     state: { sorting, pagination },
     onPaginationChange: setPagination,
     onSortingChange: (updater) => {
@@ -216,7 +228,38 @@ function DataTableContent({
   const pageCount = table.getPageCount();
   const firstRank = pagination.pageIndex * pagination.pageSize;
 
-  const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}`;
+  type TableRow = (typeof pageRows)[number];
+
+  const groupsByDistrict = new Map(
+    districtGroups({
+      rows: table.getFilteredRowModel().rows.map((row) => row.original),
+      metricKey: showGroupAverage ? sortedMetric?.key : undefined,
+    }).map((group) => [group.districtName, group]),
+  );
+
+  const renderedRows: Array<
+    { kind: "group"; group: DistrictGroup } | { kind: "row"; row: TableRow; rank: number }
+  > = [];
+
+  let previousDistrict: string | null = null;
+
+  for (const [index, row] of pageRows.entries()) {
+    const districtName = row.original.districtName;
+
+    if (groupByDistrict && districtName !== previousDistrict) {
+      const group = groupsByDistrict.get(districtName);
+
+      if (group !== undefined) {
+        renderedRows.push({ kind: "group", group });
+      }
+
+      previousDistrict = districtName;
+    }
+
+    renderedRows.push({ kind: "row", row, rank: firstRank + index + 1 });
+  }
+
+  const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}|${groupByDistrict}`;
   const [previousPageResetKey, setPreviousPageResetKey] = useState(pageResetKey);
 
   if (previousPageResetKey !== pageResetKey) {
@@ -239,6 +282,10 @@ function DataTableContent({
         searchText={searchText}
         shownCount={pageRows.length}
         totalCount={data.rows.length}
+        groupByDistrict={groupByDistrict}
+        showGroupAverage={showGroupAverage}
+        onToggleGrouping={() => setGroupByDistrict((current) => !current)}
+        onToggleAverage={() => setShowGroupAverage((current) => !current)}
         onSearchChange={(value) => table.setGlobalFilter(value)}
       />
 
@@ -336,41 +383,99 @@ function DataTableContent({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {pageRows.map((row, index) => (
-                <TableRow key={row.id} className="group hover:bg-surface">
-                  <TableCell className="sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface">
-                    <RankBadge rank={firstRank + index + 1} highlightMerit={highlightsMerit} />
-                  </TableCell>
-                  {row.getAllCells().map((cell) => {
-                    const isName = cell.column.id === "name";
-                    const isMetric = metricByKey.has(cell.column.id);
-                    const content = <table.FlexRender cell={cell} />;
+              {renderedRows.map((entry) => {
+                if (entry.kind === "group") {
+                  const { group } = entry;
 
-                    if (isName) {
+                  const averageText =
+                    showGroupAverage && group.average !== null && sortedMetric !== undefined
+                      ? formatMetricValue({
+                          value: group.average,
+                          locale,
+                          maximumFractionDigits: sortedMetric.displayPrecision,
+                        })
+                      : null;
+
+                  const barWidth =
+                    group.average !== null && group.maximum > 0
+                      ? Math.max(0, Math.min(100, (group.average / group.maximum) * 100))
+                      : 0;
+
+                  return (
+                    <TableRow key={`group-${group.districtName}`} className="bg-surface">
+                      <TableCell
+                        colSpan={data.metrics.length + 3}
+                        className="bg-surface text-sm font-semibold text-text"
+                      >
+                        <span aria-hidden="true" className="me-2 text-text-secondary">
+                          ⌄
+                        </span>
+                        <span
+                          aria-hidden="true"
+                          className="me-2 inline-block size-1.5 rounded-full bg-info"
+                        />
+                        {group.districtName}
+                        <span className="ms-2 rounded-full bg-bg px-1.5 py-0.5 font-mono text-[10px] font-normal text-text-secondary">
+                          {group.count}
+                        </span>
+                        {averageText !== null && (
+                          <span className="ms-3 font-normal text-text-secondary">
+                            <fbt desc="Label of the district average in the data table">moy.</fbt>{" "}
+                            <bdi dir="ltr">{averageText}</bdi>
+                            <span
+                              aria-hidden="true"
+                              className="ms-2 inline-block h-0.5 w-14 rounded-full bg-border align-middle"
+                            >
+                              <span
+                                className="block h-full rounded-full bg-action"
+                                style={{ width: `${barWidth}%` }}
+                              />
+                            </span>
+                          </span>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  );
+                }
+
+                const { row, rank } = entry;
+
+                return (
+                  <TableRow key={row.id} className="group hover:bg-surface">
+                    <TableCell className="sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface">
+                      <RankBadge rank={rank} highlightMerit={highlightsMerit} />
+                    </TableCell>
+                    {row.getAllCells().map((cell) => {
+                      const isName = cell.column.id === "name";
+                      const isMetric = metricByKey.has(cell.column.id);
+                      const content = <table.FlexRender cell={cell} />;
+
+                      if (isName) {
+                        return (
+                          <TableRowHeader
+                            key={cell.id}
+                            className="sticky start-12 z-10 border-e border-border/50 bg-bg text-sm font-medium text-text group-hover:bg-surface"
+                          >
+                            {content}
+                          </TableRowHeader>
+                        );
+                      }
+
                       return (
-                        <TableRowHeader
+                        <TableCell
                           key={cell.id}
-                          className="sticky start-12 z-10 border-e border-border/50 bg-bg text-sm font-medium text-text group-hover:bg-surface"
+                          className={cn(
+                            "text-end",
+                            isMetric && sortedMetric?.key === cell.column.id && "bg-action/[0.04]",
+                          )}
                         >
                           {content}
-                        </TableRowHeader>
+                        </TableCell>
                       );
-                    }
-
-                    return (
-                      <TableCell
-                        key={cell.id}
-                        className={cn(
-                          "text-end",
-                          isMetric && sortedMetric?.key === cell.column.id && "bg-action/[0.04]",
-                        )}
-                      >
-                        {content}
-                      </TableCell>
-                    );
-                  })}
-                </TableRow>
-              ))}
+                    })}
+                  </TableRow>
+                );
+              })}
             </TableBody>
           </Table>
           {hasMore && (

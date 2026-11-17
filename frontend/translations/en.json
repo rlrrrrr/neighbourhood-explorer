@@ -34,83 +34,6 @@
       ],
       "types": []
     },
-    "RhKKygaH4G/v+0eDciNiKg==": {
-      "description": "Lens filter category: mobility",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Mobility",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "E0VtZmvDKoWI/1At1hCjwg==": {
-      "description": "Lens filter category: local life",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Local life",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "6RY/SWc3y5TuHG4gwxHjYg==": {
-      "description": "Lens filter category: nature",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Nature",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "KIQ12L1WCVj/uT2kMmZxKA==": {
-      "description": "Lens filter category: services",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Services",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Ev6SgGb6AhY/aydwJ0aLaw==": {
-      "description": "Lens layer: metro",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Metro",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Z2lriz15KkNPSWvxfHXU1w==": {
-      "description": "Lens layer: parks",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Parks",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "4S96U+dLdyKaqVrzR0ETpQ==": {
-      "description": "Lens layer: isochrone",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Isochrone",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "HpPgpLng+C4a0ZCpnrRt+g==": {
       "description": "Title of the lens panel on the map",
       "tokens": [],
@@ -183,28 +106,6 @@
       "translations": [
         {
           "translation": "No saved neighbourhood yet",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "R56DH+uA4v3NOU5K0JdzBg==": {
-      "description": "Legend of the basemap style group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Basemap",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "7O+xvX1MIhjJQNhoOjXSyw==": {
-      "description": "Legend of the layer group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Layers",
           "variations": {}
         }
       ],
@@ -1415,6 +1316,39 @@
       "translations": [
         {
           "translation": "Displayed metric",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wyWm6Hy6uEg+B2z+36+rZQ==": {
+      "description": "Button grouping the data table rows by district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Group",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4bEtKYA4tvWxnsLqvFcIAQ==": {
+      "description": "Button showing the average of each district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Averages",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fF8Ubj51s+uHRDWSWoRi6w==": {
+      "description": "Label of the district average in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "avg.",
           "variations": {}
         }
       ],
