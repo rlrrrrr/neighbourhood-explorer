@@ -1,4 +1,4 @@
-import { fbt, fbs } from "fbtee";
+import { fbs, fbt } from "fbtee";
 import {
   columnFilteringFeature,
   createColumnHelper,
@@ -11,10 +11,10 @@ import {
   rowSortingFeature,
   tableFeatures,
 } from "@tanstack/react-table";
-import { ChevronDown } from "lucide-react";
-import { cn } from "../../components/ui/cn";
+import { Map } from "lucide-react";
 import { localizedMetricName } from "../metrics/metric-presentation";
 import type { DataTableData, DataTableRow } from "./data-table-client";
+import type { MetricQualityFlag } from "./data-table-quality";
 import { MetricCell } from "./metric-cell";
 
 export const dataTableFeatures = tableFeatures({
@@ -35,18 +35,18 @@ export function createDataTableColumns({
   locale,
   visibleMetricKeys,
   sortedMetricKey,
+  dominantQualityFlags,
   highlightsMerit,
-  expandedNeighborhoodId,
-  onToggleExpanded,
+  showDistrict,
   onShowOnMap,
 }: {
   data: DataTableData;
   locale: string;
   visibleMetricKeys: readonly string[];
   sortedMetricKey: string | undefined;
+  dominantQualityFlags: ReadonlyMap<string, MetricQualityFlag>;
   highlightsMerit: boolean;
-  expandedNeighborhoodId: number | null;
-  onToggleExpanded: (neighborhoodId: number) => void;
+  showDistrict: boolean;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
   const visibleMetrics = data.metrics.filter((metric) => visibleMetricKeys.includes(metric.key));
@@ -56,45 +56,23 @@ export function createDataTableColumns({
       id: "name",
       header: () => fbt("Quartier", "Column header of the neighborhood name"),
       enableSorting: false,
-      cell: ({ row }) => {
-        const neighborhoodId = row.original.neighborhoodId;
-        const expanded = expandedNeighborhoodId === neighborhoodId;
-
-        return (
-          <span className="flex max-w-[9.5rem] items-baseline gap-1.5 whitespace-nowrap sm:max-w-none">
-            <button
-              type="button"
-              aria-expanded={expanded}
-              aria-controls={`metric-detail-${neighborhoodId}`}
-              aria-label={fbs(
-                "Afficher ou masquer les détails du quartier",
-                "Accessible label of the button expanding a neighborhood row",
-              )}
-              onClick={() => onToggleExpanded(neighborhoodId)}
-              className="flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md border border-border text-text-secondary transition-[transform,background-color] duration-150 ease-out hover:bg-surface active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-            >
-              <ChevronDown
-                aria-hidden="true"
-                className={cn(
-                  "size-3.5 transition-transform duration-150 ease-out",
-                  expanded && "rotate-180",
-                )}
-              />
-            </button>
-            <button
-              type="button"
-              title={row.original.name}
-              onClick={() => onShowOnMap(neighborhoodId)}
-              className="min-w-0 cursor-pointer truncate text-start font-medium text-text transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-            >
-              {row.original.name}
-            </button>
-            <span className="hidden text-xs font-normal text-text-secondary sm:inline">
+      cell: ({ row }) => (
+        <span className="flex min-w-0 items-baseline gap-2">
+          <button
+            type="button"
+            title={row.original.name}
+            onClick={() => onShowOnMap(row.original.neighborhoodId)}
+            className="min-w-0 w-full max-w-[6.5rem] cursor-pointer truncate text-start font-medium text-text transition-colors duration-150 ease-out hover:text-action focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action sm:w-auto sm:max-w-[16rem]"
+          >
+            {row.original.name}
+          </button>
+          {showDistrict && (
+            <span className="hidden shrink-0 text-[11px] font-normal text-text-secondary sm:inline">
               {row.original.districtName}
             </span>
-          </span>
-        );
-      },
+          )}
+        </span>
+      ),
     }),
     ...visibleMetrics.map((metric) =>
       columnHelper.accessor((row) => row.values[metric.key]?.raw, {
@@ -113,6 +91,7 @@ export function createDataTableColumns({
               sortedMetricKey === metric.key &&
               table.getRowModel().rows.indexOf(row) < 3
             }
+            dominantQualityFlag={dominantQualityFlags.get(metric.key)}
           />
         ),
       }),
@@ -125,15 +104,21 @@ export function createDataTableColumns({
         </span>
       ),
       enableSorting: false,
-      cell: ({ row }) => (
-        <button
-          type="button"
-          onClick={() => onShowOnMap(row.original.neighborhoodId)}
-          className="cursor-pointer whitespace-nowrap text-xs font-medium text-text-secondary transition-colors duration-150 ease-out hover:text-action hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
-        >
-          <fbt desc="Button opening the map view from a data row">Voir sur la carte</fbt>
-        </button>
-      ),
+      cell: ({ row }) => {
+        const label = fbs("Voir sur la carte", "Button opening the map view from a data row");
+
+        return (
+          <button
+            type="button"
+            aria-label={label}
+            title={label}
+            onClick={() => onShowOnMap(row.original.neighborhoodId)}
+            className="inline-flex size-8 cursor-pointer items-center justify-center rounded-md text-text-secondary transition-colors duration-150 ease-out hover:bg-bg hover:text-action focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action"
+          >
+            <Map aria-hidden="true" className="size-4" />
+          </button>
+        );
+      },
     }),
   ]);
 }

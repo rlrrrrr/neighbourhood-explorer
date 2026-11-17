@@ -62,14 +62,30 @@ describe("data table grouping", () => {
       { key: "transport_accessibility" },
     ];
 
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined })).toEqual([
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined, compact: false })).toEqual([
       "greenery",
       "transport_accessibility",
     ]);
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density" })).toEqual([
+    expect(
+      visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density", compact: false }),
+    ).toEqual(["greenery", "transport_accessibility", "cafes_density"]);
+  });
+
+  it("shows a single metric on a compact viewport", () => {
+    const metrics = [
+      { key: "cafes_density" },
+      { key: "greenery" },
+      { key: "transport_accessibility" },
+    ];
+
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined, compact: true })).toEqual([
       "greenery",
-      "transport_accessibility",
-      "cafes_density",
+    ]);
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density", compact: true })).toEqual(
+      ["cafes_density"],
+    );
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: "nightlife", compact: true })).toEqual([
+      "greenery",
     ]);
   });
 

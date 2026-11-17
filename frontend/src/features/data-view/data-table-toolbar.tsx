@@ -22,9 +22,9 @@ export function DataTableToolbar({
   onSearchChange: (value: string) => void;
 }) {
   return (
-    <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-      <label className="flex w-full max-w-xs flex-col gap-1.5">
-        <span className="text-xs font-medium text-text-secondary">
+    <div className="mt-5 flex flex-wrap items-center gap-2">
+      <label className="block w-full max-w-[15rem]">
+        <span className="sr-only">
           <fbt desc="Label of the search field filtering the raw values table">
             Rechercher un quartier
           </fbt>
@@ -40,14 +40,14 @@ export function DataTableToolbar({
           className="h-8 text-xs"
         />
       </label>
-      <div className="flex flex-wrap items-center gap-2 sm:pb-2">
+      <div className="flex items-center gap-1.5">
         <button
           type="button"
           aria-pressed={groupByDistrict}
           onClick={onToggleGrouping}
           className={cn(
-            "h-8 cursor-pointer rounded-lg border border-border px-2.5 text-xs text-text-secondary transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action",
-            groupByDistrict && "bg-action/[0.05] text-text",
+            "h-8 cursor-pointer rounded-lg px-2.5 text-[11px] text-text-secondary transition-colors duration-150 ease-out hover:bg-surface/60 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action",
+            groupByDistrict && "bg-action/[0.06] text-text ring-1 ring-border/60 ring-inset",
           )}
         >
           <fbt desc="Button grouping the data table rows by district">Regrouper</fbt>
@@ -57,21 +57,21 @@ export function DataTableToolbar({
           aria-pressed={showGroupAverage}
           onClick={onToggleAverage}
           className={cn(
-            "h-8 cursor-pointer rounded-lg border border-border px-2.5 text-xs text-text-secondary transition-colors duration-150 ease-out hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action",
-            showGroupAverage && "bg-action/[0.05] text-text",
+            "h-8 cursor-pointer rounded-lg px-2.5 text-[11px] text-text-secondary transition-colors duration-150 ease-out hover:bg-surface/60 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action",
+            showGroupAverage && "bg-action/[0.06] text-text ring-1 ring-border/60 ring-inset",
           )}
         >
           <fbt desc="Button showing the average of each district group">Moyennes</fbt>
         </button>
-        <p role="status" className="text-xs text-text-secondary">
-          <fbt desc="Count of neighborhoods currently displayed in the raw values table">
-            Quartiers affichés :
-          </fbt>{" "}
-          <span className="font-mono tabular-nums">
-            {shownCount} / {totalCount}
-          </span>
-        </p>
       </div>
+      <p role="status" className="ms-auto text-[11px] text-text-secondary tabular-nums">
+        <fbt desc="Count of neighborhoods currently displayed in the raw values table">
+          Quartiers affichés :
+        </fbt>{" "}
+        <span>
+          {shownCount} / {totalCount}
+        </span>
+      </p>
     </div>
   );
 }

@@ -221,28 +221,6 @@ body::before {
   }
 }
 
-.metric-detail-content {
-  opacity: 1;
-  transform: translateY(0);
-  transition:
-    opacity 180ms var(--ease-out),
-    transform 180ms var(--ease-out);
-}
-
-@starting-style {
-  .metric-detail-content {
-    opacity: 0;
-    transform: translateY(-4px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .metric-detail-content {
-    transform: none;
-    transition: opacity 150ms var(--ease-out);
-  }
-}
-
 /* Pagination du tableau : le fondu est piloté par l'API View Transition de React
    (frontière « table-update »), pas par une animation des lignes. */
 ::view-transition-old(.table-update),

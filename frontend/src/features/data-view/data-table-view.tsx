@@ -1,4 +1,4 @@
-import { ViewTransition, startTransition, useState } from "react";
+import { Fragment, ViewTransition, startTransition, useState } from "react";
 import { useTable, type PaginationState, type SortingState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "../../components/ui/button";
@@ -28,11 +28,13 @@ import {
   visibleMetricKeys,
   type DistrictGroup,
 } from "./data-table-grouping";
+import { dominantQualityFlags } from "./data-table-quality";
 import type { TableSort } from "./table-sort";
 import { createDataTableColumns, dataTableFeatures } from "./data-table-columns";
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableSources } from "./data-table-sources";
 import { DataTableToolbar } from "./data-table-toolbar";
+import { useCompactTableLayout } from "./use-compact-table-layout";
 import type { DataTableData } from "./data-table-client";
 import type { DataTableState } from "./use-data-table";
 
@@ -73,8 +75,8 @@ export function DataTableView({
     .filter((metricKey) => !publishedKeys.has(metricKey));
 
   return (
-    <div className="mx-auto w-full max-w-7xl flex-1 px-4 py-12 sm:px-8">
-      <h1 className="text-4xl font-semibold tracking-tight text-balance">
+    <div className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-8">
+      <h1 className="text-2xl font-semibold tracking-tight text-balance">
         {sort === null ? (
           <fbt desc="Title of the data view when the rows are in alphabetical order">
             Valeurs par quartier
@@ -85,16 +87,16 @@ export function DataTableView({
           </fbt>
         )}
       </h1>
-      <p className="mt-2 max-w-2xl text-sm text-text-secondary">
-        <fbt desc="Subtitle of the data view, promising every published raw value with its unit, date and source">
-          Toutes les métriques publiées, avec unité, date d'observation et source, sans score
-          composite
+      <p className="mt-1.5 max-w-2xl text-sm text-text-secondary">
+        <fbt desc="Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value">
+          Compare une métrique brute à la fois, sans score composite. La fiche d'un quartier sur la
+          carte rassemble toutes ses valeurs.
         </fbt>
       </p>
 
       {criteria.weights.length > 0 && (
-        <section className="mt-8" aria-labelledby="data-criteria-label">
-          <h2 id="data-criteria-label" className="text-xs font-semibold text-text-secondary">
+        <section className="mt-6" aria-labelledby="data-criteria-label">
+          <h2 id="data-criteria-label" className="text-[11px] font-semibold text-text-secondary">
             <fbt desc="Title of the active criteria group above the raw values table">
               Critères actifs
             </fbt>
@@ -170,7 +172,7 @@ function DataTableContent({
 }) {
   const [groupByDistrict, setGroupByDistrict] = useState(true);
   const [showGroupAverage, setShowGroupAverage] = useState(true);
-  const [expandedNeighborhoodId, setExpandedNeighborhoodId] = useState<number | null>(null);
+  const [collapsedDistricts, setCollapsedDistricts] = useState<readonly string[]>([]);
 
   const rows = groupByDistrict
     ? orderGroupedRows({ rows: data.rows, sort, locale })
@@ -185,20 +187,24 @@ function DataTableContent({
     ((sort.direction === "descending" && sortedMetric.polarity === "higher_is_better") ||
       (sort.direction === "ascending" && sortedMetric.polarity === "lower_is_better"));
 
+  const compactLayout = useCompactTableLayout();
+
   const visibleKeys = visibleMetricKeys({
     metrics: data.metrics,
     sortedMetricKey: sortedMetric?.key,
+    compact: compactLayout,
   });
+
+  const qualityFlags = dominantQualityFlags({ rows: data.rows, metricKeys: visibleKeys });
 
   const columns = createDataTableColumns({
     data,
     locale,
     visibleMetricKeys: visibleKeys,
     sortedMetricKey: sortedMetric?.key,
+    dominantQualityFlags: qualityFlags,
     highlightsMerit,
-    expandedNeighborhoodId,
-    onToggleExpanded: (neighborhoodId) =>
-      setExpandedNeighborhoodId((current) => (current === neighborhoodId ? null : neighborhoodId)),
+    showDistrict: !groupByDistrict,
     onShowOnMap,
   });
 
@@ -253,33 +259,57 @@ function DataTableContent({
     }).map((group) => [group.districtName, group]),
   );
 
-  const renderedRows: Array<
-    | { kind: "group"; group: DistrictGroup }
-    | { kind: "row"; row: TableRow; rank: number }
-    | { kind: "detail"; row: TableRow }
-  > = [];
+  type Section = {
+    districtName: string | null;
+    group: DistrictGroup | null;
+    collapsed: boolean;
+    rows: Array<{ row: TableRow; rank: number }>;
+  };
 
-  let previousDistrict: string | null = null;
+  const sections: Section[] = [];
 
-  for (const [index, row] of pageRows.entries()) {
-    const districtName = row.original.districtName;
+  if (groupByDistrict) {
+    for (const [index, row] of pageRows.entries()) {
+      const districtName = row.original.districtName;
+      const previousSection = sections.at(-1);
 
-    if (groupByDistrict && districtName !== previousDistrict) {
-      const group = groupsByDistrict.get(districtName);
+      const section =
+        previousSection?.districtName === districtName
+          ? previousSection
+          : {
+              districtName,
+              group: groupsByDistrict.get(districtName) ?? null,
+              collapsed: collapsedDistricts.includes(districtName),
+              rows: [],
+            };
 
-      if (group !== undefined) {
-        renderedRows.push({ kind: "group", group });
+      if (section !== previousSection) {
+        sections.push(section);
       }
 
-      previousDistrict = districtName;
+      section.rows.push({ row, rank: firstRank + index + 1 });
     }
-
-    renderedRows.push({ kind: "row", row, rank: firstRank + index + 1 });
-
-    if (expandedNeighborhoodId === row.original.neighborhoodId) {
-      renderedRows.push({ kind: "detail", row });
-    }
+  } else {
+    sections.push({
+      districtName: null,
+      group: null,
+      collapsed: false,
+      rows: pageRows.map((row, index) => ({ row, rank: firstRank + index + 1 })),
+    });
   }
+
+  const shownCount = sections.reduce(
+    (count, section) => count + (section.collapsed ? 0 : section.rows.length),
+    0,
+  );
+
+  const toggleDistrict = (districtName: string) => {
+    setCollapsedDistricts((current) =>
+      current.includes(districtName)
+        ? current.filter((name) => name !== districtName)
+        : [...current, districtName],
+    );
+  };
 
   const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}|${groupByDistrict}`;
   const [previousPageResetKey, setPreviousPageResetKey] = useState(pageResetKey);
@@ -292,7 +322,7 @@ function DataTableContent({
   return (
     <>
       {unknownMetricKeys.length > 0 && (
-        <p className="mt-6 rounded-xl border border-border bg-surface p-3 text-xs text-text-secondary">
+        <p className="mt-5 rounded-xl border border-border/50 bg-surface/60 p-3 text-xs text-text-secondary">
           <fbt desc="Notice listing the active criteria that the API does not publish">
             Critères non publiés par l'API :
           </fbt>{" "}
@@ -302,7 +332,7 @@ function DataTableContent({
 
       <DataTableToolbar
         searchText={searchText}
-        shownCount={pageRows.length}
+        shownCount={shownCount}
         totalCount={data.rows.length}
         groupByDistrict={groupByDistrict}
         showGroupAverage={showGroupAverage}
@@ -313,18 +343,20 @@ function DataTableContent({
 
       <ViewTransition default="none" update="table-update">
         <div className="relative mt-3">
-          <Table containerRef={containerRef}>
+          <Table
+            containerRef={containerRef}
+            containerClassName="rounded-xl border border-border/40"
+          >
             <TableCaption className="sr-only">
               <fbt desc="Accessible caption of the raw values table">
-                Valeurs brutes par quartier : nom, district et une colonne par métrique publiée,
-                triable.
+                Valeurs brutes par quartier, regroupées par district et triables par métrique.
               </fbt>
             </TableCaption>
             <TableHeader>
               <TableRow>
                 <TableHead
                   scope="col"
-                  className="sticky start-0 z-10 w-12 bg-bg text-center text-xs text-text-secondary"
+                  className="sticky start-0 z-10 w-9 bg-bg text-center text-[10px] font-medium text-text-secondary"
                 >
                   <fbt desc="Header of the ranking column in the data table">#</fbt>
                 </TableHead>
@@ -338,13 +370,14 @@ function DataTableContent({
                     sorted === "asc" ? "ascending" : sorted === "desc" ? "descending" : "none";
 
                   const highlighted = sortedMetric?.key === column.id;
+                  const qualityFlag = qualityFlags.get(column.id);
 
                   if (isName) {
                     return (
                       <TableHead
                         key={header.id}
                         scope="col"
-                        className="sticky start-12 z-10 border-e border-border/50 bg-bg text-start text-sm font-medium text-text"
+                        className="sticky start-9 z-10 w-[30%] bg-bg text-start text-[11px] font-medium text-text sm:w-auto"
                       >
                         <table.FlexRender header={header} />
                       </TableHead>
@@ -356,7 +389,7 @@ function DataTableContent({
                       <TableHead
                         key={header.id}
                         scope="col"
-                        className="text-end text-sm text-text-secondary"
+                        className="w-10 text-end text-[11px] font-medium text-text-secondary"
                       >
                         <table.FlexRender header={header} />
                       </TableHead>
@@ -368,35 +401,56 @@ function DataTableContent({
                       key={header.id}
                       scope="col"
                       aria-sort={ariaSort}
-                      className={cn("text-end", highlighted && "bg-action/[0.04]")}
+                      className={cn("group/head w-px text-end", highlighted && "bg-action/[0.04]")}
                     >
                       <button
                         type="button"
                         onClick={column.getToggleSortingHandler()}
-                        className="-mx-1 -my-0.5 inline-flex w-full cursor-pointer flex-col items-end gap-0.5 rounded px-1 py-0.5 text-end transition-colors duration-150 ease-out hover:bg-surface focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action"
+                        className="flex w-full cursor-pointer flex-col items-end gap-0.5 rounded py-1 text-end transition-colors duration-150 ease-out hover:bg-surface/60 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action"
                       >
                         <span
                           className={cn(
-                            "flex items-center gap-1",
+                            "flex items-center gap-1 whitespace-normal sm:whitespace-nowrap",
                             highlighted
-                              ? "font-semibold text-text"
-                              : "font-medium text-text-secondary",
+                              ? "text-[11px] font-semibold text-text"
+                              : "text-[11px] font-medium text-text-secondary",
                           )}
                         >
                           <table.FlexRender header={header} />
-                          <SortIcon
-                            direction={sorted === "asc" || sorted === "desc" ? sorted : null}
-                          />
-                        </span>
-                        <span className="text-[11px] font-normal whitespace-nowrap text-text-secondary">
-                          <span className="sr-only">
-                            <fbt desc="Accessible label of the unit and observation date in a column header">
-                              Unité et date d'observation :
-                            </fbt>{" "}
+                          <span
+                            className={cn(
+                              "inline-flex transition-opacity duration-150 ease-out",
+                              sorted === false &&
+                                "opacity-0 group-hover/head:opacity-100 group-focus-within/head:opacity-100",
+                            )}
+                          >
+                            <SortIcon
+                              direction={sorted === "asc" || sorted === "desc" ? sorted : null}
+                            />
                           </span>
-                          <bdi dir="ltr">
-                            {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
-                          </bdi>
+                        </span>
+                        <span className="flex items-center gap-1 whitespace-nowrap text-[10px] font-normal text-text-secondary">
+                          <span className="hidden items-center gap-1 sm:inline-flex">
+                            <span className="sr-only">
+                              <fbt desc="Accessible label of the unit and observation date in a column header">
+                                Unité et date d'observation :
+                              </fbt>{" "}
+                            </span>
+                            <bdi dir="ltr">
+                              {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
+                            </bdi>
+                          </span>
+                          {qualityFlag !== undefined && qualityFlag !== "ok" && (
+                            <span>
+                              <span className="hidden sm:inline">· </span>
+                              <span className="sr-only">
+                                <fbt desc="Accessible label of the metric quality in a column header">
+                                  Qualité :
+                                </fbt>{" "}
+                              </span>
+                              {metricQualityLabel(qualityFlag)}
+                            </span>
+                          )}
                         </span>
                       </button>
                     </TableHead>
@@ -404,149 +458,136 @@ function DataTableContent({
                 })}
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {renderedRows.map((entry) => {
-                if (entry.kind === "group") {
-                  const { group } = entry;
+            {sections.map((section, sectionIndex) => {
+              const rowsId = `district-rows-${sectionIndex}`;
+              const group = section.group;
 
-                  const averageText =
-                    showGroupAverage && group.average !== null && sortedMetric !== undefined
-                      ? formatMetricValue({
-                          value: group.average,
-                          locale,
-                          maximumFractionDigits: sortedMetric.displayPrecision,
-                        })
-                      : null;
+              const averageText =
+                showGroupAverage &&
+                group?.average !== null &&
+                group?.average !== undefined &&
+                sortedMetric !== undefined
+                  ? formatMetricValue({
+                      value: group.average,
+                      locale,
+                      maximumFractionDigits: sortedMetric.displayPrecision,
+                    })
+                  : null;
 
-                  const barWidth =
-                    group.average !== null && group.maximum > 0
-                      ? Math.max(0, Math.min(100, (group.average / group.maximum) * 100))
-                      : 0;
+              const barWidth =
+                group !== null && group.average !== null && group.maximum > 0
+                  ? Math.max(0, Math.min(100, (group.average / group.maximum) * 100))
+                  : 0;
 
-                  return (
-                    <TableRow key={`group-${group.districtName}`} className="bg-surface">
-                      <TableCell
-                        colSpan={visibleKeys.length + 3}
-                        className="bg-surface text-sm font-semibold text-text"
-                      >
-                        <span aria-hidden="true" className="me-2 text-text-secondary">
-                          ⌄
-                        </span>
-                        <span
-                          aria-hidden="true"
-                          className="me-2 inline-block size-1.5 rounded-full bg-info"
-                        />
-                        {group.districtName}
-                        <span className="ms-2 rounded-full bg-bg px-1.5 py-0.5 font-mono text-[10px] font-normal text-text-secondary">
-                          {group.count}
-                        </span>
-                        {averageText !== null && (
-                          <span className="ms-3 font-normal text-text-secondary">
-                            <fbt desc="Label of the district average in the data table">moy.</fbt>{" "}
-                            <bdi dir="ltr">{averageText}</bdi>
+              return (
+                <Fragment key={`${section.districtName ?? "all"}-${sectionIndex}`}>
+                  {group !== null && (
+                    <TableBody>
+                      <TableRow className="border-t border-border/40 bg-surface hover:bg-action/[0.035]">
+                        <TableRowHeader
+                          scope="rowgroup"
+                          colSpan={visibleKeys.length + 3}
+                          className="p-0"
+                        >
+                          <button
+                            type="button"
+                            aria-expanded={!section.collapsed}
+                            aria-controls={rowsId}
+                            onClick={() => toggleDistrict(group.districtName)}
+                            className="flex w-full cursor-pointer items-center gap-2 px-3 py-1.5 text-start focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-action"
+                          >
+                            <span className="sr-only">
+                              <fbt desc="Accessible label of the button collapsing a district group">
+                                Afficher ou masquer les quartiers du district
+                              </fbt>{" "}
+                            </span>
+                            <ChevronDown
+                              aria-hidden="true"
+                              className={cn(
+                                "size-3.5 shrink-0 text-text-secondary transition-transform duration-150 ease-out",
+                                section.collapsed && "-rotate-90 rtl:rotate-90",
+                              )}
+                            />
                             <span
                               aria-hidden="true"
-                              className="ms-2 inline-block h-0.5 w-14 rounded-full bg-border align-middle"
-                            >
-                              <span
-                                className="block h-full rounded-full bg-action"
-                                style={{ width: `${barWidth}%` }}
-                              />
+                              className="size-1.5 shrink-0 rounded-full bg-info"
+                            />
+                            <span className="text-xs font-semibold text-text">
+                              {group.districtName}
                             </span>
-                          </span>
-                        )}
-                      </TableCell>
-                    </TableRow>
-                  );
-                }
+                            <span className="text-[11px] text-text-secondary tabular-nums">
+                              {group.count}
+                            </span>
+                            {averageText !== null && (
+                              <span className="ms-auto flex items-center gap-2 text-[11px] font-normal text-text-secondary">
+                                <span>
+                                  <fbt desc="Label of the district average in the data table">
+                                    moy.
+                                  </fbt>{" "}
+                                  <bdi dir="ltr">{averageText}</bdi>
+                                </span>
+                                <span
+                                  aria-hidden="true"
+                                  className="inline-block h-0.5 w-10 overflow-hidden rounded-full bg-border"
+                                >
+                                  <span
+                                    className="block h-full rounded-full bg-action"
+                                    style={{ width: `${barWidth}%` }}
+                                  />
+                                </span>
+                              </span>
+                            )}
+                          </button>
+                        </TableRowHeader>
+                      </TableRow>
+                    </TableBody>
+                  )}
+                  <TableBody id={rowsId}>
+                    {section.collapsed
+                      ? null
+                      : section.rows.map(({ row, rank }) => (
+                          <TableRow key={row.id} className="group hover:bg-surface">
+                            <TableCell className="sticky start-0 z-10 w-9 bg-bg text-center group-hover:bg-surface">
+                              <RankBadge rank={rank} highlightMerit={highlightsMerit} />
+                            </TableCell>
+                            {row.getAllCells().map((cell) => {
+                              const isName = cell.column.id === "name";
+                              const isMetric = metricByKey.has(cell.column.id);
+                              const isActions = cell.column.id === "actions";
+                              const content = <table.FlexRender cell={cell} />;
 
-                if (entry.kind === "detail") {
-                  const { row } = entry;
+                              if (isName) {
+                                return (
+                                  <TableRowHeader
+                                    key={cell.id}
+                                    className="sticky start-9 z-10 w-[30%] bg-bg text-[13px] font-medium text-text group-hover:bg-surface sm:w-auto"
+                                  >
+                                    {content}
+                                  </TableRowHeader>
+                                );
+                              }
 
-                  return (
-                    <TableRow
-                      key={`detail-${row.id}`}
-                      id={`metric-detail-${row.original.neighborhoodId}`}
-                      className="bg-surface"
-                    >
-                      <TableCell colSpan={visibleKeys.length + 3} className="bg-surface p-0">
-                        <div className="metric-detail-content grid grid-cols-2 gap-x-6 gap-y-2 px-4 py-3 sm:grid-cols-3 lg:grid-cols-4">
-                          {data.metrics.map((metric) => {
-                            const value = row.original.values[metric.key];
-
-                            const detail =
-                              value === undefined
-                                ? null
-                                : formatMetricValue({
-                                    value: value.raw,
-                                    locale,
-                                    maximumFractionDigits: metric.displayPrecision,
-                                  });
-
-                            return (
-                              <div key={metric.key} className="border-b border-border/50 pb-1">
-                                <p className="text-[10px] text-text-secondary">
-                                  {localizedMetricName(metric, locale)} ·{" "}
-                                  {localizedUnit(metric.unit)} · {metric.observedAt ?? "—"}
-                                </p>
-                                <p className="font-mono text-xs tabular-nums text-text">
-                                  {detail ?? "—"}
-                                  {detail !== null &&
-                                    value?.qualityFlag !== "ok" &&
-                                    value !== undefined && (
-                                      <span className="ms-1 font-sans text-[10px] font-normal text-text-secondary">
-                                        {metricQualityLabel(value.qualityFlag)}
-                                      </span>
-                                    )}
-                                </p>
-                              </div>
-                            );
-                          })}
-                        </div>
-                      </TableCell>
-                    </TableRow>
-                  );
-                }
-
-                const { row, rank } = entry;
-
-                return (
-                  <TableRow key={row.id} className="group hover:bg-surface">
-                    <TableCell className="sticky start-0 z-10 w-12 bg-bg text-center group-hover:bg-surface">
-                      <RankBadge rank={rank} highlightMerit={highlightsMerit} />
-                    </TableCell>
-                    {row.getAllCells().map((cell) => {
-                      const isName = cell.column.id === "name";
-                      const isMetric = metricByKey.has(cell.column.id);
-                      const content = <table.FlexRender cell={cell} />;
-
-                      if (isName) {
-                        return (
-                          <TableRowHeader
-                            key={cell.id}
-                            className="sticky start-12 z-10 border-e border-border/50 bg-bg text-sm font-medium text-text group-hover:bg-surface"
-                          >
-                            {content}
-                          </TableRowHeader>
-                        );
-                      }
-
-                      return (
-                        <TableCell
-                          key={cell.id}
-                          className={cn(
-                            "text-end",
-                            isMetric && sortedMetric?.key === cell.column.id && "bg-action/[0.04]",
-                          )}
-                        >
-                          {content}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-            </TableBody>
+                              return (
+                                <TableCell
+                                  key={cell.id}
+                                  className={cn(
+                                    "text-end",
+                                    isActions && "w-10 py-0",
+                                    isMetric &&
+                                      sortedMetric?.key === cell.column.id &&
+                                      "bg-action/[0.04]",
+                                  )}
+                                >
+                                  {content}
+                                </TableCell>
+                              );
+                            })}
+                          </TableRow>
+                        ))}
+                  </TableBody>
+                </Fragment>
+              );
+            })}
           </Table>
           {hasMore && (
             <div
@@ -584,7 +625,7 @@ function DataTableContent({
 function RankBadge({ rank, highlightMerit }: { rank: number; highlightMerit: boolean }) {
   if (!highlightMerit || rank > 3) {
     return (
-      <span data-rank={rank} className="font-mono text-xs text-text-secondary tabular-nums">
+      <span data-rank={rank} className="text-[11px] text-text-secondary tabular-nums">
         {rank}
       </span>
     );
@@ -595,10 +636,10 @@ function RankBadge({ rank, highlightMerit }: { rank: number; highlightMerit: boo
       data-rank={rank}
       data-merit="true"
       className={cn(
-        "inline-flex size-6 items-center justify-center rounded-full font-mono text-xs font-semibold tabular-nums",
-        rank === 1 && "bg-highlight text-highlight-text",
-        rank === 2 && "bg-highlight/60 text-text",
-        rank === 3 && "bg-surface text-text ring-1 ring-border ring-inset",
+        "inline-flex size-5 items-center justify-center rounded text-[11px] font-semibold tabular-nums",
+        rank === 1 && "bg-action text-action-text",
+        rank === 2 && "bg-action/70 text-action-text",
+        rank === 3 && "bg-action/10 text-text",
       )}
     >
       {rank}
@@ -615,5 +656,5 @@ function SortIcon({ direction }: { direction: "asc" | "desc" | null }) {
     return <ChevronDown aria-hidden="true" className="size-3.5 shrink-0 text-action" />;
   }
 
-  return <ArrowUpDown aria-hidden="true" className="size-3.5 shrink-0 opacity-20" />;
+  return <ArrowUpDown aria-hidden="true" className="size-3.5 shrink-0 text-text-secondary" />;
 }

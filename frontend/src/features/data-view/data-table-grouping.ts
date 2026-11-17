@@ -48,10 +48,23 @@ export function orderGroupedRows({
 export function visibleMetricKeys({
   metrics,
   sortedMetricKey,
+  compact,
 }: {
   metrics: ReadonlyArray<{ key: string }>;
   sortedMetricKey: string | undefined;
+  compact: boolean;
 }): string[] {
+  const sortedKey = metrics.some((metric) => metric.key === sortedMetricKey)
+    ? sortedMetricKey
+    : undefined;
+
+  if (compact) {
+    const primary =
+      sortedKey ?? metrics.find((metric) => metric.key === "greenery")?.key ?? metrics[0]?.key;
+
+    return primary === undefined ? [] : [primary];
+  }
+
   const preferred = metrics
     .filter((metric) => ["transport_accessibility", "greenery"].includes(metric.key))
     .map((metric) => metric.key);
@@ -59,7 +72,7 @@ export function visibleMetricKeys({
   const primary =
     preferred.length > 0 ? preferred.slice(0, 2) : metrics.slice(0, 2).map((metric) => metric.key);
 
-  return [...new Set([...primary, ...(sortedMetricKey === undefined ? [] : [sortedMetricKey])])];
+  return [...new Set([...primary, ...(sortedKey === undefined ? [] : [sortedKey])])];
 }
 
 export function districtGroups({
