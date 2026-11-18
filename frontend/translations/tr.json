@@ -2322,28 +2322,6 @@
       ],
       "types": []
     },
-    "wyWm6Hy6uEg+B2z+36+rZQ==": {
-      "description": "Button grouping the data table rows by district",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Grupla",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "4bEtKYA4tvWxnsLqvFcIAQ==": {
-      "description": "Button showing the average of each district group",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Ortalamalar",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "fF8Ubj51s+uHRDWSWoRi6w==": {
       "description": "Label of the district average in the data table",
       "tokens": [],
@@ -2394,6 +2372,61 @@
       "translations": [
         {
           "translation": "Kalite:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EEvtKSshXXxBJ7go02umOA==": {
+      "description": "Label of the metric selector that sorts the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sırala",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "d1G7U9DXgeLv2l7GpGWmYA==": {
+      "description": "Alphabetical order option in the data table metric selector",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Alfabetik sıra",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "pXY//p0Pamj+gmT0SpGTYQ==": {
+      "description": "Accessible label of the display options of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tablo görünümü",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXg2Rt/ejD2qc5u1cIWx3Q==": {
+      "description": "Button grouping the data table rows by district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçeye göre grupla",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+YY1XdK7nfFT4OYxShekow==": {
+      "description": "Button showing the metric average in each district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçe ortalaması",
           "variations": {}
         }
       ],

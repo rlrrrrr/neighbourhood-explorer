@@ -288,6 +288,23 @@ describe("data view", () => {
     expect(markup).toContain("Quartiers affichés");
   });
 
+  it("lets the reader sort by any published metric from the toolbar", () => {
+    const markup = renderTable({ sort: { key: "cafes_density", direction: "descending" } });
+
+    expect(markup).toContain("Trier par");
+    expect(markup).toContain("Ordre alphabétique");
+    expect(markup).toContain('<option value="cafes_density" selected="">Densité de cafés</option>');
+    expect(markup).toContain('<option value="greenery">Verdure</option>');
+  });
+
+  it("labels the display toggles explicitly", () => {
+    const markup = renderTable();
+
+    expect(markup).toContain("Grouper par district");
+    expect(markup).toContain("Moyenne du district");
+    expect(markup.match(/aria-pressed="true"/g)).toHaveLength(2);
+  });
+
   it("groups rows by district and collapses each group from its header", () => {
     const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
 

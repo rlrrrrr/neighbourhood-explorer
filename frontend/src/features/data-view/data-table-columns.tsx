@@ -49,7 +49,11 @@ export function createDataTableColumns({
   showDistrict: boolean;
   onShowOnMap: (neighborhoodId: number) => void;
 }) {
-  const visibleMetrics = data.metrics.filter((metric) => visibleMetricKeys.includes(metric.key));
+  const visibleMetrics = visibleMetricKeys.flatMap((key) => {
+    const metric = data.metrics.find((candidate) => candidate.key === key);
+
+    return metric === undefined ? [] : [metric];
+  });
 
   return columnHelper.columns([
     columnHelper.accessor((row) => `${row.name} ${row.districtName}`, {

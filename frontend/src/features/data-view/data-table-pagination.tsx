@@ -27,9 +27,11 @@ export function DataTablePagination({
     >
       <p className="text-xs text-text-secondary">
         <fbt desc="Label of the current page in the data table pagination">Page</fbt>{" "}
-        <span className="font-mono tabular-nums">{pageIndex + 1}</span>
-        <span> / </span>
-        <span className="font-mono tabular-nums">{pageCount}</span>
+        <span dir="ltr">
+          <span className="tabular-nums">{pageIndex + 1}</span>
+          <span> / </span>
+          <span className="tabular-nums">{pageCount}</span>
+        </span>
       </p>
       <div className="flex items-center gap-2">
         <Button variant="ghost" size="sm" disabled={!canPreviousPage} onClick={onPreviousPage}>

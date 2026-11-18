@@ -55,7 +55,7 @@ describe("data table grouping", () => {
     ]);
   });
 
-  it("keeps two compact columns and adds the sorted metric", () => {
+  it("keeps two compact columns and puts the sorted metric first", () => {
     const metrics = [
       { key: "cafes_density" },
       { key: "greenery" },
@@ -68,7 +68,10 @@ describe("data table grouping", () => {
     ]);
     expect(
       visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density", compact: false }),
-    ).toEqual(["greenery", "transport_accessibility", "cafes_density"]);
+    ).toEqual(["cafes_density", "greenery"]);
+    expect(
+      visibleMetricKeys({ metrics, sortedMetricKey: "transport_accessibility", compact: false }),
+    ).toEqual(["transport_accessibility", "greenery"]);
   });
 
   it("shows a single metric on a compact viewport", () => {
