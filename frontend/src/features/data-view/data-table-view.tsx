@@ -223,6 +223,7 @@ function DataTableContent({
     getRowId: (row) => String(row.neighborhoodId),
     manualSorting: groupByDistrict,
     state: { sorting, pagination },
+    autoResetPageIndex: false,
     onPaginationChange: setPagination,
     onSortingChange: (updater) => {
       const nextSorting = typeof updater === "function" ? updater(sorting) : updater;
@@ -334,11 +335,15 @@ function DataTableContent({
         searchText={searchText}
         shownCount={shownCount}
         totalCount={data.rows.length}
+        metrics={data.metrics}
+        locale={locale}
+        sort={sort}
         groupByDistrict={groupByDistrict}
         showGroupAverage={showGroupAverage}
         onToggleGrouping={() => setGroupByDistrict((current) => !current)}
         onToggleAverage={() => setShowGroupAverage((current) => !current)}
         onSearchChange={(value) => table.setGlobalFilter(value)}
+        onSortChange={onSortChange}
       />
 
       <ViewTransition default="none" update="table-update">

@@ -1299,28 +1299,6 @@
       ],
       "types": []
     },
-    "wyWm6Hy6uEg+B2z+36+rZQ==": {
-      "description": "Button grouping the data table rows by district",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Group",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "4bEtKYA4tvWxnsLqvFcIAQ==": {
-      "description": "Button showing the average of each district group",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Averages",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "fF8Ubj51s+uHRDWSWoRi6w==": {
       "description": "Label of the district average in the data table",
       "tokens": [],
@@ -1371,6 +1349,61 @@
       "translations": [
         {
           "translation": "Quality:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EEvtKSshXXxBJ7go02umOA==": {
+      "description": "Label of the metric selector that sorts the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sort by",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "d1G7U9DXgeLv2l7GpGWmYA==": {
+      "description": "Alphabetical order option in the data table metric selector",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Alphabetical order",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "pXY//p0Pamj+gmT0SpGTYQ==": {
+      "description": "Accessible label of the display options of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Table display options",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXg2Rt/ejD2qc5u1cIWx3Q==": {
+      "description": "Button grouping the data table rows by district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Group by district",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+YY1XdK7nfFT4OYxShekow==": {
+      "description": "Button showing the metric average in each district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "District average",
           "variations": {}
         }
       ],

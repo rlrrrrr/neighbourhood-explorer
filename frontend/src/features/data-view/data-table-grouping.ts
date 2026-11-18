@@ -65,14 +65,16 @@ export function visibleMetricKeys({
     return primary === undefined ? [] : [primary];
   }
 
-  const preferred = metrics
+  const contextKeys = metrics
     .filter((metric) => ["transport_accessibility", "greenery"].includes(metric.key))
     .map((metric) => metric.key);
 
-  const primary =
-    preferred.length > 0 ? preferred.slice(0, 2) : metrics.slice(0, 2).map((metric) => metric.key);
+  const fallbackKeys =
+    contextKeys.length > 0 ? contextKeys : metrics.slice(0, 2).map((metric) => metric.key);
 
-  return [...new Set([...primary, ...(sortedKey === undefined ? [] : [sortedKey])])];
+  const columns = sortedKey === undefined ? fallbackKeys : [sortedKey, ...fallbackKeys];
+
+  return [...new Set(columns)].slice(0, 2);
 }
 
 export function districtGroups({
