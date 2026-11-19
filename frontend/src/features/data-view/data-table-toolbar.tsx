@@ -37,7 +37,7 @@ export function DataTableToolbar({
 }) {
   return (
     <div className="mt-5 flex flex-wrap items-center gap-2">
-      <label className="block w-full max-w-[15rem]">
+      <label className="block w-full max-w-[17rem] max-sm:max-w-none">
         <span className="sr-only">
           <fbt desc="Label of the search field filtering the raw values table">
             Rechercher un quartier
@@ -51,12 +51,12 @@ export function DataTableToolbar({
             "Nom du quartier ou du district",
             "Placeholder of the raw values table search field",
           )}
-          className="h-8 text-xs"
+          className="max-sm:min-h-11"
         />
       </label>
 
-      <label className="flex w-full max-w-[18rem] items-center gap-2">
-        <span className="shrink-0 text-[11px] text-text-secondary">
+      <label className="flex w-full max-w-[20rem] items-center gap-2">
+        <span className="shrink-0 text-xs text-text-secondary">
           <fbt desc="Label of the metric selector that sorts the data table">Trier par</fbt>
         </span>
         <span className="group relative min-w-0 flex-1">
@@ -65,7 +65,7 @@ export function DataTableToolbar({
             onChange={(event) =>
               onSortChange(selectedMetricSort({ metricKey: event.target.value, metrics }))
             }
-            className="h-8 w-full appearance-none rounded-lg border border-border bg-surface ps-2.5 pe-8 text-[11px] text-text transition-[border-color] duration-[160ms] ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action [&:open]:border-action"
+            className="h-9 w-full appearance-none rounded-lg border border-border bg-surface ps-3 pe-9 text-sm text-text transition-[border-color] duration-[160ms] ease-out focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action max-sm:h-11 [&:open]:border-action"
           >
             <option value="">
               <fbt desc="Alphabetical order option in the data table metric selector">
@@ -80,7 +80,7 @@ export function DataTableToolbar({
           </select>
           <ChevronDown
             aria-hidden="true"
-            className="pointer-events-none absolute end-2.5 top-1/2 size-3.5 -translate-y-1/2 text-text-secondary"
+            className="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-text-secondary"
           />
         </span>
       </label>
@@ -91,7 +91,7 @@ export function DataTableToolbar({
           "Affichage du tableau",
           "Accessible label of the display options of the data table",
         )}
-        className="flex items-center gap-1.5"
+        className="flex flex-col gap-2 max-sm:w-full sm:flex-row sm:items-center"
       >
         <ToolbarToggle pressed={groupByDistrict} onToggle={onToggleGrouping}>
           <fbt desc="Button grouping the data table rows by district">Grouper par district</fbt>
@@ -103,7 +103,7 @@ export function DataTableToolbar({
         </ToolbarToggle>
       </div>
 
-      <p role="status" className="ms-auto text-[11px] text-text-secondary tabular-nums">
+      <p role="status" className="ms-auto text-xs text-text-secondary tabular-nums">
         <fbt desc="Count of neighborhoods currently displayed in the raw values table">
           Quartiers affichés :
         </fbt>{" "}
@@ -130,12 +130,12 @@ function ToolbarToggle({
       aria-pressed={pressed}
       onClick={onToggle}
       className={cn(
-        "flex h-8 cursor-pointer items-center gap-1 rounded-lg px-2.5 text-[11px] text-text-secondary transition-colors duration-150 ease-out hover:bg-surface/60 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action",
+        "inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full px-4 text-sm font-semibold text-text-secondary transition-colors duration-150 ease-out hover:bg-surface/60 hover:text-text focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action sm:min-h-9",
         pressed && "bg-action/[0.06] text-text ring-1 ring-border/60 ring-inset",
       )}
     >
-      <span className="grid size-3.5 shrink-0 place-items-center">
-        {pressed ? <Check aria-hidden="true" className="size-3.5" /> : null}
+      <span className="grid size-4 shrink-0 place-items-center">
+        {pressed ? <Check aria-hidden="true" className="size-4" /> : null}
       </span>
       {children}
     </button>

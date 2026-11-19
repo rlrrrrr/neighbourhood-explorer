@@ -197,6 +197,8 @@ function DataTableContent({
 
   const qualityFlags = dominantQualityFlags({ rows: data.rows, metricKeys: visibleKeys });
 
+  const groupMetric = metricByKey.get(visibleKeys[0] ?? "");
+
   const columns = createDataTableColumns({
     data,
     locale,
@@ -256,7 +258,7 @@ function DataTableContent({
   const groupsByDistrict = new Map(
     districtGroups({
       rows: table.getFilteredRowModel().rows.map((row) => row.original),
-      metricKey: showGroupAverage ? sortedMetric?.key : undefined,
+      metricKey: showGroupAverage ? groupMetric?.key : undefined,
     }).map((group) => [group.districtName, group]),
   );
 
@@ -471,11 +473,11 @@ function DataTableContent({
                 showGroupAverage &&
                 group?.average !== null &&
                 group?.average !== undefined &&
-                sortedMetric !== undefined
+                groupMetric !== undefined
                   ? formatMetricValue({
                       value: group.average,
                       locale,
-                      maximumFractionDigits: sortedMetric.displayPrecision,
+                      maximumFractionDigits: groupMetric.displayPrecision,
                     })
                   : null;
 
@@ -619,6 +621,7 @@ function DataTableContent({
           canNextPage={table.getCanNextPage()}
           onPreviousPage={() => startTransition(() => table.previousPage())}
           onNextPage={() => startTransition(() => table.nextPage())}
+          onFirstPage={() => startTransition(() => table.firstPage())}
         />
       )}
 
