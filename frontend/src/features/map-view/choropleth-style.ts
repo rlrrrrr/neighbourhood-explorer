@@ -13,6 +13,20 @@ export type ChoroplethColors = {
 
 export const NO_DATA_PATTERN_IMAGE_ID = "no-data-hatch";
 
+type StyleLayerSummary = {
+  id: string;
+  type: string;
+  "source-layer"?: string;
+};
+
+export function findChoroplethAnchorLayerId(
+  layers: readonly StyleLayerSummary[],
+): string | undefined {
+  const firstTransportLayer = layers.find((layer) => layer["source-layer"] === "transportation");
+
+  return firstTransportLayer?.id ?? layers.find((layer) => layer.type === "symbol")?.id;
+}
+
 export function readChoroplethColors(root: HTMLElement): ChoroplethColors {
   const probe = root.ownerDocument.createElement("span");
   probe.setAttribute("aria-hidden", "true");

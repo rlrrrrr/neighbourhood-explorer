@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
 import { MapGeoJSON, useMap } from "../../components/ui/map";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
 import {
@@ -12,6 +12,7 @@ import {
   buildFillPaint,
   buildNoDataFillPaint,
   buildSelectionPaint,
+  findChoroplethAnchorLayerId,
   NO_DATA_PATTERN_IMAGE_ID,
   type ChoroplethColors,
 } from "./choropleth-style";
@@ -53,7 +54,6 @@ export function ChoroplethLayers({
 }) {
   const { map, isLoaded } = useMap();
   const isReady = map !== null && isLoaded;
-  const [beforeId, setBeforeId] = useState<string | undefined>(undefined);
   const fittedSelectionRef = useRef<string | null>(null);
   const hasCompletedInitialFitRef = useRef(false);
 
@@ -61,6 +61,9 @@ export function ChoroplethLayers({
     () => splitFeaturesByMetricValue(collection),
     [collection],
   );
+
+  const beforeId =
+    map !== null && isLoaded ? findChoroplethAnchorLayerId(map.getStyle().layers) : undefined;
 
   useLayoutEffect(() => {
     if (!map || !isLoaded) {
@@ -80,11 +83,6 @@ export function ChoroplethLayers({
         // The style can be mid-reload; the next style.load recreates the image.
       }
     }
-
-    const firstSymbolLayer = map.getStyle().layers.find((layer) => layer.type === "symbol");
-    // MapLibre style layers only exist after the map loads, so this read stays in the effect.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setBeforeId(firstSymbolLayer?.id);
   }, [map, isLoaded, colors.noData, colors.text]);
 
   const hasSelection = selectedCollection !== null && selectedCollection.features.length > 0;
