@@ -1,8 +1,6 @@
 import type { Feature, FeatureCollection, MultiPolygon, Polygon, Position } from "geojson";
 import type { components } from "../../generated/api";
 
-export const POPULATION_DENSITY_METRIC_KEY = "population_density";
-
 export type ChoroplethProperties = {
   id: number;
   name: string;

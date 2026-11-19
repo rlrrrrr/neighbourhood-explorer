@@ -34,7 +34,6 @@ import { createDataTableColumns, dataTableFeatures } from "./data-table-columns"
 import { DataTablePagination } from "./data-table-pagination";
 import { DataTableSources } from "./data-table-sources";
 import { DataTableToolbar } from "./data-table-toolbar";
-import { useCompactTableLayout } from "./use-compact-table-layout";
 import type { DataTableData } from "./data-table-client";
 import type { DataTableState } from "./use-data-table";
 
@@ -187,12 +186,9 @@ function DataTableContent({
     ((sort.direction === "descending" && sortedMetric.polarity === "higher_is_better") ||
       (sort.direction === "ascending" && sortedMetric.polarity === "lower_is_better"));
 
-  const compactLayout = useCompactTableLayout();
-
   const visibleKeys = visibleMetricKeys({
     metrics: data.metrics,
     sortedMetricKey: sortedMetric?.key,
-    compact: compactLayout,
   });
 
   const qualityFlags = dominantQualityFlags({ rows: data.rows, metricKeys: visibleKeys });

@@ -67,6 +67,34 @@ const CAFES_DENSITY: MetricDefinition = {
   observedAt: "2026-10-30",
 };
 
+const POPULATION_DENSITY: MetricDefinition = {
+  ...GREENERY,
+  key: "population_density",
+  category: "Demography",
+  unit: "hab/km²",
+  displayPrecision: 0,
+  translations: [
+    {
+      locale: "fr",
+      name: "Densité de population",
+      description: "Habitants par kilomètre carré.",
+      subject: "la densité de population",
+    },
+  ],
+  source: {
+    id: "worldpop",
+    name: "WorldPop",
+    organization: "WorldPop, University of Southampton",
+    url: "https://www.worldpop.org/",
+    license: "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/",
+    attribution: "© WorldPop",
+    methodology: "Population estimée par maille, ramenée à la surface du quartier.",
+    retrievedAt: "2026-11-09",
+    version: "2025",
+  },
+  observedAt: "2025-12-31",
+};
+
 const DATA: DataTableData = {
   metrics: [CAFES_DENSITY, GREENERY],
   rows: [
@@ -137,7 +165,7 @@ function bodyOf(markup: string): string {
 }
 
 describe("data view", () => {
-  it("keeps two compact metric columns and a map action instead of a row disclosure", () => {
+  it("keeps a single metric column and a map action instead of a row disclosure", () => {
     const markup = renderTable();
 
     expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
@@ -314,6 +342,60 @@ describe("data view", () => {
     expect(markup).toContain('aria-pressed="true"');
     expect(markup.match(/aria-expanded="true"/g)).toHaveLength(2);
     expect(markup).toContain('colSpan="4"');
+  });
+
+  it("shows population density alone when no metric is sorted", () => {
+    const densityData: DataTableData = {
+      metrics: [CAFES_DENSITY, POPULATION_DENSITY, GREENERY],
+      rows: [
+        {
+          neighborhoodId: 1570,
+          name: "Caferağa Mahallesi",
+          districtName: "Kadıköy",
+          values: {
+            cafes_density: { raw: 173.4, qualityFlag: "ok" },
+            population_density: { raw: 12000, qualityFlag: "ok" },
+            greenery: { raw: 17.3, qualityFlag: "estimated" },
+          },
+        },
+        {
+          neighborhoodId: 1272,
+          name: "Cihangir Mahallesi",
+          districtName: "Beyoğlu",
+          values: {
+            cafes_density: { raw: 196.2, qualityFlag: "ok" },
+            population_density: { raw: 10000, qualityFlag: "ok" },
+            greenery: { raw: 2, qualityFlag: "estimated" },
+          },
+        },
+      ],
+    };
+
+    const markup = renderTable({ state: { status: "ready", data: densityData } });
+
+    const head = markup.slice(markup.indexOf("<thead"), markup.indexOf("</thead>"));
+
+    expect(head).toContain("Densité de population");
+    expect(head).not.toContain("Verdure");
+    expect(head).not.toContain("Densité de cafés");
+    expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
+    expect(markup).toContain("moy.");
+  });
+
+  it("replaces the default metric with the one the reader sorts on", () => {
+    const markup = renderTable({
+      state: {
+        status: "ready",
+        data: { ...DATA, metrics: [CAFES_DENSITY, POPULATION_DENSITY, GREENERY] },
+      },
+      sort: { key: "greenery", direction: "descending" },
+    });
+
+    const head = markup.slice(markup.indexOf("<thead"), markup.indexOf("</thead>"));
+
+    expect(head).toContain("Verdure");
+    expect(head).not.toContain("Densité de population");
+    expect(head).not.toContain("Densité de cafés");
   });
 
   it("shows the district average of the default metric even without a sort", () => {
