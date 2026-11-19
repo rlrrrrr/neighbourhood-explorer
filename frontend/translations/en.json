@@ -1408,6 +1408,28 @@
         }
       ],
       "types": []
+    },
+    "Q+7EokKG9dOHJtOPz1Q6sw==": {
+      "description": "Short label of the button returning to the first page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Start",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GYgElemEp+ZLvYdz934P7A==": {
+      "description": "Button returning to the first page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Back to start",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

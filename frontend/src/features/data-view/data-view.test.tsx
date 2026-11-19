@@ -316,6 +316,14 @@ describe("data view", () => {
     expect(markup).toContain('colSpan="4"');
   });
 
+  it("shows the district average of the default metric even without a sort", () => {
+    const markup = renderTable();
+
+    expect(markup.match(/moy\./g)).toHaveLength(2);
+    expect(markup).toContain('moy. <bdi dir="ltr">17,3</bdi>');
+    expect(markup).toContain('moy. <bdi dir="ltr">2</bdi>');
+  });
+
   it("shows fifty rows per page, numbers ranks across pages and counts the pages", () => {
     const manyRows = Array.from({ length: 120 }, (_, index) => ({
       neighborhoodId: index + 1,
