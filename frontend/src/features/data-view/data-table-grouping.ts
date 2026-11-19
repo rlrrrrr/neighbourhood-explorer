@@ -1,3 +1,4 @@
+import { DEFAULT_METRIC_KEY } from "../metrics/default-metric";
 import type { DataTableRow } from "./data-table-client";
 import type { TableSort } from "./table-sort";
 
@@ -48,33 +49,22 @@ export function orderGroupedRows({
 export function visibleMetricKeys({
   metrics,
   sortedMetricKey,
-  compact,
 }: {
   metrics: ReadonlyArray<{ key: string }>;
   sortedMetricKey: string | undefined;
-  compact: boolean;
 }): string[] {
   const sortedKey = metrics.some((metric) => metric.key === sortedMetricKey)
     ? sortedMetricKey
     : undefined;
 
-  if (compact) {
-    const primary =
-      sortedKey ?? metrics.find((metric) => metric.key === "greenery")?.key ?? metrics[0]?.key;
+  const defaultKey =
+    metrics.find((metric) => metric.key === DEFAULT_METRIC_KEY)?.key ??
+    metrics.find((metric) => metric.key === "greenery")?.key ??
+    metrics[0]?.key;
 
-    return primary === undefined ? [] : [primary];
-  }
+  const primary = sortedKey ?? defaultKey;
 
-  const contextKeys = metrics
-    .filter((metric) => ["transport_accessibility", "greenery"].includes(metric.key))
-    .map((metric) => metric.key);
-
-  const fallbackKeys =
-    contextKeys.length > 0 ? contextKeys : metrics.slice(0, 2).map((metric) => metric.key);
-
-  const columns = sortedKey === undefined ? fallbackKeys : [sortedKey, ...fallbackKeys];
-
-  return [...new Set(columns)].slice(0, 2);
+  return primary === undefined ? [] : [primary];
 }
 
 export function districtGroups({

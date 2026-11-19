@@ -55,41 +55,28 @@ describe("data table grouping", () => {
     ]);
   });
 
-  it("keeps two compact columns and puts the sorted metric first", () => {
+  it("shows a single metric column, population density by default", () => {
     const metrics = [
       { key: "cafes_density" },
       { key: "greenery" },
+      { key: "population_density" },
       { key: "transport_accessibility" },
     ];
 
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined, compact: false })).toEqual([
-      "greenery",
-      "transport_accessibility",
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined })).toEqual([
+      "population_density",
     ]);
-    expect(
-      visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density", compact: false }),
-    ).toEqual(["cafes_density", "greenery"]);
-    expect(
-      visibleMetricKeys({ metrics, sortedMetricKey: "transport_accessibility", compact: false }),
-    ).toEqual(["transport_accessibility", "greenery"]);
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density" })).toEqual([
+      "cafes_density",
+    ]);
   });
 
-  it("shows a single metric on a compact viewport", () => {
-    const metrics = [
-      { key: "cafes_density" },
-      { key: "greenery" },
-      { key: "transport_accessibility" },
-    ];
+  it("falls back to greenery when the city publishes no population density", () => {
+    const metrics = [{ key: "cafes_density" }, { key: "greenery" }];
 
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined, compact: true })).toEqual([
-      "greenery",
-    ]);
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: "cafes_density", compact: true })).toEqual(
-      ["cafes_density"],
-    );
-    expect(visibleMetricKeys({ metrics, sortedMetricKey: "nightlife", compact: true })).toEqual([
-      "greenery",
-    ]);
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: undefined })).toEqual(["greenery"]);
+    expect(visibleMetricKeys({ metrics, sortedMetricKey: "nightlife" })).toEqual(["greenery"]);
+    expect(visibleMetricKeys({ metrics: [], sortedMetricKey: undefined })).toEqual([]);
   });
 
   it("reports a missing average when no row of the district has a value", () => {

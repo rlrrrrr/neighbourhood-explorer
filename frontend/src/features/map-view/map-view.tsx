@@ -2,7 +2,7 @@ import { useLayoutEffect, useState } from "react";
 import { isDarkTheme } from "../../app/theme";
 import type { Criteria } from "../criteria/criteria";
 import { readChoroplethColors, type ChoroplethColors } from "./choropleth-style";
-import { POPULATION_DENSITY_METRIC_KEY } from "./choropleth";
+import { DEFAULT_METRIC_KEY } from "../metrics/default-metric";
 import { MapViewContent } from "./map-view-content";
 import { useDocumentTheme } from "./use-document-theme";
 import { useMapData } from "./use-map-data";
@@ -31,8 +31,8 @@ export function MapView({
 
   const { state, reload } = useMapData({
     cityId: ISTANBUL_CITY_ID,
-    metricKey: rankingMetricKey ?? POPULATION_DENSITY_METRIC_KEY,
-    fallbackMetricKey: POPULATION_DENSITY_METRIC_KEY,
+    metricKey: rankingMetricKey ?? DEFAULT_METRIC_KEY,
+    fallbackMetricKey: DEFAULT_METRIC_KEY,
   });
 
   const { state: neighborhoodMetrics, reload: reloadNeighborhoodMetrics } = useNeighborhoodMetrics({
