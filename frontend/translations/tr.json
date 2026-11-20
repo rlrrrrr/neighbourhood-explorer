@@ -1078,6 +1078,886 @@
         }
       ],
       "types": []
+    },
+    "Yx64Yhgq7r8A2x8jCeD6Jw==": {
+      "description": "Save button label when the neighborhood is already saved",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaydedildi",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/DdD8v00+9UlZqnBI3Kd0g==": {
+      "description": "Save button label when the neighborhood is not saved",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaydet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WkIvc4ogeZ4mRVI+Z02YjQ==": {
+      "description": "Title of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favoriler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sIwWHQxBbMunZG9LHkDO+A==": {
+      "description": "Subtitle of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaydettiğin mahalleler. Giriş yaptıktan sonra cihazlar arasında seninle gelir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "D0nufARvOX3LCt6OseiBsA==": {
+      "description": "Message shown on the favorites screen when signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesabının favorilerini görmek için giriş yap. Yerel kayıtların ilk girişte birleştirilecek.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2y0JB5TZUI5+GH8UDU9p6Q==": {
+      "description": "Button opening the login page from the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AahPUHaRW/ZSXdNY5b2fsQ==": {
+      "description": "Loading message on the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favoriler yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nPKC3sbq96cb7p3XONNbmg==": {
+      "description": "Empty state of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz favori yok. Sohbetten veya haritadan bir mahalle kaydet.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WBnBbfVdCd/Ugi2f9KTtqg==": {
+      "description": "Button opening the map from the empty favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritayı keşfet",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xk6dTKVNGBkuNDZabjiqxQ==": {
+      "description": "Remove favorite button while the request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldırılıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "eMoE8aF3C8LxikCYD9z7YQ==": {
+      "description": "Remove favorite button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldır",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vTWANkE/aUuYoXj3DVWGhQ==": {
+      "description": "Button opening the map from a favorite row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Haritada gör",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wkhwQJh/b0FWSIsYYEYfaQ==": {
+      "description": "Login error when the email or password is wrong",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E-posta veya parola yanlış.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "a4MnxD89EizseooQj/Lowg==": {
+      "description": "Login error when the account email has not been confirmed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Önce aldığın bağlantıyla e-posta adresini doğrula.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xNwM0wK0Br5KckOmoCC1Hw==": {
+      "description": "Login error when the account is locked out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Birkaç denemeden sonra hesap geçici olarak kilitlendi. On beş dakika sonra tekrar dene.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z9gaKXi/OLijZ+UX3zgiCQ==": {
+      "description": "Error when the authentication rate limit is reached",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kısa sürede çok fazla deneme yapıldı. Tekrar denemeden önce bir dakika bekle.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "UuMm+EYamKJErAfSPiyW3A==": {
+      "description": "Error when the email confirmation token is invalid or expired",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu doğrulama bağlantısı artık geçerli değil. Yeni bir e-posta iste.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ZN4JKclee6bbIzfDv1i8Hg==": {
+      "description": "Error when the anti-forgery token is rejected",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Oturumun sona erdi. Sayfayı yenile ve tekrar dene.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RQjd6nHxD3N51pFbyHHEmA==": {
+      "description": "Error when an authenticated action is attempted while signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Devam etmek için giriş yap.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HlT/jhA2IN9l4k3K8klKlg==": {
+      "description": "Error when a favorite target is not in the catalog",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu mahalle henüz katalogda mevcut değil.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AcuLvj9hdXfwfJksXCm/Ug==": {
+      "description": "Generic account error message",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bir hata oluştu. Birazdan tekrar dene.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6vDTExVqy2rwFil+HbBalw==": {
+      "description": "Validation error for the email",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu e-posta adresi geçerli değil.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "V6D7picQYzMqo+KoH4WL3w==": {
+      "description": "Validation error for the display name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Görünen ad 1 ile 80 karakter arasında olmalıdır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3w2UOCTk20gEiN4+EQozew==": {
+      "description": "Validation error when the password is empty",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bir parola seç.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "uXaoKFKPNxprAu05tSX9tQ==": {
+      "description": "Validation error when the password is too short",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola en az 12 karakter içermelidir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RvXmX27LX72nb7zO3Hl41Q==": {
+      "description": "Validation error when the password lacks a digit",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola en az bir rakam içermelidir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0NknsIln/8BCir/CDfahVg==": {
+      "description": "Validation error when the password lacks a lowercase letter",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola en az bir küçük harf içermelidir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CHoToT0Xm+hPtroanc3IhQ==": {
+      "description": "Validation error when the password lacks an uppercase letter",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola en az bir büyük harf içermelidir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sRNRp+Mu31TEG5tu6Be3Gg==": {
+      "description": "Validation error when the password lacks a special character",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola en az bir özel karakter içermelidir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Sqv1C9sdb1/pfcQrFcgg9A==": {
+      "description": "Validation error when the email is already registered",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu adres zaten kullanılıyor. Giriş yap veya başka bir adres seç.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Q9/PG8VXaUZI7dXRt26KvA==": {
+      "description": "Generic validation error message",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Girilen bilgiler geçerli değil.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2dOFRgvjJ/9uPu6G4hIV6g==": {
+      "description": "Header button opening the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "bkvp822dVodGz6vus2Vi5w==": {
+      "description": "Accessible label of the account menu",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RAV5l8sKRbIWildVzlTr2Q==": {
+      "description": "Account menu entry opening the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favoriler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FLGJz36gkpSjcNPgoZZrUA==": {
+      "description": "Account menu entry while the logout request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Çıkış yapılıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KsnVrgD2Dit8yMZjBnL4qg==": {
+      "description": "Account menu entry logging the person out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Çıkış yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rOT8tA4pli+YKrk92VWxyA==": {
+      "description": "Title shown when the email confirmation succeeded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E-posta doğrulandı",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YMlF9eZUqnwUn8gYZpBkpw==": {
+      "description": "Title of the email confirmation page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E-posta doğrulama",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "T0cAhy8EEqFpooKI/Hr1Kw==": {
+      "description": "Message shown while the email confirmation request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bağlantı doğrulanıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YoEZPhFV58Wp7pq7Fr7EXw==": {
+      "description": "Message shown when the email confirmation succeeded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesabın etkin. Artık giriş yapabilir ve favorilerini görebilirsin.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Bs37ySXtltDebYJc4WhCRA==": {
+      "description": "Button going to the login page from the email confirmation page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Girişe git",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WLUizQAzJjrnv76mmLIYbQ==": {
+      "description": "Title of the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qM+xExMplYIUbEisZyHJhg==": {
+      "description": "Subtitle of the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favorilerini geri al. Harita, sohbet ve veriler hesap olmadan kullanılabilir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "TrGZkgiHHuXbi/d1U2vU1w==": {
+      "description": "Label of the email field on the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E-posta adresi",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ZB7ZvEWN1nsQzQUXQ7QKBQ==": {
+      "description": "Label of the password field on the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CTFmzIldA1vMaS4J7/LEtg==": {
+      "description": "Button label while the login request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yapılıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "jbIQ7m2KjdBhKh4YHRM6AQ==": {
+      "description": "Submit button of the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QiC8ZOZliztr4EpbnCSAOw==": {
+      "description": "Sentence introducing the registration link on the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz hesabın yok mu?",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iTiaq0cj0KZ0AG6rhyBCqw==": {
+      "description": "Link from the login page to the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesap oluştur",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Aj8KdXi2RQ9t4X7kQOBTlQ==": {
+      "description": "Title shown after a successful registration",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gelen kutunu kontrol et",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Y6bt/AJyVlI0G8SAvK5ljA==": {
+      "description": "Message shown after registration, explaining the confirmation email",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sana bir doğrulama bağlantısı gönderdik. Hesabını etkinleştirmek için aç, sonra giriş yapmak için geri dön.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4h7vkb9Dxjx4EiXcKxIdXQ==": {
+      "description": "Button going to the login page after registration",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Girişe git",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RuKCJhyMnKV/xWVZCOM3Vg==": {
+      "description": "Title of the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesap oluştur",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "U3B6UdrtFnExmzebpViPLw==": {
+      "description": "Subtitle of the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesap, favorilerini cihazlar arasında eşitler. Harita hesap olmadan da erişilebilir.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "W+p7QPHZqGGvqIT/QY3AXg==": {
+      "description": "Label of the email field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "E-posta adresi",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6asNM8HSjmd6CnaqPQIbTw==": {
+      "description": "Label of the display name field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Görünen ad",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EEFlorh8MzvYc5ILg0qW1A==": {
+      "description": "Hint under the display name field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "1 ile 80 karakter arasında, arayüzde görünür.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "pP9Z5XUawv6ngzUSrVs21Q==": {
+      "description": "Label of the password field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Parola",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wbDU3o2kc7pV/GPyfRCZ0w==": {
+      "description": "Hint under the password field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "En az 12 karakter. Harf türü kuralı yok.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "bhkzfaeryZBXa9vSPU1siQ==": {
+      "description": "Button label while the registration request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Oluşturuluyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oZskHoyJZNw9OsggC2xNEA==": {
+      "description": "Submit button of the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesabımı oluştur",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BqJ86bBF6LUG6OVQyfYBkQ==": {
+      "description": "Sentence introducing the login link on the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Zaten bir hesabın var mı?",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CnNuPKiCUH7aG6pljUQAAQ==": {
+      "description": "Link from the registration page to the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LOc4cG7g0Vx1YqpzJOdcgg==": {
+      "description": "Title of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesaplar",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vBgClg6LE7hUw6iw+1P0Rw==": {
+      "description": "Subtitle of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Paylaşılan veritabanındaki hesaplar. Bir hesabı kaldırmak profilinı ve favorilerini siler.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qoNfgntWoMzolK9y6khbSQ==": {
+      "description": "Message shown on the admin screen when signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesapları yönetmek için yönetici hesabıyla giriş yap.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kfS+fj369y+FKd89eEruTA==": {
+      "description": "Button opening the login page from the admin screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+KxYF+SQREcm87uO409+1A==": {
+      "description": "Message shown to a signed-in account without the admin role",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu sayfa yalnızca yöneticilere ayrılmıştır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3PP0dzmFRPdd90ebSUBwrw==": {
+      "description": "Loading message on the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesaplar yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GmNvJpV4u7bJwWLekjIRgw==": {
+      "description": "Empty state of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz hesap yok.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SP1xMkomlvDqcSGNZXpXdg==": {
+      "description": "Badge for an account whose email address is confirmed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Doğrulandı",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DAiB+lAK+Xvf2pLXWxmN9g==": {
+      "description": "Badge for an account whose email address is not confirmed yet",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bekliyor",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wFjxp/FhQfv5tci9Mcm4rQ==": {
+      "description": "Badge marking an administrator account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yönetici",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Hb3ufzHaSG9f1PyL3wfDTQ==": {
+      "description": "Badge marking a demonstration account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Demo",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8/C2NbsLajyvFB7GLjhm3w==": {
+      "description": "Label replacing the delete button on the administrator's own row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Geçerli hesap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "M5w+geNMSiFJ/Cb2Yl4VGA==": {
+      "description": "Delete account button while the request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldırılıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WcZ1aD08nIsiMTOIq5Ua0Q==": {
+      "description": "Button confirming the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Onayla",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2B0p4siivtKftnXxgIH5/Q==": {
+      "description": "Button cancelling the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Vazgeç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vvbW6fyld9nqT1djGCBLcA==": {
+      "description": "Button starting the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldır",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gfo8qa3MhskcmNKqboh0/Q==": {
+      "description": "Account menu entry opening the account administration screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yönetim",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

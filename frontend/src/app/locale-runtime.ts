@@ -15,7 +15,7 @@ function readStoredLocale(): string | null {
   try {
     return window.localStorage.getItem(LOCALE_STORAGE_KEY);
   } catch {
-    // `localStorage` peut lever (navigation privée, stockage désactivé) : on retombe sur les langues du navigateur.
+    // `localStorage` can throw (private browsing or disabled storage); fall back to the browser languages.
     return null;
   }
 }
@@ -52,6 +52,6 @@ export function storeLocale(locale: string): void {
   try {
     window.localStorage.setItem(LOCALE_STORAGE_KEY, locale);
   } catch {
-    // Même raison : le choix s'applique quand même pour la session en cours.
+    // Same reason: the choice still applies for the current session.
   }
 }

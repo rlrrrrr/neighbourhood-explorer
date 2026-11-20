@@ -1078,6 +1078,886 @@
         }
       ],
       "types": []
+    },
+    "Yx64Yhgq7r8A2x8jCeD6Jw==": {
+      "description": "Save button label when the neighborhood is already saved",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Saved",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/DdD8v00+9UlZqnBI3Kd0g==": {
+      "description": "Save button label when the neighborhood is not saved",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Save",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WkIvc4ogeZ4mRVI+Z02YjQ==": {
+      "description": "Title of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favorites",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sIwWHQxBbMunZG9LHkDO+A==": {
+      "description": "Subtitle of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The neighborhoods you saved. They follow you from one device to another after signing in.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "D0nufARvOX3LCt6OseiBsA==": {
+      "description": "Message shown on the favorites screen when signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in to get your account favorites back. Your local saves will be merged on first sign-in.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2y0JB5TZUI5+GH8UDU9p6Q==": {
+      "description": "Button opening the login page from the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AahPUHaRW/ZSXdNY5b2fsQ==": {
+      "description": "Loading message on the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Loading favorites…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "nPKC3sbq96cb7p3XONNbmg==": {
+      "description": "Empty state of the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No favorites yet. Save a neighborhood from the chat or the map.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WBnBbfVdCd/Ugi2f9KTtqg==": {
+      "description": "Button opening the map from the empty favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Explore the map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xk6dTKVNGBkuNDZabjiqxQ==": {
+      "description": "Remove favorite button while the request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Removing…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "eMoE8aF3C8LxikCYD9z7YQ==": {
+      "description": "Remove favorite button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Remove",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vTWANkE/aUuYoXj3DVWGhQ==": {
+      "description": "Button opening the map from a favorite row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Show on the map",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wkhwQJh/b0FWSIsYYEYfaQ==": {
+      "description": "Login error when the email or password is wrong",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Incorrect email or password.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "a4MnxD89EizseooQj/Lowg==": {
+      "description": "Login error when the account email has not been confirmed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Confirm your email address first using the link you received.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xNwM0wK0Br5KckOmoCC1Hw==": {
+      "description": "Login error when the account is locked out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Account temporarily locked after several attempts. Try again in fifteen minutes.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Z9gaKXi/OLijZ+UX3zgiCQ==": {
+      "description": "Error when the authentication rate limit is reached",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Too many attempts in a short time. Wait a minute before trying again.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "UuMm+EYamKJErAfSPiyW3A==": {
+      "description": "Error when the email confirmation token is invalid or expired",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This confirmation link is no longer valid. Request a new email.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ZN4JKclee6bbIzfDv1i8Hg==": {
+      "description": "Error when the anti-forgery token is rejected",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Your session has expired. Reload the page and try again.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RQjd6nHxD3N51pFbyHHEmA==": {
+      "description": "Error when an authenticated action is attempted while signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in to continue.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "HlT/jhA2IN9l4k3K8klKlg==": {
+      "description": "Error when a favorite target is not in the catalog",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This neighborhood is not available in the catalog yet.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AcuLvj9hdXfwfJksXCm/Ug==": {
+      "description": "Generic account error message",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Something went wrong. Try again in a moment.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6vDTExVqy2rwFil+HbBalw==": {
+      "description": "Validation error for the email",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This email address is not valid.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "V6D7picQYzMqo+KoH4WL3w==": {
+      "description": "Validation error for the display name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The display name must contain between 1 and 80 characters.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3w2UOCTk20gEiN4+EQozew==": {
+      "description": "Validation error when the password is empty",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Choose a password.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "uXaoKFKPNxprAu05tSX9tQ==": {
+      "description": "Validation error when the password is too short",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The password must contain at least 12 characters.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RvXmX27LX72nb7zO3Hl41Q==": {
+      "description": "Validation error when the password lacks a digit",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The password must contain at least one digit.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0NknsIln/8BCir/CDfahVg==": {
+      "description": "Validation error when the password lacks a lowercase letter",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The password must contain at least one lowercase letter.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CHoToT0Xm+hPtroanc3IhQ==": {
+      "description": "Validation error when the password lacks an uppercase letter",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The password must contain at least one uppercase letter.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "sRNRp+Mu31TEG5tu6Be3Gg==": {
+      "description": "Validation error when the password lacks a special character",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The password must contain at least one special character.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Sqv1C9sdb1/pfcQrFcgg9A==": {
+      "description": "Validation error when the email is already registered",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This address is already in use. Sign in or choose another one.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Q9/PG8VXaUZI7dXRt26KvA==": {
+      "description": "Generic validation error message",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "The information you entered is not valid.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2dOFRgvjJ/9uPu6G4hIV6g==": {
+      "description": "Header button opening the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "bkvp822dVodGz6vus2Vi5w==": {
+      "description": "Accessible label of the account menu",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Account",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RAV5l8sKRbIWildVzlTr2Q==": {
+      "description": "Account menu entry opening the favorites screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favorites",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "FLGJz36gkpSjcNPgoZZrUA==": {
+      "description": "Account menu entry while the logout request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Signing out…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "KsnVrgD2Dit8yMZjBnL4qg==": {
+      "description": "Account menu entry logging the person out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign out",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rOT8tA4pli+YKrk92VWxyA==": {
+      "description": "Title shown when the email confirmation succeeded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Email confirmed",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YMlF9eZUqnwUn8gYZpBkpw==": {
+      "description": "Title of the email confirmation page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Email confirmation",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "T0cAhy8EEqFpooKI/Hr1Kw==": {
+      "description": "Message shown while the email confirmation request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Verifying the link…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "YoEZPhFV58Wp7pq7Fr7EXw==": {
+      "description": "Message shown when the email confirmation succeeded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Your account is active. You can now sign in and get your favorites back.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Bs37ySXtltDebYJc4WhCRA==": {
+      "description": "Button going to the login page from the email confirmation page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Go to sign-in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WLUizQAzJjrnv76mmLIYbQ==": {
+      "description": "Title of the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qM+xExMplYIUbEisZyHJhg==": {
+      "description": "Subtitle of the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Get your favorites back. The map, chat and data stay usable without an account.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "TrGZkgiHHuXbi/d1U2vU1w==": {
+      "description": "Label of the email field on the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Email address",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ZB7ZvEWN1nsQzQUXQ7QKBQ==": {
+      "description": "Label of the password field on the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Password",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CTFmzIldA1vMaS4J7/LEtg==": {
+      "description": "Button label while the login request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Signing in…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "jbIQ7m2KjdBhKh4YHRM6AQ==": {
+      "description": "Submit button of the login form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QiC8ZOZliztr4EpbnCSAOw==": {
+      "description": "Sentence introducing the registration link on the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No account yet?",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iTiaq0cj0KZ0AG6rhyBCqw==": {
+      "description": "Link from the login page to the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Create an account",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Aj8KdXi2RQ9t4X7kQOBTlQ==": {
+      "description": "Title shown after a successful registration",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Check your inbox",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Y6bt/AJyVlI0G8SAvK5ljA==": {
+      "description": "Message shown after registration, explaining the confirmation email",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "We sent you a confirmation link. Open it to activate your account, then come back to sign in.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "4h7vkb9Dxjx4EiXcKxIdXQ==": {
+      "description": "Button going to the login page after registration",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Go to sign-in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RuKCJhyMnKV/xWVZCOM3Vg==": {
+      "description": "Title of the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Create an account",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "U3B6UdrtFnExmzebpViPLw==": {
+      "description": "Subtitle of the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "An account syncs your favorites across devices. The map stays accessible without an account.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "W+p7QPHZqGGvqIT/QY3AXg==": {
+      "description": "Label of the email field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Email address",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6asNM8HSjmd6CnaqPQIbTw==": {
+      "description": "Label of the display name field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Display name",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EEFlorh8MzvYc5ILg0qW1A==": {
+      "description": "Hint under the display name field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Between 1 and 80 characters, visible in the interface.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "pP9Z5XUawv6ngzUSrVs21Q==": {
+      "description": "Label of the password field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Password",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wbDU3o2kc7pV/GPyfRCZ0w==": {
+      "description": "Hint under the password field on the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "12 characters minimum. No composition rule.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "bhkzfaeryZBXa9vSPU1siQ==": {
+      "description": "Button label while the registration request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Creating…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oZskHoyJZNw9OsggC2xNEA==": {
+      "description": "Submit button of the registration form",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Create my account",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "BqJ86bBF6LUG6OVQyfYBkQ==": {
+      "description": "Sentence introducing the login link on the registration page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Already have an account?",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "CnNuPKiCUH7aG6pljUQAAQ==": {
+      "description": "Link from the registration page to the login page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LOc4cG7g0Vx1YqpzJOdcgg==": {
+      "description": "Title of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Accounts",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vBgClg6LE7hUw6iw+1P0Rw==": {
+      "description": "Subtitle of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Accounts stored in the shared database. Removing an account deletes its profile and favorites.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qoNfgntWoMzolK9y6khbSQ==": {
+      "description": "Message shown on the admin screen when signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in with an administrator account to manage accounts.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kfS+fj369y+FKd89eEruTA==": {
+      "description": "Button opening the login page from the admin screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sign in",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+KxYF+SQREcm87uO409+1A==": {
+      "description": "Message shown to a signed-in account without the admin role",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "This page is reserved for administrators.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3PP0dzmFRPdd90ebSUBwrw==": {
+      "description": "Loading message on the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Loading accounts…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GmNvJpV4u7bJwWLekjIRgw==": {
+      "description": "Empty state of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "No accounts yet.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SP1xMkomlvDqcSGNZXpXdg==": {
+      "description": "Badge for an account whose email address is confirmed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Confirmed",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DAiB+lAK+Xvf2pLXWxmN9g==": {
+      "description": "Badge for an account whose email address is not confirmed yet",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Pending",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wFjxp/FhQfv5tci9Mcm4rQ==": {
+      "description": "Badge marking an administrator account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Admin",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Hb3ufzHaSG9f1PyL3wfDTQ==": {
+      "description": "Badge marking a demonstration account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Demo",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8/C2NbsLajyvFB7GLjhm3w==": {
+      "description": "Label replacing the delete button on the administrator's own row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Current account",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "M5w+geNMSiFJ/Cb2Yl4VGA==": {
+      "description": "Delete account button while the request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Removing…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WcZ1aD08nIsiMTOIq5Ua0Q==": {
+      "description": "Button confirming the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Confirm",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2B0p4siivtKftnXxgIH5/Q==": {
+      "description": "Button cancelling the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Cancel",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vvbW6fyld9nqT1djGCBLcA==": {
+      "description": "Button starting the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Remove",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gfo8qa3MhskcmNKqboh0/Q==": {
+      "description": "Account menu entry opening the account administration screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Administration",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }
