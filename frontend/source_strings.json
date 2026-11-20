@@ -2070,14 +2070,14 @@
       "filename": "src/features/favorites/favorites-page.tsx",
       "loc": {
         "start": {
-          "line": 111,
+          "line": 107,
           "column": 16,
-          "index": 4060
+          "index": 3997
         },
         "end": {
-          "line": 111,
+          "line": 107,
           "column": 94,
-          "index": 4138
+          "index": 4075
         }
       },
       "project": "",
@@ -2961,6 +2961,470 @@
     },
     {
       "hashToLeaf": {
+        "LOc4cG7g0Vx1YqpzJOdcgg==": {
+          "desc": "Title of the admin accounts screen",
+          "text": "Comptes"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 8,
+          "index": 858
+        },
+        "end": {
+          "line": 33,
+          "column": 68,
+          "index": 918
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the admin accounts screen",
+          "text": "Comptes"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "vBgClg6LE7hUw6iw+1P0Rw==": {
+          "desc": "Subtitle of the admin accounts screen",
+          "text": "Les comptes enregistrés dans la base partagée. Retirer un compte supprime son profil et ses favoris."
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 8,
+          "index": 994
+        },
+        "end": {
+          "line": 39,
+          "column": 14,
+          "index": 1180
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the admin accounts screen",
+          "text": "Les comptes enregistrés dans la base partagée. Retirer un compte supprime son profil et ses favoris."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "qoNfgntWoMzolK9y6khbSQ==": {
+          "desc": "Message shown on the admin screen when signed out",
+          "text": "Connecte-toi avec un compte administrateur pour gérer les comptes."
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 51,
+          "column": 12,
+          "index": 1547
+        },
+        "end": {
+          "line": 53,
+          "column": 18,
+          "index": 1709
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown on the admin screen when signed out",
+          "text": "Connecte-toi avec un compte administrateur pour gérer les comptes."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "kfS+fj369y+FKd89eEruTA==": {
+          "desc": "Button opening the login page from the admin screen",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 12,
+          "index": 1775
+        },
+        "end": {
+          "line": 56,
+          "column": 94,
+          "index": 1857
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the login page from the admin screen",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+KxYF+SQREcm87uO409+1A==": {
+          "desc": "Message shown to a signed-in account without the admin role",
+          "text": "Cette page est réservée aux administrateurs."
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 12,
+          "index": 2090
+        },
+        "end": {
+          "line": 66,
+          "column": 18,
+          "index": 2240
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown to a signed-in account without the admin role",
+          "text": "Cette page est réservée aux administrateurs."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "3PP0dzmFRPdd90ebSUBwrw==": {
+          "desc": "Loading message on the admin accounts screen",
+          "text": "Chargement des comptes…"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 73,
+          "column": 10,
+          "index": 2400
+        },
+        "end": {
+          "line": 73,
+          "column": 96,
+          "index": 2486
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Loading message on the admin accounts screen",
+          "text": "Chargement des comptes…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "GmNvJpV4u7bJwWLekjIRgw==": {
+          "desc": "Empty state of the admin accounts screen",
+          "text": "Aucun compte enregistré."
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 80,
+          "column": 12,
+          "index": 2706
+        },
+        "end": {
+          "line": 80,
+          "column": 95,
+          "index": 2789
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Empty state of the admin accounts screen",
+          "text": "Aucun compte enregistré."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "SP1xMkomlvDqcSGNZXpXdg==": {
+          "desc": "Badge for an account whose email address is confirmed",
+          "text": "Confirmé"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 104,
+          "column": 24,
+          "index": 3820
+        },
+        "end": {
+          "line": 106,
+          "column": 30,
+          "index": 3952
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Badge for an account whose email address is confirmed",
+          "text": "Confirmé"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "DAiB+lAK+Xvf2pLXWxmN9g==": {
+          "desc": "Badge for an account whose email address is not confirmed yet",
+          "text": "En attente"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 108,
+          "column": 24,
+          "index": 4005
+        },
+        "end": {
+          "line": 110,
+          "column": 30,
+          "index": 4147
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Badge for an account whose email address is not confirmed yet",
+          "text": "En attente"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "wFjxp/FhQfv5tci9Mcm4rQ==": {
+          "desc": "Badge marking an administrator account",
+          "text": "Admin"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 115,
+          "column": 24,
+          "index": 4331
+        },
+        "end": {
+          "line": 115,
+          "column": 86,
+          "index": 4393
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Badge marking an administrator account",
+          "text": "Admin"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Hb3ufzHaSG9f1PyL3wfDTQ==": {
+          "desc": "Badge marking a demonstration account",
+          "text": "Démo"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 120,
+          "column": 24,
+          "index": 4538
+        },
+        "end": {
+          "line": 120,
+          "column": 84,
+          "index": 4598
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Badge marking a demonstration account",
+          "text": "Démo"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "8/C2NbsLajyvFB7GLjhm3w==": {
+          "desc": "Label replacing the delete button on the administrator's own row",
+          "text": "Compte actuel"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 128,
+          "column": 20,
+          "index": 4819
+        },
+        "end": {
+          "line": 130,
+          "column": 26,
+          "index": 4959
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label replacing the delete button on the administrator's own row",
+          "text": "Compte actuel"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "M5w+geNMSiFJ/Cb2Yl4VGA==": {
+          "desc": "Delete account button while the request is running",
+          "text": "Retrait…"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 144,
+          "column": 24,
+          "index": 5436
+        },
+        "end": {
+          "line": 144,
+          "column": 101,
+          "index": 5513
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Delete account button while the request is running",
+          "text": "Retrait…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "WcZ1aD08nIsiMTOIq5Ua0Q==": {
+          "desc": "Button confirming the removal of an account",
+          "text": "Confirmer"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 146,
+          "column": 24,
+          "index": 5566
+        },
+        "end": {
+          "line": 146,
+          "column": 95,
+          "index": 5637
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button confirming the removal of an account",
+          "text": "Confirmer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2B0p4siivtKftnXxgIH5/Q==": {
+          "desc": "Button cancelling the removal of an account",
+          "text": "Annuler"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 155,
+          "column": 22,
+          "index": 5945
+        },
+        "end": {
+          "line": 155,
+          "column": 91,
+          "index": 6014
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button cancelling the removal of an account",
+          "text": "Annuler"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "vvbW6fyld9nqT1djGCBLcA==": {
+          "desc": "Button starting the removal of an account",
+          "text": "Retirer"
+        }
+      },
+      "filename": "src/features/administration/admin-users-page.tsx",
+      "loc": {
+        "start": {
+          "line": 164,
+          "column": 20,
+          "index": 6294
+        },
+        "end": {
+          "line": 164,
+          "column": 87,
+          "index": 6361
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button starting the removal of an account",
+          "text": "Retirer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "wkhwQJh/b0FWSIsYYEYfaQ==": {
           "desc": "Login error when the email or password is wrong",
           "text": "Courriel ou mot de passe incorrect."
@@ -3520,14 +3984,14 @@
       "filename": "src/features/accounts/account-menu.tsx",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 34,
           "column": 8,
-          "index": 809
+          "index": 869
         },
         "end": {
-          "line": 32,
+          "line": 34,
           "column": 75,
-          "index": 876
+          "index": 936
         }
       },
       "project": "",
@@ -3549,14 +4013,14 @@
       "filename": "src/features/accounts/account-menu.tsx",
       "loc": {
         "start": {
-          "line": 40,
+          "line": 42,
           "column": 17,
-          "index": 973
+          "index": 1033
         },
         "end": {
-          "line": 40,
+          "line": 42,
           "column": 70,
-          "index": 1026
+          "index": 1086
         }
       },
       "project": "",
@@ -3578,14 +4042,14 @@
       "filename": "src/features/accounts/account-menu.tsx",
       "loc": {
         "start": {
-          "line": 56,
+          "line": 58,
           "column": 12,
-          "index": 1491
+          "index": 1551
         },
         "end": {
-          "line": 56,
+          "line": 58,
           "column": 85,
-          "index": 1564
+          "index": 1624
         }
       },
       "project": "",
@@ -3599,6 +4063,35 @@
     },
     {
       "hashToLeaf": {
+        "gfo8qa3MhskcmNKqboh0/Q==": {
+          "desc": "Account menu entry opening the account administration screen",
+          "text": "Administration"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 70,
+          "column": 14,
+          "index": 1932
+        },
+        "end": {
+          "line": 72,
+          "column": 20,
+          "index": 2057
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Account menu entry opening the account administration screen",
+          "text": "Administration"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "FLGJz36gkpSjcNPgoZZrUA==": {
           "desc": "Account menu entry while the logout request is running",
           "text": "Déconnexion…"
@@ -3607,14 +4100,14 @@
       "filename": "src/features/accounts/account-menu.tsx",
       "loc": {
         "start": {
-          "line": 69,
+          "line": 86,
           "column": 14,
-          "index": 1876
+          "index": 2384
         },
         "end": {
-          "line": 69,
+          "line": 86,
           "column": 99,
-          "index": 1961
+          "index": 2469
         }
       },
       "project": "",
@@ -3636,14 +4129,14 @@
       "filename": "src/features/accounts/account-menu.tsx",
       "loc": {
         "start": {
-          "line": 71,
+          "line": 88,
           "column": 14,
-          "index": 1994
+          "index": 2502
         },
         "end": {
-          "line": 71,
+          "line": 88,
           "column": 88,
-          "index": 2068
+          "index": 2576
         }
       },
       "project": "",
@@ -4622,14 +5115,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 251,
+          "line": 282,
           "column": 27,
-          "index": 7890
+          "index": 9021
         },
         "end": {
-          "line": 254,
+          "line": 285,
           "column": 3,
-          "index": 7989
+          "index": 9120
         }
       },
       "project": "",
@@ -4651,14 +5144,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 255,
+          "line": 286,
           "column": 26,
-          "index": 8017
+          "index": 9148
         },
         "end": {
-          "line": 258,
+          "line": 289,
           "column": 3,
-          "index": 8131
+          "index": 9262
         }
       },
       "project": "",

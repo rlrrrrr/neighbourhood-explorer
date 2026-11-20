@@ -12,6 +12,7 @@ describe("account menu", () => {
         isLoggingOut={false}
         onSignIn={() => {}}
         onOpenFavorites={() => {}}
+        onOpenAdministration={() => {}}
         onLogout={() => {}}
       />,
     );
@@ -29,11 +30,13 @@ describe("account menu", () => {
           displayName: "Camille",
           locale: "fr",
           isDemo: false,
+          isAdmin: false,
         }}
         isPending={false}
         isLoggingOut={false}
         onSignIn={() => {}}
         onOpenFavorites={() => {}}
+        onOpenAdministration={() => {}}
         onLogout={() => {}}
       />,
     );
@@ -53,10 +56,53 @@ describe("account menu", () => {
         isLoggingOut={false}
         onSignIn={() => {}}
         onOpenFavorites={() => {}}
+        onOpenAdministration={() => {}}
         onLogout={() => {}}
       />,
     );
 
     expect(markup).toBe("");
+  });
+});
+
+describe("account menu administration entry", () => {
+  const session = {
+    userId: "user-1",
+    email: "camille@example.test",
+    displayName: "Camille",
+    locale: "fr",
+    isDemo: false,
+  };
+
+  it("shows the administration entry to an administrator", () => {
+    const markup = renderToStaticMarkup(
+      <AccountMenuView
+        session={{ ...session, isAdmin: true }}
+        isPending={false}
+        isLoggingOut={false}
+        onSignIn={() => {}}
+        onOpenFavorites={() => {}}
+        onOpenAdministration={() => {}}
+        onLogout={() => {}}
+      />,
+    );
+
+    expect(markup).toContain("Administration");
+  });
+
+  it("hides the administration entry from a regular account", () => {
+    const markup = renderToStaticMarkup(
+      <AccountMenuView
+        session={{ ...session, isAdmin: false }}
+        isPending={false}
+        isLoggingOut={false}
+        onSignIn={() => {}}
+        onOpenFavorites={() => {}}
+        onOpenAdministration={() => {}}
+        onLogout={() => {}}
+      />,
+    );
+
+    expect(markup).not.toContain("Administration");
   });
 });

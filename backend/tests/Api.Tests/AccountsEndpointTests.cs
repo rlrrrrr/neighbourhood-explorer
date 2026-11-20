@@ -4,6 +4,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using NeighbourhoodExplorer.Api.Features.Accounts.Contracts;
+using Npgsql;
 using Testcontainers.PostgreSql;
 
 namespace NeighbourhoodExplorer.Api.Tests;
@@ -175,13 +176,107 @@ public sealed class AccountsEndpointTests(PostgresContainerFixture database) : I
         Assert.Equal((HttpStatusCode)423, locked.StatusCode);
     }
 
-    private static WebApplicationFactory<Program> CreateFactory(string connectionString, string outboxPath) =>
-        new WebApplicationFactory<Program>().WithWebHostBuilder(builder => builder
-            .UseSetting("DATABASE_CONNECTION_STRING", connectionString)
-            .UseSetting("EMAIL_OUTBOX_PATH", outboxPath)
-            .UseSetting("FRONTEND_BASE_URL", "http://localhost:5173"));
+    [Fact]
+    public async Task Administrator_lists_accounts_and_removes_one_without_deleting_its_own()
+    {
+        using var outbox = new TemporaryDirectory();
+        var adminEmail = UniqueEmail("admin");
+        var memberEmail = UniqueEmail("member");
+        using var factory = CreateFactory(database.ConnectionString, outbox.Path, adminEmail);
+        using var adminClient = factory.CreateClient();
+        using var memberClient = factory.CreateClient();
 
-    private static string UniqueEmail() => $"camille+{Guid.NewGuid():N}@example.test";
+        await RegisterAsync(adminClient, adminEmail, "Admin", "en");
+        await ConfirmAsync(adminClient, await ReadLatestConfirmationLinkAsync(outbox.Path));
+        await RegisterAsync(memberClient, memberEmail, "Member", "fr");
+        await ConfirmAsync(memberClient, await ReadLatestConfirmationLinkAsync(outbox.Path));
+
+        using var adminLogin = await PostAsync(adminClient, "/api/v1/auth/login", new
+        {
+            email = adminEmail,
+            password = ValidPassword,
+        });
+        Assert.Equal(HttpStatusCode.OK, adminLogin.StatusCode);
+        await EnsureCsrfTokenAsync(adminClient);
+        var adminProfile = await adminClient.GetFromJsonAsync<MeResponse>("/api/v1/me");
+        Assert.NotNull(adminProfile);
+        Assert.True(adminProfile.IsAdmin);
+
+        using var memberLogin = await PostAsync(memberClient, "/api/v1/auth/login", new
+        {
+            email = memberEmail,
+            password = ValidPassword,
+        });
+        Assert.Equal(HttpStatusCode.OK, memberLogin.StatusCode);
+        var memberProfile = await memberLogin.Content.ReadFromJsonAsync<MeResponse>();
+        Assert.NotNull(memberProfile);
+        Assert.False(memberProfile.IsAdmin);
+        await EnsureCsrfTokenAsync(memberClient);
+
+        using var forbiddenList = await memberClient.GetAsync("/api/v1/admin/users");
+        Assert.Equal(HttpStatusCode.Forbidden, forbiddenList.StatusCode);
+        using var forbiddenRemoval = await DeleteAsync(memberClient, $"/api/v1/admin/users/{memberProfile.UserId}");
+        Assert.Equal(HttpStatusCode.Forbidden, forbiddenRemoval.StatusCode);
+
+        using var favorite = await PutAsync(memberClient, "/api/v1/me/favorites/neighborhood/40512");
+        Assert.Equal(HttpStatusCode.NoContent, favorite.StatusCode);
+
+        var accounts = await adminClient.GetFromJsonAsync<AdminUsersResponse>("/api/v1/admin/users");
+        Assert.NotNull(accounts);
+        Assert.Contains(accounts.Items, item => item.Email == adminEmail && item.IsAdmin);
+        Assert.Contains(accounts.Items, item => item.Email == memberEmail && !item.IsAdmin);
+
+        using var ownRemoval = await DeleteAsync(adminClient, $"/api/v1/admin/users/{adminProfile.UserId}");
+        Assert.Equal((HttpStatusCode)409, ownRemoval.StatusCode);
+        using var ownRemovalBody = JsonDocument.Parse(await ownRemoval.Content.ReadAsStringAsync());
+        Assert.Equal("cannot_delete_self", ownRemovalBody.RootElement.GetProperty("code").GetString());
+
+        using var unknownRemoval = await DeleteAsync(adminClient, $"/api/v1/admin/users/{Guid.NewGuid():N}");
+        Assert.Equal(HttpStatusCode.NotFound, unknownRemoval.StatusCode);
+
+        using var removal = await DeleteAsync(adminClient, $"/api/v1/admin/users/{memberProfile.UserId}");
+        Assert.Equal(HttpStatusCode.NoContent, removal.StatusCode);
+
+        var afterRemoval = await adminClient.GetFromJsonAsync<AdminUsersResponse>("/api/v1/admin/users");
+        Assert.NotNull(afterRemoval);
+        Assert.DoesNotContain(afterRemoval.Items, item => item.Email == memberEmail);
+        Assert.Contains(afterRemoval.Items, item => item.Email == adminEmail);
+
+        await using var connection = new NpgsqlConnection(database.ConnectionString);
+        await connection.OpenAsync();
+        await using var command = new NpgsqlCommand(
+            """
+            SELECT (SELECT count(*) FROM "AspNetUsers" WHERE "Id" = @userId),
+                   (SELECT count(*) FROM "UserProfile" WHERE "UserId" = @userId),
+                   (SELECT count(*) FROM "Favorite" WHERE "UserId" = @userId)
+            """,
+            connection);
+        command.Parameters.AddWithValue("userId", memberProfile.UserId);
+        await using var reader = await command.ExecuteReaderAsync();
+        Assert.True(await reader.ReadAsync());
+        Assert.Equal(0L, reader.GetInt64(0));
+        Assert.Equal(0L, reader.GetInt64(1));
+        Assert.Equal(0L, reader.GetInt64(2));
+    }
+
+    private static WebApplicationFactory<Program> CreateFactory(
+        string connectionString,
+        string outboxPath,
+        string? adminEmails = null) =>
+        new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+        {
+            builder
+                .UseSetting("DATABASE_CONNECTION_STRING", connectionString)
+                .UseSetting("EMAIL_OUTBOX_PATH", outboxPath)
+                .UseSetting("FRONTEND_BASE_URL", "http://localhost:5173");
+
+            if (adminEmails is not null)
+            {
+                builder.UseSetting("ADMIN_EMAILS", adminEmails);
+            }
+        });
+
+    private static string UniqueEmail(string prefix = "camille") => $"{prefix}+{Guid.NewGuid():N}@example.test";
 
     private static async Task<HttpResponseMessage> RegisterAsync(
         HttpClient client,
