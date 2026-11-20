@@ -1,9 +1,0 @@
-To: tripp.beckers@telenet.be
-Subject: Confirm your email address
-
-Hello Tripp,
-
-To finish creating your Neighbourhood Explorer account, open this link within 24 hours:
-http://localhost:5173/confirm-email?userId=b7def256-cd7a-45a8-b8d9-2e440f694c53&token=CfDJ8MgpoTJat9VErV2wo180ZkrlUVYwgaAb0g7uIbYlfJK6UZ%2FNVHPJbYtTGxWygAq0CjreviyYUEEacNcPFeAePxZFMdIhY9oFUguX%2B%2F672ygbV6ig2OLc6LPbh2O1JxIXk8W4ybDU0LgzxgE9UApq1AeAofLpk9XcqxPR0CrFLEPB5iG3pAdijY%2FLm1Q%2BlRBKDn1EBoPImAIvsWPbEI%2Fch3Jw3fULHv0uTr0W6WAqOdpdS7k6cSeBnQZWbtd%2BcQ5ngA%3D%3D
-
-If you did not make this request, ignore this message.

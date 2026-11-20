@@ -9,7 +9,7 @@ interface FavoritesPageProps {
   removingId: string | null;
   errorMessage: ReactNode;
   onRemove: (targetId: string) => void;
-  onShowOnMap: (neighborhood: string) => void;
+  onShowOnMap: (targetId: string) => void;
   onSignIn: () => void;
   onExploreMap: () => void;
 }
@@ -103,11 +103,7 @@ export function FavoritesPage({
                   <fbt desc="Remove favorite button">Retirer</fbt>
                 )}
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={() => onShowOnMap(favorite.name ?? favorite.targetId)}
-              >
+              <Button variant="ghost" size="sm" onClick={() => onShowOnMap(favorite.targetId)}>
                 <fbt desc="Button opening the map from a favorite row">Voir sur la carte</fbt>
               </Button>
             </li>

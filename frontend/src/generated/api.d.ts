@@ -4,6 +4,177 @@
  */
 
 export interface paths {
+    "/api/v1/auth/csrf": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Anti-forgery token for authenticated writes */
+        get: operations["getAuthCsrfToken"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/register": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Create an account and send the confirmation email */
+        post: operations["registerAccount"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/confirm-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Confirm an account email address with the token from the confirmation link */
+        post: operations["confirmEmailAddress"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/login": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Sign in and start the session cookie */
+        post: operations["login"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/auth/logout": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** End the session */
+        post: operations["logout"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Authenticated account profile */
+        get: operations["getCurrentAccount"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/favorites": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Authenticated account favorites, from newest to oldest */
+        get: operations["listFavorites"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/me/favorites/{targetType}/{targetId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /** Save a favorite (idempotent) */
+        put: operations["putFavorite"];
+        post?: never;
+        /** Remove a favorite (idempotent) */
+        delete: operations["deleteFavorite"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Accounts known to the service (administrators only) */
+        get: operations["listAdminUsers"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/v1/admin/users/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Remove an account and its profile and favorites (administrators only) */
+        delete: operations["deleteAdminUser"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/v1/cities": {
         parameters: {
             query?: never;
@@ -28,7 +199,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Géométries simplifiées des quartiers d'une ville (GeoJSON) */
+        /** Simplified geometries of a city's neighborhoods (GeoJSON) */
         get: operations["getCityNeighborhoods"];
         put?: never;
         post?: never;
@@ -45,7 +216,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Détail d'un quartier : hiérarchie, géométrie complète et centroïde */
+        /** Neighborhood details: hierarchy, complete geometry, and centroid */
         get: operations["getNeighborhood"];
         put?: never;
         post?: never;
@@ -62,7 +233,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Toutes les métriques d'un quartier, avec leur date d'observation et leur source */
+        /** All metrics for a neighborhood, with their observation date and source */
         get: operations["getNeighborhoodMetrics"];
         put?: never;
         post?: never;
@@ -79,7 +250,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Santé du service : base, version des données, état de l'IA */
+        /** Service health: database, data version, and AI status */
         get: operations["getHealth"];
         put?: never;
         post?: never;
@@ -96,7 +267,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Définitions des métriques avec leur source, leurs traductions et la date de la dernière observation */
+        /** Metric definitions with their source, translations, and latest observation date */
         get: operations["getMetrics"];
         put?: never;
         post?: never;
@@ -113,7 +284,7 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
-        /** Dernières valeurs des métriques demandées pour les quartiers d'une ville */
+        /** Latest values of the requested metrics for a city's neighborhoods */
         get: operations["getCityMetricValues"];
         put?: never;
         post?: never;
@@ -129,14 +300,14 @@ export interface components {
     schemas: {
         HealthResponse: {
             /**
-             * @description État de la base PostgreSQL/PostGIS
+             * @description PostgreSQL/PostGIS database status
              * @enum {string}
              */
             database: "ok" | "unavailable";
-            /** @description Version des données chargées par l'ETL, null tant que rien n'est chargé */
+            /** @description Version of the data loaded by the ETL, null until data is loaded */
             dataVersion?: string | null;
             /**
-             * @description État du modèle de décision (disabled quand AI_ENABLED est désactivé)
+             * @description Decision model status (disabled when AI_ENABLED is disabled)
              * @enum {string}
              */
             ai: "disabled" | "warming" | "ready" | "unavailable";
@@ -147,7 +318,7 @@ export interface components {
         City: {
             /**
              * Format: int32
-             * @description Code de plaque de la province, utilisé dans les chemins (34 = İstanbul)
+             * @description Province plate code used in paths (34 = Istanbul)
              */
             plateCode: number;
             name: string;
@@ -173,7 +344,7 @@ export interface components {
             districtId: number;
             districtName: string;
         };
-        /** @description Géométrie GeoJSON en WGS 84 (EPSG:4326) */
+        /** @description GeoJSON geometry in WGS 84 (EPSG:4326) */
         GeoJsonGeometry: {
             /** @enum {string} */
             type: "Point" | "Polygon" | "MultiPolygon";
@@ -212,7 +383,7 @@ export interface components {
             source: components["schemas"]["MetricSource"];
             /**
              * Format: date
-             * @description Date de la dernière observation disponible, null si la métrique n'a aucune valeur
+             * @description Date of the latest available observation, null if the metric has no value
              */
             observedAt: string | null;
         };
@@ -240,19 +411,19 @@ export interface components {
             retrievedAt: string;
             version: string;
         };
-        /** @description Clé = metricKey ; valeur = objet dont les clés sont les identifiants de quartier. Une métrique demandée sans valeur renvoie un objet vide. */
+        /** @description Key = metricKey; value = object whose keys are neighborhood IDs. A requested metric without a value returns an empty object. */
         MetricValues: {
             [key: string]: {
                 [key: string]: components["schemas"]["MetricValue"];
             };
         };
         MetricValue: {
-            /** @description Valeur brute dans l'unité de la métrique, sans arrondi d'affichage */
+            /** @description Raw value in the metric's unit, without display rounding */
             raw: number;
-            /** @description Valeur normalisée (0..1) utilisée par le score */
+            /** @description Normalized value (0..1) used by the score */
             normalized: number;
             /**
-             * @description Qualité de la valeur ; inherited signifie que la valeur vient du district parent
+             * @description Value quality; inherited means the value comes from the parent district
              * @enum {string}
              */
             qualityFlag: "ok" | "estimated" | "stale" | "low_coverage" | "inherited";
@@ -264,12 +435,12 @@ export interface components {
         };
         NeighborhoodMetric: {
             key: string;
-            /** @description Valeur brute dans l'unité de la métrique, sans arrondi d'affichage */
+            /** @description Raw value in the metric's unit, without display rounding */
             raw: number;
-            /** @description Valeur normalisée (0..1) utilisée par le score */
+            /** @description Normalized value (0..1) used by the score */
             normalized: number;
             /**
-             * @description Qualité de la valeur ; inherited signifie que la valeur vient du district parent
+             * @description Value quality; inherited means the value comes from the parent district
              * @enum {string}
              */
             qualityFlag: "ok" | "estimated" | "stale" | "low_coverage" | "inherited";
@@ -285,6 +456,71 @@ export interface components {
             license: string;
             attribution: string;
         };
+        ApiError: {
+            /** @description Stable error code: validation_failed, invalid_credentials, email_not_confirmed, account_locked, not_authenticated, invalid_token, favorite_target_unknown, csrf_failed, rate_limited */
+            code: string;
+            errors: string[];
+        };
+        CsrfResponse: {
+            token: string;
+        };
+        RegisterRequest: {
+            /** Format: email */
+            email: string;
+            displayName: string;
+            password: string;
+            /**
+             * @description Preferred email language; the API defaults to fr when unknown
+             * @enum {string|null}
+             */
+            locale: "fr" | "en" | "tr" | "ar" | null;
+        };
+        RegisterResponse: {
+            /** @constant */
+            status: "confirmation_sent";
+        };
+        ConfirmEmailRequest: {
+            userId: string;
+            token: string;
+        };
+        LoginRequest: {
+            /** Format: email */
+            email: string;
+            password: string;
+        };
+        MeResponse: {
+            userId: string;
+            email: string;
+            displayName: string;
+            locale: string;
+            isDemo: boolean;
+            isAdmin: boolean;
+        };
+        FavoriteResponse: {
+            /** @constant */
+            targetType: "neighborhood";
+            targetId: string;
+            name?: string | null;
+            district?: string | null;
+            /** Format: date-time */
+            createdAt: string;
+        };
+        FavoritesResponse: {
+            items: components["schemas"]["FavoriteResponse"][];
+        };
+        AdminUserResponse: {
+            userId: string;
+            email: string;
+            displayName: string;
+            /** Format: date-time */
+            createdAt: string;
+            emailConfirmed: boolean;
+            isDemo: boolean;
+            isAdmin: boolean;
+        };
+        AdminUsersResponse: {
+            items: components["schemas"]["AdminUserResponse"][];
+        };
         ProblemDetails: {
             type?: string;
             title?: string;
@@ -296,13 +532,495 @@ export interface components {
         };
     };
     responses: never;
-    parameters: never;
+    parameters: {
+        /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+        CsrfToken: string;
+    };
     requestBodies: never;
     headers: never;
     pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
+    getAuthCsrfToken: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Token to send back in the X-CSRF-TOKEN header; the companion cookie is set by the server */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["CsrfResponse"];
+                };
+            };
+            /** @description Authentication rate limit reached */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    registerAccount: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterRequest"];
+            };
+        };
+        responses: {
+            /** @description Account created (or still unconfirmed); the confirmation email has been sent */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RegisterResponse"];
+                };
+            };
+            /** @description Invalid input or rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Authentication rate limit reached */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    confirmEmailAddress: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ConfirmEmailRequest"];
+            };
+        };
+        responses: {
+            /** @description Email address confirmed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Invalid or expired token, or rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Authentication rate limit reached */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    login: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["LoginRequest"];
+            };
+        };
+        responses: {
+            /** @description Authenticated account profile */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeResponse"];
+                };
+            };
+            /** @description Rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Invalid credentials */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Email address not confirmed */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Account temporarily locked after too many attempts */
+            423: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Authentication rate limit reached */
+            429: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    logout: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Signed out */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    getCurrentAccount: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authenticated account profile */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MeResponse"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    listFavorites: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Authenticated account favorites, from newest to oldest */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FavoritesResponse"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    putFavorite: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path: {
+                targetType: "neighborhood";
+                targetId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Favorite saved */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Unknown favorite target or rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    deleteFavorite: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path: {
+                targetType: "neighborhood";
+                targetId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Favorite removed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    listAdminUsers: {
+        parameters: {
+            query?: {
+                /** @description Maximum number of accounts returned (default 100, maximum 200) */
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Accounts sorted from newest to oldest */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminUsersResponse"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Signed in without the admin role */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
+    deleteAdminUser: {
+        parameters: {
+            query?: never;
+            header: {
+                /** @description Token returned by GET /api/v1/auth/csrf, required for every authenticated write */
+                "X-CSRF-TOKEN": components["parameters"]["CsrfToken"];
+            };
+            path: {
+                userId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Account removed */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Rejected anti-forgery token */
+            400: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Not signed in */
+            401: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description Signed in without the admin role */
+            403: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description No account with this identifier */
+            404: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+            /** @description An administrator cannot remove their own account */
+            409: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ApiError"];
+                };
+            };
+        };
+    };
     getCities: {
         parameters: {
             query?: never;
@@ -312,12 +1030,12 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Provinces disponibles, triées par code officiel */
+            /** @description Available provinces, sorted by official code */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -325,7 +1043,7 @@ export interface operations {
                     "application/json": components["schemas"]["CitiesResponse"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -341,19 +1059,19 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId} */
+                /** @description Province plate code (1 to 81; 34 = Istanbul), resolved through official_code = TR-{cityId} */
                 cityId: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description FeatureCollection GeoJSON ; chaque géométrie est simplifiée pour l'affichage (COALESCE(display_geometry, geometry)) */
+            /** @description GeoJSON FeatureCollection; each geometry is simplified for display (COALESCE(display_geometry, geometry)) */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -361,7 +1079,7 @@ export interface operations {
                     "application/geo+json": components["schemas"]["NeighborhoodFeatureCollection"];
                 };
             };
-            /** @description Ville inconnue */
+            /** @description Unknown city */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -370,7 +1088,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ProblemDetails"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -386,19 +1104,19 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Identifiant interne du quartier (admin_area.id) */
+                /** @description Internal neighborhood identifier (admin_area.id) */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Quartier trouvé */
+            /** @description Neighborhood found */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -415,7 +1133,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ProblemDetails"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -431,19 +1149,19 @@ export interface operations {
             query?: never;
             header?: never;
             path: {
-                /** @description Identifiant interne du quartier (admin_area.id) */
+                /** @description Internal neighborhood identifier (admin_area.id) */
                 id: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Valeurs les plus récentes du quartier, triées par clé de métrique */
+            /** @description Most recent values for the neighborhood, sorted by metric key */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -451,7 +1169,7 @@ export interface operations {
                     "application/json": components["schemas"]["NeighborhoodMetrics"];
                 };
             };
-            /** @description Quartier inconnu */
+            /** @description Unknown neighborhood */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -460,7 +1178,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ProblemDetails"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -480,7 +1198,7 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description État courant du service */
+            /** @description Current service status */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -500,12 +1218,12 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Définitions des métriques disponibles */
+            /** @description Available metric definitions */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -513,7 +1231,7 @@ export interface operations {
                     "application/json": components["schemas"]["MetricsResponse"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;
@@ -527,24 +1245,24 @@ export interface operations {
     getCityMetricValues: {
         parameters: {
             query: {
-                /** @description Clés de métriques séparées par des virgules (ex. population_density) */
+                /** @description Metric keys separated by commas (e.g. population_density) */
                 metrics: string;
             };
             header?: never;
             path: {
-                /** @description Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId} */
+                /** @description Province plate code (1 to 81; 34 = Istanbul), resolved through official_code = TR-{cityId} */
                 cityId: number;
             };
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Valeurs brutes et normalisées, indexées par clé de métrique puis par identifiant de quartier */
+            /** @description Raw and normalized values, indexed first by metric key and then by neighborhood ID */
             200: {
                 headers: {
-                    /** @description Empreinte du contenu, utilisable avec If-None-Match */
+                    /** @description Content fingerprint, usable with If-None-Match */
                     ETag?: string;
-                    /** @description Durée de mise en cache côté client */
+                    /** @description Client-side cache duration */
                     "Cache-Control"?: string;
                     [name: string]: unknown;
                 };
@@ -552,7 +1270,7 @@ export interface operations {
                     "application/json": components["schemas"]["MetricValues"];
                 };
             };
-            /** @description Paramètre metrics absent ou clé de métrique inconnue */
+            /** @description Missing metrics parameter or unknown metric key */
             400: {
                 headers: {
                     [name: string]: unknown;
@@ -561,7 +1279,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ProblemDetails"];
                 };
             };
-            /** @description Ville inconnue */
+            /** @description Unknown city */
             404: {
                 headers: {
                     [name: string]: unknown;
@@ -570,7 +1288,7 @@ export interface operations {
                     "application/problem+json": components["schemas"]["ProblemDetails"];
                 };
             };
-            /** @description Base de données non configurée ou non joignable */
+            /** @description Database is not configured or cannot be reached */
             503: {
                 headers: {
                     [name: string]: unknown;

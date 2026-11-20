@@ -1,9 +1,0 @@
-To: outbox-1794308839@example.test
-Subject: Confirmez votre adresse e-mail
-
-Bonjour Outbox Check,
-
-Pour terminer la création de votre compte Neighbourhood Explorer, ouvrez ce lien dans les 24 heures :
-http://localhost:5173/confirm-email?userId=ed930b6c-d430-449a-84f9-597905c0bc9f&token=CfDJ8MgpoTJat9VErV2wo180Zkod2U6DiYhJahdXGt7HvKnEvhy4ybT05ZGwH8oJSXFOLm8F11Dg2CJaB1Ms5rIeWVOwnVhtmxlcGylji0%2BPSLeMmPiPFRy53yYo4yim4f03AtCG9UCTw43x5e5%2BfGCJHDDuMDabw0jGJSHFg8D4gU7cktJm6GBvHNFFYc1v1dVBnRiaZddWDA1ewlCZ7BTwvAdDyqroQNvJWljzC6cd4HL%2BXA%2BSCrsPeBm%2F5D5Ftd8ihg%3D%3D
-
-Si vous n'êtes pas à l'origine de cette demande, ignorez ce message.

@@ -100,12 +100,12 @@
         "start": {
           "line": 32,
           "column": 34,
-          "index": 1537
+          "index": 1546
         },
         "end": {
           "line": 32,
           "column": 83,
-          "index": 1586
+          "index": 1595
         }
       },
       "project": "",
@@ -129,12 +129,12 @@
         "start": {
           "line": 33,
           "column": 36,
-          "index": 1626
+          "index": 1635
         },
         "end": {
           "line": 33,
           "column": 89,
-          "index": 1679
+          "index": 1688
         }
       },
       "project": "",
@@ -158,12 +158,12 @@
         "start": {
           "line": 34,
           "column": 32,
-          "index": 1715
+          "index": 1724
         },
         "end": {
           "line": 34,
           "column": 77,
-          "index": 1760
+          "index": 1769
         }
       },
       "project": "",
@@ -187,12 +187,12 @@
         "start": {
           "line": 35,
           "column": 34,
-          "index": 1798
+          "index": 1807
         },
         "end": {
           "line": 35,
           "column": 83,
-          "index": 1847
+          "index": 1856
         }
       },
       "project": "",
@@ -216,12 +216,12 @@
         "start": {
           "line": 39,
           "column": 31,
-          "index": 1908
+          "index": 1917
         },
         "end": {
           "line": 39,
           "column": 64,
-          "index": 1941
+          "index": 1950
         }
       },
       "project": "",
@@ -245,12 +245,12 @@
         "start": {
           "line": 40,
           "column": 31,
-          "index": 1976
+          "index": 1985
         },
         "end": {
           "line": 40,
           "column": 64,
-          "index": 2009
+          "index": 2018
         }
       },
       "project": "",
@@ -274,12 +274,12 @@
         "start": {
           "line": 41,
           "column": 35,
-          "index": 2048
+          "index": 2057
         },
         "end": {
           "line": 41,
           "column": 76,
-          "index": 2089
+          "index": 2098
         }
       },
       "project": "",
@@ -303,12 +303,12 @@
         "start": {
           "line": 123,
           "column": 16,
-          "index": 4418
+          "index": 4427
         },
         "end": {
           "line": 123,
           "column": 72,
-          "index": 4474
+          "index": 4483
         }
       },
       "project": "",
@@ -332,12 +332,12 @@
         "start": {
           "line": 124,
           "column": 21,
-          "index": 4497
+          "index": 4506
         },
         "end": {
           "line": 124,
           "column": 94,
-          "index": 4570
+          "index": 4579
         }
       },
       "project": "",
@@ -361,12 +361,12 @@
         "start": {
           "line": 160,
           "column": 16,
-          "index": 6204
+          "index": 6211
         },
         "end": {
           "line": 160,
           "column": 81,
-          "index": 6269
+          "index": 6276
         }
       },
       "project": "",
@@ -390,12 +390,12 @@
         "start": {
           "line": 165,
           "column": 14,
-          "index": 6456
+          "index": 6463
         },
         "end": {
           "line": 167,
           "column": 20,
-          "index": 6631
+          "index": 6638
         }
       },
       "project": "",
@@ -419,12 +419,12 @@
         "start": {
           "line": 171,
           "column": 22,
-          "index": 6698
+          "index": 6705
         },
         "end": {
           "line": 171,
           "column": 96,
-          "index": 6772
+          "index": 6779
         }
       },
       "project": "",
@@ -448,12 +448,12 @@
         "start": {
           "line": 188,
           "column": 16,
-          "index": 7446
+          "index": 7453
         },
         "end": {
           "line": 188,
           "column": 96,
-          "index": 7526
+          "index": 7533
         }
       },
       "project": "",
@@ -477,12 +477,12 @@
         "start": {
           "line": 192,
           "column": 18,
-          "index": 7711
+          "index": 7718
         },
         "end": {
           "line": 194,
           "column": 24,
-          "index": 7876
+          "index": 7883
         }
       },
       "project": "",
@@ -506,12 +506,12 @@
         "start": {
           "line": 205,
           "column": 16,
-          "index": 8299
+          "index": 8306
         },
         "end": {
           "line": 205,
           "column": 96,
-          "index": 8379
+          "index": 8386
         }
       },
       "project": "",
@@ -535,12 +535,12 @@
         "start": {
           "line": 208,
           "column": 16,
-          "index": 8511
+          "index": 8518
         },
         "end": {
           "line": 210,
           "column": 22,
-          "index": 8658
+          "index": 8665
         }
       },
       "project": "",
@@ -564,12 +564,12 @@
         "start": {
           "line": 215,
           "column": 22,
-          "index": 8750
+          "index": 8757
         },
         "end": {
           "line": 215,
           "column": 97,
-          "index": 8825
+          "index": 8832
         }
       },
       "project": "",
@@ -593,12 +593,12 @@
         "start": {
           "line": 230,
           "column": 34,
-          "index": 9291
+          "index": 9298
         },
         "end": {
           "line": 230,
           "column": 95,
-          "index": 9352
+          "index": 9359
         }
       },
       "project": "",
@@ -649,14 +649,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 63,
+          "line": 64,
           "column": 19,
-          "index": 2062
+          "index": 2137
         },
         "end": {
-          "line": 63,
+          "line": 64,
           "column": 96,
-          "index": 2139
+          "index": 2214
         }
       },
       "project": "",
@@ -678,14 +678,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 64,
+          "line": 65,
           "column": 21,
-          "index": 2162
+          "index": 2237
         },
         "end": {
-          "line": 64,
+          "line": 65,
           "column": 84,
-          "index": 2225
+          "index": 2300
         }
       },
       "project": "",
@@ -707,14 +707,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 65,
+          "line": 66,
           "column": 23,
-          "index": 2250
+          "index": 2325
         },
         "end": {
-          "line": 65,
+          "line": 66,
           "column": 94,
-          "index": 2321
+          "index": 2396
         }
       },
       "project": "",
@@ -736,14 +736,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 67,
           "column": 21,
-          "index": 2344
+          "index": 2419
         },
         "end": {
-          "line": 69,
+          "line": 70,
           "column": 3,
-          "index": 2457
+          "index": 2532
         }
       },
       "project": "",
@@ -765,14 +765,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 141,
+          "line": 152,
           "column": 10,
-          "index": 4777
+          "index": 5169
         },
         "end": {
-          "line": 141,
+          "line": 152,
           "column": 76,
-          "index": 4843
+          "index": 5235
         }
       },
       "project": "",
@@ -794,14 +794,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 149,
+          "line": 160,
           "column": 10,
-          "index": 5060
+          "index": 5452
         },
         "end": {
-          "line": 149,
+          "line": 160,
           "column": 69,
-          "index": 5119
+          "index": 5511
         }
       },
       "project": "",
@@ -823,14 +823,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 172,
+          "line": 183,
           "column": 14,
-          "index": 5994
+          "index": 6386
         },
         "end": {
-          "line": 172,
+          "line": 183,
           "column": 68,
-          "index": 6048
+          "index": 6440
         }
       },
       "project": "",
@@ -852,14 +852,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 183,
+          "line": 194,
           "column": 14,
-          "index": 6322
+          "index": 6714
         },
         "end": {
-          "line": 183,
+          "line": 194,
           "column": 89,
-          "index": 6397
+          "index": 6789
         }
       },
       "project": "",
@@ -881,14 +881,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 197,
+          "line": 208,
           "column": 18,
-          "index": 7062
+          "index": 7565
         },
         "end": {
-          "line": 197,
+          "line": 208,
           "column": 95,
-          "index": 7139
+          "index": 7642
         }
       },
       "project": "",
@@ -910,14 +910,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 212,
+          "line": 228,
           "column": 14,
-          "index": 7853
+          "index": 8537
         },
         "end": {
-          "line": 212,
+          "line": 228,
           "column": 96,
-          "index": 7935
+          "index": 8619
         }
       },
       "project": "",
@@ -939,14 +939,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 223,
+          "line": 239,
           "column": 22,
-          "index": 8451
+          "index": 9135
         },
         "end": {
-          "line": 223,
+          "line": 239,
           "column": 95,
-          "index": 8524
+          "index": 9208
         }
       },
       "project": "",
@@ -968,14 +968,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 235,
+          "line": 251,
           "column": 16,
-          "index": 9170
+          "index": 9854
         },
         "end": {
-          "line": 237,
+          "line": 253,
           "column": 22,
-          "index": 9339
+          "index": 10023
         }
       },
       "project": "",
@@ -997,14 +997,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 242,
+          "line": 258,
           "column": 16,
-          "index": 9558
+          "index": 10242
         },
         "end": {
-          "line": 244,
+          "line": 260,
           "column": 22,
-          "index": 9684
+          "index": 10368
         }
       },
       "project": "",
@@ -1026,14 +1026,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 251,
+          "line": 267,
           "column": 16,
-          "index": 10034
+          "index": 10718
         },
         "end": {
-          "line": 251,
+          "line": 267,
           "column": 90,
-          "index": 10108
+          "index": 10792
         }
       },
       "project": "",
@@ -1055,14 +1055,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 255,
+          "line": 271,
           "column": 16,
-          "index": 10232
+          "index": 10916
         },
         "end": {
-          "line": 255,
+          "line": 271,
           "column": 89,
-          "index": 10305
+          "index": 10989
         }
       },
       "project": "",
@@ -1084,14 +1084,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 287,
+          "line": 303,
           "column": 12,
-          "index": 11572
+          "index": 12256
         },
         "end": {
-          "line": 287,
+          "line": 303,
           "column": 69,
-          "index": 11629
+          "index": 12313
         }
       },
       "project": "",
@@ -1113,14 +1113,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 293,
+          "line": 309,
           "column": 12,
-          "index": 12047
+          "index": 12731
         },
         "end": {
-          "line": 293,
+          "line": 309,
           "column": 69,
-          "index": 12104
+          "index": 12788
         }
       },
       "project": "",
@@ -1142,14 +1142,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 297,
+          "line": 313,
           "column": 12,
-          "index": 12277
+          "index": 12961
         },
         "end": {
-          "line": 297,
+          "line": 313,
           "column": 87,
-          "index": 12352
+          "index": 13036
         }
       },
       "project": "",
@@ -1171,14 +1171,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 333,
+          "line": 349,
           "column": 13,
-          "index": 13396
+          "index": 14080
         },
         "end": {
-          "line": 333,
+          "line": 349,
           "column": 95,
-          "index": 13478
+          "index": 14162
         }
       },
       "project": "",
@@ -1200,14 +1200,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 335,
+          "line": 351,
           "column": 13,
-          "index": 13515
+          "index": 14199
         },
         "end": {
-          "line": 335,
+          "line": 351,
           "column": 70,
-          "index": 13572
+          "index": 14256
         }
       },
       "project": "",
@@ -1229,14 +1229,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 337,
+          "line": 353,
           "column": 13,
-          "index": 13605
+          "index": 14289
         },
         "end": {
-          "line": 337,
+          "line": 353,
           "column": 70,
-          "index": 13662
+          "index": 14346
         }
       },
       "project": "",
@@ -1258,14 +1258,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 339,
+          "line": 355,
           "column": 13,
-          "index": 13702
+          "index": 14386
         },
         "end": {
-          "line": 339,
+          "line": 355,
           "column": 84,
-          "index": 13773
+          "index": 14457
         }
       },
       "project": "",
@@ -1287,14 +1287,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 341,
+          "line": 357,
           "column": 13,
-          "index": 13803
+          "index": 14487
         },
         "end": {
-          "line": 341,
+          "line": 357,
           "column": 65,
-          "index": 13855
+          "index": 14539
         }
       },
       "project": "",
@@ -1738,6 +1738,354 @@
         "t": {
           "desc": "Call to action opening the map view",
           "text": "Explorer la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Yx64Yhgq7r8A2x8jCeD6Jw==": {
+          "desc": "Save button label when the neighborhood is already saved",
+          "text": "Enregistré"
+        }
+      },
+      "filename": "src/features/favorites/favorite-button.tsx",
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 8,
+          "index": 805
+        },
+        "end": {
+          "line": 29,
+          "column": 93,
+          "index": 890
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Save button label when the neighborhood is already saved",
+          "text": "Enregistré"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "/DdD8v00+9UlZqnBI3Kd0g==": {
+          "desc": "Save button label when the neighborhood is not saved",
+          "text": "Enregistrer"
+        }
+      },
+      "filename": "src/features/favorites/favorite-button.tsx",
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 8,
+          "index": 911
+        },
+        "end": {
+          "line": 31,
+          "column": 90,
+          "index": 993
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Save button label when the neighborhood is not saved",
+          "text": "Enregistrer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "WkIvc4ogeZ4mRVI+Z02YjQ==": {
+          "desc": "Title of the favorites screen",
+          "text": "Favoris"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 8,
+          "index": 788
+        },
+        "end": {
+          "line": 31,
+          "column": 63,
+          "index": 843
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the favorites screen",
+          "text": "Favoris"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "sIwWHQxBbMunZG9LHkDO+A==": {
+          "desc": "Subtitle of the favorites screen",
+          "text": "Les quartiers que tu as enregistrés. Ils te suivent d'un appareil à l'autre après connexion."
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 8,
+          "index": 919
+        },
+        "end": {
+          "line": 37,
+          "column": 14,
+          "index": 1092
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the favorites screen",
+          "text": "Les quartiers que tu as enregistrés. Ils te suivent d'un appareil à l'autre après connexion."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "D0nufARvOX3LCt6OseiBsA==": {
+          "desc": "Message shown on the favorites screen when signed out",
+          "text": "Connecte-toi pour retrouver les favoris de ton compte. Tes enregistrements locaux seront fusionnés à la première connexion."
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 12,
+          "index": 1459
+        },
+        "end": {
+          "line": 52,
+          "column": 18,
+          "index": 1696
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown on the favorites screen when signed out",
+          "text": "Connecte-toi pour retrouver les favoris de ton compte. Tes enregistrements locaux seront fusionnés à la première connexion."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2y0JB5TZUI5+GH8UDU9p6Q==": {
+          "desc": "Button opening the login page from the favorites screen",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 55,
+          "column": 12,
+          "index": 1762
+        },
+        "end": {
+          "line": 55,
+          "column": 98,
+          "index": 1848
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the login page from the favorites screen",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "AahPUHaRW/ZSXdNY5b2fsQ==": {
+          "desc": "Loading message on the favorites screen",
+          "text": "Chargement des favoris…"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 62,
+          "column": 10,
+          "index": 2002
+        },
+        "end": {
+          "line": 62,
+          "column": 91,
+          "index": 2083
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Loading message on the favorites screen",
+          "text": "Chargement des favoris…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "nPKC3sbq96cb7p3XONNbmg==": {
+          "desc": "Empty state of the favorites screen",
+          "text": "Aucun favori pour l'instant. Enregistre un quartier depuis le chat ou la carte."
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 12,
+          "index": 2335
+        },
+        "end": {
+          "line": 71,
+          "column": 18,
+          "index": 2496
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Empty state of the favorites screen",
+          "text": "Aucun favori pour l'instant. Enregistre un quartier depuis le chat ou la carte."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "WBnBbfVdCd/Ugi2f9KTtqg==": {
+          "desc": "Button opening the map from the empty favorites screen",
+          "text": "Explorer la carte"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 74,
+          "column": 12,
+          "index": 2584
+        },
+        "end": {
+          "line": 76,
+          "column": 18,
+          "index": 2702
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the map from the empty favorites screen",
+          "text": "Explorer la carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xk6dTKVNGBkuNDZabjiqxQ==": {
+          "desc": "Remove favorite button while the request is running",
+          "text": "Retrait…"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 101,
+          "column": 18,
+          "index": 3674
+        },
+        "end": {
+          "line": 101,
+          "column": 96,
+          "index": 3752
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Remove favorite button while the request is running",
+          "text": "Retrait…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "eMoE8aF3C8LxikCYD9z7YQ==": {
+          "desc": "Remove favorite button",
+          "text": "Retirer"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 103,
+          "column": 18,
+          "index": 3793
+        },
+        "end": {
+          "line": 103,
+          "column": 66,
+          "index": 3841
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Remove favorite button",
+          "text": "Retirer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "vTWANkE/aUuYoXj3DVWGhQ==": {
+          "desc": "Button opening the map from a favorite row",
+          "text": "Voir sur la carte"
+        }
+      },
+      "filename": "src/features/favorites/favorites-page.tsx",
+      "loc": {
+        "start": {
+          "line": 111,
+          "column": 16,
+          "index": 4060
+        },
+        "end": {
+          "line": 111,
+          "column": 94,
+          "index": 4138
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button opening the map from a favorite row",
+          "text": "Voir sur la carte"
         }
       }
     },
@@ -2613,6 +2961,1485 @@
     },
     {
       "hashToLeaf": {
+        "wkhwQJh/b0FWSIsYYEYfaQ==": {
+          "desc": "Login error when the email or password is wrong",
+          "text": "Courriel ou mot de passe incorrect."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 13,
+          "index": 245
+        },
+        "end": {
+          "line": 15,
+          "column": 7,
+          "index": 363
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Login error when the email or password is wrong",
+          "text": "Courriel ou mot de passe incorrect."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "a4MnxD89EizseooQj/Lowg==": {
+          "desc": "Login error when the account email has not been confirmed",
+          "text": "Confirme d'abord ton adresse électronique grâce au lien reçu par courriel."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 13,
+          "index": 410
+        },
+        "end": {
+          "line": 20,
+          "column": 7,
+          "index": 577
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Login error when the account email has not been confirmed",
+          "text": "Confirme d'abord ton adresse électronique grâce au lien reçu par courriel."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xNwM0wK0Br5KckOmoCC1Hw==": {
+          "desc": "Login error when the account is locked out",
+          "text": "Compte temporairement verrouillé après plusieurs essais. Réessaie dans quinze minutes."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 13,
+          "index": 619
+        },
+        "end": {
+          "line": 25,
+          "column": 7,
+          "index": 783
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Login error when the account is locked out",
+          "text": "Compte temporairement verrouillé après plusieurs essais. Réessaie dans quinze minutes."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Z9gaKXi/OLijZ+UX3zgiCQ==": {
+          "desc": "Error when the authentication rate limit is reached",
+          "text": "Trop de tentatives en peu de temps. Patiente une minute avant de réessayer."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 27,
+          "column": 13,
+          "index": 823
+        },
+        "end": {
+          "line": 30,
+          "column": 7,
+          "index": 985
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Error when the authentication rate limit is reached",
+          "text": "Trop de tentatives en peu de temps. Patiente une minute avant de réessayer."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "UuMm+EYamKJErAfSPiyW3A==": {
+          "desc": "Error when the email confirmation token is invalid or expired",
+          "text": "Ce lien de confirmation n'est plus valide. Demande un nouveau courriel."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 13,
+          "index": 1026
+        },
+        "end": {
+          "line": 35,
+          "column": 7,
+          "index": 1194
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Error when the email confirmation token is invalid or expired",
+          "text": "Ce lien de confirmation n'est plus valide. Demande un nouveau courriel."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ZN4JKclee6bbIzfDv1i8Hg==": {
+          "desc": "Error when the anti-forgery token is rejected",
+          "text": "La session a expiré. Recharge la page puis réessaie."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 37,
+          "column": 13,
+          "index": 1233
+        },
+        "end": {
+          "line": 40,
+          "column": 7,
+          "index": 1366
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Error when the anti-forgery token is rejected",
+          "text": "La session a expiré. Recharge la page puis réessaie."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RQjd6nHxD3N51pFbyHHEmA==": {
+          "desc": "Error when an authenticated action is attempted while signed out",
+          "text": "Connecte-toi pour continuer."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 13,
+          "index": 1411
+        },
+        "end": {
+          "line": 45,
+          "column": 7,
+          "index": 1539
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Error when an authenticated action is attempted while signed out",
+          "text": "Connecte-toi pour continuer."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "HlT/jhA2IN9l4k3K8klKlg==": {
+          "desc": "Error when a favorite target is not in the catalog",
+          "text": "Ce quartier n'est pas encore disponible dans le catalogue."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 47,
+          "column": 13,
+          "index": 1590
+        },
+        "end": {
+          "line": 50,
+          "column": 7,
+          "index": 1734
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Error when a favorite target is not in the catalog",
+          "text": "Ce quartier n'est pas encore disponible dans le catalogue."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "AcuLvj9hdXfwfJksXCm/Ug==": {
+          "desc": "Generic account error message",
+          "text": "Une erreur est survenue. Réessaie dans un instant."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 54,
+          "column": 13,
+          "index": 1837
+        },
+        "end": {
+          "line": 57,
+          "column": 7,
+          "index": 1952
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Generic account error message",
+          "text": "Une erreur est survenue. Réessaie dans un instant."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6vDTExVqy2rwFil+HbBalw==": {
+          "desc": "Validation error for the email",
+          "text": "Cette adresse électronique n'est pas valide."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 64,
+          "column": 13,
+          "index": 2109
+        },
+        "end": {
+          "line": 64,
+          "column": 98,
+          "index": 2194
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error for the email",
+          "text": "Cette adresse électronique n'est pas valide."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "V6D7picQYzMqo+KoH4WL3w==": {
+          "desc": "Validation error for the display name",
+          "text": "Le nom affiché doit contenir entre 1 et 80 caractères."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 13,
+          "index": 2242
+        },
+        "end": {
+          "line": 69,
+          "column": 7,
+          "index": 2369
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error for the display name",
+          "text": "Le nom affiché doit contenir entre 1 et 80 caractères."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "3w2UOCTk20gEiN4+EQozew==": {
+          "desc": "Validation error when the password is empty",
+          "text": "Choisis un mot de passe."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 71,
+          "column": 13,
+          "index": 2414
+        },
+        "end": {
+          "line": 71,
+          "column": 91,
+          "index": 2492
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password is empty",
+          "text": "Choisis un mot de passe."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "uXaoKFKPNxprAu05tSX9tQ==": {
+          "desc": "Validation error when the password is too short",
+          "text": "Le mot de passe doit contenir au moins 12 caractères."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 73,
+          "column": 13,
+          "index": 2538
+        },
+        "end": {
+          "line": 76,
+          "column": 7,
+          "index": 2674
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password is too short",
+          "text": "Le mot de passe doit contenir au moins 12 caractères."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RvXmX27LX72nb7zO3Hl41Q==": {
+          "desc": "Validation error when the password lacks a digit",
+          "text": "Le mot de passe doit contenir au moins un chiffre."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 78,
+          "column": 13,
+          "index": 2725
+        },
+        "end": {
+          "line": 81,
+          "column": 7,
+          "index": 2859
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password lacks a digit",
+          "text": "Le mot de passe doit contenir au moins un chiffre."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "0NknsIln/8BCir/CDfahVg==": {
+          "desc": "Validation error when the password lacks a lowercase letter",
+          "text": "Le mot de passe doit contenir au moins une minuscule."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 13,
+          "index": 2910
+        },
+        "end": {
+          "line": 86,
+          "column": 7,
+          "index": 3058
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password lacks a lowercase letter",
+          "text": "Le mot de passe doit contenir au moins une minuscule."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "CHoToT0Xm+hPtroanc3IhQ==": {
+          "desc": "Validation error when the password lacks an uppercase letter",
+          "text": "Le mot de passe doit contenir au moins une majuscule."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 13,
+          "index": 3109
+        },
+        "end": {
+          "line": 91,
+          "column": 7,
+          "index": 3258
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password lacks an uppercase letter",
+          "text": "Le mot de passe doit contenir au moins une majuscule."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "sRNRp+Mu31TEG5tu6Be3Gg==": {
+          "desc": "Validation error when the password lacks a special character",
+          "text": "Le mot de passe doit contenir au moins un caractère spécial."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 93,
+          "column": 13,
+          "index": 3320
+        },
+        "end": {
+          "line": 96,
+          "column": 7,
+          "index": 3476
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the password lacks a special character",
+          "text": "Le mot de passe doit contenir au moins un caractère spécial."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Sqv1C9sdb1/pfcQrFcgg9A==": {
+          "desc": "Validation error when the email is already registered",
+          "text": "Cette adresse est déjà utilisée. Connecte-toi ou choisis-en une autre."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 98,
+          "column": 13,
+          "index": 3515
+        },
+        "end": {
+          "line": 101,
+          "column": 7,
+          "index": 3674
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Validation error when the email is already registered",
+          "text": "Cette adresse est déjà utilisée. Connecte-toi ou choisis-en une autre."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Q9/PG8VXaUZI7dXRt26KvA==": {
+          "desc": "Generic validation error message",
+          "text": "Les informations saisies ne sont pas valides."
+        }
+      },
+      "filename": "src/features/accounts/account-error-message.ts",
+      "loc": {
+        "start": {
+          "line": 103,
+          "column": 13,
+          "index": 3702
+        },
+        "end": {
+          "line": 106,
+          "column": 7,
+          "index": 3815
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Generic validation error message",
+          "text": "Les informations saisies ne sont pas valides."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2dOFRgvjJ/9uPu6G4hIV6g==": {
+          "desc": "Header button opening the login page",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 32,
+          "column": 8,
+          "index": 809
+        },
+        "end": {
+          "line": 32,
+          "column": 75,
+          "index": 876
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Header button opening the login page",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "bkvp822dVodGz6vus2Vi5w==": {
+          "desc": "Accessible label of the account menu",
+          "text": "Compte"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 17,
+          "index": 973
+        },
+        "end": {
+          "line": 40,
+          "column": 70,
+          "index": 1026
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the account menu",
+          "text": "Compte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RAV5l8sKRbIWildVzlTr2Q==": {
+          "desc": "Account menu entry opening the favorites screen",
+          "text": "Favoris"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 56,
+          "column": 12,
+          "index": 1491
+        },
+        "end": {
+          "line": 56,
+          "column": 85,
+          "index": 1564
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Account menu entry opening the favorites screen",
+          "text": "Favoris"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "FLGJz36gkpSjcNPgoZZrUA==": {
+          "desc": "Account menu entry while the logout request is running",
+          "text": "Déconnexion…"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 69,
+          "column": 14,
+          "index": 1876
+        },
+        "end": {
+          "line": 69,
+          "column": 99,
+          "index": 1961
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Account menu entry while the logout request is running",
+          "text": "Déconnexion…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "KsnVrgD2Dit8yMZjBnL4qg==": {
+          "desc": "Account menu entry logging the person out",
+          "text": "Se déconnecter"
+        }
+      },
+      "filename": "src/features/accounts/account-menu.tsx",
+      "loc": {
+        "start": {
+          "line": 71,
+          "column": 14,
+          "index": 1994
+        },
+        "end": {
+          "line": 71,
+          "column": 88,
+          "index": 2068
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Account menu entry logging the person out",
+          "text": "Se déconnecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "rOT8tA4pli+YKrk92VWxyA==": {
+          "desc": "Title shown when the email confirmation succeeded",
+          "text": "Adresse confirmée"
+        }
+      },
+      "filename": "src/features/accounts/confirm-email-page.tsx",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 12,
+          "index": 764
+        },
+        "end": {
+          "line": 20,
+          "column": 97,
+          "index": 849
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title shown when the email confirmation succeeded",
+          "text": "Adresse confirmée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "YMlF9eZUqnwUn8gYZpBkpw==": {
+          "desc": "Title of the email confirmation page",
+          "text": "Confirmation de l'adresse"
+        }
+      },
+      "filename": "src/features/accounts/confirm-email-page.tsx",
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 12,
+          "index": 878
+        },
+        "end": {
+          "line": 22,
+          "column": 92,
+          "index": 958
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the email confirmation page",
+          "text": "Confirmation de l'adresse"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "T0cAhy8EEqFpooKI/Hr1Kw==": {
+          "desc": "Message shown while the email confirmation request is running",
+          "text": "Vérification du lien en cours…"
+        }
+      },
+      "filename": "src/features/accounts/confirm-email-page.tsx",
+      "loc": {
+        "start": {
+          "line": 28,
+          "column": 12,
+          "index": 1121
+        },
+        "end": {
+          "line": 30,
+          "column": 18,
+          "index": 1259
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown while the email confirmation request is running",
+          "text": "Vérification du lien en cours…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "YoEZPhFV58Wp7pq7Fr7EXw==": {
+          "desc": "Message shown when the email confirmation succeeded",
+          "text": "Ton compte est actif. Tu peux maintenant te connecter et retrouver tes favoris."
+        }
+      },
+      "filename": "src/features/accounts/confirm-email-page.tsx",
+      "loc": {
+        "start": {
+          "line": 36,
+          "column": 12,
+          "index": 1400
+        },
+        "end": {
+          "line": 38,
+          "column": 18,
+          "index": 1577
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown when the email confirmation succeeded",
+          "text": "Ton compte est actif. Tu peux maintenant te connecter et retrouver tes favoris."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Bs37ySXtltDebYJc4WhCRA==": {
+          "desc": "Button going to the login page from the email confirmation page",
+          "text": "Aller à la connexion"
+        }
+      },
+      "filename": "src/features/accounts/confirm-email-page.tsx",
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 12,
+          "index": 1942
+        },
+        "end": {
+          "line": 52,
+          "column": 18,
+          "index": 2072
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button going to the login page from the email confirmation page",
+          "text": "Aller à la connexion"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "WLUizQAzJjrnv76mmLIYbQ==": {
+          "desc": "Title of the login page",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 21,
+          "column": 8,
+          "index": 905
+        },
+        "end": {
+          "line": 21,
+          "column": 62,
+          "index": 959
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the login page",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "qM+xExMplYIUbEisZyHJhg==": {
+          "desc": "Subtitle of the login page",
+          "text": "Retrouve tes favoris. La carte, le chat et les données restent utilisables sans compte."
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 8,
+          "index": 1035
+        },
+        "end": {
+          "line": 26,
+          "column": 14,
+          "index": 1187
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the login page",
+          "text": "Retrouve tes favoris. La carte, le chat et les données restent utilisables sans compte."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "TrGZkgiHHuXbi/d1U2vU1w==": {
+          "desc": "Label of the email field on the login form",
+          "text": "Adresse électronique"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 17,
+          "index": 1651
+        },
+        "end": {
+          "line": 44,
+          "column": 98,
+          "index": 1732
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the email field on the login form",
+          "text": "Adresse électronique"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ZB7ZvEWN1nsQzQUXQ7QKBQ==": {
+          "desc": "Label of the password field on the login form",
+          "text": "Mot de passe"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 52,
+          "column": 17,
+          "index": 1936
+        },
+        "end": {
+          "line": 52,
+          "column": 93,
+          "index": 2012
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the password field on the login form",
+          "text": "Mot de passe"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "CTFmzIldA1vMaS4J7/LEtg==": {
+          "desc": "Button label while the login request is running",
+          "text": "Connexion…"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 65,
+          "column": 12,
+          "index": 2417
+        },
+        "end": {
+          "line": 65,
+          "column": 88,
+          "index": 2493
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button label while the login request is running",
+          "text": "Connexion…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "jbIQ7m2KjdBhKh4YHRM6AQ==": {
+          "desc": "Submit button of the login form",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 67,
+          "column": 12,
+          "index": 2522
+        },
+        "end": {
+          "line": 67,
+          "column": 74,
+          "index": 2584
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Submit button of the login form",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "QiC8ZOZliztr4EpbnCSAOw==": {
+          "desc": "Sentence introducing the registration link on the login page",
+          "text": "Pas encore de compte ?"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 73,
+          "column": 8,
+          "index": 2694
+        },
+        "end": {
+          "line": 75,
+          "column": 14,
+          "index": 2815
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sentence introducing the registration link on the login page",
+          "text": "Pas encore de compte ?"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "iTiaq0cj0KZ0AG6rhyBCqw==": {
+          "desc": "Link from the login page to the registration page",
+          "text": "Créer un compte"
+        }
+      },
+      "filename": "src/features/accounts/login-page.tsx",
+      "loc": {
+        "start": {
+          "line": 81,
+          "column": 10,
+          "index": 3088
+        },
+        "end": {
+          "line": 81,
+          "column": 93,
+          "index": 3171
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Link from the login page to the registration page",
+          "text": "Créer un compte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Aj8KdXi2RQ9t4X7kQOBTlQ==": {
+          "desc": "Title shown after a successful registration",
+          "text": "Vérifie ta boîte"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 31,
+          "column": 12,
+          "index": 1250
+        },
+        "end": {
+          "line": 31,
+          "column": 90,
+          "index": 1328
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title shown after a successful registration",
+          "text": "Vérifie ta boîte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Y6bt/AJyVlI0G8SAvK5ljA==": {
+          "desc": "Message shown after registration, explaining the confirmation email",
+          "text": "Nous t'avons envoyé un lien de confirmation. Ouvre-le pour activer ton compte, puis reviens te connecter."
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 34,
+          "column": 12,
+          "index": 1416
+        },
+        "end": {
+          "line": 37,
+          "column": 18,
+          "index": 1649
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Message shown after registration, explaining the confirmation email",
+          "text": "Nous t'avons envoyé un lien de confirmation. Ouvre-le pour activer ton compte, puis reviens te connecter."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "4h7vkb9Dxjx4EiXcKxIdXQ==": {
+          "desc": "Button going to the login page after registration",
+          "text": "Aller à la connexion"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 40,
+          "column": 12,
+          "index": 1735
+        },
+        "end": {
+          "line": 40,
+          "column": 100,
+          "index": 1823
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button going to the login page after registration",
+          "text": "Aller à la connexion"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RuKCJhyMnKV/xWVZCOM3Vg==": {
+          "desc": "Title of the registration page",
+          "text": "Créer un compte"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 8,
+          "index": 2082
+        },
+        "end": {
+          "line": 50,
+          "column": 72,
+          "index": 2146
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the registration page",
+          "text": "Créer un compte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "U3B6UdrtFnExmzebpViPLw==": {
+          "desc": "Subtitle of the registration page",
+          "text": "Un compte sync tes favoris entre tes appareils. La carte reste accessible sans compte."
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 53,
+          "column": 8,
+          "index": 2222
+        },
+        "end": {
+          "line": 55,
+          "column": 14,
+          "index": 2380
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the registration page",
+          "text": "Un compte sync tes favoris entre tes appareils. La carte reste accessible sans compte."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "W+p7QPHZqGGvqIT/QY3AXg==": {
+          "desc": "Label of the email field on the registration form",
+          "text": "Adresse électronique"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 74,
+          "column": 12,
+          "index": 2879
+        },
+        "end": {
+          "line": 74,
+          "column": 100,
+          "index": 2967
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the email field on the registration form",
+          "text": "Adresse électronique"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6asNM8HSjmd6CnaqPQIbTw==": {
+          "desc": "Label of the display name field on the registration form",
+          "text": "Nom affiché"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 12,
+          "index": 3166
+        },
+        "end": {
+          "line": 83,
+          "column": 98,
+          "index": 3252
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the display name field on the registration form",
+          "text": "Nom affiché"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "EEFlorh8MzvYc5ILg0qW1A==": {
+          "desc": "Hint under the display name field on the registration form",
+          "text": "Entre 1 et 80 caractères, visible dans l'interface."
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 88,
+          "column": 12,
+          "index": 3360
+        },
+        "end": {
+          "line": 90,
+          "column": 18,
+          "index": 3516
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Hint under the display name field on the registration form",
+          "text": "Entre 1 et 80 caractères, visible dans l'interface."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "pP9Z5XUawv6ngzUSrVs21Q==": {
+          "desc": "Label of the password field on the registration form",
+          "text": "Mot de passe"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 98,
+          "column": 12,
+          "index": 3687
+        },
+        "end": {
+          "line": 98,
+          "column": 95,
+          "index": 3770
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the password field on the registration form",
+          "text": "Mot de passe"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "wbDU3o2kc7pV/GPyfRCZ0w==": {
+          "desc": "Hint under the password field on the registration form",
+          "text": "12 caractères minimum. Aucune composition imposée."
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 103,
+          "column": 12,
+          "index": 3872
+        },
+        "end": {
+          "line": 105,
+          "column": 18,
+          "index": 4023
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Hint under the password field on the registration form",
+          "text": "12 caractères minimum. Aucune composition imposée."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "bhkzfaeryZBXa9vSPU1siQ==": {
+          "desc": "Button label while the registration request is running",
+          "text": "Création…"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 117,
+          "column": 12,
+          "index": 4379
+        },
+        "end": {
+          "line": 117,
+          "column": 94,
+          "index": 4461
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button label while the registration request is running",
+          "text": "Création…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "oZskHoyJZNw9OsggC2xNEA==": {
+          "desc": "Submit button of the registration form",
+          "text": "Créer mon compte"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 119,
+          "column": 12,
+          "index": 4490
+        },
+        "end": {
+          "line": 119,
+          "column": 85,
+          "index": 4563
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Submit button of the registration form",
+          "text": "Créer mon compte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "BqJ86bBF6LUG6OVQyfYBkQ==": {
+          "desc": "Sentence introducing the login link on the registration page",
+          "text": "Déjà un compte ?"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 125,
+          "column": 8,
+          "index": 4673
+        },
+        "end": {
+          "line": 127,
+          "column": 14,
+          "index": 4788
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Sentence introducing the login link on the registration page",
+          "text": "Déjà un compte ?"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "CnNuPKiCUH7aG6pljUQAAQ==": {
+          "desc": "Link from the registration page to the login page",
+          "text": "Se connecter"
+        }
+      },
+      "filename": "src/features/accounts/signup-page.tsx",
+      "loc": {
+        "start": {
+          "line": 133,
+          "column": 10,
+          "index": 5060
+        },
+        "end": {
+          "line": 133,
+          "column": 90,
+          "index": 5140
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Link from the registration page to the login page",
+          "text": "Se connecter"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "ssypMErUeSDYBtYyIZ4ksg==": {
           "desc": "Navigation label for the chat view",
           "text": "Chat"
@@ -2621,14 +4448,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 22,
+          "line": 23,
           "column": 13,
-          "index": 737
+          "index": 764
         },
         "end": {
-          "line": 22,
+          "line": 23,
           "column": 62,
-          "index": 786
+          "index": 813
         }
       },
       "project": "",
@@ -2650,14 +4477,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 24,
+          "line": 25,
           "column": 13,
-          "index": 817
+          "index": 844
         },
         "end": {
-          "line": 24,
+          "line": 25,
           "column": 62,
-          "index": 866
+          "index": 893
         }
       },
       "project": "",
@@ -2679,14 +4506,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 26,
+          "line": 27,
           "column": 13,
-          "index": 898
+          "index": 925
         },
         "end": {
-          "line": 26,
+          "line": 27,
           "column": 65,
-          "index": 950
+          "index": 977
         }
       },
       "project": "",
@@ -2708,14 +4535,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 46,
+          "line": 47,
           "column": 12,
-          "index": 1822
+          "index": 1862
         },
         "end": {
-          "line": 46,
+          "line": 47,
           "column": 85,
-          "index": 1895
+          "index": 1935
         }
       },
       "project": "",
@@ -2737,14 +4564,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 49,
+          "line": 50,
           "column": 24,
-          "index": 1955
+          "index": 1995
         },
         "end": {
-          "line": 49,
+          "line": 50,
           "column": 99,
-          "index": 2030
+          "index": 2070
         }
       },
       "project": "",
@@ -2795,14 +4622,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 251,
           "column": 27,
-          "index": 3465
+          "index": 7890
         },
         "end": {
-          "line": 126,
+          "line": 254,
           "column": 3,
-          "index": 3564
+          "index": 7989
         }
       },
       "project": "",
@@ -2824,14 +4651,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 127,
+          "line": 255,
           "column": 26,
-          "index": 3592
+          "index": 8017
         },
         "end": {
-          "line": 130,
+          "line": 258,
           "column": 3,
-          "index": 3706
+          "index": 8131
         }
       },
       "project": "",

@@ -1,7 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import {
   deleteFavorite,
+  deleteAdminUser,
   getSession,
+  listAdminUsers,
   listFavorites,
   login,
   logout,
@@ -20,6 +22,7 @@ import {
 export const accountQueryKeys = {
   session: ["account", "session"] as const,
   favorites: ["account", "favorites"] as const,
+  adminUsers: ["account", "admin-users"] as const,
 };
 
 export function useSession() {
@@ -36,6 +39,28 @@ export function useFavorites(session: AccountSession | null | undefined) {
     queryKey: accountQueryKeys.favorites,
     queryFn: listFavorites,
     enabled: Boolean(session),
+  });
+}
+
+export function useAdminUsers(session: AccountSession | null | undefined) {
+  return useQuery({
+    queryKey: accountQueryKeys.adminUsers,
+    queryFn: listAdminUsers,
+    enabled: session?.isAdmin === true,
+  });
+}
+
+export function useRemoveAdminUserMutation() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (userId: string) => {
+      await deleteAdminUser(userId);
+      return userId;
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: accountQueryKeys.adminUsers });
+    },
   });
 }
 

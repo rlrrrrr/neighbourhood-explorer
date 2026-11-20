@@ -32,6 +32,8 @@ public static class AccountsEndpoints
         me.MapDelete("/favorites/{targetType}/{targetId}", DeleteFavoriteAsync)
             .AddEndpointFilter<AntiforgeryFilter>();
 
+        endpoints.MapAdminEndpoints();
+
         return endpoints;
     }
 
@@ -46,6 +48,7 @@ public static class AccountsEndpoints
         UserManager<ApplicationUser> userManager,
         AccountsDbContext database,
         AccountEmailDelivery emailDelivery,
+        AdminAccounts adminAccounts,
         TimeProvider timeProvider,
         CancellationToken cancellationToken)
     {
@@ -120,6 +123,16 @@ public static class AccountsEndpoints
         {
             await userManager.DeleteAsync(user);
             throw;
+        }
+
+        if (adminAccounts.IsAdminEmail(email))
+        {
+            var roleResult = await userManager.AddToRoleAsync(user, AdminAccounts.RoleName);
+            if (!roleResult.Succeeded)
+            {
+                throw new InvalidOperationException(
+                    $"The configured administrator account {email} could not receive the admin role.");
+            }
         }
 
         await emailDelivery.SendConfirmationAsync(
@@ -200,7 +213,8 @@ public static class AccountsEndpoints
         }
 
         var profile = await FindOrCreateProfileAsync(database, user, timeProvider, cancellationToken);
-        return Results.Ok(ToMeResponse(user, profile));
+        var isAdmin = await userManager.IsInRoleAsync(user, AdminAccounts.RoleName);
+        return Results.Ok(ToMeResponse(user, profile, isAdmin));
     }
 
     private static async Task<IResult> LogoutAsync(SignInManager<ApplicationUser> signInManager)
@@ -229,7 +243,8 @@ public static class AccountsEndpoints
         }
 
         var profile = await FindOrCreateProfileAsync(database, user, timeProvider, cancellationToken);
-        return Results.Ok(ToMeResponse(user, profile));
+        var isAdmin = await userManager.IsInRoleAsync(user, AdminAccounts.RoleName);
+        return Results.Ok(ToMeResponse(user, profile, isAdmin));
     }
 
     private static async Task<IResult> ListFavoritesAsync(
@@ -377,8 +392,8 @@ public static class AccountsEndpoints
         return profile;
     }
 
-    private static MeResponse ToMeResponse(ApplicationUser user, UserProfile profile) =>
-        new(user.Id, user.Email ?? string.Empty, profile.DisplayName, profile.Locale, profile.IsDemo);
+    private static MeResponse ToMeResponse(ApplicationUser user, UserProfile profile, bool isAdmin) =>
+        new(user.Id, user.Email ?? string.Empty, profile.DisplayName, profile.Locale, profile.IsDemo, isAdmin);
 
     private static IResult ValidationFromIdentity(IdentityResult result) =>
         AccountErrors.Validation(result.Errors.Select(ToErrorCode).ToArray());

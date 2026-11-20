@@ -1,4 +1,5 @@
 import {
+  adminUsersResponseSchema,
   apiErrorSchema,
   confirmEmailInputSchema,
   csrfResponseSchema,
@@ -8,13 +9,12 @@ import {
   registerInputSchema,
   registerResponseSchema,
   type AccountSession,
+  type AdminUser,
   type ConfirmEmailInput,
   type FavoriteItem,
   type LoginInput,
   type RegisterInput,
 } from "./account-schemas";
-
-const DEFAULT_API_BASE_URL = "http://localhost:5080";
 
 export class ApiError extends Error {
   readonly code: string;
@@ -39,8 +39,8 @@ export class ApiError extends Error {
 }
 
 function apiBaseUrl(): string {
-  const configuredUrl = import.meta.env.VITE_API_BASE_URL;
-  return (configuredUrl || DEFAULT_API_BASE_URL).replace(/\/$/, "");
+  const configuredUrl = import.meta.env.VITE_API_URL;
+  return (configuredUrl ?? "").replace(/\/$/, "");
 }
 
 let csrfTokenRequest: Promise<string> | null = null;
@@ -55,11 +55,17 @@ async function requestCsrfToken(): Promise<string> {
     headers: { Accept: "application/json" },
   });
 
+  const payload = await readPayload(response);
+
   if (!response.ok) {
-    throw new ApiError({ code: "csrf_failed", errors: [], status: response.status });
+    const problem = apiErrorSchema.safeParse(payload);
+    throw new ApiError({
+      code: problem.success ? problem.data.code : "csrf_failed",
+      errors: problem.success ? problem.data.errors : [],
+      status: response.status,
+    });
   }
 
-  const payload: unknown = await response.json();
   return csrfResponseSchema.parse(payload).token;
 }
 
@@ -195,6 +201,19 @@ export async function putFavorite(targetId: string): Promise<void> {
 export async function deleteFavorite(targetId: string): Promise<void> {
   await apiRequest({
     path: `/api/v1/me/favorites/neighborhood/${encodeURIComponent(targetId)}`,
+    method: "DELETE",
+    csrf: true,
+  });
+}
+
+export async function listAdminUsers(): Promise<readonly AdminUser[]> {
+  const payload = await apiRequest({ path: "/api/v1/admin/users" });
+  return adminUsersResponseSchema.parse(payload).items;
+}
+
+export async function deleteAdminUser(userId: string): Promise<void> {
+  await apiRequest({
+    path: `/api/v1/admin/users/${encodeURIComponent(userId)}`,
     method: "DELETE",
     csrf: true,
   });

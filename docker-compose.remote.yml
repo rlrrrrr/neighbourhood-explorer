@@ -1,6 +1,6 @@
-# Base distante (primaire) : superposé au compose de base par scripts/compose-up.sh
-# et scripts/run-etl.sh quand la base hébergée est sélectionnée. Le service db local
-# reste lancé : il sert de repli et de destination des migrations.
+# Remote database (primary): layered over the base Compose file by scripts/compose-up.sh
+# and scripts/run-etl.sh when the hosted database is selected. The local db service
+# remains running as a fallback and as the migration target.
 services:
   api:
     environment:

@@ -11,6 +11,7 @@ interface AccountMenuViewProps {
   isLoggingOut: boolean;
   onSignIn: () => void;
   onOpenFavorites: () => void;
+  onOpenAdministration: () => void;
   onLogout: () => void;
 }
 
@@ -20,6 +21,7 @@ export function AccountMenuView({
   isLoggingOut,
   onSignIn,
   onOpenFavorites,
+  onOpenAdministration,
   onLogout,
 }: AccountMenuViewProps) {
   if (isPending) {
@@ -55,6 +57,21 @@ export function AccountMenuView({
           >
             <fbt desc="Account menu entry opening the favorites screen">Favoris</fbt>
           </Button>
+          {session.isAdmin && (
+            <Button
+              variant="ghost"
+              size="sm"
+              className="justify-start"
+              onClick={() => {
+                close();
+                onOpenAdministration();
+              }}
+            >
+              <fbt desc="Account menu entry opening the account administration screen">
+                Administration
+              </fbt>
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="sm"
@@ -92,6 +109,9 @@ export function AccountMenu() {
       }}
       onOpenFavorites={() => {
         void navigate({ to: "/favorites" });
+      }}
+      onOpenAdministration={() => {
+        void navigate({ to: "/admin/users" });
       }}
       onLogout={() => {
         logoutMutation.mutate(undefined, {

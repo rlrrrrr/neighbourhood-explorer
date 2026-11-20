@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Lance db + api sur la base sélectionnée par scripts/database-target.sh.
+# Starts db + api against the database selected by scripts/database-target.sh.
 set -euo pipefail
 
 root_dir=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)

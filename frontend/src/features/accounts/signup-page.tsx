@@ -3,14 +3,15 @@ import { Button } from "../../components/ui/button";
 import { AccountField } from "./account-field";
 import { accountErrorMessage } from "./account-error-message";
 import type { AccountActionResult } from "./account-action-result";
+import type { AccountLocale } from "./account-locale";
 
 interface SignupPageProps {
-  locale: "fr" | "en" | "tr" | "ar";
+  locale: AccountLocale | null;
   onSubmit: (input: {
     email: string;
     displayName: string;
     password: string;
-    locale: "fr" | "en" | "tr" | "ar";
+    locale: AccountLocale | null;
   }) => Promise<AccountActionResult>;
   onGoToLogin: () => void;
 }

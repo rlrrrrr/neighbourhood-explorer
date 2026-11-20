@@ -4,7 +4,9 @@ export type AccountActionResult =
   | { status: "success" }
   | { status: "error"; code: string; errors: readonly string[] };
 
-export function accountActionResultFromError(error: unknown): AccountActionResult {
+export type AccountActionError = Extract<AccountActionResult, { status: "error" }>;
+
+export function accountActionResultFromError(error: unknown): AccountActionError {
   if (error instanceof ApiError) {
     return { status: "error", code: error.code, errors: error.errors };
   }

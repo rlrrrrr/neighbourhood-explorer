@@ -17,7 +17,22 @@ export const meResponseSchema = z.object({
   displayName: z.string(),
   locale: z.string(),
   isDemo: z.boolean(),
+  isAdmin: z.boolean(),
 }) satisfies z.ZodType<ApiSchemas["MeResponse"]>;
+
+export const adminUserSchema = z.object({
+  userId: z.string(),
+  email: z.string(),
+  displayName: z.string(),
+  createdAt: z.iso.datetime(),
+  emailConfirmed: z.boolean(),
+  isDemo: z.boolean(),
+  isAdmin: z.boolean(),
+}) satisfies z.ZodType<ApiSchemas["AdminUserResponse"]>;
+
+export const adminUsersResponseSchema = z.object({
+  items: z.array(adminUserSchema),
+}) satisfies z.ZodType<ApiSchemas["AdminUsersResponse"]>;
 
 export const favoriteSchema = z.object({
   targetType: z.literal("neighborhood"),
@@ -54,6 +69,7 @@ export const loginInputSchema = z.object({
 }) satisfies z.ZodType<ApiSchemas["LoginRequest"]>;
 
 export type AccountSession = z.infer<typeof meResponseSchema>;
+export type AdminUser = z.infer<typeof adminUserSchema>;
 export type FavoriteItem = z.infer<typeof favoriteSchema>;
 export type RegisterInput = z.infer<typeof registerInputSchema>;
 export type LoginInput = z.infer<typeof loginInputSchema>;

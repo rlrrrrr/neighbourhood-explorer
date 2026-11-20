@@ -22,6 +22,12 @@ public static class AccountErrors
     public static IResult NotAuthenticated() =>
         Result("not_authenticated", StatusCodes.Status401Unauthorized);
 
+    public static IResult UserNotFound() =>
+        Result("user_not_found", StatusCodes.Status404NotFound);
+
+    public static IResult CannotDeleteSelf() =>
+        Result("cannot_delete_self", StatusCodes.Status409Conflict);
+
     public static IResult FavoriteTargetUnknown() =>
         Result("favorite_target_unknown", StatusCodes.Status400BadRequest);
 
