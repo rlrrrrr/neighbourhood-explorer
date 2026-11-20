@@ -16,7 +16,7 @@ Trois vues de même niveau, reliées par une barre de navigation toujours visibl
 
 Navigation mobile : la barre reste **en haut**, sur deux lignes sous `sm` (marque et sélecteurs, puis les trois vues), ce qui supprime le débordement horizontal. La variante **barre en bas est abandonnée** (décision du 17/10/2026) ; `../docs/ux-ui-review.md` reste le tableau de suivi (document de travail local : `docs/` est ignoré par Git).
 
-Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et la métrique de classement (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue.
+Chaque vue est adressable : `/` (accueil), `/chat`, `/map`, `/data`, avec le quartier sélectionné (`neighborhood`) et la métrique de classement (`sort`, `order`) dans l'URL. Un lien partagé ou un rafraîchissement recharge la même vue. Les comptes sont facultatifs : `/login`, `/signup`, `/confirm-email`, `/favorites` et `/admin/users` s'ajoutent aux trois vues, sans jamais conditionner la carte, le chat ni les données.
 
 ## Pile
 
@@ -50,6 +50,9 @@ src/
 │   ├── chat-view/            # vue Chat
 │   ├── map-view/             # vue Carte (couches, commandes de carte, fiches)
 │   ├── data-view/            # vue Données (tableau de classement)
+│   ├── accounts/             # session, connexion, inscription, confirmation, menu de compte, administration
+│   ├── favorites/            # favoris locaux (localStorage) puis fusionnés après connexion
+│   ├── administration/       # liste des comptes (réservée au rôle admin)
 │   ├── neighborhood-detail/
 │   ├── compare/
 │   ├── selection/            # quartiers enregistrés (localStorage)
@@ -80,8 +83,12 @@ Source de vérité : `../backend/openapi/openapi.v1.json`. Ne jamais deviner un 
 | `POST /api/v1/chat/turn`                                              | optionnel (phase IA) : message → `message` composé par gabarit + `actions[]` |
 | `GET /api/v1/neighborhoods/{id}/isochrone`, `POST /api/v1/isochrones` | isochrones (quota)                                                           |
 | `GET /api/v1/health`                                                  | santé, dont `ai: disabled \| warming \| ready \| unavailable`                |
+| `GET /api/v1/auth/csrf`                                               | jeton anti-falsification pour toute écriture authentifiée                    |
+| `POST /api/v1/auth/register`, `/confirm-email`, `/login`, `/logout`   | comptes facultatifs ; cookie de session `ne.session`                         |
+| `GET /api/v1/me`, `/me/favorites`                                     | profil connecté et favoris privés                                            |
+| `GET /api/v1/admin/users`, `DELETE /api/v1/admin/users/{id}`          | administration des comptes (rôle `admin`)                                    |
 
-Erreurs : `application/problem+json` avec un `code` stable. États à gérer explicitement : `ai_disabled`, `ai_unavailable`, `ai_busy` (503), `ai_timeout` (504), `isochrone_quota_exceeded` (503), `not_a_neighborhood_request` (422), `invalid_text` (422).
+Erreurs : `application/problem+json` avec un `code` stable pour les endpoints de lecture ; les endpoints de comptes renvoient `application/json` sous la forme `{ code, errors }`. États à gérer explicitement : `ai_disabled`, `ai_unavailable`, `ai_busy` (503), `ai_timeout` (504), `isochrone_quota_exceeded` (503), `not_a_neighborhood_request` (422), `invalid_text` (422), `validation_failed` (400), `invalid_credentials` (401), `email_not_confirmed` (403), `account_locked` (423), `rate_limited` (429).
 
 ## Critères : un seul état pour les trois vues
 

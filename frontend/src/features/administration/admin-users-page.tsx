@@ -34,8 +34,8 @@ export function AdminUsersPage({
       </h1>
       <p className="mt-2 text-sm text-text-secondary">
         <fbt desc="Subtitle of the admin accounts screen">
-          Les comptes enregistrés dans la base partagée. Retirer un compte supprime son profil et
-          ses favoris.
+          Les comptes enregistrés dans la base partagée. Retirer un compte supprime son profil et ses
+          favoris.
         </fbt>
       </p>
 
@@ -141,9 +141,7 @@ export function AdminUsersPage({
                       }}
                     >
                       {isRemoving ? (
-                        <fbt desc="Delete account button while the request is running">
-                          Retrait…
-                        </fbt>
+                        <fbt desc="Delete account button while the request is running">Retrait…</fbt>
                       ) : (
                         <fbt desc="Button confirming the removal of an account">Confirmer</fbt>
                       )}

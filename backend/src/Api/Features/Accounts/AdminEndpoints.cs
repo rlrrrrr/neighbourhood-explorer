@@ -51,7 +51,7 @@ public static class AdminEndpoints
             join profile in database.UserProfiles.AsNoTracking()
                 on user.Id equals profile.UserId into profiles
             from profile in profiles.DefaultIfEmpty()
-            orderby (profile == null ? DateTimeOffset.MinValue : profile.CreatedAt) descending, user.Email
+            orderby user.Email
             select new { User = user, Profile = profile })
             .Take(take)
             .ToListAsync(cancellationToken);
@@ -65,6 +65,8 @@ public static class AdminEndpoints
                 row.User.EmailConfirmed,
                 row.Profile?.IsDemo ?? false,
                 adminUserIds.Contains(row.User.Id)))
+            .OrderByDescending(item => item.CreatedAt)
+            .ThenBy(item => item.Email, StringComparer.Ordinal)
             .ToList();
 
         return Results.Ok(new AdminUsersResponse(items));
