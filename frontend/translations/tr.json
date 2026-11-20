@@ -3234,6 +3234,193 @@
         }
       ],
       "types": []
+    },
+    "LOc4cG7g0Vx1YqpzJOdcgg==": {
+      "description": "Title of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesaplar",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vBgClg6LE7hUw6iw+1P0Rw==": {
+      "description": "Subtitle of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Paylaşılan veritabanındaki hesaplar. Bir hesabı kaldırmak profilinı ve favorilerini siler.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qoNfgntWoMzolK9y6khbSQ==": {
+      "description": "Message shown on the admin screen when signed out",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesapları yönetmek için yönetici hesabıyla giriş yap.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "kfS+fj369y+FKd89eEruTA==": {
+      "description": "Button opening the login page from the admin screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Giriş yap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+KxYF+SQREcm87uO409+1A==": {
+      "description": "Message shown to a signed-in account without the admin role",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu sayfa yalnızca yöneticilere ayrılmıştır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3PP0dzmFRPdd90ebSUBwrw==": {
+      "description": "Loading message on the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hesaplar yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GmNvJpV4u7bJwWLekjIRgw==": {
+      "description": "Empty state of the admin accounts screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Henüz hesap yok.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SP1xMkomlvDqcSGNZXpXdg==": {
+      "description": "Badge for an account whose email address is confirmed",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Doğrulandı",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "DAiB+lAK+Xvf2pLXWxmN9g==": {
+      "description": "Badge for an account whose email address is not confirmed yet",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bekliyor",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "wFjxp/FhQfv5tci9Mcm4rQ==": {
+      "description": "Badge marking an administrator account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yönetici",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Hb3ufzHaSG9f1PyL3wfDTQ==": {
+      "description": "Badge marking a demonstration account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Demo",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8/C2NbsLajyvFB7GLjhm3w==": {
+      "description": "Label replacing the delete button on the administrator's own row",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Geçerli hesap",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "M5w+geNMSiFJ/Cb2Yl4VGA==": {
+      "description": "Delete account button while the request is running",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldırılıyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WcZ1aD08nIsiMTOIq5Ua0Q==": {
+      "description": "Button confirming the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Onayla",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2B0p4siivtKftnXxgIH5/Q==": {
+      "description": "Button cancelling the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Vazgeç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vvbW6fyld9nqT1djGCBLcA==": {
+      "description": "Button starting the removal of an account",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaldır",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "gfo8qa3MhskcmNKqboh0/Q==": {
+      "description": "Account menu entry opening the account administration screen",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yönetim",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

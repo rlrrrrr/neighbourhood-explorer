@@ -4279,9 +4279,9 @@
           "index": 5436
         },
         "end": {
-          "line": 144,
-          "column": 101,
-          "index": 5513
+          "line": 146,
+          "column": 30,
+          "index": 5565
         }
       },
       "project": "",
@@ -4303,14 +4303,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 146,
+          "line": 148,
           "column": 24,
-          "index": 5566
+          "index": 5618
         },
         "end": {
-          "line": 146,
+          "line": 148,
           "column": 95,
-          "index": 5637
+          "index": 5689
         }
       },
       "project": "",
@@ -4332,14 +4332,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 155,
+          "line": 157,
           "column": 22,
-          "index": 5945
+          "index": 5997
         },
         "end": {
-          "line": 155,
+          "line": 157,
           "column": 91,
-          "index": 6014
+          "index": 6066
         }
       },
       "project": "",
@@ -4361,14 +4361,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 164,
+          "line": 166,
           "column": 20,
-          "index": 6294
+          "index": 6346
         },
         "end": {
-          "line": 164,
+          "line": 166,
           "column": 87,
-          "index": 6361
+          "index": 6413
         }
       },
       "project": "",
