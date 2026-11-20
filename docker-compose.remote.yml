@@ -1,6 +1,7 @@
 # Base distante (primaire) : superposé au compose de base par scripts/compose-up.sh
-# et scripts/run-etl.sh quand la base hébergée est sélectionnée. Le service db local
-# reste lancé : il sert de repli et de destination des migrations.
+# et scripts/run-etl.sh quand la base hébergée est sélectionnée. Ces scripts passent
+# --no-deps : le service db local ne démarre pas, l'ETL crée le schéma sur la base
+# distante (il n'existe pas de migration à appliquer au démarrage de l'API).
 services:
   api:
     environment:
