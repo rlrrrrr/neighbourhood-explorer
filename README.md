@@ -64,7 +64,7 @@ In **all three modes**, start by creating the local configuration from the repos
 cp .env.example .env
 ```
 
-(Because we uploaded the source code directly the **.env** is already made and will be used)
+(Because we uploaded the source code directly for the homework the **.env** is already made and will be used)
 
 The API must be reachable at `http://localhost:5080` and the frontend at `http://localhost:5173`. Check the API with `curl http://localhost:5080/api/v1/health`; the expected answer is `{"database":"ok","dataVersion":null,"ai":"disabled"}`. `ai: disabled` is normal: nothing in these workflows needs AI.
 
@@ -80,6 +80,19 @@ mise dev:web                  # frontend dev server at http://localhost:5173
 ```
 
 Useful commands: `mise tasks`, `mise stop`, `mise dev:api`, `mise check`, `mise test`, `mise build`.
+
+**If `mise start` does not work properly** (Docker image build failure, API container that will not start, or port 5080 already taken), you can still use mise for the toolchain and start the backend with `mise dev:api`. That task runs `dotnet run` from `backend/` using the settings from the root `.env`, **but it does not start the database**. Start only the database service first:
+
+```bash
+docker compose down        # stop a partially started api container; the pgdata volume is kept
+docker compose up -d db    # PostgreSQL/PostGIS only, at localhost:5432
+mise dev:api               # terminal 1: backend at http://localhost:5080
+mise dev:web               # terminal 2: frontend at http://localhost:5173
+```
+
+If Docker is unavailable altogether, install PostgreSQL 16 with PostGIS locally, create the `explorer` database and user with the password from `.env`, then run `mise dev:api` and `mise dev:web` without any Compose command. In that case `docker compose down` is not needed.
+
+`mise start` is therefore optional: what matters is that port 5432 has a PostgreSQL database matching `DATABASE_CONNECTION_STRING` in `.env`, and that one API process listens on port 5080. The `.env.example` file ships with a demo password (`explorer`) because the PostgreSQL image refuses to initialise a fresh volume with an empty one; if you change it, change it in both `POSTGRES_PASSWORD` and `DATABASE_CONNECTION_STRING`.
 
 ### 3.2 Mode B — no mise: Node and .NET directly
 
@@ -311,18 +324,20 @@ docker run --rm -v "$PWD/frontend:/app" -v /app/node_modules -w /app node:22-alp
 
 Common problems:
 
-| Symptom                                                                                                 | Cause / fix                                                                                                                                                                |
-| ------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `GET /api/v1/cities` returns `{"cities":[]}`, map returns `404 city_not_found`                          | No ETL data: follow section 6.                                                                                                                                             |
-| A browser console error about `content.js` and `unsafe-eval`                                            | A Chrome extension injecting a script that uses `eval`; unrelated to the application. Disable the extension or ignore the message.                                         |
-| `csrf_failed` on a write                                                                                | Fetch `/api/v1/auth/csrf` again after login/logout; the anti-forgery token is bound to the current session.                                                                |
-| `429 rate_limited`                                                                                      | 10 authentication requests per minute per IP; wait a minute.                                                                                                               |
-| `email_not_confirmed`                                                                                   | Open the latest confirmation link from `data/outbox/`.                                                                                                                     |
-| Port 5432 already in use                                                                                | Stop the local PostgreSQL service; the Compose database needs that port.                                                                                                   |
-| `permission denied` on `/var/run/docker.sock`                                                           | Add your user to the `docker` group and log in again, or run the commands through `sudo docker` if your system requires it.                                                |
-| `pnpm: command not found`                                                                               | Install it: `npm install -g pnpm@12.11.2` (or `corepack enable && corepack prepare pnpm@12.11.2 --activate`).                                                              |
-| The API starts but `/api/v1/health` says the database is unavailable, or accounts endpoints are missing | In mode B the root `.env` is not loaded by `dotnet run`: export `DATABASE_CONNECTION_STRING` (and the other variables shown in 3.2) in that shell before starting the API. |
-| The frontend shows API 404s in mode C                                                                   | `VITE_API_URL=http://localhost:5080` must be set on the `docker run` command; otherwise `/api` calls go to the frontend container.                                         |
+| Symptom                                                                                                 | Cause / fix                                                                                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `GET /api/v1/cities` returns `{"cities":[]}`, map returns `404 city_not_found`                          | No ETL data: follow section 6.                                                                                                                                                                                                       |
+| A browser console error about `content.js` and `unsafe-eval`                                            | A Chrome extension injecting a script that uses `eval`; unrelated to the application. Disable the extension or ignore the message.                                                                                                   |
+| `csrf_failed` on a write                                                                                | Fetch `/api/v1/auth/csrf` again after login/logout; the anti-forgery token is bound to the current session.                                                                                                                          |
+| `429 rate_limited`                                                                                      | 10 authentication requests per minute per IP; wait a minute.                                                                                                                                                                         |
+| `email_not_confirmed`                                                                                   | Open the latest confirmation link from `data/outbox/`.                                                                                                                                                                               |
+| Port 5432 already in use                                                                                | Stop the local PostgreSQL service; the Compose database needs that port.                                                                                                                                                             |
+| `permission denied` on `/var/run/docker.sock`                                                           | Add your user to the `docker` group and log in again, or run the commands through `sudo docker` if your system requires it.                                                                                                          |
+| `pnpm: command not found`                                                                               | Install it: `npm install -g pnpm@12.11.2` (or `corepack enable && corepack prepare pnpm@12.11.2 --activate`).                                                                                                                        |
+| The API starts but `/api/v1/health` says the database is unavailable, or accounts endpoints are missing | In mode B the root `.env` is not loaded by `dotnet run`: export `DATABASE_CONNECTION_STRING` (and the other variables shown in 3.2) in that shell before starting the API.                                                           |
+| The frontend shows API 404s in mode C                                                                   | `VITE_API_URL=http://localhost:5080` must be set on the `docker run` command; otherwise `/api` calls go to the frontend container.                                                                                                   |
+| `mise start` fails or the API container will not start                                                  | Use the `mise dev:api` fallback in 3.1: `docker compose down`, `docker compose up -d db`, then `mise dev:api` and `mise dev:web`.                                                                                                    |
+| Fresh database will not initialise                                                                      | `.env.example` now contains the demo password `explorer`; the PostgreSQL image rejects an empty `POSTGRES_PASSWORD` on the first start. Keep `POSTGRES_PASSWORD` and the `Password=` part of `DATABASE_CONNECTION_STRING` identical. |
 
 ---
 
