@@ -1,3 +1,4 @@
+import * as z from "zod";
 import type { components } from "../../generated/api";
 
 export type MetricDefinition = components["schemas"]["MetricDefinition"];
@@ -8,6 +9,10 @@ export type MetricValues = components["schemas"]["MetricValues"];
 
 export type MetricsResponse = components["schemas"]["MetricsResponse"];
 
+export type CitiesResponse = components["schemas"]["CitiesResponse"];
+
+export type City = components["schemas"]["City"];
+
 export type NeighborhoodCollection = components["schemas"]["NeighborhoodFeatureCollection"];
 
 export type NeighborhoodMetrics = components["schemas"]["NeighborhoodMetrics"];
@@ -16,133 +21,120 @@ export type NeighborhoodMetric = components["schemas"]["NeighborhoodMetric"];
 
 export type ProblemDetails = components["schemas"]["ProblemDetails"];
 
-const QUALITY_FLAGS = new Set(["ok", "estimated", "stale", "low_coverage", "inherited"]);
+const qualityFlagSchema = z.enum(["ok", "estimated", "stale", "low_coverage", "inherited"]);
 
-export function isMetricsResponse(value: unknown): value is MetricsResponse {
-  return isRecord(value) && Array.isArray(value.metrics) && value.metrics.every(isMetricDefinition);
-}
+const metricSourceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  organization: z.string(),
+  url: z.string(),
+  license: z.string(),
+  attribution: z.string(),
+  methodology: z.string(),
+  retrievedAt: z.string(),
+  version: z.string(),
+});
 
-export function isMetricValues(value: unknown): value is MetricValues {
-  return (
-    isRecord(value) &&
-    Object.values(value).every(
-      (valuesByNeighborhood) =>
-        isRecord(valuesByNeighborhood) && Object.values(valuesByNeighborhood).every(isMetricValue),
-    )
-  );
-}
+const metricNormalizationSchema = z.object({
+  method: z.string(),
+  version: z.string(),
+});
 
-export function isNeighborhoodMetrics(value: unknown): value is NeighborhoodMetrics {
-  return (
-    isRecord(value) &&
-    typeof value.neighborhoodId === "number" &&
-    Array.isArray(value.metrics) &&
-    value.metrics.every(isNeighborhoodMetric)
-  );
-}
+const metricTranslationSchema = z.object({
+  locale: z.enum(["fr", "en", "tr"]),
+  name: z.string(),
+  description: z.string(),
+  subject: z.string(),
+});
 
-export function isNeighborhoodCollection(value: unknown): value is NeighborhoodCollection {
-  return (
-    isRecord(value) &&
-    value.type === "FeatureCollection" &&
-    Array.isArray(value.features) &&
-    value.features.every(
-      (feature) =>
-        isRecord(feature) &&
-        feature.type === "Feature" &&
-        isRecord(feature.geometry) &&
-        typeof feature.geometry.type === "string" &&
-        Array.isArray(feature.geometry.coordinates) &&
-        isRecord(feature.properties) &&
-        typeof feature.properties.id === "number" &&
-        typeof feature.properties.name === "string" &&
-        typeof feature.properties.districtId === "number" &&
-        typeof feature.properties.districtName === "string",
-    )
-  );
-}
+const metricDefinitionSchema = z.object({
+  key: z.string(),
+  category: z.string(),
+  unit: z.string(),
+  nativeLevel: z.enum(["province", "district", "neighborhood"]),
+  polarity: z.enum(["higher_is_better", "lower_is_better", "neutral"]),
+  normalization: metricNormalizationSchema,
+  displayPrecision: z.number(),
+  translations: z.array(metricTranslationSchema),
+  source: metricSourceSchema,
+  observedAt: z.nullable(z.string()),
+});
 
-export function isProblemDetails(value: unknown): value is ProblemDetails {
-  return (
-    isRecord(value) &&
-    (value.title === undefined || typeof value.title === "string") &&
-    (value.detail === undefined || typeof value.detail === "string") &&
-    (value.code === undefined || typeof value.code === "string")
-  );
-}
+const metricValueSchema = z.object({
+  raw: z.number(),
+  normalized: z.number(),
+  qualityFlag: qualityFlagSchema,
+});
 
-function isMetricDefinition(value: unknown): value is MetricDefinition {
-  return (
-    isRecord(value) &&
-    typeof value.key === "string" &&
-    typeof value.category === "string" &&
-    typeof value.unit === "string" &&
-    (value.nativeLevel === "province" ||
-      value.nativeLevel === "district" ||
-      value.nativeLevel === "neighborhood") &&
-    (value.polarity === "higher_is_better" ||
-      value.polarity === "lower_is_better" ||
-      value.polarity === "neutral") &&
-    isRecord(value.normalization) &&
-    typeof value.normalization.method === "string" &&
-    typeof value.normalization.version === "string" &&
-    typeof value.displayPrecision === "number" &&
-    (value.observedAt === null || typeof value.observedAt === "string") &&
-    Array.isArray(value.translations) &&
-    value.translations.every(
-      (translation) =>
-        isRecord(translation) &&
-        typeof translation.locale === "string" &&
-        typeof translation.name === "string",
-    ) &&
-    isRecord(value.source) &&
-    isMetricSource(value.source)
-  );
-}
+const citySchema = z.object({
+  plateCode: z.number(),
+  name: z.string(),
+  officialCode: z.string(),
+  center: z.object({ longitude: z.number(), latitude: z.number() }),
+});
 
-function isMetricSource(value: Record<string, unknown>): value is MetricDefinition["source"] {
-  return (
-    typeof value.id === "string" &&
-    typeof value.name === "string" &&
-    typeof value.organization === "string" &&
-    typeof value.url === "string" &&
-    typeof value.license === "string" &&
-    typeof value.attribution === "string" &&
-    typeof value.methodology === "string" &&
-    typeof value.retrievedAt === "string" &&
-    typeof value.version === "string"
-  );
-}
+export const citiesResponseSchema = z.object({
+  cities: z.array(citySchema),
+}) satisfies z.ZodType<CitiesResponse>;
 
-function isMetricValue(value: unknown): value is MetricValue {
-  return (
-    isRecord(value) &&
-    typeof value.raw === "number" &&
-    typeof value.normalized === "number" &&
-    typeof value.qualityFlag === "string" &&
-    QUALITY_FLAGS.has(value.qualityFlag)
-  );
-}
+export const metricsResponseSchema = z.object({
+  metrics: z.array(metricDefinitionSchema),
+}) satisfies z.ZodType<MetricsResponse>;
 
-function isNeighborhoodMetric(value: unknown): value is NeighborhoodMetric {
-  return (
-    isRecord(value) &&
-    typeof value.key === "string" &&
-    typeof value.raw === "number" &&
-    typeof value.normalized === "number" &&
-    typeof value.qualityFlag === "string" &&
-    QUALITY_FLAGS.has(value.qualityFlag) &&
-    typeof value.observedAt === "string" &&
-    typeof value.referencePeriod === "string" &&
-    isRecord(value.source) &&
-    typeof value.source.id === "string" &&
-    typeof value.source.name === "string" &&
-    typeof value.source.organization === "string" &&
-    typeof value.source.license === "string" &&
-    typeof value.source.attribution === "string"
-  );
-}
+export const metricValuesSchema = z.record(
+  z.string(),
+  z.record(z.string(), metricValueSchema),
+) satisfies z.ZodType<MetricValues>;
 
-function isRecord(value: unknown): value is Record<string, unknown> {
-  return typeof value === "object" && value !== null;
-}
+const geoJsonGeometrySchema = z.object({
+  type: z.enum(["Point", "Polygon", "MultiPolygon"]),
+  coordinates: z.array(z.unknown()),
+});
+
+const neighborhoodFeatureSchema = z.object({
+  type: z.literal("Feature"),
+  geometry: geoJsonGeometrySchema,
+  properties: z.object({
+    id: z.number(),
+    name: z.string(),
+    districtId: z.number(),
+    districtName: z.string(),
+  }),
+});
+
+export const neighborhoodCollectionSchema = z.object({
+  type: z.literal("FeatureCollection"),
+  features: z.array(neighborhoodFeatureSchema),
+}) satisfies z.ZodType<NeighborhoodCollection>;
+
+const neighborhoodMetricSourceSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  organization: z.string(),
+  license: z.string(),
+  attribution: z.string(),
+});
+
+const neighborhoodMetricSchema = z.object({
+  key: z.string(),
+  raw: z.number(),
+  normalized: z.number(),
+  qualityFlag: qualityFlagSchema,
+  observedAt: z.string(),
+  referencePeriod: z.string(),
+  source: neighborhoodMetricSourceSchema,
+});
+
+export const neighborhoodMetricsSchema = z.object({
+  neighborhoodId: z.number(),
+  metrics: z.array(neighborhoodMetricSchema),
+}) satisfies z.ZodType<NeighborhoodMetrics>;
+
+export const problemDetailsSchema = z.object({
+  type: z.string().optional(),
+  title: z.string().optional(),
+  status: z.number().optional(),
+  detail: z.string().optional(),
+  instance: z.string().optional(),
+  code: z.string().optional(),
+}) satisfies z.ZodType<ProblemDetails>;
