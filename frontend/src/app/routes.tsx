@@ -1,6 +1,8 @@
+import { Suspense, lazy } from "react";
 import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-router";
 import { fbt } from "fbtee";
 import { AppShell } from "./app-shell";
+import { useDocumentMeta } from "./route-meta";
 import {
   criteriaFromSearch,
   searchWithCriteria,
@@ -14,9 +16,12 @@ import {
 } from "./url-state";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
-import { MapView } from "../features/map-view/map-view";
 import { DataView } from "../features/data-view/data-view";
 import { toggleCriterion, withoutCriterion, type Criteria } from "../features/criteria/criteria";
+
+const MapView = lazy(() =>
+  import("../features/map-view/map-view").then((module) => ({ default: module.MapView })),
+);
 
 function useOpenView() {
   const navigate = useNavigate();
@@ -53,6 +58,7 @@ export function AppLayout() {
   const location = useLocation();
   const openView = useOpenView();
   const view = viewForPath(location.pathname);
+  useDocumentMeta(view);
 
   return (
     <AppShell view={view} onNavigate={openView}>
@@ -87,25 +93,33 @@ export function MapRoute() {
   const changeCriterion = useCriterionWriter(viewPath("map"));
 
   return (
-    <MapView
-      criteria={criteriaFromSearch(search)}
-      onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
-      selectedNeighborhoodId={search.neighborhood ?? null}
-      rankingMetricKey={search.sort ?? null}
-      onMetricChange={(metricKey) => {
-        void navigate({
-          to: viewPath("map"),
-          search: (previous) =>
-            searchWithTableSort(previous, { key: metricKey, direction: "descending" }),
-        });
-      }}
-      onSelectNeighborhood={(neighborhoodId) => {
-        void navigate({
-          to: viewPath("map"),
-          search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
-        });
-      }}
-    />
+    <Suspense
+      fallback={
+        <div className="flex flex-1 items-center justify-center p-6 text-sm text-text-secondary">
+          {fbt("Chargement des quartiers…", "Shown while the map data is loading")}
+        </div>
+      }
+    >
+      <MapView
+        criteria={criteriaFromSearch(search)}
+        onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
+        selectedNeighborhoodId={search.neighborhood ?? null}
+        rankingMetricKey={search.sort ?? null}
+        onMetricChange={(metricKey) => {
+          void navigate({
+            to: viewPath("map"),
+            search: (previous) =>
+              searchWithTableSort(previous, { key: metricKey, direction: "descending" }),
+          });
+        }}
+        onSelectNeighborhood={(neighborhoodId) => {
+          void navigate({
+            to: viewPath("map"),
+            search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
+          });
+        }}
+      />
+    </Suspense>
   );
 }
 

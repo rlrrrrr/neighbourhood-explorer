@@ -5,7 +5,7 @@ import { cn } from "../components/ui/cn";
 import { AVAILABLE_LANGUAGES, SOURCE_LANGUAGE } from "./locale-runtime";
 
 const MENU_ITEM_CLASS =
-  "flex min-h-10 cursor-pointer items-center gap-2 rounded-xl px-3 text-left text-sm font-semibold transition-[background-color,transform] duration-150 ease-out motion-safe:active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action";
+  "flex min-h-11 cursor-pointer items-center gap-2 rounded-xl px-3 text-left text-sm font-semibold transition-[background-color,transform] duration-150 ease-out motion-safe:active:scale-[0.97] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-action";
 
 export function LanguageSwitcher() {
   const { locale, setLocale } = useLocaleContext();
