@@ -108,7 +108,7 @@ Règles transverses :
 
 | Endpoint | Rôle |
 |---|---|
-| `GET /api/v1/cities` | Villes disponibles |
+| `GET /api/v1/cities` | Villes disponibles, avec `center` (`{ longitude, latitude }`, centroïde de la province) pour le cadrage initial de la carte |
 | `GET /api/v1/cities/{cityId}/neighborhoods` | GeoJSON `application/geo+json` des mahalles avec `COALESCE(display_geometry, geometry)`, `ETag` + `Cache-Control: max-age=86400` |
 | `GET /api/v1/metrics` | Définitions de métriques + source + date |
 | `GET /api/v1/cities/{cityId}/metric-values?metrics=a,b` | `{ metricKey: { neighborhoodId: { raw, normalized, qualityFlag } } }` compact |
