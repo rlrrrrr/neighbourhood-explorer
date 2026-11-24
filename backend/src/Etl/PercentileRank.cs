@@ -34,10 +34,7 @@ public static class PercentileRank
                 ? 0
                 : (rank - 1) / (double)(sortedIndices.Length - 1);
 
-            for (var index = start; index <= end; index++)
-            {
-                normalized[sortedIndices[index]] = value;
-            }
+            SetTieGroupRank(normalized, sortedIndices, start, end, value);
 
             start = end + 1;
         }
@@ -93,14 +90,24 @@ public static class PercentileRank
             }
 
             var rank = (start + 1) / (double)positiveIndices.Length;
-            for (var index = start; index <= end; index++)
-            {
-                normalized[positiveIndices[index]] = rank;
-            }
+            SetTieGroupRank(normalized, positiveIndices, start, end, rank);
 
             start = end + 1;
         }
 
         return normalized;
+    }
+
+    private static void SetTieGroupRank(
+        double[] normalized,
+        IReadOnlyList<int> sortedIndices,
+        int start,
+        int end,
+        double value)
+    {
+        for (var index = start; index <= end; index++)
+        {
+            normalized[sortedIndices[index]] = value;
+        }
     }
 }
