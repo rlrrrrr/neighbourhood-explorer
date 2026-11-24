@@ -25,12 +25,16 @@ public class GeographyEndpointTests(MetricsApiFixture fixture) : IClassFixture<M
                 Assert.Equal(6, ankara.PlateCode);
                 Assert.Equal("Ankara", ankara.Name);
                 Assert.Equal("TR-06", ankara.OfficialCode);
+                Assert.Equal(32.5, ankara.Center.Longitude);
+                Assert.Equal(39.5, ankara.Center.Latitude);
             },
             istanbul =>
             {
                 Assert.Equal(34, istanbul.PlateCode);
                 Assert.Equal("İstanbul", istanbul.Name);
                 Assert.Equal("TR-34", istanbul.OfficialCode);
+                Assert.Equal(28.5, istanbul.Center.Longitude);
+                Assert.Equal(41.5, istanbul.Center.Latitude);
             });
     }
 

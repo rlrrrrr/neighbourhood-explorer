@@ -32,4 +32,9 @@ else
     done
 fi
 
-docker compose "${compose_files[@]}" --profile etl run --rm "${mounts[@]}" etl "$@"
+run_args=(--rm)
+if [[ "$DATABASE_TARGET_MODE" == remote ]]; then
+    run_args+=(--no-deps)
+fi
+
+docker compose "${compose_files[@]}" --profile etl run "${run_args[@]}" "${mounts[@]}" etl "$@"

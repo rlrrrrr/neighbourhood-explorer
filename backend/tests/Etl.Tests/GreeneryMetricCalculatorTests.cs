@@ -10,15 +10,33 @@ public class GreeneryMetricCalculatorTests
     {
         var count = new GreeneryNeighborhoodCount(1, "Kadıköy", "Moda", 30, 200);
 
-        Assert.Equal(15, GreeneryMetricCalculator.Share(count), 6);
+        Assert.Equal(15, GreeneryMetricCalculator.Share(count)!.Value, 6);
     }
 
     [Fact]
-    public void Returns_zero_when_no_pixel_is_valid()
+    public void Returns_no_share_when_no_pixel_is_valid()
     {
         var count = new GreeneryNeighborhoodCount(1, "Kadıköy", "Moda", 0, 0);
 
-        Assert.Equal(0, GreeneryMetricCalculator.Share(count));
+        Assert.Null(GreeneryMetricCalculator.Share(count));
+    }
+
+    [Fact]
+    public void Excludes_neighborhoods_without_valid_pixels_from_the_series()
+    {
+        GreeneryNeighborhoodCount[] counts =
+        [
+            new(1, "A", "a", 0, 0),
+            new(2, "A", "b", 10, 100),
+            new(3, "A", "c", 90, 100),
+        ];
+
+        var metrics = GreeneryMetricCalculator.Calculate(counts);
+        var series = Assert.Single(metrics.Series);
+
+        Assert.Equal([2L, 3L], series.Values.Select(value => value.AdminAreaId));
+        Assert.Equal([10, 90], series.Values.Select(value => value.RawValue));
+        Assert.Equal([0, 1], series.Values.Select(value => value.NormalizedValue));
     }
 
     [Fact]
@@ -85,8 +103,10 @@ public class GreeneryMetricCalculatorTests
             var largerShare = GreeneryMetricCalculator.Share(
                 new GreeneryNeighborhoodCount(1, "A", "a", greenPixels + extraPixels, validPixels));
 
-            Assert.InRange(share, 0, 100);
-            Assert.True(largerShare >= share);
+            Assert.NotNull(share);
+            Assert.NotNull(largerShare);
+            Assert.InRange(share.Value, 0, 100);
+            Assert.True(largerShare.Value >= share.Value);
         }
     }
 }

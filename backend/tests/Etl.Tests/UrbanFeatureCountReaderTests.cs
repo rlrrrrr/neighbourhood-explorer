@@ -57,6 +57,7 @@ public sealed class UrbanFeatureCountReaderTests : IAsyncLifetime
         Assert.Equal(2, neighborhood.FoodCount);
         Assert.Equal(1, neighborhood.LandUseCultureCount);
         Assert.Equal(1, neighborhood.OfficeCount);
+        Assert.Equal(1, neighborhood.IndustryCount);
         Assert.Equal(1, neighborhood.GreenCount);
 
         var cafe = Assert.Single(counts.PoiCategories, category => category.Category == "cafe");
@@ -312,6 +313,13 @@ public sealed class UrbanFeatureCountReaderTests : IAsyncLifetime
             15,
             """{"leisure":"park"}""",
             "POLYGON((0.003 -0.002, 0.004 -0.002, 0.004 -0.001, 0.003 -0.001, 0.003 -0.002))");
+        await InsertAreaAsync(
+            connection,
+            transaction,
+            "W",
+            17,
+            """{"landuse":"industrial"}""",
+            "POLYGON((0.004 0.001, 0.005 0.001, 0.005 0.002, 0.004 0.002, 0.004 0.001))");
         await InsertAreaAsync(
             connection,
             transaction,

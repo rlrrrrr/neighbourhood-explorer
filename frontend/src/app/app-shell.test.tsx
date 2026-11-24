@@ -1,4 +1,6 @@
 import { renderToStaticMarkup } from "react-dom/server";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { createQueryClient } from "./query-client";
 import { describe, expect, it } from "vite-plus/test";
 import { AppShell } from "./app-shell";
 import { HomeView } from "../features/home-view/home-view";
@@ -6,18 +8,22 @@ import { MapView } from "../features/map-view/map-view";
 
 function renderShell(view: "home" | "map") {
   return renderToStaticMarkup(
-    <AppShell view={view} onNavigate={() => {}}>
-      {view === "home" ? (
-        <HomeView onNavigate={() => {}} />
-      ) : (
-        <MapView
-          criteria={{ weights: [] }}
-          onRemoveCriterion={() => {}}
-          selectedNeighborhoodId={null}
-          onSelectNeighborhood={() => {}}
-        />
-      )}
-    </AppShell>,
+    <QueryClientProvider client={createQueryClient()}>
+      <AppShell view={view} onNavigate={() => {}}>
+        {view === "home" ? (
+          <HomeView onNavigate={() => {}} />
+        ) : (
+          <MapView
+            criteria={{ weights: [] }}
+            onRemoveCriterion={() => {}}
+            selectedNeighborhoodId={null}
+            onSelectNeighborhood={() => {}}
+            rankingMetricKey={null}
+            onMetricChange={() => {}}
+          />
+        )}
+      </AppShell>
+    </QueryClientProvider>,
   );
 }
 

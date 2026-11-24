@@ -1,40 +1,115 @@
-import { useCallback, useEffect, useState } from "react";
-import { fetchMapData, MapDataRequestError, type MapData } from "./map-data-client";
+import { useCallback, useMemo } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { ApiRequestError } from "../metrics/api-json";
+import { fetchCityMetricValues } from "../metrics/city-metric-values";
+import { createMapData, fetchMapStatic, type MapData } from "./map-data-client";
 
 export type MapDataState =
   | { status: "loading" }
   | { status: "error"; code: string }
   | { status: "ready"; data: MapData };
 
-export function useMapData({ cityId, metricKey }: { cityId: number; metricKey: string }): {
+export type MapDataResult = {
   state: MapDataState;
   reload: () => void;
-} {
-  const [state, setState] = useState<MapDataState>({ status: "loading" });
-  const [reloadToken, setReloadToken] = useState(0);
+};
 
-  useEffect(() => {
-    const controller = new AbortController();
+export function useMapData({
+  cityId,
+  metricKey,
+  fallbackMetricKey,
+}: {
+  cityId: number | null;
+  metricKey: string;
+  fallbackMetricKey: string;
+}): MapDataResult {
+  const staticQuery = useQuery({
+    queryKey: ["map-static", cityId],
+    queryFn: ({ signal }) => {
+      if (cityId === null) {
+        throw new Error("ville indisponible");
+      }
 
-    fetchMapData({ cityId, metricKey, signal: controller.signal })
-      .then((data) => setState({ status: "ready", data }))
-      .catch((error: unknown) => {
-        if (controller.signal.aborted) {
-          return;
-        }
-        setState({
-          status: "error",
-          code: error instanceof MapDataRequestError ? error.code : "network_error",
-        });
-      });
+      return fetchMapStatic({ cityId, signal });
+    },
+    enabled: cityId !== null,
+    staleTime: Infinity,
+  });
 
-    return () => controller.abort();
-  }, [cityId, metricKey, reloadToken]);
+  const metricKeys = staticQuery.data?.metrics.map((metric) => metric.key) ?? [];
+
+  const valuesQuery = useQuery({
+    queryKey: ["map-values", cityId],
+    queryFn: ({ signal }) => {
+      if (cityId === null || metricKeys.length === 0) {
+        throw new Error("données de ville indisponibles");
+      }
+
+      return fetchCityMetricValues({ cityId, metricKeys, signal });
+    },
+    enabled: cityId !== null && metricKeys.length > 0,
+    staleTime: Infinity,
+  });
+
+  const data = useMemo(() => {
+    if (staticQuery.data === undefined || valuesQuery.data === undefined) {
+      return null;
+    }
+
+    return createMapData({
+      metrics: staticQuery.data.metrics,
+      neighborhoods: staticQuery.data.neighborhoods,
+      values: valuesQuery.data,
+      metricKey,
+      fallbackMetricKey,
+    });
+  }, [staticQuery.data, valuesQuery.data, metricKey, fallbackMetricKey]);
+
+  const { refetch: reloadStatic } = staticQuery;
+  const { refetch: reloadValues } = valuesQuery;
 
   const reload = useCallback(() => {
-    setState({ status: "loading" });
-    setReloadToken((token) => token + 1);
-  }, []);
+    void reloadStatic();
+    void reloadValues();
+  }, [reloadStatic, reloadValues]);
 
-  return { state, reload };
+  if (staticQuery.status === "pending") {
+    return { state: { status: "loading" }, reload };
+  }
+
+  if (staticQuery.status === "error") {
+    return {
+      state: {
+        status: "error",
+        code:
+          staticQuery.error instanceof ApiRequestError ? staticQuery.error.code : "network_error",
+      },
+      reload,
+    };
+  }
+
+  if (metricKeys.length === 0) {
+    return { state: { status: "error", code: "metric_not_found" }, reload };
+  }
+
+  if (valuesQuery.status === "pending") {
+    return { state: { status: "loading" }, reload };
+  }
+
+  if (valuesQuery.status === "error") {
+    return {
+      state: {
+        status: "error",
+        code:
+          valuesQuery.error instanceof ApiRequestError ? valuesQuery.error.code : "network_error",
+      },
+      reload,
+    };
+  }
+
+  if (data === null) {
+    return { state: { status: "error", code: "metric_not_found" }, reload };
+  }
+
+  return { state: { status: "ready", data }, reload };
 }

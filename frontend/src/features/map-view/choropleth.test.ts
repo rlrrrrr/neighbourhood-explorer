@@ -9,6 +9,7 @@ import {
 } from "./choropleth";
 
 type NeighborhoodCollection = components["schemas"]["NeighborhoodFeatureCollection"];
+
 type MetricValues = components["schemas"]["MetricValues"];
 
 const MODA_POLYGON = [

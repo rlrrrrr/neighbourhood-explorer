@@ -1,4 +1,7 @@
 import { createLocaleContext, type FbtRuntimeInput } from "fbtee";
+import arabicCatalog from "../translations/ar.json";
+import englishCatalog from "../translations/en.json";
+import turkishCatalog from "../translations/tr.json";
 
 export const SOURCE_LANGUAGE = "fr";
 
@@ -24,18 +27,20 @@ function readClientLocales(): ReadonlyArray<string | null> {
   if (typeof window === "undefined") {
     return navigator.languages;
   }
+
   const storedLocale = readStoredLocale();
+
   return storedLocale ? [storedLocale, ...navigator.languages] : navigator.languages;
 }
 
 export async function loadLocale(locale: string): Promise<Record<string, FbtRuntimeInput>> {
   switch (locale) {
     case "en":
-      return (await import("../translations/en.json")).default.en;
+      return englishCatalog.en;
     case "tr":
-      return (await import("../translations/tr.json")).default.tr;
+      return turkishCatalog.tr;
     case "ar":
-      return (await import("../translations/ar.json")).default.ar;
+      return arabicCatalog.ar;
     default:
       return {};
   }

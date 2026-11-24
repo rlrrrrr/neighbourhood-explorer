@@ -41,10 +41,12 @@ function resultStats(
 
 export function ChatView({ criteria, onToggleCriterion, onShowOnMap }: ChatViewProps) {
   const [freeTextChips, setFreeTextChips] = useState<readonly FreeTextChip[]>([]);
+
   const freeTextChipList: Chip[] = freeTextChips.map((chip) => ({
     key: chip.key,
     label: chip.text,
   }));
+
   const removeLabel = fbs(
     "Retirer ce critère",
     "Label of the button removing a search criterion chip",
@@ -87,6 +89,7 @@ export function ChatView({ criteria, onToggleCriterion, onShowOnMap }: ChatViewP
         <ul className="mt-2 flex flex-wrap gap-2">
           {SAMPLE_METRICS.map((metric) => {
             const selected = hasCriterion(criteria, metric.key);
+
             return (
               <li key={metric.key}>
                 <Button

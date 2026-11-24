@@ -3,8 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>Neighbourhood Explorer</title>
+    <script>
+      const origins = new Set();
+      for (const styleUrl of ["%VITE_BASEMAP_STYLE_URL%", "%VITE_BASEMAP_DARK_STYLE_URL%"]) {
+        if (!styleUrl || styleUrl.startsWith("%VITE_")) continue;
+        try {
+          origins.add(new URL(styleUrl).origin);
+        } catch {}
+      }
+      for (const origin of origins) {
+        const link = document.createElement("link");
+        link.rel = "preconnect";
+        link.href = origin;
+        link.crossOrigin = "anonymous";
+        document.head.append(link);
+      }
+    </script>
     <script>
       try {
         const storedTheme = window.localStorage.getItem("theme:v1");

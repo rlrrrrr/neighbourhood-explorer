@@ -212,7 +212,7 @@ public static class UrbanFeatureReportWriter
             "nightlife_count,culture_count,daily_count,education_800m_count," +
             "healthcare_800m_count,intersection_count,residential_area_count," +
             "commercial_area_count,food_area_count,culture_area_count,office_area_count," +
-            "green_area_count");
+            "industry_area_count,green_area_count");
         foreach (var metric in report.Metrics)
         {
             builder.Append(',');
@@ -266,6 +266,8 @@ public static class UrbanFeatureReportWriter
             builder.Append(neighborhood.LandUseCultureCount.ToString(CultureInfo.InvariantCulture));
             builder.Append(',');
             builder.Append(neighborhood.OfficeCount.ToString(CultureInfo.InvariantCulture));
+            builder.Append(',');
+            builder.Append(neighborhood.IndustryCount.ToString(CultureInfo.InvariantCulture));
             builder.Append(',');
             builder.Append(neighborhood.GreenCount.ToString(CultureInfo.InvariantCulture));
 

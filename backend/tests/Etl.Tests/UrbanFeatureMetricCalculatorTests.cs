@@ -7,29 +7,43 @@ public sealed class UrbanFeatureMetricCalculatorTests
     [Fact]
     public void Shannon_entropy_is_zero_without_objects()
     {
-        Assert.Equal(0, UrbanFeatureMetricCalculator.LandUseDiversity([0, 0, 0, 0, 0, 0]));
+        Assert.Equal(0, UrbanFeatureMetricCalculator.LandUseDiversity([0, 0, 0, 0, 0, 0, 0]));
     }
 
     [Fact]
     public void Shannon_entropy_is_zero_for_a_single_category()
     {
-        Assert.Equal(0, UrbanFeatureMetricCalculator.LandUseDiversity([12, 0, 0, 0, 0, 0]));
+        Assert.Equal(0, UrbanFeatureMetricCalculator.LandUseDiversity([12, 0, 0, 0, 0, 0, 0]));
     }
 
     [Fact]
-    public void Shannon_entropy_is_one_for_six_equal_categories()
+    public void Shannon_entropy_is_one_for_seven_equal_categories()
     {
-        Assert.Equal(1, UrbanFeatureMetricCalculator.LandUseDiversity([4, 4, 4, 4, 4, 4]), 10);
+        Assert.Equal(
+            1,
+            UrbanFeatureMetricCalculator.LandUseDiversity([4, 4, 4, 4, 4, 4, 4]),
+            10);
     }
 
     [Fact]
     public void Shannon_entropy_matches_two_equal_categories()
     {
-        var expected = Math.Log(2) / Math.Log(6);
+        var expected = Math.Log(2) / Math.Log(7);
 
         Assert.Equal(
             expected,
-            UrbanFeatureMetricCalculator.LandUseDiversity([5, 5, 0, 0, 0, 0]),
+            UrbanFeatureMetricCalculator.LandUseDiversity([5, 5, 0, 0, 0, 0, 0]),
+            10);
+    }
+
+    [Fact]
+    public void Industry_is_its_own_land_use_category()
+    {
+        var expected = Math.Log(2) / Math.Log(7);
+
+        Assert.Equal(
+            expected,
+            UrbanFeatureMetricCalculator.LandUseDiversity([0, 0, 0, 0, 4, 4, 0]),
             10);
     }
 
@@ -95,6 +109,7 @@ public sealed class UrbanFeatureMetricCalculatorTests
                 foodCount: 1,
                 landUseCultureCount: 1,
                 officeCount: 1,
+                industryCount: 1,
                 greenCount: 1),
         ]);
 
@@ -135,7 +150,7 @@ public sealed class UrbanFeatureMetricCalculatorTests
         var random = new Random(20261111);
         for (var run = 0; run < 200; run++)
         {
-            int[] counts = Enumerable.Range(0, 6).Select(_ => random.Next(0, 20)).ToArray();
+            int[] counts = Enumerable.Range(0, 7).Select(_ => random.Next(0, 20)).ToArray();
             var permuted = counts.OrderBy(_ => random.Next()).ToArray();
 
             var entropy = UrbanFeatureMetricCalculator.LandUseDiversity(counts);
@@ -161,6 +176,7 @@ public sealed class UrbanFeatureMetricCalculatorTests
         int foodCount = 0,
         int landUseCultureCount = 0,
         int officeCount = 0,
+        int industryCount = 0,
         int greenCount = 0) =>
         new(
             id,
@@ -180,5 +196,6 @@ public sealed class UrbanFeatureMetricCalculatorTests
             foodCount,
             landUseCultureCount,
             officeCount,
+            industryCount,
             greenCount);
 }

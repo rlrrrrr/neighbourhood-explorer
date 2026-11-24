@@ -34,83 +34,6 @@
       ],
       "types": []
     },
-    "RhKKygaH4G/v+0eDciNiKg==": {
-      "description": "Lens filter category: mobility",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Ulaşım",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "E0VtZmvDKoWI/1At1hCjwg==": {
-      "description": "Lens filter category: local life",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Yerel yaşam",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "6RY/SWc3y5TuHG4gwxHjYg==": {
-      "description": "Lens filter category: nature",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Doğa",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "KIQ12L1WCVj/uT2kMmZxKA==": {
-      "description": "Lens filter category: services",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Hizmetler",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Ev6SgGb6AhY/aydwJ0aLaw==": {
-      "description": "Lens layer: metro",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Metro",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "Z2lriz15KkNPSWvxfHXU1w==": {
-      "description": "Lens layer: parks",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Parklar",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "4S96U+dLdyKaqVrzR0ETpQ==": {
-      "description": "Lens layer: isochrone",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "İzokron",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "HpPgpLng+C4a0ZCpnrRt+g==": {
       "description": "Title of the lens panel on the map",
       "tokens": [],
@@ -144,17 +67,6 @@
       ],
       "types": []
     },
-    "KlaJ0PxFct/htjCZo79G+g==": {
-      "description": "Note explaining that no sample data has a time dimension",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Dönem gizli: güncel verilerin hiçbiri zaman boyutuna sahip değil",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "HS8ubz9BcGaKlUt8ng5+cg==": {
       "description": "Legend of the category filter group in the lens panel",
       "tokens": [],
@@ -183,50 +95,6 @@
       "translations": [
         {
           "translation": "Henüz kayıtlı mahalle yok",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "R56DH+uA4v3NOU5K0JdzBg==": {
-      "description": "Legend of the basemap style group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Altlık",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "7O+xvX1MIhjJQNhoOjXSyw==": {
-      "description": "Legend of the layer group in the lens panel",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Katmanlar",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "7IKaZK88KVLe3WDGLbUfiA==": {
-      "description": "Low end of the score ramp legend",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Düşük",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "8kW+AkhR64BD8RSqXwdxgA==": {
-      "description": "High end of the score ramp legend",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Yüksek",
           "variations": {}
         }
       ],
@@ -408,67 +276,12 @@
       ],
       "types": []
     },
-    "zMZLinNitZ+JlmBvBAUx6w==": {
-      "description": "Title of the data view",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Ham değerler",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "2jkvby7kc9oKmMDfhn1H+w==": {
-      "description": "Subtitle of the data view, with the year and the raw-value promise",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "2024 dönemi · birimli ham değerler, bileşik puan yok",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "0KkpLNCYqZCQwzgc7AH3GA==": {
       "description": "Column header of the neighborhood name",
       "tokens": [],
       "translations": [
         {
           "translation": "Mahalle",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "T150YTHTRegXDT0WB8hLHA==": {
-      "description": "Column header of the district name",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "İlçe",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "zBo4aaR+KHHvIsOmhz5H6Q==": {
-      "description": "Column header of the walking distance to the metro",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Yürüyerek metro",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "AuiGZ9KZG79XBfDahxW+gQ==": {
-      "description": "Column header of the green cover",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Yeşil alan",
           "variations": {}
         }
       ],
@@ -716,61 +529,6 @@
       ],
       "types": []
     },
-    "J6thJMaSahqdigYonXOZBA==": {
-      "description": "Column header of the cafés per square kilometer",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Kafeler",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "3pm+jSiAKziqh/Y7M60mFA==": {
-      "description": "Unit suffix of the café density column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "/km²",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "BUjEfKVrbn4pBkYTP7ZaRg==": {
-      "description": "Unit suffix of the walking distance to the metro column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "dk",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "rV7bs/rHL0cJ0AEZ6vAW2w==": {
-      "description": "Unit suffix of the green cover column",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "%",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
-    "a/LDD8vWAgWnsecOf/N/SA==": {
-      "description": "Accessible caption of the raw values table",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Mahalle başına ham değerler: ad, ilçe ve her sütunda bir ölçüt; sıralanabilir.",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "MziqoB5OZg5QNF0OXqNCBw==": {
       "description": "Accessibility label of the chat input",
       "tokens": [],
@@ -947,17 +705,6 @@
       ],
       "types": []
     },
-    "/vgNH23LRHlIXqAx/LELmQ==": {
-      "description": "Shown when the selected neighborhood has no value",
-      "tokens": [],
-      "translations": [
-        {
-          "translation": "Veri yok",
-          "variations": {}
-        }
-      ],
-      "types": []
-    },
     "I+5u1XNY0Eh5t4BonsSuOg==": {
       "description": "Hint shown when no neighborhood is selected on the map",
       "tokens": [],
@@ -1068,12 +815,661 @@
       ],
       "types": []
     },
-    "AVgeLV2AA+oklppQ68comg==": {
-      "description": "Button that recenters the map on Istanbul",
+    "BDNtsE0Lcep99paZJc83jQ==": {
+      "description": "Shown while the raw values table is loading",
       "tokens": [],
       "translations": [
         {
-          "translation": "İstanbul'a odaklan",
+          "translation": "Değerler yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5lPNgBPMXM/G9wgZmM/Znw==": {
+      "description": "Shown when the raw values cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Değerler yüklenemedi.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "zw65yeLmQyFa+rMlp/tHjA==": {
+      "description": "Label before the API error code",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kod:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+T+S4LHhUSCN1KzfhfU27Q==": {
+      "description": "Button retrying the raw values request",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tekrar dene",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "s8hGL02fBz83P/Cow4vmVw==": {
+      "description": "Notice listing the active criteria that the API does not publish",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "API tarafından yayımlanmayan ölçütler:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "SlHVWKRn0tQQ5phVrOe7gA==": {
+      "description": "Accessible label of the unit and observation date in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Birim ve gözlem tarihi:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+TtKgA798Vd98Hc5X36v2w==": {
+      "description": "Shown when a neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fxZzfkWlHJdkeaAUHWEoWA==": {
+      "description": "Summary of the sources and dates panel under the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kaynaklar ve tarihler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "9AlhLd3XmlzsdpTPRDOiJA==": {
+      "description": "Metric category: shops, cafés, culture and nightlife",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yerel yaşam",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "WlQyT5l5Ktvn5aVwow37MQ==": {
+      "description": "Metric category: schools and education",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Eğitim",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QzSgQ+5bo624IBa6UvvN5w==": {
+      "description": "Metric category: greenery and environment",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Çevre",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Trdue90Itw3nj87XOEEOOw==": {
+      "description": "Metric category: healthcare",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sağlık",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LozGih/MvXEroPwOkt51EA==": {
+      "description": "Metric category: urban form and land use",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kentsel biçim",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "QibTgF1eYwkD9/zN/4HAPg==": {
+      "description": "Metric category: population",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Nüfus",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "tj/rAPtmIyznFVxTIOPwcw==": {
+      "description": "Metric category: transport and walkability",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Hareketlilik",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EeSX78ApL5C53MlZKzDsJg==": {
+      "description": "Shown while every metric of the selected neighborhood is loading",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle verileri yükleniyor…",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+FhW5Vf3O6Dtx+Zz9AnCVQ==": {
+      "description": "Shown when the metrics of the selected neighborhood cannot be loaded",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle verileri yüklenemedi.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "dqu0+dR68tvfkpeXMH7r7w==": {
+      "description": "Retry loading the selected neighborhood metrics",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Yeniden dene",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "ygmbqEfYzVhq5+Eff8o0oQ==": {
+      "description": "Shown when a selected neighborhood has no value for a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Veri yok",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oj/YgH55vmB1iX02ecrfow==": {
+      "description": "Label of the search field filtering the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle ara",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "OHgJkl88QN6OmsIwSKrqaw==": {
+      "description": "Placeholder of the raw values table search field",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle veya ilçe adı",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3C6K7xX+DqLRUXvX/KWkFQ==": {
+      "description": "Count of neighborhoods currently displayed in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gösterilen mahalleler:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "K/CCzDUAffe7tdCvFCeMmw==": {
+      "description": "Shown when the neighborhood search matches nothing in the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu aramayla eşleşen mahalle yok.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5h3NnQae5oBYM+LZhfXCEw==": {
+      "description": "Label of the field filtering the selected neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metrikleri filtrele",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "rxpISH/HvXJsl7QBku2L8Q==": {
+      "description": "Placeholder of the field filtering the neighborhood metrics by name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Metrikleri filtrele",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "5sLBNDx6A1wcbH9beEijbw==": {
+      "description": "Count of metrics shown in the selected neighborhood panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gösterilen metrikler:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "PzX3O/b+mRESU/OpG7Ypgg==": {
+      "description": "Shown when the neighborhood metric filter matches nothing",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu filtreyle eşleşen metrik yok.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "smjeXytRu3GL28gcCu9xEg==": {
+      "description": "Shown when a neighborhood metric has no source name",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bilinmeyen kaynak",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7puORYtI1ZFbPqPZ5R1ZVw==": {
+      "description": "Observation date label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gözlem:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "8fkhfAZtOCPWqgfZTVxCLg==": {
+      "description": "Reference period label of a neighborhood metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Dönem:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "AOeathNT+OMAEaV2fXektw==": {
+      "description": "Hint explaining that a metric row opens its source and date",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ayrıntılar için tıkla",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "2+8bQRgT8Fq33dzet8ALfg==": {
+      "description": "Label of the normalized value drawn as a bar under the metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Normalleştirilmiş değer:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qD5r4g06eXT755wIcHjLsw==": {
+      "description": "Title of the data view when the rows are in alphabetical order",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalleye göre değerler",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "7Os0vosK56jwQtYuADx3LA==": {
+      "description": "Title of the data view when the rows are ranked by a metric",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle sıralaması",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6gSAD4i7zEnrYLcmvlUBoQ==": {
+      "description": "Header of the ranking column in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "#",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "3O2TDwNvFyzS0mJs6jm+CA==": {
+      "description": "Accessible label of the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalle tablosu sayfalaması",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "LhD6pDikpH2M2UeRfFBtOA==": {
+      "description": "Label of the current page in the data table pagination",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sayfa",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "qA+bL6BHLCbO+t4dw7dpLA==": {
+      "description": "Button showing the previous page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Önceki",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "/FWABZ+fb2Q28l7KpvzRtg==": {
+      "description": "Button showing the next page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sonraki",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "y91elk8+J3dQasQFSlbjvA==": {
+      "description": "Legend of the metric selector group in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gösterilen metrik",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "fF8Ubj51s+uHRDWSWoRi6w==": {
+      "description": "Label of the district average in the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "ort.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "6V830xOD38Rnoo2g4w7CHg==": {
+      "description": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tek seferde tek bir ham metriği karşılaştırın, bileşik puan yok. Bir mahallenin tüm değerleri haritadaki kartında yer alır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "oYpYV6N/Wz43C7atqU3QmQ==": {
+      "description": "Accessible caption of the raw values table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçeye göre gruplanmış, metrikle sıralanabilen ham mahalle değerleri.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "C16iCOS88Fof0dYHS2kRcQ==": {
+      "description": "Accessible label of the button collapsing a district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Bu ilçenin mahalle satırlarını göster veya gizle",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "mDLBkvoO2/99ZLpd2q4Obg==": {
+      "description": "Accessible label of the metric quality in a column header",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Kalite:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "EEvtKSshXXxBJ7go02umOA==": {
+      "description": "Label of the metric selector that sorts the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Sırala",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "d1G7U9DXgeLv2l7GpGWmYA==": {
+      "description": "Alphabetical order option in the data table metric selector",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Alfabetik sıra",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "pXY//p0Pamj+gmT0SpGTYQ==": {
+      "description": "Accessible label of the display options of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Tablo görünümü",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "xXg2Rt/ejD2qc5u1cIWx3Q==": {
+      "description": "Button grouping the data table rows by district",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçeye göre grupla",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "+YY1XdK7nfFT4OYxShekow==": {
+      "description": "Button showing the metric average in each district group",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İlçe ortalaması",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "Q+7EokKG9dOHJtOPz1Q6sw==": {
+      "description": "Short label of the button returning to the first page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Başlangıç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "GYgElemEp+ZLvYdz934P7A==": {
+      "description": "Button returning to the first page of the data table",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Başa dön",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "vLGw8Rx7YW3hWqWw9P/JqQ==": {
+      "description": "Label of the observation date in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Gözlem tarihi:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "JxtyM5jvNrZ6ni45llwRpg==": {
+      "description": "Button that recenters the map on the loaded neighborhoods",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Şehri yeniden ortala",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0ccRiIPc9uY4xA4/7hboog==": {
+      "description": "Skip link to the main content",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "İçeriğe geç",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iK/aGHiazH22iqikTwltdg==": {
+      "description": "Browser tab title of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Ana sayfa",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VG9SH88q30TV5QUwTvAygA==": {
+      "description": "Meta description of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Harita, kriterler ve açık verilerle mahalleleri keşfet.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RC4ODBB3d0BVgY4d/tlUlg==": {
+      "description": "Meta description of the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Aradığın mahalleyi anlat, açıklamalı öneriler al.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "36PvnvONJleMUkMBKXNduw==": {
+      "description": "Meta description of the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahalleleri tek bir metriğe göre renklendir ve haritada karşılaştır.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "JVgmsV90biFjDLm7if5E0w==": {
+      "description": "Meta description of the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Mahallelerin ham değerlerini, birimlerini ve kaynaklarını incele.",
           "variations": {}
         }
       ],

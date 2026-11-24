@@ -1,9 +1,12 @@
-import { useState, type ReactNode } from "react";
-import { fbs, fbt, type TranslatedString } from "fbtee";
+import { useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { fbs, fbt, type TranslatedString, useLocaleContext } from "fbtee";
 import { tv } from "tailwind-variants";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
 import { CriteriaChips } from "../criteria/criteria-chips";
 import type { Criteria } from "../criteria/criteria";
+import type { MetricDefinition } from "../metrics/metric-api-schema";
+import { localizedCategory, localizedMetricName } from "../metrics/metric-presentation";
+import { filterMetricsByCategory, listMetricCategories } from "./lens-metric-filter";
 
 const lensOption = tv({
   slots: {
@@ -26,41 +29,37 @@ const lensOption = tv({
   },
 });
 
-const LENS_BASEMAP_STYLES = ["Positron", "Liberty", "Dark"] as const;
-
-const LENS_CATEGORIES = [
-  { key: "mobility", label: () => fbt("Mobilité", "Lens filter category: mobility") },
-  { key: "local-life", label: () => fbt("Vie locale", "Lens filter category: local life") },
-  { key: "nature", label: () => fbt("Nature", "Lens filter category: nature") },
-  { key: "services", label: () => fbt("Services", "Lens filter category: services") },
-];
-
-const LENS_LAYERS = [
-  { key: "metro", label: () => fbt("Métro", "Lens layer: metro") },
-  { key: "parks", label: () => fbt("Parcs", "Lens layer: parks") },
-  { key: "isochrone", label: () => fbt("Isochrone", "Lens layer: isochrone") },
-];
-
 function toggleKey(selected: ReadonlySet<string>, key: string): Set<string> {
   const next = new Set(selected);
+
   if (next.has(key)) {
     next.delete(key);
   } else {
     next.add(key);
   }
+
   return next;
 }
 
 interface LensOptionProps {
   type: "checkbox" | "radio";
   name?: string;
+  value?: string;
   checked: boolean;
   onChange: () => void;
   label: ReactNode;
   shape?: "box" | "dot";
 }
 
-function LensOption({ type, name, checked, onChange, label, shape = "box" }: LensOptionProps) {
+function LensOption({
+  type,
+  name,
+  value,
+  checked,
+  onChange,
+  label,
+  shape = "box",
+}: LensOptionProps) {
   const slots = lensOption({ shape });
 
   return (
@@ -69,6 +68,7 @@ function LensOption({ type, name, checked, onChange, label, shape = "box" }: Len
         <input
           type={type}
           name={name}
+          value={value}
           className="peer sr-only"
           checked={checked}
           onChange={onChange}
@@ -105,21 +105,104 @@ function LensFieldset({ legend, children }: { legend: TranslatedString; children
   );
 }
 
+function LensMetricOptions({
+  metrics,
+  selectedMetricKey,
+  onSelectMetric,
+  filterKey,
+  locale,
+}: {
+  metrics: readonly MetricDefinition[];
+  selectedMetricKey: string;
+  onSelectMetric: (metricKey: string) => void;
+  filterKey: string;
+  locale: string;
+}) {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [height, setHeight] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const content = contentRef.current;
+
+    if (content === null) {
+      return;
+    }
+
+    const measure = () => setHeight(content.getBoundingClientRect().height);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(content);
+
+    return () => observer.disconnect();
+  }, [filterKey]);
+
+  return (
+    <div className="lens-metric-list w-full" style={height === null ? undefined : { height }}>
+      <div
+        key={filterKey}
+        ref={contentRef}
+        className="lens-metric-list-content flex flex-wrap gap-1.5"
+      >
+        {metrics.map((metric) => (
+          <LensOption
+            key={metric.key}
+            type="radio"
+            name="lens-metric"
+            value={metric.key}
+            shape="dot"
+            checked={selectedMetricKey === metric.key}
+            onChange={() => onSelectMetric(metric.key)}
+            label={localizedMetricName(metric, locale)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 interface LensPanelProps {
+  cityName: string;
+  observedAt: string | null;
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
+  metrics: readonly MetricDefinition[];
+  selectedMetricKey: string;
+  onSelectMetric: (metricKey: string) => void;
   open: boolean;
   onClose: () => void;
 }
 
-export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPanelProps) {
+export function LensPanel({
+  cityName,
+  observedAt,
+  criteria,
+  onRemoveCriterion,
+  metrics,
+  selectedMetricKey,
+  onSelectMetric,
+  open,
+  onClose,
+}: LensPanelProps) {
   const [selectedCategories, setSelectedCategories] = useState<ReadonlySet<string>>(
     () => new Set(),
   );
-  const [selectedLayers, setSelectedLayers] = useState<ReadonlySet<string>>(() => new Set());
-  const [basemapStyle, setBasemapStyle] =
-    useState<(typeof LENS_BASEMAP_STYLES)[number]>("Positron");
+
   const { containerRef, hasMore } = useScrollOverflowHint({ axis: "vertical" });
+  const { locale } = useLocaleContext();
+  const categories = useMemo(() => listMetricCategories(metrics), [metrics]);
+
+  const visibleMetrics = useMemo(
+    () =>
+      filterMetricsByCategory({
+        metrics,
+        selectedCategories,
+        currentMetricKey: selectedMetricKey,
+      }),
+    [metrics, selectedCategories, selectedMetricKey],
+  );
+
+  const filterKey = [...selectedCategories].sort().join("|");
+
   const title = fbt("La lentille", "Title of the lens panel on the map");
   const closeLabel = fbs("Fermer le panneau de la lentille", "Close button of the lens panel");
 
@@ -159,29 +242,47 @@ export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPa
               <span className="text-xs font-semibold text-text-secondary">
                 <fbt desc="Label of the city field in the lens panel">Ville</fbt>
               </span>
-              <span className="text-sm font-semibold">Istanbul</span>
+              <span className="text-sm font-semibold">{cityName}</span>
             </div>
             <p className="mt-1 text-xs text-text-secondary">
-              <fbt desc="Note explaining that no sample data has a time dimension">
-                Période masquée : aucune donnée en cours n'a de dimension temporelle
-              </fbt>
+              <fbt desc="Label of the observation date in the lens panel">Date d'observation :</fbt>{" "}
+              {observedAt ?? "—"}
             </p>
 
-            <LensFieldset
-              legend={fbt("Catégories", "Legend of the category filter group in the lens panel")}
-            >
-              {LENS_CATEGORIES.map((category) => (
-                <LensOption
-                  key={category.key}
-                  type="checkbox"
-                  checked={selectedCategories.has(category.key)}
-                  onChange={() =>
-                    setSelectedCategories((current) => toggleKey(current, category.key))
-                  }
-                  label={category.label()}
+            {categories.length > 1 && (
+              <LensFieldset
+                legend={fbt("Catégories", "Legend of the category filter group in the lens panel")}
+              >
+                {categories.map((category) => (
+                  <LensOption
+                    key={category}
+                    type="checkbox"
+                    checked={selectedCategories.has(category)}
+                    onChange={() =>
+                      setSelectedCategories((current) => toggleKey(current, category))
+                    }
+                    label={localizedCategory(category)}
+                  />
+                ))}
+              </LensFieldset>
+            )}
+
+            {metrics.length > 0 && (
+              <LensFieldset
+                legend={fbt(
+                  "Métrique affichée",
+                  "Legend of the metric selector group in the lens panel",
+                )}
+              >
+                <LensMetricOptions
+                  metrics={visibleMetrics}
+                  selectedMetricKey={selectedMetricKey}
+                  onSelectMetric={onSelectMetric}
+                  filterKey={filterKey}
+                  locale={locale}
                 />
-              ))}
-            </LensFieldset>
+              </LensFieldset>
+            )}
 
             <section className="mt-5" aria-labelledby="lens-criteria-label">
               <h3 id="lens-criteria-label" className="text-xs font-semibold text-text-secondary">
@@ -210,34 +311,6 @@ export function LensPanel({ criteria, onRemoveCriterion, open, onClose }: LensPa
                 </fbt>
               </p>
             </section>
-
-            <LensFieldset
-              legend={fbt("Fond de carte", "Legend of the basemap style group in the lens panel")}
-            >
-              {LENS_BASEMAP_STYLES.map((style) => (
-                <LensOption
-                  key={style}
-                  type="radio"
-                  name="lens-basemap"
-                  shape="dot"
-                  checked={basemapStyle === style}
-                  onChange={() => setBasemapStyle(style)}
-                  label={style}
-                />
-              ))}
-            </LensFieldset>
-
-            <LensFieldset legend={fbt("Couches", "Legend of the layer group in the lens panel")}>
-              {LENS_LAYERS.map((layer) => (
-                <LensOption
-                  key={layer.key}
-                  type="checkbox"
-                  checked={selectedLayers.has(layer.key)}
-                  onChange={() => setSelectedLayers((current) => toggleKey(current, layer.key))}
-                  label={layer.label()}
-                />
-              ))}
-            </LensFieldset>
           </div>
 
           {hasMore && (

@@ -90,204 +90,378 @@
     },
     {
       "hashToLeaf": {
-        "RhKKygaH4G/v+0eDciNiKg==": {
-          "desc": "Lens filter category: mobility",
-          "text": "Mobilité"
+        "x6B5uk3LcAD3ayzExlj05Q==": {
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 32,
-          "column": 34,
-          "index": 1537
+          "line": 8,
+          "column": 4,
+          "index": 273
         },
         "end": {
-          "line": 32,
+          "line": 8,
           "column": 83,
-          "index": 1586
+          "index": 352
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens filter category: mobility",
-          "text": "Mobilité"
+          "desc": "Unit of population density, people per square kilometre",
+          "text": "habitants/km²"
         }
       }
     },
     {
       "hashToLeaf": {
-        "E0VtZmvDKoWI/1At1hCjwg==": {
-          "desc": "Lens filter category: local life",
+        "9AlhLd3XmlzsdpTPRDOiJA==": {
+          "desc": "Metric category: shops, cafés, culture and nightlife",
           "text": "Vie locale"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 33,
-          "column": 36,
-          "index": 1626
+          "line": 12,
+          "column": 19,
+          "index": 454
         },
         "end": {
-          "line": 33,
-          "column": 89,
-          "index": 1679
+          "line": 12,
+          "column": 92,
+          "index": 527
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens filter category: local life",
+          "desc": "Metric category: shops, cafés, culture and nightlife",
           "text": "Vie locale"
         }
       }
     },
     {
       "hashToLeaf": {
-        "6RY/SWc3y5TuHG4gwxHjYg==": {
-          "desc": "Lens filter category: nature",
-          "text": "Nature"
+        "WlQyT5l5Ktvn5aVwow37MQ==": {
+          "desc": "Metric category: schools and education",
+          "text": "Éducation"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 34,
-          "column": 32,
-          "index": 1715
+          "line": 13,
+          "column": 19,
+          "index": 548
         },
         "end": {
-          "line": 34,
+          "line": 13,
           "column": 77,
-          "index": 1760
+          "index": 606
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens filter category: nature",
-          "text": "Nature"
+          "desc": "Metric category: schools and education",
+          "text": "Éducation"
         }
       }
     },
     {
       "hashToLeaf": {
-        "KIQ12L1WCVj/uT2kMmZxKA==": {
-          "desc": "Lens filter category: services",
-          "text": "Services"
+        "QzSgQ+5bo624IBa6UvvN5w==": {
+          "desc": "Metric category: greenery and environment",
+          "text": "Environnement"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 35,
-          "column": 34,
-          "index": 1798
+          "line": 14,
+          "column": 21,
+          "index": 629
         },
         "end": {
-          "line": 35,
-          "column": 83,
-          "index": 1847
+          "line": 14,
+          "column": 86,
+          "index": 694
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens filter category: services",
-          "text": "Services"
+          "desc": "Metric category: greenery and environment",
+          "text": "Environnement"
         }
       }
     },
     {
       "hashToLeaf": {
-        "Ev6SgGb6AhY/aydwJ0aLaw==": {
-          "desc": "Lens layer: metro",
-          "text": "Métro"
+        "Trdue90Itw3nj87XOEEOOw==": {
+          "desc": "Metric category: healthcare",
+          "text": "Santé"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 39,
-          "column": 31,
-          "index": 1908
+          "line": 15,
+          "column": 16,
+          "index": 712
         },
         "end": {
-          "line": 39,
+          "line": 15,
+          "column": 59,
+          "index": 755
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Metric category: healthcare",
+          "text": "Santé"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "LozGih/MvXEroPwOkt51EA==": {
+          "desc": "Metric category: urban form and land use",
+          "text": "Forme urbaine"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 15,
+          "index": 772
+        },
+        "end": {
+          "line": 16,
+          "column": 79,
+          "index": 836
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Metric category: urban form and land use",
+          "text": "Forme urbaine"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "QibTgF1eYwkD9/zN/4HAPg==": {
+          "desc": "Metric category: population",
+          "text": "Population"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 17,
+          "column": 16,
+          "index": 854
+        },
+        "end": {
+          "line": 17,
           "column": 64,
-          "index": 1941
+          "index": 902
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens layer: metro",
-          "text": "Métro"
+          "desc": "Metric category: population",
+          "text": "Population"
         }
       }
     },
     {
       "hashToLeaf": {
-        "Z2lriz15KkNPSWvxfHXU1w==": {
-          "desc": "Lens layer: parks",
-          "text": "Parcs"
+        "tj/rAPtmIyznFVxTIOPwcw==": {
+          "desc": "Metric category: transport and walkability",
+          "text": "Mobilité"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 40,
-          "column": 31,
-          "index": 1976
+          "line": 18,
+          "column": 18,
+          "index": 922
         },
         "end": {
-          "line": 40,
-          "column": 64,
-          "index": 2009
+          "line": 18,
+          "column": 79,
+          "index": 983
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens layer: parks",
-          "text": "Parcs"
+          "desc": "Metric category: transport and walkability",
+          "text": "Mobilité"
         }
       }
     },
     {
       "hashToLeaf": {
-        "4S96U+dLdyKaqVrzR0ETpQ==": {
-          "desc": "Lens layer: isochrone",
-          "text": "Isochrone"
+        "zpNqc/6xR9dNVY7rewwUVg==": {
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
         }
       },
-      "filename": "src/features/map-view/lens-panel.tsx",
+      "filename": "src/features/metrics/metric-presentation.ts",
       "loc": {
         "start": {
-          "line": 41,
-          "column": 35,
-          "index": 2048
+          "line": 64,
+          "column": 13,
+          "index": 2225
         },
         "end": {
-          "line": 41,
-          "column": 76,
-          "index": 2089
+          "line": 64,
+          "column": 95,
+          "index": 2307
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Lens layer: isochrone",
-          "text": "Isochrone"
+          "desc": "Quality label for a value inherited from the district",
+          "text": "Valeur du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ZEpxnfIpzQTWtJXICac33g==": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 66,
+          "column": 13,
+          "index": 2344
+        },
+        "end": {
+          "line": 66,
+          "column": 70,
+          "index": 2401
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an estimated value",
+          "text": "Estimation"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2/dpvuWAslSHufnbvTINuw==": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 68,
+          "column": 13,
+          "index": 2434
+        },
+        "end": {
+          "line": 68,
+          "column": 70,
+          "index": 2491
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a stale value",
+          "text": "Donnée ancienne"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "or9CUYOklLCg6LVKUNQujg==": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 70,
+          "column": 13,
+          "index": 2531
+        },
+        "end": {
+          "line": 70,
+          "column": 84,
+          "index": 2602
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for a value with low coverage",
+          "text": "Couverture faible"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Uc0U2RxmH8MKBSgXAxeHaQ==": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
+        }
+      },
+      "filename": "src/features/metrics/metric-presentation.ts",
+      "loc": {
+        "start": {
+          "line": 72,
+          "column": 13,
+          "index": 2632
+        },
+        "end": {
+          "line": 72,
+          "column": 65,
+          "index": 2684
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Quality label for an observed value",
+          "text": "Mesure"
         }
       }
     },
@@ -301,14 +475,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 149,
           "column": 16,
-          "index": 4418
+          "index": 4481
         },
         "end": {
-          "line": 123,
+          "line": 149,
           "column": 72,
-          "index": 4474
+          "index": 4537
         }
       },
       "project": "",
@@ -330,14 +504,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 124,
+          "line": 150,
           "column": 21,
-          "index": 4497
+          "index": 4560
         },
         "end": {
-          "line": 124,
+          "line": 150,
           "column": 94,
-          "index": 4570
+          "index": 4633
         }
       },
       "project": "",
@@ -359,14 +533,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 160,
+          "line": 186,
           "column": 16,
-          "index": 6204
+          "index": 6265
         },
         "end": {
-          "line": 160,
+          "line": 186,
           "column": 81,
-          "index": 6269
+          "index": 6330
         }
       },
       "project": "",
@@ -380,30 +554,30 @@
     },
     {
       "hashToLeaf": {
-        "KlaJ0PxFct/htjCZo79G+g==": {
-          "desc": "Note explaining that no sample data has a time dimension",
-          "text": "Période masquée : aucune donnée en cours n'a de dimension temporelle"
+        "vLGw8Rx7YW3hWqWw9P/JqQ==": {
+          "desc": "Label of the observation date in the lens panel",
+          "text": "Date d'observation :"
         }
       },
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 165,
+          "line": 191,
           "column": 14,
-          "index": 6456
+          "index": 6519
         },
         "end": {
-          "line": 167,
-          "column": 20,
-          "index": 6631
+          "line": 191,
+          "column": 100,
+          "index": 6605
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Note explaining that no sample data has a time dimension",
-          "text": "Période masquée : aucune donnée en cours n'a de dimension temporelle"
+          "desc": "Label of the observation date in the lens panel",
+          "text": "Date d'observation :"
         }
       }
     },
@@ -417,14 +591,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 171,
-          "column": 22,
-          "index": 6698
+          "line": 197,
+          "column": 24,
+          "index": 6755
         },
         "end": {
-          "line": 171,
-          "column": 96,
-          "index": 6772
+          "line": 197,
+          "column": 98,
+          "index": 6829
         }
       },
       "project": "",
@@ -438,6 +612,35 @@
     },
     {
       "hashToLeaf": {
+        "y91elk8+J3dQasQFSlbjvA==": {
+          "desc": "Legend of the metric selector group in the lens panel",
+          "text": "Métrique affichée"
+        }
+      },
+      "filename": "src/features/map-view/lens-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 215,
+          "column": 24,
+          "index": 7436
+        },
+        "end": {
+          "line": 218,
+          "column": 17,
+          "index": 7572
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Legend of the metric selector group in the lens panel",
+          "text": "Métrique affichée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "qdL2+sL0gU7Hc4lddEke5w==": {
           "desc": "Legend of the active criteria group in the lens panel",
           "text": "Critères"
@@ -446,14 +649,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 188,
+          "line": 237,
           "column": 16,
-          "index": 7446
+          "index": 8319
         },
         "end": {
-          "line": 188,
+          "line": 237,
           "column": 96,
-          "index": 7526
+          "index": 8399
         }
       },
       "project": "",
@@ -475,14 +678,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 192,
+          "line": 241,
           "column": 18,
-          "index": 7711
+          "index": 8584
         },
         "end": {
-          "line": 194,
+          "line": 243,
           "column": 24,
-          "index": 7876
+          "index": 8749
         }
       },
       "project": "",
@@ -504,14 +707,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 205,
+          "line": 254,
           "column": 16,
-          "index": 8299
+          "index": 9172
         },
         "end": {
-          "line": 205,
+          "line": 254,
           "column": 96,
-          "index": 8379
+          "index": 9252
         }
       },
       "project": "",
@@ -533,14 +736,14 @@
       "filename": "src/features/map-view/lens-panel.tsx",
       "loc": {
         "start": {
-          "line": 208,
+          "line": 257,
           "column": 16,
-          "index": 8511
+          "index": 9384
         },
         "end": {
-          "line": 210,
+          "line": 259,
           "column": 22,
-          "index": 8658
+          "index": 9531
         }
       },
       "project": "",
@@ -554,93 +757,6 @@
     },
     {
       "hashToLeaf": {
-        "R56DH+uA4v3NOU5K0JdzBg==": {
-          "desc": "Legend of the basemap style group in the lens panel",
-          "text": "Fond de carte"
-        }
-      },
-      "filename": "src/features/map-view/lens-panel.tsx",
-      "loc": {
-        "start": {
-          "line": 215,
-          "column": 22,
-          "index": 8750
-        },
-        "end": {
-          "line": 215,
-          "column": 97,
-          "index": 8825
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Legend of the basemap style group in the lens panel",
-          "text": "Fond de carte"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "7O+xvX1MIhjJQNhoOjXSyw==": {
-          "desc": "Legend of the layer group in the lens panel",
-          "text": "Couches"
-        }
-      },
-      "filename": "src/features/map-view/lens-panel.tsx",
-      "loc": {
-        "start": {
-          "line": 230,
-          "column": 34,
-          "index": 9291
-        },
-        "end": {
-          "line": 230,
-          "column": 95,
-          "index": 9352
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Legend of the layer group in the lens panel",
-          "text": "Couches"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "x6B5uk3LcAD3ayzExlj05Q==": {
-          "desc": "Unit of population density, people per square kilometre",
-          "text": "habitants/km²"
-        }
-      },
-      "filename": "src/features/map-view/localized-unit.ts",
-      "loc": {
-        "start": {
-          "line": 5,
-          "column": 4,
-          "index": 151
-        },
-        "end": {
-          "line": 5,
-          "column": 83,
-          "index": 230
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit of population density, people per square kilometre",
-          "text": "habitants/km²"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "jSaV09hGCKW0jLG6Nz3pPA==": {
           "desc": "Title of the map region and its accessible name",
           "text": "Carte des quartiers"
@@ -649,14 +765,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 63,
+          "line": 76,
           "column": 19,
-          "index": 2062
+          "index": 2539
         },
         "end": {
-          "line": 63,
+          "line": 76,
           "column": 96,
-          "index": 2139
+          "index": 2616
         }
       },
       "project": "",
@@ -678,14 +794,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 64,
+          "line": 77,
           "column": 21,
-          "index": 2162
+          "index": 2639
         },
         "end": {
-          "line": 64,
+          "line": 77,
           "column": 84,
-          "index": 2225
+          "index": 2702
         }
       },
       "project": "",
@@ -707,14 +823,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 65,
+          "line": 78,
           "column": 23,
-          "index": 2250
+          "index": 2727
         },
         "end": {
-          "line": 65,
+          "line": 78,
           "column": 94,
-          "index": 2321
+          "index": 2798
         }
       },
       "project": "",
@@ -736,14 +852,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 80,
           "column": 21,
-          "index": 2344
+          "index": 2822
         },
         "end": {
-          "line": 69,
+          "line": 83,
           "column": 3,
-          "index": 2457
+          "index": 2935
         }
       },
       "project": "",
@@ -765,14 +881,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 141,
+          "line": 185,
           "column": 10,
-          "index": 4777
+          "index": 5918
         },
         "end": {
-          "line": 141,
+          "line": 185,
           "column": 76,
-          "index": 4843
+          "index": 5984
         }
       },
       "project": "",
@@ -794,14 +910,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 149,
+          "line": 193,
           "column": 10,
-          "index": 5060
+          "index": 6201
         },
         "end": {
-          "line": 149,
+          "line": 193,
           "column": 69,
-          "index": 5119
+          "index": 6260
         }
       },
       "project": "",
@@ -823,14 +939,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 172,
+          "line": 216,
           "column": 14,
-          "index": 5994
+          "index": 7135
         },
         "end": {
-          "line": 172,
+          "line": 216,
           "column": 68,
-          "index": 6048
+          "index": 7189
         }
       },
       "project": "",
@@ -852,14 +968,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 183,
+          "line": 227,
           "column": 14,
-          "index": 6322
+          "index": 7463
         },
         "end": {
-          "line": 183,
+          "line": 227,
           "column": 89,
-          "index": 6397
+          "index": 7538
         }
       },
       "project": "",
@@ -881,14 +997,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 197,
+          "line": 241,
           "column": 18,
-          "index": 7062
+          "index": 8314
         },
         "end": {
-          "line": 197,
+          "line": 241,
           "column": 95,
-          "index": 7139
+          "index": 8391
         }
       },
       "project": "",
@@ -902,59 +1018,30 @@
     },
     {
       "hashToLeaf": {
-        "AVgeLV2AA+oklppQ68comg==": {
-          "desc": "Button that recenters the map on Istanbul",
-          "text": "Recentrer sur Istanbul"
+        "JxtyM5jvNrZ6ni45llwRpg==": {
+          "desc": "Button that recenters the map on the loaded neighborhoods",
+          "text": "Recentrer sur la ville"
         }
       },
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 212,
+          "line": 256,
           "column": 14,
-          "index": 7853
+          "index": 9213
         },
         "end": {
-          "line": 212,
-          "column": 96,
-          "index": 7935
+          "line": 258,
+          "column": 20,
+          "index": 9343
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Button that recenters the map on Istanbul",
-          "text": "Recentrer sur Istanbul"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "/vgNH23LRHlIXqAx/LELmQ==": {
-          "desc": "Shown when the selected neighborhood has no value",
-          "text": "Pas de donnée"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 223,
-          "column": 22,
-          "index": 8451
-        },
-        "end": {
-          "line": 223,
-          "column": 95,
-          "index": 8524
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Shown when the selected neighborhood has no value",
-          "text": "Pas de donnée"
+          "desc": "Button that recenters the map on the loaded neighborhoods",
+          "text": "Recentrer sur la ville"
         }
       }
     },
@@ -968,14 +1055,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 235,
+          "line": 274,
           "column": 16,
-          "index": 9170
+          "index": 9956
         },
         "end": {
-          "line": 237,
+          "line": 276,
           "column": 22,
-          "index": 9339
+          "index": 10125
         }
       },
       "project": "",
@@ -997,14 +1084,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 242,
+          "line": 281,
           "column": 16,
-          "index": 9558
+          "index": 10344
         },
         "end": {
-          "line": 244,
+          "line": 283,
           "column": 22,
-          "index": 9684
+          "index": 10470
         }
       },
       "project": "",
@@ -1026,14 +1113,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 251,
+          "line": 290,
           "column": 16,
-          "index": 10034
+          "index": 10820
         },
         "end": {
-          "line": 251,
+          "line": 290,
           "column": 90,
-          "index": 10108
+          "index": 10894
         }
       },
       "project": "",
@@ -1055,14 +1142,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 255,
+          "line": 294,
           "column": 16,
-          "index": 10232
+          "index": 11018
         },
         "end": {
-          "line": 255,
+          "line": 294,
           "column": 89,
-          "index": 10305
+          "index": 11091
         }
       },
       "project": "",
@@ -1076,64 +1163,6 @@
     },
     {
       "hashToLeaf": {
-        "7IKaZK88KVLe3WDGLbUfiA==": {
-          "desc": "Low end of the score ramp legend",
-          "text": "Faible"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 287,
-          "column": 12,
-          "index": 11572
-        },
-        "end": {
-          "line": 287,
-          "column": 69,
-          "index": 11629
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Low end of the score ramp legend",
-          "text": "Faible"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "8kW+AkhR64BD8RSqXwdxgA==": {
-          "desc": "High end of the score ramp legend",
-          "text": "Élevé"
-        }
-      },
-      "filename": "src/features/map-view/map-view-content.tsx",
-      "loc": {
-        "start": {
-          "line": 293,
-          "column": 12,
-          "index": 12047
-        },
-        "end": {
-          "line": 293,
-          "column": 69,
-          "index": 12104
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "High end of the score ramp legend",
-          "text": "Élevé"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "7N8K0r3NSotrI3syB0h3Gw==": {
           "desc": "Legend label for neighborhoods without data",
           "text": "Pas de donnée"
@@ -1142,14 +1171,14 @@
       "filename": "src/features/map-view/map-view-content.tsx",
       "loc": {
         "start": {
-          "line": 297,
+          "line": 370,
           "column": 12,
-          "index": 12277
+          "index": 14023
         },
         "end": {
-          "line": 297,
+          "line": 370,
           "column": 87,
-          "index": 12352
+          "index": 14098
         }
       },
       "project": "",
@@ -1163,146 +1192,581 @@
     },
     {
       "hashToLeaf": {
-        "zpNqc/6xR9dNVY7rewwUVg==": {
-          "desc": "Quality label for a value inherited from the district",
-          "text": "Valeur du district"
+        "EeSX78ApL5C53MlZKzDsJg==": {
+          "desc": "Shown while every metric of the selected neighborhood is loading",
+          "text": "Chargement des données du quartier…"
         }
       },
-      "filename": "src/features/map-view/map-view-content.tsx",
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
       "loc": {
         "start": {
-          "line": 333,
-          "column": 13,
-          "index": 13396
+          "line": 44,
+          "column": 10,
+          "index": 1355
         },
         "end": {
-          "line": 333,
-          "column": 95,
-          "index": 13478
+          "line": 46,
+          "column": 16,
+          "index": 1497
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Quality label for a value inherited from the district",
-          "text": "Valeur du district"
+          "desc": "Shown while every metric of the selected neighborhood is loading",
+          "text": "Chargement des données du quartier…"
         }
       }
     },
     {
       "hashToLeaf": {
-        "ZEpxnfIpzQTWtJXICac33g==": {
-          "desc": "Quality label for an estimated value",
-          "text": "Estimation"
+        "+FhW5Vf3O6Dtx+Zz9AnCVQ==": {
+          "desc": "Shown when the metrics of the selected neighborhood cannot be loaded",
+          "text": "Les données du quartier n'ont pas pu être chargées."
         }
       },
-      "filename": "src/features/map-view/map-view-content.tsx",
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
       "loc": {
         "start": {
-          "line": 335,
-          "column": 13,
-          "index": 13515
+          "line": 53,
+          "column": 12,
+          "index": 1661
         },
         "end": {
-          "line": 335,
-          "column": 70,
-          "index": 13572
+          "line": 55,
+          "column": 18,
+          "index": 1827
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Quality label for an estimated value",
-          "text": "Estimation"
+          "desc": "Shown when the metrics of the selected neighborhood cannot be loaded",
+          "text": "Les données du quartier n'ont pas pu être chargées."
         }
       }
     },
     {
       "hashToLeaf": {
-        "2/dpvuWAslSHufnbvTINuw==": {
-          "desc": "Quality label for a stale value",
-          "text": "Donnée ancienne"
+        "dqu0+dR68tvfkpeXMH7r7w==": {
+          "desc": "Retry loading the selected neighborhood metrics",
+          "text": "Réessayer"
         }
       },
-      "filename": "src/features/map-view/map-view-content.tsx",
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
       "loc": {
         "start": {
-          "line": 337,
-          "column": 13,
-          "index": 13605
+          "line": 58,
+          "column": 12,
+          "index": 1938
         },
         "end": {
-          "line": 337,
-          "column": 70,
-          "index": 13662
+          "line": 58,
+          "column": 87,
+          "index": 2013
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Quality label for a stale value",
-          "text": "Donnée ancienne"
+          "desc": "Retry loading the selected neighborhood metrics",
+          "text": "Réessayer"
         }
       }
     },
     {
       "hashToLeaf": {
-        "or9CUYOklLCg6LVKUNQujg==": {
-          "desc": "Quality label for a value with low coverage",
-          "text": "Couverture faible"
+        "5h3NnQae5oBYM+LZhfXCEw==": {
+          "desc": "Label of the field filtering the selected neighborhood metrics by name",
+          "text": "Filtrer les métriques"
         }
       },
-      "filename": "src/features/map-view/map-view-content.tsx",
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
       "loc": {
         "start": {
-          "line": 339,
-          "column": 13,
-          "index": 13702
+          "line": 67,
+          "column": 14,
+          "index": 2207
         },
         "end": {
-          "line": 339,
-          "column": 84,
-          "index": 13773
+          "line": 69,
+          "column": 20,
+          "index": 2349
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Quality label for a value with low coverage",
-          "text": "Couverture faible"
+          "desc": "Label of the field filtering the selected neighborhood metrics by name",
+          "text": "Filtrer les métriques"
         }
       }
     },
     {
       "hashToLeaf": {
-        "Uc0U2RxmH8MKBSgXAxeHaQ==": {
-          "desc": "Quality label for an observed value",
-          "text": "Mesure"
+        "rxpISH/HvXJsl7QBku2L8Q==": {
+          "desc": "Placeholder of the field filtering the neighborhood metrics by name",
+          "text": "Filtrer les métriques"
         }
       },
-      "filename": "src/features/map-view/map-view-content.tsx",
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
       "loc": {
         "start": {
-          "line": 341,
-          "column": 13,
-          "index": 13803
+          "line": 75,
+          "column": 27,
+          "index": 2537
         },
         "end": {
-          "line": 341,
-          "column": 65,
-          "index": 13855
+          "line": 78,
+          "column": 15,
+          "index": 2685
         }
       },
       "project": "",
       "jsfbt": {
         "m": [],
         "t": {
-          "desc": "Quality label for an observed value",
-          "text": "Mesure"
+          "desc": "Placeholder of the field filtering the neighborhood metrics by name",
+          "text": "Filtrer les métriques"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "5sLBNDx6A1wcbH9beEijbw==": {
+          "desc": "Count of metrics shown in the selected neighborhood panel",
+          "text": "Métriques affichées :"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 83,
+          "column": 12,
+          "index": 2996
+        },
+        "end": {
+          "line": 85,
+          "column": 18,
+          "index": 3121
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Count of metrics shown in the selected neighborhood panel",
+          "text": "Métriques affichées :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "AOeathNT+OMAEaV2fXektw==": {
+          "desc": "Hint explaining that a metric row opens its source and date",
+          "text": "détails au clic"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 90,
+          "column": 12,
+          "index": 3274
+        },
+        "end": {
+          "line": 92,
+          "column": 18,
+          "index": 3395
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Hint explaining that a metric row opens its source and date",
+          "text": "détails au clic"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "PzX3O/b+mRESU/OpG7Ypgg==": {
+          "desc": "Shown when the neighborhood metric filter matches nothing",
+          "text": "Aucune métrique ne correspond à ce filtre."
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 103,
+          "column": 14,
+          "index": 3727
+        },
+        "end": {
+          "line": 105,
+          "column": 20,
+          "index": 3877
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when the neighborhood metric filter matches nothing",
+          "text": "Aucune métrique ne correspond à ce filtre."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "I+5u1XNY0Eh5t4BonsSuOg==": {
+          "desc": "Hint shown when no neighborhood is selected on the map",
+          "text": "Clique un quartier sur la carte ou choisis-le dans la liste."
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 113,
+          "column": 10,
+          "index": 4046
+        },
+        "end": {
+          "line": 115,
+          "column": 16,
+          "index": 4203
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Hint shown when no neighborhood is selected on the map",
+          "text": "Clique un quartier sur la carte ou choisis-le dans la liste."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "smjeXytRu3GL28gcCu9xEg==": {
+          "desc": "Shown when a neighborhood metric has no source name",
+          "text": "Source inconnue"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 152,
+          "column": 14,
+          "index": 5723
+        },
+        "end": {
+          "line": 152,
+          "column": 99,
+          "index": 5808
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when a neighborhood metric has no source name",
+          "text": "Source inconnue"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7puORYtI1ZFbPqPZ5R1ZVw==": {
+          "desc": "Observation date label of a neighborhood metric",
+          "text": "Observation :"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 156,
+          "column": 12,
+          "index": 5865
+        },
+        "end": {
+          "line": 156,
+          "column": 91,
+          "index": 5944
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Observation date label of a neighborhood metric",
+          "text": "Observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "8fkhfAZtOCPWqgfZTVxCLg==": {
+          "desc": "Reference period label of a neighborhood metric",
+          "text": "Période :"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 161,
+          "column": 16,
+          "index": 6117
+        },
+        "end": {
+          "line": 161,
+          "column": 91,
+          "index": 6192
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Reference period label of a neighborhood metric",
+          "text": "Période :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "2+8bQRgT8Fq33dzet8ALfg==": {
+          "desc": "Label of the normalized value drawn as a bar under the metric",
+          "text": "Valeur normalisée :"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 168,
+          "column": 14,
+          "index": 6372
+        },
+        "end": {
+          "line": 170,
+          "column": 20,
+          "index": 6503
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the normalized value drawn as a bar under the metric",
+          "text": "Valeur normalisée :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ygmbqEfYzVhq5+Eff8o0oQ==": {
+          "desc": "Shown when a selected neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      },
+      "filename": "src/features/map-view/neighborhood-metrics-panel.tsx",
+      "loc": {
+        "start": {
+          "line": 190,
+          "column": 10,
+          "index": 7011
+        },
+        "end": {
+          "line": 192,
+          "column": 16,
+          "index": 7127
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when a selected neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "hmj++EBiWQmV8NTY2zy/0g==": {
+          "desc": "Title of the chat entry card on the home page",
+          "text": "Chat"
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 13,
+          "index": 215
+        },
+        "end": {
+          "line": 8,
+          "column": 73,
+          "index": 275
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the chat entry card on the home page",
+          "text": "Chat"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "VCZX7qnWz2d80qLA8VCIwA==": {
+          "desc": "Title of the map entry card on the home page",
+          "text": "Carte"
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 13,
+          "index": 306
+        },
+        "end": {
+          "line": 10,
+          "column": 73,
+          "index": 366
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the map entry card on the home page",
+          "text": "Carte"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+SjfJaO2HumKZZtE7QoGBQ==": {
+          "desc": "Title of the data entry card on the home page",
+          "text": "Données"
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 13,
+          "index": 398
+        },
+        "end": {
+          "line": 12,
+          "column": 76,
+          "index": 461
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the data entry card on the home page",
+          "text": "Données"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "ThsQMZIVbJpv7wwGOSKoJA==": {
+          "desc": "Description of the chat entry card on the home page",
+          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 19,
+          "column": 13,
+          "index": 588
+        },
+        "end": {
+          "line": 22,
+          "column": 7,
+          "index": 730
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the chat entry card on the home page",
+          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "DSx+lhDiROLLSOj6vmoqZQ==": {
+          "desc": "Description of the map entry card on the home page",
+          "text": "Les quartiers colorés selon tes propres critères."
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 13,
+          "index": 761
+        },
+        "end": {
+          "line": 27,
+          "column": 7,
+          "index": 896
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the map entry card on the home page",
+          "text": "Les quartiers colorés selon tes propres critères."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "dzEPxORh2kpnwmjCocbMHg==": {
+          "desc": "Description of the data entry card on the home page",
+          "text": "Valeurs brutes, unités et sources, colonne par colonne."
+        }
+      },
+      "filename": "src/features/home-view/entry-copy.ts",
+      "loc": {
+        "start": {
+          "line": 29,
+          "column": 13,
+          "index": 928
+        },
+        "end": {
+          "line": 32,
+          "column": 7,
+          "index": 1070
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Description of the data entry card on the home page",
+          "text": "Valeurs brutes, unités et sources, colonne par colonne."
         }
       }
     },
@@ -1316,14 +1780,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 17,
+          "line": 16,
           "column": 6,
-          "index": 454
+          "index": 466
         },
         "end": {
-          "line": 20,
+          "line": 19,
           "column": 7,
-          "index": 594
+          "index": 606
         }
       },
       "project": "",
@@ -1345,14 +1809,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 21,
+          "line": 20,
           "column": 19,
-          "index": 615
+          "index": 627
         },
         "end": {
-          "line": 21,
+          "line": 20,
           "column": 84,
-          "index": 680
+          "index": 692
         }
       },
       "project": "",
@@ -1374,14 +1838,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 28,
+          "line": 27,
           "column": 6,
-          "index": 823
+          "index": 836
         },
         "end": {
-          "line": 31,
+          "line": 30,
           "column": 7,
-          "index": 972
+          "index": 985
         }
       },
       "project": "",
@@ -1403,14 +1867,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 32,
+          "line": 31,
           "column": 19,
-          "index": 993
+          "index": 1006
         },
         "end": {
-          "line": 32,
+          "line": 31,
           "column": 88,
-          "index": 1062
+          "index": 1075
         }
       },
       "project": "",
@@ -1432,14 +1896,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 39,
+          "line": 38,
           "column": 6,
-          "index": 1208
+          "index": 1222
         },
         "end": {
-          "line": 42,
+          "line": 41,
           "column": 7,
-          "index": 1347
+          "index": 1361
         }
       },
       "project": "",
@@ -1461,14 +1925,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 43,
+          "line": 42,
           "column": 19,
-          "index": 1368
+          "index": 1382
         },
         "end": {
-          "line": 43,
+          "line": 42,
           "column": 97,
-          "index": 1446
+          "index": 1460
         }
       },
       "project": "",
@@ -1482,180 +1946,6 @@
     },
     {
       "hashToLeaf": {
-        "hmj++EBiWQmV8NTY2zy/0g==": {
-          "desc": "Title of the chat entry card on the home page",
-          "text": "Chat"
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 52,
-          "column": 13,
-          "index": 1644
-        },
-        "end": {
-          "line": 52,
-          "column": 73,
-          "index": 1704
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Title of the chat entry card on the home page",
-          "text": "Chat"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "VCZX7qnWz2d80qLA8VCIwA==": {
-          "desc": "Title of the map entry card on the home page",
-          "text": "Carte"
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 54,
-          "column": 13,
-          "index": 1735
-        },
-        "end": {
-          "line": 54,
-          "column": 73,
-          "index": 1795
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Title of the map entry card on the home page",
-          "text": "Carte"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "+SjfJaO2HumKZZtE7QoGBQ==": {
-          "desc": "Title of the data entry card on the home page",
-          "text": "Données"
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 56,
-          "column": 13,
-          "index": 1827
-        },
-        "end": {
-          "line": 56,
-          "column": 76,
-          "index": 1890
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Title of the data entry card on the home page",
-          "text": "Données"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "ThsQMZIVbJpv7wwGOSKoJA==": {
-          "desc": "Description of the chat entry card on the home page",
-          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 63,
-          "column": 13,
-          "index": 2010
-        },
-        "end": {
-          "line": 66,
-          "column": 7,
-          "index": 2152
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Description of the chat entry card on the home page",
-          "text": "Écris ce que tu cherches, reçois des pistes expliquées."
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "DSx+lhDiROLLSOj6vmoqZQ==": {
-          "desc": "Description of the map entry card on the home page",
-          "text": "Les quartiers colorés selon tes propres critères."
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 68,
-          "column": 13,
-          "index": 2183
-        },
-        "end": {
-          "line": 71,
-          "column": 7,
-          "index": 2318
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Description of the map entry card on the home page",
-          "text": "Les quartiers colorés selon tes propres critères."
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "dzEPxORh2kpnwmjCocbMHg==": {
-          "desc": "Description of the data entry card on the home page",
-          "text": "Valeurs brutes, unités et sources, colonne par colonne."
-        }
-      },
-      "filename": "src/features/home-view/home-view.tsx",
-      "loc": {
-        "start": {
-          "line": 73,
-          "column": 13,
-          "index": 2350
-        },
-        "end": {
-          "line": 76,
-          "column": 7,
-          "index": 2492
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Description of the data entry card on the home page",
-          "text": "Valeurs brutes, unités et sources, colonne par colonne."
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "isOK3HU85VpYUjq2jS9XTg==": {
           "desc": "Headline of the home page",
           "text": "Trouve le quartier qui te ressemble."
@@ -1664,14 +1954,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 84,
+          "line": 52,
           "column": 8,
-          "index": 2797
+          "index": 1849
         },
         "end": {
-          "line": 84,
+          "line": 52,
           "column": 88,
-          "index": 2877
+          "index": 1929
         }
       },
       "project": "",
@@ -1693,14 +1983,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 87,
+          "line": 55,
           "column": 8,
-          "index": 2987
+          "index": 2039
         },
         "end": {
-          "line": 90,
+          "line": 58,
           "column": 14,
-          "index": 3167
+          "index": 2219
         }
       },
       "project": "",
@@ -1722,14 +2012,14 @@
       "filename": "src/features/home-view/home-view.tsx",
       "loc": {
         "start": {
-          "line": 94,
+          "line": 62,
           "column": 10,
-          "index": 3316
+          "index": 2368
         },
         "end": {
-          "line": 94,
+          "line": 62,
           "column": 81,
-          "index": 3387
+          "index": 2439
         }
       },
       "project": "",
@@ -1743,312 +2033,22 @@
     },
     {
       "hashToLeaf": {
-        "J6thJMaSahqdigYonXOZBA==": {
-          "desc": "Column header of the cafés per square kilometer",
-          "text": "Cafés"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 33,
-          "column": 18,
-          "index": 1072
-        },
-        "end": {
-          "line": 33,
-          "column": 81,
-          "index": 1135
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the cafés per square kilometer",
-          "text": "Cafés"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "3pm+jSiAKziqh/Y7M60mFA==": {
-          "desc": "Unit suffix of the café density column",
-          "text": "/km²"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 34,
-          "column": 16,
-          "index": 1153
-        },
-        "end": {
-          "line": 34,
-          "column": 69,
-          "index": 1206
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the café density column",
-          "text": "/km²"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "zBo4aaR+KHHvIsOmhz5H6Q==": {
-          "desc": "Column header of the walking distance to the metro",
-          "text": "Métro à pied"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 40,
-          "column": 18,
-          "index": 1356
-        },
-        "end": {
-          "line": 40,
-          "column": 91,
-          "index": 1429
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the walking distance to the metro",
-          "text": "Métro à pied"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "BUjEfKVrbn4pBkYTP7ZaRg==": {
-          "desc": "Unit suffix of the walking distance to the metro column",
-          "text": "min"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 41,
-          "column": 16,
-          "index": 1447
-        },
-        "end": {
-          "line": 41,
-          "column": 85,
-          "index": 1516
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the walking distance to the metro column",
-          "text": "min"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "AuiGZ9KZG79XBfDahxW+gQ==": {
-          "desc": "Column header of the green cover",
-          "text": "Verdure"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 47,
-          "column": 18,
-          "index": 1669
-        },
-        "end": {
-          "line": 47,
-          "column": 68,
-          "index": 1719
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the green cover",
-          "text": "Verdure"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "rV7bs/rHL0cJ0AEZ6vAW2w==": {
-          "desc": "Unit suffix of the green cover column",
-          "text": "%"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 48,
-          "column": 16,
-          "index": 1737
-        },
-        "end": {
-          "line": 48,
-          "column": 65,
-          "index": 1786
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Unit suffix of the green cover column",
-          "text": "%"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "zMZLinNitZ+JlmBvBAUx6w==": {
-          "desc": "Title of the data view",
-          "text": "Valeurs brutes"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 107,
-          "column": 8,
-          "index": 3564
-        },
-        "end": {
-          "line": 107,
-          "column": 63,
-          "index": 3619
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Title of the data view",
-          "text": "Valeurs brutes"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "2jkvby7kc9oKmMDfhn1H+w==": {
-          "desc": "Subtitle of the data view, with the year and the raw-value promise",
-          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 110,
-          "column": 8,
-          "index": 3695
-        },
-        "end": {
-          "line": 112,
-          "column": 14,
-          "index": 3864
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Subtitle of the data view, with the year and the raw-value promise",
-          "text": "Millésime 2024 · valeurs brutes avec unité, sans score composite"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "nB/gx19Kq82h1i7hlBpvIw==": {
-          "desc": "Title of the active criteria group above the raw values table",
-          "text": "Critères actifs"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 118,
-          "column": 12,
-          "index": 4096
-        },
-        "end": {
-          "line": 120,
-          "column": 18,
-          "index": 4219
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Title of the active criteria group above the raw values table",
-          "text": "Critères actifs"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "a/LDD8vWAgWnsecOf/N/SA==": {
-          "desc": "Accessible caption of the raw values table",
-          "text": "Valeurs brutes par quartier : nom, district et un critère par colonne, triable."
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 131,
-          "column": 14,
-          "index": 4642
-        },
-        "end": {
-          "line": 133,
-          "column": 20,
-          "index": 4814
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Accessible caption of the raw values table",
-          "text": "Valeurs brutes par quartier : nom, district et un critère par colonne, triable."
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
         "0KkpLNCYqZCQwzgc7AH3GA==": {
           "desc": "Column header of the neighborhood name",
           "text": "Quartier"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 138,
-          "column": 18,
-          "index": 5082
+          "line": 61,
+          "column": 20,
+          "index": 1836
         },
         "end": {
-          "line": 138,
-          "column": 83,
-          "index": 5147
+          "line": 61,
+          "column": 77,
+          "index": 1893
         }
       },
       "project": "",
@@ -2057,35 +2057,6 @@
         "t": {
           "desc": "Column header of the neighborhood name",
           "text": "Quartier"
-        }
-      }
-    },
-    {
-      "hashToLeaf": {
-        "T150YTHTRegXDT0WB8hLHA==": {
-          "desc": "Column header of the district name",
-          "text": "District"
-        }
-      },
-      "filename": "src/features/data-view/data-view.tsx",
-      "loc": {
-        "start": {
-          "line": 141,
-          "column": 18,
-          "index": 5243
-        },
-        "end": {
-          "line": 141,
-          "column": 79,
-          "index": 5304
-        }
-      },
-      "project": "",
-      "jsfbt": {
-        "m": [],
-        "t": {
-          "desc": "Column header of the district name",
-          "text": "District"
         }
       }
     },
@@ -2096,17 +2067,17 @@
           "text": "Carte"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 171,
-          "column": 20,
-          "index": 6705
+          "line": 107,
+          "column": 10,
+          "index": 3632
         },
         "end": {
-          "line": 171,
-          "column": 86,
-          "index": 6771
+          "line": 107,
+          "column": 76,
+          "index": 3698
         }
       },
       "project": "",
@@ -2125,17 +2096,17 @@
           "text": "Voir sur la carte"
         }
       },
-      "filename": "src/features/data-view/data-view.tsx",
+      "filename": "src/features/data-view/data-table-columns.tsx",
       "loc": {
         "start": {
-          "line": 198,
+          "line": 112,
           "column": 22,
-          "index": 7915
+          "index": 3801
         },
         "end": {
-          "line": 200,
-          "column": 28,
-          "index": 8042
+          "line": 112,
+          "column": 93,
+          "index": 3872
         }
       },
       "project": "",
@@ -2149,6 +2120,992 @@
     },
     {
       "hashToLeaf": {
+        "3O2TDwNvFyzS0mJs6jm+CA==": {
+          "desc": "Accessible label of the data table pagination",
+          "text": "Pagination du tableau des quartiers"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 26,
+          "column": 18,
+          "index": 593
+        },
+        "end": {
+          "line": 29,
+          "column": 7,
+          "index": 709
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the data table pagination",
+          "text": "Pagination du tableau des quartiers"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "LhD6pDikpH2M2UeRfFBtOA==": {
+          "desc": "Label of the current page in the data table pagination",
+          "text": "Page"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 8,
+          "index": 876
+        },
+        "end": {
+          "line": 33,
+          "column": 85,
+          "index": 953
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the current page in the data table pagination",
+          "text": "Page"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "qA+bL6BHLCbO+t4dw7dpLA==": {
+          "desc": "Button showing the previous page of the data table",
+          "text": "Précédent"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 43,
+          "column": 10,
+          "index": 1432
+        },
+        "end": {
+          "line": 43,
+          "column": 88,
+          "index": 1510
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button showing the previous page of the data table",
+          "text": "Précédent"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Q+7EokKG9dOHJtOPz1Q6sw==": {
+          "desc": "Short label of the button returning to the first page of the data table",
+          "text": "Début"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 49,
+          "column": 14,
+          "index": 1757
+        },
+        "end": {
+          "line": 51,
+          "column": 20,
+          "index": 1884
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Short label of the button returning to the first page of the data table",
+          "text": "Début"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "GYgElemEp+ZLvYdz934P7A==": {
+          "desc": "Button returning to the first page of the data table",
+          "text": "Revenir au début"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 54,
+          "column": 14,
+          "index": 1967
+        },
+        "end": {
+          "line": 56,
+          "column": 20,
+          "index": 2086
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button returning to the first page of the data table",
+          "text": "Revenir au début"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "/FWABZ+fb2Q28l7KpvzRtg==": {
+          "desc": "Button showing the next page of the data table",
+          "text": "Suivant"
+        }
+      },
+      "filename": "src/features/data-view/data-table-pagination.tsx",
+      "loc": {
+        "start": {
+          "line": 61,
+          "column": 12,
+          "index": 2243
+        },
+        "end": {
+          "line": 61,
+          "column": 84,
+          "index": 2315
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button showing the next page of the data table",
+          "text": "Suivant"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "fxZzfkWlHJdkeaAUHWEoWA==": {
+          "desc": "Summary of the sources and dates panel under the data table",
+          "text": "Sources et dates"
+        }
+      },
+      "filename": "src/features/data-view/data-table-sources.tsx",
+      "loc": {
+        "start": {
+          "line": 24,
+          "column": 10,
+          "index": 827
+        },
+        "end": {
+          "line": 26,
+          "column": 16,
+          "index": 945
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Summary of the sources and dates panel under the data table",
+          "text": "Sources et dates"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "Ot0LWYk7k/dpaw/e4nh8qA==": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-sources.tsx",
+      "loc": {
+        "start": {
+          "line": 39,
+          "column": 16,
+          "index": 1548
+        },
+        "end": {
+          "line": 39,
+          "column": 90,
+          "index": 1622
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Observation date label in the source panel",
+          "text": "Observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "uVw5UxXqlOY9y1Ns8yHoxQ==": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-sources.tsx",
+      "loc": {
+        "start": {
+          "line": 41,
+          "column": 16,
+          "index": 1694
+        },
+        "end": {
+          "line": 41,
+          "column": 89,
+          "index": 1767
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Retrieval date label in the source panel",
+          "text": "Récupération :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "oj/YgH55vmB1iX02ecrfow==": {
+          "desc": "Label of the search field filtering the raw values table",
+          "text": "Rechercher un quartier"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 42,
+          "column": 10,
+          "index": 1242
+        },
+        "end": {
+          "line": 44,
+          "column": 16,
+          "index": 1363
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the search field filtering the raw values table",
+          "text": "Rechercher un quartier"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "OHgJkl88QN6OmsIwSKrqaw==": {
+          "desc": "Placeholder of the raw values table search field",
+          "text": "Nom du quartier ou du district"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 50,
+          "column": 23,
+          "index": 1538
+        },
+        "end": {
+          "line": 53,
+          "column": 11,
+          "index": 1664
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Placeholder of the raw values table search field",
+          "text": "Nom du quartier ou du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "EEvtKSshXXxBJ7go02umOA==": {
+          "desc": "Label of the metric selector that sorts the data table",
+          "text": "Trier par"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 60,
+          "column": 10,
+          "index": 1876
+        },
+        "end": {
+          "line": 60,
+          "column": 92,
+          "index": 1958
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the metric selector that sorts the data table",
+          "text": "Trier par"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "d1G7U9DXgeLv2l7GpGWmYA==": {
+          "desc": "Alphabetical order option in the data table metric selector",
+          "text": "Ordre alphabétique"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 71,
+          "column": 14,
+          "index": 2573
+        },
+        "end": {
+          "line": 73,
+          "column": 20,
+          "index": 2701
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Alphabetical order option in the data table metric selector",
+          "text": "Ordre alphabétique"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "pXY//p0Pamj+gmT0SpGTYQ==": {
+          "desc": "Accessible label of the display options of the data table",
+          "text": "Affichage du tableau"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 90,
+          "column": 20,
+          "index": 3198
+        },
+        "end": {
+          "line": 93,
+          "column": 9,
+          "index": 3317
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the display options of the data table",
+          "text": "Affichage du tableau"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "xXg2Rt/ejD2qc5u1cIWx3Q==": {
+          "desc": "Button grouping the data table rows by district",
+          "text": "Grouper par district"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 97,
+          "column": 10,
+          "index": 3497
+        },
+        "end": {
+          "line": 97,
+          "column": 96,
+          "index": 3583
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button grouping the data table rows by district",
+          "text": "Grouper par district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+YY1XdK7nfFT4OYxShekow==": {
+          "desc": "Button showing the metric average in each district group",
+          "text": "Moyenne du district"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 100,
+          "column": 10,
+          "index": 3697
+        },
+        "end": {
+          "line": 102,
+          "column": 16,
+          "index": 3815
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button showing the metric average in each district group",
+          "text": "Moyenne du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "3C6K7xX+DqLRUXvX/KWkFQ==": {
+          "desc": "Count of neighborhoods currently displayed in the raw values table",
+          "text": "Quartiers affichés :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-toolbar.tsx",
+      "loc": {
+        "start": {
+          "line": 107,
+          "column": 8,
+          "index": 3948
+        },
+        "end": {
+          "line": 109,
+          "column": 14,
+          "index": 4073
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Count of neighborhoods currently displayed in the raw values table",
+          "text": "Quartiers affichés :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "qD5r4g06eXT755wIcHjLsw==": {
+          "desc": "Title of the data view when the rows are in alphabetical order",
+          "text": "Valeurs par quartier"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 80,
+          "column": 10,
+          "index": 2622
+        },
+        "end": {
+          "line": 82,
+          "column": 16,
+          "index": 2747
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the data view when the rows are in alphabetical order",
+          "text": "Valeurs par quartier"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7Os0vosK56jwQtYuADx3LA==": {
+          "desc": "Title of the data view when the rows are ranked by a metric",
+          "text": "Classement des quartiers"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 84,
+          "column": 10,
+          "index": 2772
+        },
+        "end": {
+          "line": 86,
+          "column": 16,
+          "index": 2898
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the data view when the rows are ranked by a metric",
+          "text": "Classement des quartiers"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6V830xOD38Rnoo2g4w7CHg==": {
+          "desc": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
+          "text": "Compare une métrique brute à la fois, sans score composite. La fiche d'un quartier sur la carte rassemble toutes ses valeurs."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 90,
+          "column": 8,
+          "index": 2997
+        },
+        "end": {
+          "line": 93,
+          "column": 14,
+          "index": 3300
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Subtitle of the data view explaining that it compares one raw metric and that the neighborhood sheet on the map holds every value",
+          "text": "Compare une métrique brute à la fois, sans score composite. La fiche d'un quartier sur la carte rassemble toutes ses valeurs."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "nB/gx19Kq82h1i7hlBpvIw==": {
+          "desc": "Title of the active criteria group above the raw values table",
+          "text": "Critères actifs"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 99,
+          "column": 12,
+          "index": 3536
+        },
+        "end": {
+          "line": 101,
+          "column": 18,
+          "index": 3659
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Title of the active criteria group above the raw values table",
+          "text": "Critères actifs"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "BDNtsE0Lcep99paZJc83jQ==": {
+          "desc": "Shown while the raw values table is loading",
+          "text": "Chargement des valeurs…"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 115,
+          "column": 10,
+          "index": 4034
+        },
+        "end": {
+          "line": 115,
+          "column": 95,
+          "index": 4119
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown while the raw values table is loading",
+          "text": "Chargement des valeurs…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "5lPNgBPMXM/G9wgZmM/Znw==": {
+          "desc": "Shown when the raw values cannot be loaded",
+          "text": "Les valeurs n'ont pas pu être chargées."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 139,
+          "column": 8,
+          "index": 4816
+        },
+        "end": {
+          "line": 141,
+          "column": 14,
+          "index": 4936
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when the raw values cannot be loaded",
+          "text": "Les valeurs n'ont pas pu être chargées."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "zw65yeLmQyFa+rMlp/tHjA==": {
+          "desc": "Label before the API error code",
+          "text": "Code :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 144,
+          "column": 8,
+          "index": 5011
+        },
+        "end": {
+          "line": 144,
+          "column": 64,
+          "index": 5067
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label before the API error code",
+          "text": "Code :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+T+S4LHhUSCN1KzfhfU27Q==": {
+          "desc": "Button retrying the raw values request",
+          "text": "Réessayer"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 147,
+          "column": 8,
+          "index": 5186
+        },
+        "end": {
+          "line": 147,
+          "column": 74,
+          "index": 5252
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Button retrying the raw values request",
+          "text": "Réessayer"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "s8hGL02fBz83P/Cow4vmVw==": {
+          "desc": "Notice listing the active criteria that the API does not publish",
+          "text": "Critères non publiés par l'API :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 327,
+          "column": 10,
+          "index": 10734
+        },
+        "end": {
+          "line": 329,
+          "column": 16,
+          "index": 10873
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Notice listing the active criteria that the API does not publish",
+          "text": "Critères non publiés par l'API :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "oYpYV6N/Wz43C7atqU3QmQ==": {
+          "desc": "Accessible caption of the raw values table",
+          "text": "Valeurs brutes par quartier, regroupées par district et triables par métrique."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 356,
+          "column": 14,
+          "index": 11812
+        },
+        "end": {
+          "line": 358,
+          "column": 20,
+          "index": 11983
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible caption of the raw values table",
+          "text": "Valeurs brutes par quartier, regroupées par district et triables par métrique."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "6gSAD4i7zEnrYLcmvlUBoQ==": {
+          "desc": "Header of the ranking column in the data table",
+          "text": "#"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 366,
+          "column": 18,
+          "index": 12272
+        },
+        "end": {
+          "line": 366,
+          "column": 84,
+          "index": 12338
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Header of the ranking column in the data table",
+          "text": "#"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "SlHVWKRn0tQQ5phVrOe7gA==": {
+          "desc": "Accessible label of the unit and observation date in a column header",
+          "text": "Unité et date d'observation :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 440,
+          "column": 30,
+          "index": 15962
+        },
+        "end": {
+          "line": 442,
+          "column": 36,
+          "index": 16142
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the unit and observation date in a column header",
+          "text": "Unité et date d'observation :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "mDLBkvoO2/99ZLpd2q4Obg==": {
+          "desc": "Accessible label of the metric quality in a column header",
+          "text": "Qualité :"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 452,
+          "column": 32,
+          "index": 16666
+        },
+        "end": {
+          "line": 454,
+          "column": 38,
+          "index": 16819
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the metric quality in a column header",
+          "text": "Qualité :"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "C16iCOS88Fof0dYHS2kRcQ==": {
+          "desc": "Accessible label of the button collapsing a district group",
+          "text": "Afficher ou masquer les quartiers du district"
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 505,
+          "column": 30,
+          "index": 19075
+        },
+        "end": {
+          "line": 507,
+          "column": 36,
+          "index": 19261
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessible label of the button collapsing a district group",
+          "text": "Afficher ou masquer les quartiers du district"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "fF8Ubj51s+uHRDWSWoRi6w==": {
+          "desc": "Label of the district average in the data table",
+          "text": "moy."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 529,
+          "column": 34,
+          "index": 20485
+        },
+        "end": {
+          "line": 531,
+          "column": 40,
+          "index": 20627
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Label of the district average in the data table",
+          "text": "moy."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "K/CCzDUAffe7tdCvFCeMmw==": {
+          "desc": "Shown when the neighborhood search matches nothing in the raw values table",
+          "text": "Aucun quartier ne correspond à cette recherche."
+        }
+      },
+      "filename": "src/features/data-view/data-table-view.tsx",
+      "loc": {
+        "start": {
+          "line": 608,
+          "column": 10,
+          "index": 24132
+        },
+        "end": {
+          "line": 610,
+          "column": 16,
+          "index": 24296
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when the neighborhood search matches nothing in the raw values table",
+          "text": "Aucun quartier ne correspond à cette recherche."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "+TtKgA798Vd98Hc5X36v2w==": {
+          "desc": "Shown when a neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      },
+      "filename": "src/features/data-view/metric-cell.tsx",
+      "loc": {
+        "start": {
+          "line": 33,
+          "column": 10,
+          "index": 846
+        },
+        "end": {
+          "line": 33,
+          "column": 93,
+          "index": 929
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown when a neighborhood has no value for a metric",
+          "text": "Pas de donnée"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "xTYA4KetEEp8l8LAFk/8ow==": {
           "desc": "Label of the button removing a search criterion chip",
           "text": "Retirer ce critère"
@@ -2157,14 +3114,14 @@
       "filename": "src/features/criteria/criteria-chips.tsx",
       "loc": {
         "start": {
-          "line": 20,
+          "line": 24,
           "column": 19,
-          "index": 597
+          "index": 714
         },
         "end": {
-          "line": 23,
+          "line": 27,
           "column": 7,
-          "index": 703
+          "index": 820
         }
       },
       "project": "",
@@ -2273,14 +3230,14 @@
       "filename": "src/features/chat-view/chat-composer.tsx",
       "loc": {
         "start": {
-          "line": 44,
+          "line": 46,
           "column": 20,
-          "index": 1317
+          "index": 1319
         },
         "end": {
-          "line": 47,
+          "line": 49,
           "column": 9,
-          "index": 1430
+          "index": 1432
         }
       },
       "project": "",
@@ -2302,14 +3259,14 @@
       "filename": "src/features/chat-view/chat-composer.tsx",
       "loc": {
         "start": {
-          "line": 48,
+          "line": 50,
           "column": 21,
-          "index": 1453
+          "index": 1455
         },
         "end": {
-          "line": 51,
+          "line": 53,
           "column": 9,
-          "index": 1599
+          "index": 1601
         }
       },
       "project": "",
@@ -2331,14 +3288,14 @@
       "filename": "src/features/chat-view/chat-composer.tsx",
       "loc": {
         "start": {
-          "line": 58,
+          "line": 60,
           "column": 20,
-          "index": 1907
+          "index": 1909
         },
         "end": {
-          "line": 58,
+          "line": 60,
           "column": 67,
-          "index": 1954
+          "index": 1956
         }
       },
       "project": "",
@@ -2447,14 +3404,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 48,
+          "line": 50,
           "column": 22,
-          "index": 1649
+          "index": 1651
         },
         "end": {
-          "line": 51,
+          "line": 53,
           "column": 3,
-          "index": 1743
+          "index": 1745
         }
       },
       "project": "",
@@ -2476,14 +3433,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 56,
+          "line": 58,
           "column": 8,
-          "index": 1922
+          "index": 1924
         },
         "end": {
-          "line": 56,
+          "line": 58,
           "column": 100,
-          "index": 2014
+          "index": 2016
         }
       },
       "project": "",
@@ -2505,14 +3462,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 66,
+          "line": 68,
           "column": 10,
-          "index": 2335
+          "index": 2337
         },
         "end": {
-          "line": 68,
+          "line": 70,
           "column": 16,
-          "index": 2511
+          "index": 2513
         }
       },
       "project": "",
@@ -2534,14 +3491,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 83,
+          "line": 85,
           "column": 10,
-          "index": 2926
+          "index": 2928
         },
         "end": {
-          "line": 85,
+          "line": 87,
           "column": 16,
-          "index": 3045
+          "index": 3047
         }
       },
       "project": "",
@@ -2563,14 +3520,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 121,
+          "line": 124,
           "column": 18,
-          "index": 4428
+          "index": 4431
         },
         "end": {
-          "line": 121,
+          "line": 124,
           "column": 92,
-          "index": 4502
+          "index": 4505
         }
       },
       "project": "",
@@ -2592,14 +3549,14 @@
       "filename": "src/features/chat-view/chat-view.tsx",
       "loc": {
         "start": {
-          "line": 140,
+          "line": 143,
           "column": 14,
-          "index": 5262
+          "index": 5265
         },
         "end": {
-          "line": 140,
+          "line": 143,
           "column": 97,
-          "index": 5345
+          "index": 5348
         }
       },
       "project": "",
@@ -2623,12 +3580,12 @@
         "start": {
           "line": 22,
           "column": 13,
-          "index": 737
+          "index": 727
         },
         "end": {
           "line": 22,
           "column": 62,
-          "index": 786
+          "index": 776
         }
       },
       "project": "",
@@ -2652,12 +3609,12 @@
         "start": {
           "line": 24,
           "column": 13,
-          "index": 817
+          "index": 807
         },
         "end": {
           "line": 24,
           "column": 62,
-          "index": 866
+          "index": 856
         }
       },
       "project": "",
@@ -2681,12 +3638,12 @@
         "start": {
           "line": 26,
           "column": 13,
-          "index": 898
+          "index": 888
         },
         "end": {
           "line": 26,
           "column": 65,
-          "index": 950
+          "index": 940
         }
       },
       "project": "",
@@ -2700,6 +3657,35 @@
     },
     {
       "hashToLeaf": {
+        "0ccRiIPc9uY4xA4/7hboog==": {
+          "desc": "Skip link to the main content",
+          "text": "Aller au contenu"
+        }
+      },
+      "filename": "src/app/app-shell.tsx",
+      "loc": {
+        "start": {
+          "line": 44,
+          "column": 8,
+          "index": 1501
+        },
+        "end": {
+          "line": 44,
+          "column": 72,
+          "index": 1565
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Skip link to the main content",
+          "text": "Aller au contenu"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "thjXmjKZP628PUxN/V3vlg==": {
           "desc": "Product name shown in the header",
           "text": "Neighbourhood Explorer"
@@ -2708,14 +3694,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 46,
+          "line": 53,
           "column": 12,
-          "index": 1822
+          "index": 2146
         },
         "end": {
-          "line": 46,
+          "line": 53,
           "column": 85,
-          "index": 1895
+          "index": 2219
         }
       },
       "project": "",
@@ -2737,14 +3723,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 49,
+          "line": 56,
           "column": 24,
-          "index": 1955
+          "index": 2279
         },
         "end": {
-          "line": 49,
+          "line": 56,
           "column": 99,
-          "index": 2030
+          "index": 2354
         }
       },
       "project": "",
@@ -2787,6 +3773,180 @@
     },
     {
       "hashToLeaf": {
+        "iK/aGHiazH22iqikTwltdg==": {
+          "desc": "Browser tab title of the home page",
+          "text": "Accueil"
+        }
+      },
+      "filename": "src/app/route-meta.ts",
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 14,
+          "index": 284
+        },
+        "end": {
+          "line": 7,
+          "column": 66,
+          "index": 336
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Browser tab title of the home page",
+          "text": "Accueil"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "VG9SH88q30TV5QUwTvAygA==": {
+          "desc": "Meta description of the home page",
+          "text": "Explore les quartiers avec une carte, des critères et des données ouvertes."
+        }
+      },
+      "filename": "src/app/route-meta.ts",
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 4,
+          "index": 540
+        },
+        "end": {
+          "line": 18,
+          "column": 5,
+          "index": 678
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Meta description of the home page",
+          "text": "Explore les quartiers avec une carte, des critères et des données ouvertes."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "RC4ODBB3d0BVgY4d/tlUlg==": {
+          "desc": "Meta description of the chat view",
+          "text": "Décris le quartier que tu cherches et obtiens des pistes expliquées."
+        }
+      },
+      "filename": "src/app/route-meta.ts",
+      "loc": {
+        "start": {
+          "line": 20,
+          "column": 4,
+          "index": 698
+        },
+        "end": {
+          "line": 23,
+          "column": 5,
+          "index": 829
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Meta description of the chat view",
+          "text": "Décris le quartier que tu cherches et obtiens des pistes expliquées."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "36PvnvONJleMUkMBKXNduw==": {
+          "desc": "Meta description of the map view",
+          "text": "Colorie les quartiers selon une métrique et compare-les sur la carte."
+        }
+      },
+      "filename": "src/app/route-meta.ts",
+      "loc": {
+        "start": {
+          "line": 25,
+          "column": 4,
+          "index": 848
+        },
+        "end": {
+          "line": 28,
+          "column": 5,
+          "index": 979
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Meta description of the map view",
+          "text": "Colorie les quartiers selon une métrique et compare-les sur la carte."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "JVgmsV90biFjDLm7if5E0w==": {
+          "desc": "Meta description of the data view",
+          "text": "Parcours les valeurs brutes, les unités et les sources des quartiers."
+        }
+      },
+      "filename": "src/app/route-meta.ts",
+      "loc": {
+        "start": {
+          "line": 30,
+          "column": 4,
+          "index": 999
+        },
+        "end": {
+          "line": 33,
+          "column": 5,
+          "index": 1131
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Meta description of the data view",
+          "text": "Parcours les valeurs brutes, les unités et les sources des quartiers."
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
+        "7aus4Kv2TONE+0QqGReBOg==": {
+          "desc": "Shown while the map data is loading",
+          "text": "Chargement des quartiers…"
+        }
+      },
+      "filename": "src/app/routes.tsx",
+      "loc": {
+        "start": {
+          "line": 99,
+          "column": 11,
+          "index": 2688
+        },
+        "end": {
+          "line": 99,
+          "column": 82,
+          "index": 2759
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Shown while the map data is loading",
+          "text": "Chargement des quartiers…"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "25ghNilGi+yElBjVhIwWAw==": {
           "desc": "Title of the page shown when the URL matches no view",
           "text": "Cette page n'existe pas"
@@ -2795,14 +3955,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 123,
+          "line": 149,
           "column": 27,
-          "index": 3465
+          "index": 4243
         },
         "end": {
-          "line": 126,
+          "line": 152,
           "column": 3,
-          "index": 3564
+          "index": 4342
         }
       },
       "project": "",
@@ -2824,14 +3984,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 127,
+          "line": 154,
           "column": 26,
-          "index": 3592
+          "index": 4371
         },
         "end": {
-          "line": 130,
+          "line": 157,
           "column": 3,
-          "index": 3706
+          "index": 4485
         }
       },
       "project": "",
@@ -2855,12 +4015,12 @@
         "start": {
           "line": 18,
           "column": 17,
-          "index": 731
+          "index": 740
         },
         "end": {
           "line": 18,
           "column": 94,
-          "index": 808
+          "index": 817
         }
       },
       "project": "",

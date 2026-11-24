@@ -4,7 +4,12 @@ namespace NeighbourhoodExplorer.Api.Features.Geography;
 
 public sealed record CityReference(long Id, string Name);
 
-public sealed record CitySummary(PlateCode PlateCode, string Name, string OfficialCode, long AdminAreaId);
+public sealed record CitySummary(
+    PlateCode PlateCode,
+    string Name,
+    string OfficialCode,
+    long AdminAreaId,
+    CityCenter Center);
 
 public static class CityReader
 {
@@ -32,7 +37,7 @@ public static class CityReader
         CancellationToken cancellationToken)
     {
         const string sql = """
-            SELECT id, name, official_code
+            SELECT id, name, official_code, ST_X(centroid), ST_Y(centroid)
             FROM admin_area
             WHERE level = 'province' AND official_code LIKE 'TR-%'
             ORDER BY official_code
@@ -54,7 +59,8 @@ public static class CityReader
                 plateCode,
                 reader.GetString(1),
                 officialCode,
-                reader.GetInt64(0)));
+                reader.GetInt64(0),
+                new CityCenter(reader.GetDouble(3), reader.GetDouble(4))));
         }
 
         return cities;

@@ -1,3 +1,4 @@
+import * as z from "zod";
 import type { TableSort } from "../features/data-view/table-sort";
 import { isMetricKey, MAX_METRIC_KEY_LENGTH, type Criteria } from "../features/criteria/criteria";
 import { decodeCriteria, encodeCriteria } from "../features/criteria/criteria-url";
@@ -29,24 +30,31 @@ const QUERY_PARAMETER_NAMES = [
   "order",
 ] as const satisfies ReadonlyArray<keyof UrlSearch>;
 
+function boundedTextSchema(maxLength: number) {
+  return z.string().trim().min(1).max(maxLength);
+}
+
+const neighborhoodIdSchema = z.union([
+  z.int().positive(),
+  z
+    .string()
+    .trim()
+    .max(MAX_NEIGHBORHOOD_ID_LENGTH)
+    .regex(/^\d+$/)
+    .transform(Number)
+    .refine((id) => Number.isSafeInteger(id) && id > 0),
+]);
+
 function readBoundedText(value: unknown, maxLength: number): string | undefined {
-  if (typeof value !== "string") {
-    return undefined;
-  }
-  const text = value.trim();
-  return text.length === 0 || text.length > maxLength ? undefined : text;
+  const parsed = boundedTextSchema(maxLength).safeParse(value);
+
+  return parsed.success ? parsed.data : undefined;
 }
 
 function readNeighborhoodId(value: unknown): number | undefined {
-  if (typeof value === "number") {
-    return Number.isSafeInteger(value) && value > 0 ? value : undefined;
-  }
-  const text = readBoundedText(value, MAX_NEIGHBORHOOD_ID_LENGTH);
-  if (text === undefined || !/^\d+$/.test(text)) {
-    return undefined;
-  }
-  const id = Number(text);
-  return Number.isSafeInteger(id) && id > 0 ? id : undefined;
+  const parsed = neighborhoodIdSchema.safeParse(value);
+
+  return parsed.success ? parsed.data : undefined;
 }
 
 export function viewPath(view: ViewName): ViewPath {
@@ -64,8 +72,10 @@ function encodeQueryValue(value: string): string {
 export function stringifySearchObject(search: UrlSearch): string {
   const parameters = QUERY_PARAMETER_NAMES.flatMap((name) => {
     const value = search[name];
+
     return value === undefined ? [] : [`${name}=${encodeQueryValue(String(value))}`];
   });
+
   return parameters.length === 0 ? "" : `?${parameters.join("&")}`;
 }
 
@@ -73,24 +83,31 @@ export function viewForPath(pathname: string): ViewName {
   const entry = (Object.entries(VIEW_PATHS) as Array<[ViewName, ViewPath]>).find(
     ([, path]) => path === pathname,
   );
+
   return entry ? entry[0] : "home";
 }
 
 export function validateSearch(search: Record<string, unknown>): UrlSearch {
   const result: UrlSearch = {};
   const neighborhood = readNeighborhoodId(search.neighborhood);
+
   if (neighborhood !== undefined) {
     result.neighborhood = neighborhood;
   }
+
   const criteria = encodeCriteria(decodeCriteria(search.criteria));
+
   if (criteria) {
     result.criteria = criteria;
   }
+
   const sort = readBoundedText(search.sort, MAX_METRIC_KEY_LENGTH);
+
   if (sort && isMetricKey(sort)) {
     result.sort = sort;
     result.order = search.order === "desc" ? "desc" : "asc";
   }
+
   return result;
 }
 
@@ -106,6 +123,7 @@ export function tableSortFromSearch(search: UrlSearch): TableSort | null {
   if (!search.sort) {
     return null;
   }
+
   return { key: search.sort, direction: search.order === "desc" ? "descending" : "ascending" };
 }
 

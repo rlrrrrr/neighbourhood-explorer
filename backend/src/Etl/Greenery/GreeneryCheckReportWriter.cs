@@ -9,8 +9,8 @@ public sealed record GreeneryNeighborhoodResult(
     string NeighborhoodName,
     long GreenPixels,
     long ValidPixels,
-    double Share,
-    double Normalized);
+    double? Share,
+    double? Normalized);
 
 public sealed record GreeneryCheckReport(
     string SourceId,
@@ -66,11 +66,17 @@ public static class GreeneryCheckReportWriter
 
     private static string BuildMarkdown(GreeneryCheckReport report)
     {
-        var shares = report.Neighborhoods.Select(item => item.Share).OrderBy(value => value).ToList();
-        var normalized = report.Neighborhoods
-            .Select(item => item.Normalized)
+        var shares = report.Neighborhoods
+            .Where(item => item.Share.HasValue)
+            .Select(item => item.Share!.Value)
             .OrderBy(value => value)
             .ToList();
+        var normalized = report.Neighborhoods
+            .Where(item => item.Normalized.HasValue)
+            .Select(item => item.Normalized!.Value)
+            .OrderBy(value => value)
+            .ToList();
+        var withoutData = report.Neighborhoods.Count(item => !item.Share.HasValue);
 
         var builder = new StringBuilder();
         builder.AppendLine($"# Contrôle de la verdure — {report.SourceId}");
@@ -112,7 +118,8 @@ public static class GreeneryCheckReportWriter
         builder.AppendLine("| Contrôle | Valeur |");
         builder.AppendLine("|---|---|");
         builder.AppendLine(
-            $"| Mahalles avec valeurs | {report.NeighborhoodCount} / {report.ExpectedNeighborhoods} |");
+            $"| Mahalles avec valeurs | {report.Neighborhoods.Count(item => item.Share.HasValue)} / " +
+            $"{report.ExpectedNeighborhoods} |");
         builder.AppendLine($"| Ilçe | {report.DistrictCount} / {report.ExpectedDistricts} |");
         builder.AppendLine();
         builder.AppendLine("## Métrique");
@@ -129,6 +136,13 @@ public static class GreeneryCheckReportWriter
             $"{Number(normalized.FirstOrDefault(), "0.###")} | " +
             $"{Number(Median(normalized), "0.###")} | " +
             $"{Number(normalized.LastOrDefault(), "0.###")} |");
+        if (withoutData > 0)
+        {
+            builder.AppendLine();
+            builder.AppendLine(
+                $"{withoutData} mahalle(s) sans pixel valide : aucune valeur n'est écrite " +
+                "(pas de zéro implicite).");
+        }
         builder.AppendLine();
         builder.AppendLine("## Échecs");
         builder.AppendLine();
@@ -174,10 +188,13 @@ public static class GreeneryCheckReportWriter
             builder.AppendLine(
                 $"{CsvField(item.DistrictName)},{CsvField(item.NeighborhoodName)}," +
                 $"{item.GreenPixels},{item.ValidPixels}," +
-                $"{Number(item.Share, "0.####")},{Number(item.Normalized, "0.######")}");
+                $"{NumberOrEmpty(item.Share, "0.####")}," +
+                $"{NumberOrEmpty(item.Normalized, "0.######")}");
         }
 
         return builder.ToString();
     }
 
+    private static string NumberOrEmpty(double? value, string format) =>
+        value.HasValue ? Number(value.Value, format) : string.Empty;
 }

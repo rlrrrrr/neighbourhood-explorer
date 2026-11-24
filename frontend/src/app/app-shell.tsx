@@ -1,6 +1,6 @@
-import { useEffect, useState, type ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 import { fbs, fbt, type TranslatedString } from "fbtee";
-import { applyTheme, readStoredTheme, type ThemeName } from "./theme";
+import { applyTheme, readCurrentTheme, type ThemeName } from "./theme";
 import { ThemeSwitcher } from "./theme-switcher";
 import { LanguageSwitcher } from "./language-switcher";
 import { Button } from "../components/ui/button";
@@ -28,14 +28,21 @@ function navigationLabel(view: NavigationView): TranslatedString {
 }
 
 export function AppShell({ view, onNavigate, children }: AppShellProps) {
-  const [theme, setTheme] = useState<ThemeName>(() => readStoredTheme());
+  const [theme, setTheme] = useState<ThemeName>(readCurrentTheme);
 
-  useEffect(() => {
-    applyTheme(theme);
-  }, [theme]);
+  const changeTheme = (nextTheme: ThemeName) => {
+    applyTheme(nextTheme);
+    setTheme(nextTheme);
+  };
 
   return (
     <div className="interface-enter flex min-h-screen flex-col text-text">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:start-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-3 focus:py-2 focus:text-text"
+      >
+        <fbt desc="Skip link to the main content">Aller au contenu</fbt>
+      </a>
       <header className="grain material-panel sticky top-0 z-10">
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-center gap-x-2 gap-y-2 px-3 py-2 sm:grid-cols-[auto_1fr_auto] sm:gap-4 sm:px-8 sm:py-3">
           <button
@@ -63,11 +70,13 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
           </nav>
           <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-1 sm:col-start-3 sm:flex-nowrap">
             <LanguageSwitcher />
-            <ThemeSwitcher theme={theme} onChange={setTheme} />
+            <ThemeSwitcher theme={theme} onChange={changeTheme} />
           </div>
         </div>
       </header>
-      <main className="flex flex-1 flex-col">{children}</main>
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+        {children}
+      </main>
     </div>
   );
 }

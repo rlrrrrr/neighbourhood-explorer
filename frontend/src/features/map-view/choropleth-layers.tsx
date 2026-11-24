@@ -1,5 +1,6 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { MapGeoJSON, useMap } from "../../components/ui/map";
+import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
+import type { Popup } from "maplibre-gl";
+import { MapGeoJSON, useMap, type MapGeoJSONEvent } from "../../components/ui/map";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
 import {
   collectionBounds,
@@ -12,11 +13,12 @@ import {
   buildFillPaint,
   buildNoDataFillPaint,
   buildSelectionPaint,
+  findChoroplethAnchorLayerId,
   NO_DATA_PATTERN_IMAGE_ID,
   type ChoroplethColors,
 } from "./choropleth-style";
-
-type InsertionPoint = { ready: boolean; beforeId?: string };
+import { buildRoadOpacityByZoom, findTonedRoadLayerIds } from "./basemap-road-toning";
+import { useRecoloredCollection } from "./choropleth-recolor";
 
 function createNoDataPattern(backgroundColor: string, stripeColor: string): ImageData | null {
   const size = 8;
@@ -24,9 +26,11 @@ function createNoDataPattern(backgroundColor: string, stripeColor: string): Imag
   canvas.width = size;
   canvas.height = size;
   const context = canvas.getContext("2d");
+
   if (context === null) {
     return null;
   }
+
   context.fillStyle = backgroundColor;
   context.fillRect(0, 0, size, size);
   context.globalAlpha = 0.35;
@@ -36,36 +40,46 @@ function createNoDataPattern(backgroundColor: string, stripeColor: string): Imag
   context.moveTo(-1, size + 1);
   context.lineTo(size + 1, -1);
   context.stroke();
+
   return context.getImageData(0, 0, size, size);
 }
 
 export function ChoroplethLayers({
   collection,
+  metricKey,
   selectedCollection,
   colors,
   onSelectNeighborhood,
 }: {
   collection: ChoroplethFeatureCollection;
+  metricKey: string;
   selectedCollection: ChoroplethFeatureCollection | null;
   colors: ChoroplethColors;
   onSelectNeighborhood: (neighborhoodId: number) => void;
 }) {
-  const { map, isLoaded } = useMap();
-  const [insertionPoint, setInsertionPoint] = useState<InsertionPoint>({ ready: false });
+  const { map, mapLib, isLoaded } = useMap();
+  const isReady = map !== null && isLoaded;
   const fittedSelectionRef = useRef<string | null>(null);
   const hasCompletedInitialFitRef = useRef(false);
+  const tooltipRef = useRef<Popup | null>(null);
+  const tooltipLabelRef = useRef<string | null>(null);
+  const { collection: displayedCollection, blend } = useRecoloredCollection(collection, metricKey);
+
   const { withValue, withoutValue } = useMemo(
-    () => splitFeaturesByMetricValue(collection),
-    [collection],
+    () => splitFeaturesByMetricValue(displayedCollection),
+    [displayedCollection],
   );
 
-  useEffect(() => {
+  const beforeId =
+    map !== null && isLoaded ? findChoroplethAnchorLayerId(map.getStyle().layers) : undefined;
+
+  useLayoutEffect(() => {
     if (!map || !isLoaded) {
-      setInsertionPoint({ ready: false });
       return;
     }
 
     const hatch = createNoDataPattern(colors.noData, colors.text);
+
     if (hatch !== null) {
       try {
         if (map.hasImage(NO_DATA_PATTERN_IMAGE_ID)) {
@@ -77,23 +91,80 @@ export function ChoroplethLayers({
         // The style can be mid-reload; the next style.load recreates the image.
       }
     }
-
-    const firstSymbolLayer = map.getStyle().layers.find((layer) => layer.type === "symbol");
-    setInsertionPoint({ ready: true, beforeId: firstSymbolLayer?.id });
   }, [map, isLoaded, colors.noData, colors.text]);
 
+  useEffect(() => {
+    if (!map || !isLoaded) {
+      return;
+    }
+
+    const opacity = buildRoadOpacityByZoom();
+
+    for (const layerId of findTonedRoadLayerIds(map.getStyle().layers)) {
+      map.setPaintProperty(layerId, "line-opacity", opacity);
+    }
+  }, [map, isLoaded]);
+
+  useEffect(() => {
+    return () => {
+      tooltipRef.current?.remove();
+      tooltipRef.current = null;
+      tooltipLabelRef.current = null;
+    };
+  }, []);
+
+  function handleHover(event: MapGeoJSONEvent<ChoroplethProperties> | null) {
+    if (event === null) {
+      tooltipRef.current?.remove();
+      tooltipLabelRef.current = null;
+
+      return;
+    }
+
+    if (!map || !mapLib) {
+      return;
+    }
+
+    const tooltip =
+      tooltipRef.current ??
+      new mapLib.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 10,
+        className: "neighborhood-hover-popup",
+      });
+
+    tooltipRef.current = tooltip;
+
+    const label = `${event.feature.properties.name} · ${event.feature.properties.districtName}`;
+
+    if (tooltipLabelRef.current !== label) {
+      const content = document.createElement("span");
+      content.textContent = label;
+      tooltip.setDOMContent(content);
+      tooltipLabelRef.current = label;
+    }
+
+    tooltip.setLngLat([event.longitude, event.latitude]).addTo(map);
+  }
+
   const hasSelection = selectedCollection !== null && selectedCollection.features.length > 0;
+
   const selectionKey = hasSelection
     ? `selection:${selectedCollection.features.map((feature) => feature.properties.id).join(",")}`
     : "all";
+
   useEffect(() => {
     if (!map || !isLoaded || fittedSelectionRef.current === selectionKey) {
       return;
     }
+
     const bounds = collectionBounds(hasSelection ? selectedCollection : collection);
+
     if (bounds === null) {
       return;
     }
+
     const isInitialFit = !hasCompletedInitialFitRef.current;
     const animateCamera = hasSelection || !isInitialFit;
     fittedSelectionRef.current = selectionKey;
@@ -105,7 +176,7 @@ export function ChoroplethLayers({
     });
   }, [map, isLoaded, collection, selectedCollection, hasSelection, selectionKey]);
 
-  if (!insertionPoint.ready) {
+  if (!isReady) {
     return null;
   }
 
@@ -115,10 +186,11 @@ export function ChoroplethLayers({
         id="population-density"
         data={withValue}
         promoteId="id"
-        beforeId={insertionPoint.beforeId}
-        fillPaint={buildFillPaint(colors)}
+        beforeId={beforeId}
+        fillPaint={buildFillPaint(colors, blend)}
         linePaint={buildBorderPaint(colors)}
         interactive
+        onHover={handleHover}
         onClick={(event) => onSelectNeighborhood(event.feature.properties.id)}
       />
       {withoutValue.features.length > 0 ? (
@@ -126,10 +198,11 @@ export function ChoroplethLayers({
           id="population-density-no-data"
           data={withoutValue}
           promoteId="id"
-          beforeId={insertionPoint.beforeId}
+          beforeId={beforeId}
           fillPaint={buildNoDataFillPaint()}
           linePaint={buildBorderPaint(colors)}
           interactive
+          onHover={handleHover}
           onClick={(event) => onSelectNeighborhood(event.feature.properties.id)}
         />
       ) : null}
@@ -137,7 +210,7 @@ export function ChoroplethLayers({
         <MapGeoJSON<ChoroplethProperties>
           id="selected-neighborhood"
           data={selectedCollection}
-          beforeId={insertionPoint.beforeId}
+          beforeId={beforeId}
           fillPaint={false}
           linePaint={buildSelectionPaint(colors)}
         />

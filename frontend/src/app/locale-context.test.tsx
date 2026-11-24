@@ -12,7 +12,9 @@ async function renderWithClientLocale(clientLocale: string): Promise<string> {
     sourceLocale: SOURCE_LANGUAGE,
     loadLocale,
   });
+
   await preloadLocale();
+
   return renderToStaticMarkup(
     <AppShell view="home" onNavigate={() => {}}>
       <HomeView onNavigate={() => {}} />
