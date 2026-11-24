@@ -1,5 +1,7 @@
 # Neighbourhood Explorer
 
+## Group12 - Tripp Beckers 26COMP1052, RiyadhLarbaoui 26COMP1051
+
 A student, non-commercial web application for exploring the neighbourhoods (_mahalle_) of Istanbul on a map. The map is the product: metrics, criteria and filtered lists exist to explain what you see on it.
 
 The backend is ASP.NET Core 9 + PostgreSQL/PostGIS. The frontend is React 19 + TypeScript + Vite+ (`vp`). The AI layer is optional and disabled by default; both workflows below work without it and without a GPU.
@@ -348,3 +350,9 @@ Common problems:
 - Map data and basemap: © [OpenStreetMap contributors](https://www.openstreetmap.org/copyright) (ODbL), OpenFreeMap and OpenMapTiles (attribution shown in the map control). WorldPop 2025 is CC BY 4.0. Full source list, licences and methodology are in `data/sources/*.yaml` and `dependencies.md`.
 
 This project is a non-commercial student project with no monetisation, no SLA and no production maintenance commitment.
+
+## 8. Contribution
+
+Tripp: Login/Sigin page and database host
+
+Riyadh: Map page with integration of OpenStreetMap and inserter of the data inside the data base.
