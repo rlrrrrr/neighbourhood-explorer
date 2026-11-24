@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Diagnostics;
+using Microsoft.AspNetCore.ResponseCompression;
 using NeighbourhoodExplorer.Api;
 using NeighbourhoodExplorer.Api.Features.Geography;
 using NeighbourhoodExplorer.Api.Features.Metrics;
@@ -15,6 +16,12 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader()
         .AllowAnyMethod()));
 
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(["application/geo+json"]);
+});
+
 var databaseConnectionString = builder.Configuration["DATABASE_CONNECTION_STRING"];
 
 builder.Services.AddSingleton(_ => new DatabaseConnection(
@@ -24,6 +31,7 @@ builder.Services.AddSingleton(_ => new DatabaseConnection(
 
 var app = builder.Build();
 
+app.UseResponseCompression();
 app.UseCors("frontend");
 
 app.UseExceptionHandler(errorApp => errorApp.Run(async context =>
