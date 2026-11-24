@@ -1,4 +1,4 @@
-# Local environment (never committed; template: .env.example)
+# Environnement local (jamais commité ; modèle : .env.example)
 .env
 mise.local.toml
 
@@ -20,14 +20,11 @@ __pycache__/
 *.pyc
 .venv/
 
-# ETL data: outside Git except manifests in data/sources/
+# Données ETL : hors Git sauf les manifestes de data/sources/
 data/raw/*
 data/processed/*
 data/normalized/*
 !data/**/.gitkeep
-
-# Runtime outbox (FakeEmailSender): confirmation emails contain tokens
-data/outbox/
 
 # Divers
 docs/
@@ -35,5 +32,12 @@ docs/
 .DS_Store
 Thumbs.db
 
-# intellij
-.idea
+# Profils Chrome créés par un outil avec un chemin Windows (noms contenant `C:\`)
+C\:\\Users*
+
+# Répertoires de compétences d'agents
+.agents/
+.claude/
+.qoder/
+.rovodev/
+.trae/
