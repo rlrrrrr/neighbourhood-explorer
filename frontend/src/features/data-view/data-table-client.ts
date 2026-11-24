@@ -1,8 +1,8 @@
-import { ApiRequestError, getApiJson } from "../metrics/api-json";
+import { getApiJson } from "../metrics/api-json";
+import { fetchCityMetricValues } from "../metrics/city-metric-values";
 import {
-  isMetricValues,
-  isMetricsResponse,
-  isNeighborhoodCollection,
+  metricsResponseSchema,
+  neighborhoodCollectionSchema,
   type MetricDefinition,
   type MetricValue,
   type MetricValues,
@@ -33,14 +33,11 @@ export async function fetchDataTable({
   cityId: number;
   signal: AbortSignal;
 }): Promise<DataTableData> {
-  const metricsPayload = await getApiJson("/api/v1/metrics", signal);
-
-  if (!isMetricsResponse(metricsPayload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse de /api/v1/metrics est invalide.",
-    });
-  }
+  const metricsPayload = await getApiJson({
+    path: "/api/v1/metrics",
+    schema: metricsResponseSchema,
+    signal,
+  });
 
   const metrics = metricsPayload.metrics;
 
@@ -49,47 +46,18 @@ export async function fetchDataTable({
   }
 
   const [neighborhoodsPayload, valuesPayload] = await Promise.all([
-    getApiJson(`/api/v1/cities/${cityId}/neighborhoods`, signal),
-    fetchMetricValues({ cityId, metricKeys: metrics.map((metric) => metric.key), signal }),
+    getApiJson({
+      path: `/api/v1/cities/${cityId}/neighborhoods`,
+      schema: neighborhoodCollectionSchema,
+      signal,
+    }),
+    fetchCityMetricValues({ cityId, metricKeys: metrics.map((metric) => metric.key), signal }),
   ]);
-
-  if (!isNeighborhoodCollection(neighborhoodsPayload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse GeoJSON des quartiers est invalide.",
-    });
-  }
 
   return {
     metrics,
     rows: buildRows({ neighborhoodsPayload, valuesPayload }),
   };
-}
-
-async function fetchMetricValues({
-  cityId,
-  metricKeys,
-  signal,
-}: {
-  cityId: number;
-  metricKeys: readonly string[];
-  signal: AbortSignal;
-}): Promise<MetricValues> {
-  const encodedKeys = metricKeys.map((metricKey) => encodeURIComponent(metricKey)).join(",");
-
-  const payload = await getApiJson(
-    `/api/v1/cities/${cityId}/metric-values?metrics=${encodedKeys}`,
-    signal,
-  );
-
-  if (!isMetricValues(payload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse des valeurs de métriques est invalide.",
-    });
-  }
-
-  return payload;
 }
 
 function buildRows({

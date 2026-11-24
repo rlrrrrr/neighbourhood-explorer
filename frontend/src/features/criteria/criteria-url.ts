@@ -1,3 +1,4 @@
+import * as z from "zod";
 import {
   DEFAULT_WEIGHT,
   EMPTY_CRITERIA,
@@ -11,6 +12,8 @@ export const MAX_CRITERIA_COUNT = 24;
 
 const ITEM_SEPARATOR = ",";
 const WEIGHT_SEPARATOR = ":";
+
+const criteriaSearchValueSchema = z.string().trim().min(1).max(MAX_CRITERIA_LENGTH);
 
 export function encodeCriteria(criteria: Criteria): string | undefined {
   if (criteria.weights.length === 0) {
@@ -53,16 +56,13 @@ function decodeCriterion(item: string): Criterion | undefined {
 }
 
 export function decodeCriteria(value: unknown): Criteria {
-  if (typeof value !== "string") {
+  const parsed = criteriaSearchValueSchema.safeParse(value);
+
+  if (!parsed.success) {
     return EMPTY_CRITERIA;
   }
 
-  const text = value.trim();
-
-  if (text.length === 0 || text.length > MAX_CRITERIA_LENGTH) {
-    return EMPTY_CRITERIA;
-  }
-
+  const text = parsed.data;
   const weights: Criterion[] = [];
 
   for (const item of text.split(ITEM_SEPARATOR)) {
