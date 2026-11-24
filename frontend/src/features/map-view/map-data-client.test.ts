@@ -1,6 +1,10 @@
 import { describe, expect, it } from "vite-plus/test";
-import { ApiRequestError } from "../metrics/api-json";
-import { fetchMapData } from "./map-data-client";
+import {
+  metricValuesSchema,
+  metricsResponseSchema,
+  neighborhoodCollectionSchema,
+} from "../metrics/metric-api-schema";
+import { createMapData, fetchMapStatic } from "./map-data-client";
 
 const metricsPayload = {
   metrics: [
@@ -33,12 +37,44 @@ const metricsPayload = {
       },
       observedAt: "2025-12-31",
     },
+    {
+      key: "nightlife",
+      category: "lifestyle",
+      unit: "places/km²",
+      nativeLevel: "neighborhood",
+      polarity: "higher_is_better",
+      normalization: { method: "percentile", version: "2" },
+      displayPrecision: 1,
+      translations: [
+        {
+          locale: "fr",
+          name: "Vie nocturne",
+          description: "Établissements ouverts le soir par kilomètre carré.",
+          subject: "Vie nocturne",
+        },
+      ],
+      source: {
+        id: "osm-nightlife",
+        name: "OpenStreetMap 2025",
+        organization: "OpenStreetMap contributors",
+        url: "https://www.openstreetmap.org/",
+        license: "ODbL 1.0",
+        attribution: "OpenStreetMap contributors",
+        methodology: "Comptage des lieux",
+        retrievedAt: "2026-01-01",
+        version: "2025",
+      },
+      observedAt: "2025-12-31",
+    },
   ],
 };
 
 const valuesPayload = {
   population_density: {
     "1": { raw: 42, normalized: 0.4, qualityFlag: "estimated" },
+  },
+  nightlife: {
+    "1": { raw: 7, normalized: 0.9, qualityFlag: "ok" },
   },
 };
 
@@ -106,27 +142,96 @@ function respondFromFixtures(input: RequestInfo | URL): Promise<Response> {
   return Promise.resolve(jsonResponse(neighborhoodsPayload));
 }
 
+function parsedFixtures() {
+  return {
+    metrics: metricsResponseSchema.parse(metricsPayload).metrics,
+    neighborhoods: neighborhoodCollectionSchema.parse(neighborhoodsPayload),
+    values: metricValuesSchema.parse(valuesPayload),
+  };
+}
+
 describe("map data client", () => {
-  it("joins the metric definition, values and neighborhoods", async () => {
-    await withFetch(respondFromFixtures, async () => {
-      const data = await fetchMapData({
-        cityId: 34,
+  it("fetches definitions and geometries without metric values", async () => {
+    const urls: string[] = [];
+
+    await withFetch(
+      (input) => {
+        urls.push(requestUrl(input));
+
+        return respondFromFixtures(input);
+      },
+      async () => {
+        const staticData = await fetchMapStatic({
+          cityId: 34,
+          signal: new AbortController().signal,
+        });
+
+        expect(staticData.metrics.map((definition) => definition.key)).toEqual([
+          "population_density",
+          "nightlife",
+        ]);
+        expect(staticData.neighborhoods.features).toHaveLength(1);
+        expect(urls).toHaveLength(2);
+        expect(urls.some((url) => url.includes("/metric-values"))).toBe(false);
+      },
+    );
+  });
+
+  it("switches the displayed metric from the cached values, without any request", () => {
+    const fixtures = parsedFixtures();
+
+    const population = createMapData({
+      ...fixtures,
+      metricKey: "population_density",
+      fallbackMetricKey: "population_density",
+    });
+
+    const nightlife = createMapData({
+      ...fixtures,
+      metricKey: "nightlife",
+      fallbackMetricKey: "population_density",
+    });
+
+    expect(population?.metric.key).toBe("population_density");
+    expect(population?.collection.features[0].properties).toEqual({
+      id: 1,
+      name: "Caferağa Mahallesi",
+      districtName: "Kadıköy",
+      raw: 42,
+      normalized: 0.4,
+      qualityFlag: "estimated",
+    });
+    expect(nightlife?.metric.key).toBe("nightlife");
+    expect(nightlife?.collection.features[0].properties).toEqual({
+      id: 1,
+      name: "Caferağa Mahallesi",
+      districtName: "Kadıköy",
+      raw: 7,
+      normalized: 0.9,
+      qualityFlag: "ok",
+    });
+  });
+
+  it("falls back to the default metric when the requested key is not published", () => {
+    const data = createMapData({
+      ...parsedFixtures(),
+      metricKey: "not_published",
+      fallbackMetricKey: "population_density",
+    });
+
+    expect(data?.metric.key).toBe("population_density");
+    expect(data?.collection.features).toHaveLength(1);
+  });
+
+  it("has nothing to display when no metric is published", () => {
+    expect(
+      createMapData({
+        ...parsedFixtures(),
+        metrics: [],
         metricKey: "population_density",
         fallbackMetricKey: "population_density",
-        signal: new AbortController().signal,
-      });
-
-      expect(data.metric.key).toBe("population_density");
-      expect(data.metrics.map((definition) => definition.key)).toEqual(["population_density"]);
-      expect(data.collection.features[0].properties).toEqual({
-        id: 1,
-        name: "Caferağa Mahallesi",
-        districtName: "Kadıköy",
-        raw: 42,
-        normalized: 0.4,
-        qualityFlag: "estimated",
-      });
-    });
+      }),
+    ).toBeNull();
   });
 
   it("rejects a metric definition without its source methodology", async () => {
@@ -146,31 +251,8 @@ describe("map data client", () => {
           : respondFromFixtures(input),
       async () => {
         await expect(
-          fetchMapData({
-            cityId: 34,
-            metricKey: "population_density",
-            fallbackMetricKey: "population_density",
-            signal: new AbortController().signal,
-          }),
+          fetchMapStatic({ cityId: 34, signal: new AbortController().signal }),
         ).rejects.toMatchObject({ code: "invalid_response" });
-      },
-    );
-  });
-
-  it("carries the API problem code when a request fails", async () => {
-    await withFetch(
-      () =>
-        Promise.resolve(jsonResponse({ code: "ai_disabled", detail: "L'IA est désactivée." }, 503)),
-      async () => {
-        const rejection = fetchMapData({
-          cityId: 34,
-          metricKey: "population_density",
-          fallbackMetricKey: "population_density",
-          signal: new AbortController().signal,
-        });
-
-        await expect(rejection).rejects.toBeInstanceOf(ApiRequestError);
-        await expect(rejection).rejects.toMatchObject({ code: "ai_disabled" });
       },
     );
   });

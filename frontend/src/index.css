@@ -221,6 +221,35 @@ body::before {
   }
 }
 
+/* Filtre de la lentille : le champ des métriques change de hauteur pendant que son
+   contenu reparaît en fondu, pour que les sections suivantes glissent au lieu de sauter.
+   La hauteur est mesurée par le composant ; le clip étendu laisse passer les anneaux de focus. */
+.lens-metric-list {
+  overflow: clip;
+  overflow-clip-margin: 0.375rem;
+  transition: height 180ms var(--ease-out);
+}
+
+.lens-metric-list-content {
+  transition: opacity 140ms var(--ease-out);
+}
+
+@starting-style {
+  .lens-metric-list-content {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lens-metric-list {
+    transition: none;
+  }
+
+  .lens-metric-list-content {
+    transition: opacity 120ms ease;
+  }
+}
+
 /* Pagination du tableau : le fondu est piloté par l'API View Transition de React
    (frontière « table-update »), pas par une animation des lignes. */
 ::view-transition-old(.table-update),
@@ -294,4 +323,19 @@ body::before {
   .neighborhood-map .maplibregl-ctrl-bottom-right {
     bottom: 9rem;
   }
+}
+
+.neighborhood-hover-popup .maplibregl-popup-content {
+  padding: 4px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: var(--elevated);
+}
+
+.neighborhood-hover-popup .maplibregl-popup-tip {
+  display: none;
 }

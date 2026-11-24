@@ -44,8 +44,6 @@ function loadMapLibre() {
   return maplibrePromise;
 }
 
-if (typeof window !== "undefined") loadMapLibre().catch(() => {});
-
 const defaultStyles = {
   dark: "https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json",
   light: "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
@@ -2038,8 +2036,10 @@ function MapGeoJSON<P extends GeoJSON.GeoJsonProperties = GeoJSON.GeoJsonPropert
 
       const featureId = feature.id;
 
-      if (featureId === hoveredId) return;
-      setHover(featureId ?? null);
+      if (featureId !== hoveredId) {
+        setHover(featureId ?? null);
+      }
+
       latestRef.current.onHover?.({
         feature,
         longitude: e.lngLat.lng,

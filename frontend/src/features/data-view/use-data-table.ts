@@ -8,13 +8,20 @@ export type DataTableState =
   | { status: "error"; code: string }
   | { status: "ready"; data: DataTableData };
 
-export function useDataTable({ cityId }: { cityId: number }): {
+export function useDataTable({ cityId }: { cityId: number | null }): {
   state: DataTableState;
   reload: () => void;
 } {
   const query = useQuery({
     queryKey: ["data-table", cityId],
-    queryFn: ({ signal }) => fetchDataTable({ cityId, signal }),
+    queryFn: ({ signal }) => {
+      if (cityId === null) {
+        throw new Error("ville indisponible");
+      }
+
+      return fetchDataTable({ cityId, signal });
+    },
+    enabled: cityId !== null,
   });
 
   const { refetch } = query;

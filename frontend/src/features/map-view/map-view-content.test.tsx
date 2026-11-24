@@ -2,6 +2,7 @@ import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vite-plus/test";
 import "../../app/locale-runtime";
 import type { components } from "../../generated/api";
+import type { City } from "../metrics/metric-api-schema";
 import type { ChoroplethFeatureCollection } from "./choropleth";
 import { MapViewContent } from "./map-view-content";
 import type { MapData } from "./map-data-client";
@@ -151,13 +152,18 @@ function renderContent({
   state,
   selectedNeighborhoodId = null,
   metrics = neighborhoodMetrics,
+  cityCenter = null,
 }: {
   state: MapDataState;
   selectedNeighborhoodId?: number | null;
   metrics?: NeighborhoodMetricsState;
+  cityCenter?: City["center"] | null;
 }) {
   return renderToStaticMarkup(
     <MapViewContent
+      cityName="Ville de test"
+      cityCenter={cityCenter}
+      metricKey="population_density"
       criteria={{ weights: [] }}
       onRemoveCriterion={() => {}}
       selectedNeighborhoodId={selectedNeighborhoodId}
@@ -174,6 +180,17 @@ function renderContent({
 }
 
 describe("map view content", () => {
+  it("mounts the map only once the city center from /cities is known", () => {
+    expect(renderContent({ state: { status: "loading" } })).not.toContain("neighborhood-map");
+
+    expect(
+      renderContent({
+        state: { status: "loading" },
+        cityCenter: { longitude: 28.98, latitude: 41.01 },
+      }),
+    ).toContain("neighborhood-map");
+  });
+
   it("lists every loaded neighborhood and shows all metrics of the selected one", () => {
     const markup = renderContent({
       state: { status: "ready", data },
@@ -266,7 +283,7 @@ describe("map view content", () => {
   it("offers a recenter action in the neighborhood picker", () => {
     const markup = renderContent({ state: { status: "ready", data } });
 
-    expect(markup).toContain("Recentrer sur Istanbul");
+    expect(markup).toContain("Recentrer sur la ville");
     expect(markup).toContain("appearance-none");
   });
 
@@ -275,6 +292,32 @@ describe("map view content", () => {
 
     expect(markup.match(/bg-ramp-\d/g)).toHaveLength(5);
     expect(markup).toContain("no-data-pattern");
+  });
+
+  it("writes the raw value of each ramp stop with its unit in the legend", () => {
+    const thresholdData: MapData = {
+      ...data,
+      collection: {
+        type: "FeatureCollection",
+        features: [0, 0.25, 0.5, 0.75, 1].map((normalized, index) => ({
+          ...collection.features[0],
+          properties: {
+            ...collection.features[0].properties,
+            id: index + 1,
+            raw: (index + 1) * 100,
+            normalized,
+          },
+        })),
+      },
+    };
+
+    const markup = renderContent({ state: { status: "ready", data: thresholdData } });
+
+    expect(markup).toContain("habitants/km²");
+
+    for (const value of ["100", "200", "300", "400", "500"]) {
+      expect(markup).toContain(`>${value}<`);
+    }
   });
 
   it("explains the loading and error states", () => {

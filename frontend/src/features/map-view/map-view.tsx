@@ -1,14 +1,13 @@
 import { useLayoutEffect, useState } from "react";
 import { isDarkTheme } from "../../app/theme";
+import { useCity } from "../metrics/use-city";
 import type { Criteria } from "../criteria/criteria";
 import { readChoroplethColors, type ChoroplethColors } from "./choropleth-style";
 import { DEFAULT_METRIC_KEY } from "../metrics/default-metric";
 import { MapViewContent } from "./map-view-content";
 import { useDocumentTheme } from "./use-document-theme";
-import { useMapData } from "./use-map-data";
+import { useMapData, type MapDataState } from "./use-map-data";
 import { useNeighborhoodMetrics } from "./use-neighborhood-metrics";
-
-const ISTANBUL_CITY_ID = 34;
 
 interface MapViewProps {
   criteria: Criteria;
@@ -28,12 +27,16 @@ export function MapView({
   onMetricChange,
 }: MapViewProps) {
   const themeName = useDocumentTheme();
+  const { state: city, reload: reloadCity } = useCity();
 
   const { state, reload } = useMapData({
-    cityId: ISTANBUL_CITY_ID,
+    cityId: city.status === "ready" ? city.city.plateCode : null,
     metricKey: rankingMetricKey ?? DEFAULT_METRIC_KEY,
     fallbackMetricKey: DEFAULT_METRIC_KEY,
   });
+
+  const viewState: MapDataState =
+    city.status === "error" ? { status: "error", code: city.code } : state;
 
   const { state: neighborhoodMetrics, reload: reloadNeighborhoodMetrics } = useNeighborhoodMetrics({
     neighborhoodId: selectedNeighborhoodId,
@@ -49,13 +52,19 @@ export function MapView({
 
   return (
     <MapViewContent
+      cityName={city.status === "ready" ? city.city.name : "—"}
+      cityCenter={city.status === "ready" ? city.city.center : null}
+      metricKey={rankingMetricKey ?? DEFAULT_METRIC_KEY}
       criteria={criteria}
       onRemoveCriterion={onRemoveCriterion}
       selectedNeighborhoodId={selectedNeighborhoodId}
       onSelectNeighborhood={onSelectNeighborhood}
       onMetricChange={onMetricChange}
-      state={state}
-      onReload={reload}
+      state={viewState}
+      onReload={() => {
+        reloadCity();
+        reload();
+      }}
       neighborhoodMetrics={neighborhoodMetrics}
       onReloadNeighborhoodMetrics={reloadNeighborhoodMetrics}
       colors={colors}
