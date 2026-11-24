@@ -1,4 +1,4 @@
-import { Fragment, ViewTransition, startTransition, useState } from "react";
+import { Fragment, ViewTransition, startTransition, useDeferredValue, useState } from "react";
 import { useTable, type PaginationState, type SortingState } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, ChevronUp } from "lucide-react";
 import { Button } from "../../components/ui/button";
@@ -172,6 +172,8 @@ function DataTableContent({
   const [groupByDistrict, setGroupByDistrict] = useState(true);
   const [showGroupAverage, setShowGroupAverage] = useState(true);
   const [collapsedDistricts, setCollapsedDistricts] = useState<readonly string[]>([]);
+  const [searchText, setSearchText] = useState("");
+  const deferredSearchText = useDeferredValue(searchText);
 
   const rows = groupByDistrict
     ? orderGroupedRows({ rows: data.rows, sort, locale })
@@ -220,7 +222,7 @@ function DataTableContent({
     data: rows,
     getRowId: (row) => String(row.neighborhoodId),
     manualSorting: groupByDistrict,
-    state: { sorting, pagination },
+    state: { sorting, pagination, globalFilter: deferredSearchText },
     autoResetPageIndex: false,
     onPaginationChange: setPagination,
     onSortingChange: (updater) => {
@@ -242,9 +244,9 @@ function DataTableContent({
     enableMultiSort: false,
     globalFilterFn: "includesString",
     getColumnCanGlobalFilter: (column) => column.id === "name",
+    onGlobalFilterChange: setSearchText,
   });
 
-  const searchText = typeof table.state.globalFilter === "string" ? table.state.globalFilter : "";
   const pageRows = table.getRowModel().rows;
   const pageCount = table.getPageCount();
   const firstRank = pagination.pageIndex * pagination.pageSize;
@@ -310,7 +312,7 @@ function DataTableContent({
     );
   };
 
-  const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${searchText}|${groupByDistrict}`;
+  const pageResetKey = `${sort?.key ?? ""}|${sort?.direction ?? ""}|${deferredSearchText}|${groupByDistrict}`;
   const [previousPageResetKey, setPreviousPageResetKey] = useState(pageResetKey);
 
   if (previousPageResetKey !== pageResetKey) {
@@ -340,7 +342,7 @@ function DataTableContent({
         showGroupAverage={showGroupAverage}
         onToggleGrouping={() => setGroupByDistrict((current) => !current)}
         onToggleAverage={() => setShowGroupAverage((current) => !current)}
-        onSearchChange={(value) => table.setGlobalFilter(value)}
+        onSearchChange={setSearchText}
         onSortChange={onSortChange}
       />
 

@@ -72,6 +72,12 @@ export function selectFeaturesById(
   };
 }
 
+export function hasMetricValue(
+  properties: ChoroplethProperties,
+): properties is ChoroplethProperties & { raw: number; normalized: number } {
+  return typeof properties.raw === "number" && typeof properties.normalized === "number";
+}
+
 export function splitFeaturesByMetricValue(collection: ChoroplethFeatureCollection): {
   withValue: ChoroplethFeatureCollection;
   withoutValue: ChoroplethFeatureCollection;
@@ -80,7 +86,7 @@ export function splitFeaturesByMetricValue(collection: ChoroplethFeatureCollecti
   const withoutValue: ChoroplethFeatureCollection["features"] = [];
 
   for (const feature of collection.features) {
-    if (typeof feature.properties.normalized === "number") {
+    if (hasMetricValue(feature.properties)) {
       withValue.push(feature);
     } else {
       withoutValue.push(feature);

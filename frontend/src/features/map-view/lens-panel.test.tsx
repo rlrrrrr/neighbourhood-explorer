@@ -76,6 +76,8 @@ function renderLens({
 } = {}) {
   return renderToStaticMarkup(
     <LensPanel
+      cityName="Ville de test"
+      observedAt="2025-12-31"
       criteria={{ weights: criteriaKeys.map((metricKey) => ({ metricKey, weight: 1 })) }}
       onRemoveCriterion={() => {}}
       metrics={metrics}
@@ -92,7 +94,8 @@ describe("lens panel", () => {
     const markup = renderLens();
 
     expect(markup).toContain('aria-label="La lentille"');
-    expect(markup).toContain("Istanbul");
+    expect(markup).toContain("Ville de test");
+    expect(markup).toContain("2025-12-31");
     expect(markup).toContain("Métrique affichée");
     expect(markup).toContain("Catégories");
     expect(markup).toContain("Sélection");
@@ -122,6 +125,13 @@ describe("lens panel", () => {
     expect(markup.match(/peer sr-only/g)).toHaveLength(4);
     expect(markup).toContain("has-[:checked]:bg-highlight");
     expect(markup).toContain("peer-checked:opacity-100");
+  });
+
+  it("wraps the filtered metrics in an animated height container", () => {
+    const markup = renderLens();
+
+    expect(markup).toContain("lens-metric-list");
+    expect(markup).toContain("lens-metric-list-content");
   });
 
   it("clips the panel so focusing a filter cannot scroll its header away", () => {

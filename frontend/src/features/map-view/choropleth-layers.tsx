@@ -1,5 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef } from "react";
-import { MapGeoJSON, useMap } from "../../components/ui/map";
+import type { Popup } from "maplibre-gl";
+import { MapGeoJSON, useMap, type MapGeoJSONEvent } from "../../components/ui/map";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
 import {
   collectionBounds,
@@ -16,6 +17,8 @@ import {
   NO_DATA_PATTERN_IMAGE_ID,
   type ChoroplethColors,
 } from "./choropleth-style";
+import { buildRoadOpacityByZoom, findTonedRoadLayerIds } from "./basemap-road-toning";
+import { useRecoloredCollection } from "./choropleth-recolor";
 
 function createNoDataPattern(backgroundColor: string, stripeColor: string): ImageData | null {
   const size = 8;
@@ -43,23 +46,28 @@ function createNoDataPattern(backgroundColor: string, stripeColor: string): Imag
 
 export function ChoroplethLayers({
   collection,
+  metricKey,
   selectedCollection,
   colors,
   onSelectNeighborhood,
 }: {
   collection: ChoroplethFeatureCollection;
+  metricKey: string;
   selectedCollection: ChoroplethFeatureCollection | null;
   colors: ChoroplethColors;
   onSelectNeighborhood: (neighborhoodId: number) => void;
 }) {
-  const { map, isLoaded } = useMap();
+  const { map, mapLib, isLoaded } = useMap();
   const isReady = map !== null && isLoaded;
   const fittedSelectionRef = useRef<string | null>(null);
   const hasCompletedInitialFitRef = useRef(false);
+  const tooltipRef = useRef<Popup | null>(null);
+  const tooltipLabelRef = useRef<string | null>(null);
+  const { collection: displayedCollection, blend } = useRecoloredCollection(collection, metricKey);
 
   const { withValue, withoutValue } = useMemo(
-    () => splitFeaturesByMetricValue(collection),
-    [collection],
+    () => splitFeaturesByMetricValue(displayedCollection),
+    [displayedCollection],
   );
 
   const beforeId =
@@ -84,6 +92,61 @@ export function ChoroplethLayers({
       }
     }
   }, [map, isLoaded, colors.noData, colors.text]);
+
+  useEffect(() => {
+    if (!map || !isLoaded) {
+      return;
+    }
+
+    const opacity = buildRoadOpacityByZoom();
+
+    for (const layerId of findTonedRoadLayerIds(map.getStyle().layers)) {
+      map.setPaintProperty(layerId, "line-opacity", opacity);
+    }
+  }, [map, isLoaded]);
+
+  useEffect(() => {
+    return () => {
+      tooltipRef.current?.remove();
+      tooltipRef.current = null;
+      tooltipLabelRef.current = null;
+    };
+  }, []);
+
+  function handleHover(event: MapGeoJSONEvent<ChoroplethProperties> | null) {
+    if (event === null) {
+      tooltipRef.current?.remove();
+      tooltipLabelRef.current = null;
+
+      return;
+    }
+
+    if (!map || !mapLib) {
+      return;
+    }
+
+    const tooltip =
+      tooltipRef.current ??
+      new mapLib.Popup({
+        closeButton: false,
+        closeOnClick: false,
+        offset: 10,
+        className: "neighborhood-hover-popup",
+      });
+
+    tooltipRef.current = tooltip;
+
+    const label = `${event.feature.properties.name} · ${event.feature.properties.districtName}`;
+
+    if (tooltipLabelRef.current !== label) {
+      const content = document.createElement("span");
+      content.textContent = label;
+      tooltip.setDOMContent(content);
+      tooltipLabelRef.current = label;
+    }
+
+    tooltip.setLngLat([event.longitude, event.latitude]).addTo(map);
+  }
 
   const hasSelection = selectedCollection !== null && selectedCollection.features.length > 0;
 
@@ -124,9 +187,10 @@ export function ChoroplethLayers({
         data={withValue}
         promoteId="id"
         beforeId={beforeId}
-        fillPaint={buildFillPaint(colors)}
+        fillPaint={buildFillPaint(colors, blend)}
         linePaint={buildBorderPaint(colors)}
         interactive
+        onHover={handleHover}
         onClick={(event) => onSelectNeighborhood(event.feature.properties.id)}
       />
       {withoutValue.features.length > 0 ? (
@@ -138,6 +202,7 @@ export function ChoroplethLayers({
           fillPaint={buildNoDataFillPaint()}
           linePaint={buildBorderPaint(colors)}
           interactive
+          onHover={handleHover}
           onClick={(event) => onSelectNeighborhood(event.feature.properties.id)}
         />
       ) : null}

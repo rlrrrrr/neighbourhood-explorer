@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from "react";
+import { useLayoutEffect, useMemo, useRef, useState, type ReactNode } from "react";
 import { fbs, fbt, type TranslatedString, useLocaleContext } from "fbtee";
 import { tv } from "tailwind-variants";
 import { useScrollOverflowHint } from "../../components/ui/scroll-affordance";
@@ -105,7 +105,64 @@ function LensFieldset({ legend, children }: { legend: TranslatedString; children
   );
 }
 
+function LensMetricOptions({
+  metrics,
+  selectedMetricKey,
+  onSelectMetric,
+  filterKey,
+  locale,
+}: {
+  metrics: readonly MetricDefinition[];
+  selectedMetricKey: string;
+  onSelectMetric: (metricKey: string) => void;
+  filterKey: string;
+  locale: string;
+}) {
+  const contentRef = useRef<HTMLDivElement | null>(null);
+  const [height, setHeight] = useState<number | null>(null);
+
+  useLayoutEffect(() => {
+    const content = contentRef.current;
+
+    if (content === null) {
+      return;
+    }
+
+    const measure = () => setHeight(content.getBoundingClientRect().height);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(content);
+
+    return () => observer.disconnect();
+  }, [filterKey]);
+
+  return (
+    <div className="lens-metric-list w-full" style={height === null ? undefined : { height }}>
+      <div
+        key={filterKey}
+        ref={contentRef}
+        className="lens-metric-list-content flex flex-wrap gap-1.5"
+      >
+        {metrics.map((metric) => (
+          <LensOption
+            key={metric.key}
+            type="radio"
+            name="lens-metric"
+            value={metric.key}
+            shape="dot"
+            checked={selectedMetricKey === metric.key}
+            onChange={() => onSelectMetric(metric.key)}
+            label={localizedMetricName(metric, locale)}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 interface LensPanelProps {
+  cityName: string;
+  observedAt: string | null;
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
   metrics: readonly MetricDefinition[];
@@ -116,6 +173,8 @@ interface LensPanelProps {
 }
 
 export function LensPanel({
+  cityName,
+  observedAt,
   criteria,
   onRemoveCriterion,
   metrics,
@@ -141,6 +200,8 @@ export function LensPanel({
       }),
     [metrics, selectedCategories, selectedMetricKey],
   );
+
+  const filterKey = [...selectedCategories].sort().join("|");
 
   const title = fbt("La lentille", "Title of the lens panel on the map");
   const closeLabel = fbs("Fermer le panneau de la lentille", "Close button of the lens panel");
@@ -181,12 +242,11 @@ export function LensPanel({
               <span className="text-xs font-semibold text-text-secondary">
                 <fbt desc="Label of the city field in the lens panel">Ville</fbt>
               </span>
-              <span className="text-sm font-semibold">Istanbul</span>
+              <span className="text-sm font-semibold">{cityName}</span>
             </div>
             <p className="mt-1 text-xs text-text-secondary">
-              <fbt desc="Note explaining that no sample data has a time dimension">
-                Période masquée : aucune donnée en cours n'a de dimension temporelle
-              </fbt>
+              <fbt desc="Label of the observation date in the lens panel">Date d'observation :</fbt>{" "}
+              {observedAt ?? "—"}
             </p>
 
             {categories.length > 1 && (
@@ -214,18 +274,13 @@ export function LensPanel({
                   "Legend of the metric selector group in the lens panel",
                 )}
               >
-                {visibleMetrics.map((metric) => (
-                  <LensOption
-                    key={metric.key}
-                    type="radio"
-                    name="lens-metric"
-                    value={metric.key}
-                    shape="dot"
-                    checked={selectedMetricKey === metric.key}
-                    onChange={() => onSelectMetric(metric.key)}
-                    label={localizedMetricName(metric, locale)}
-                  />
-                ))}
+                <LensMetricOptions
+                  metrics={visibleMetrics}
+                  selectedMetricKey={selectedMetricKey}
+                  onSelectMetric={onSelectMetric}
+                  filterKey={filterKey}
+                  locale={locale}
+                />
               </LensFieldset>
             )}
 

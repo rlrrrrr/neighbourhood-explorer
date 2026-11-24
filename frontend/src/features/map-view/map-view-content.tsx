@@ -5,6 +5,7 @@ import { Map, MapControls, type MapRef } from "../../components/ui/map";
 import { Button } from "../../components/ui/button";
 import { cn } from "../../components/ui/cn";
 import type { Criteria } from "../criteria/criteria";
+import type { City } from "../metrics/metric-api-schema";
 import {
   collectionBounds,
   selectFeaturesById,
@@ -13,15 +14,20 @@ import {
 import type { ChoroplethColors } from "./choropleth-style";
 import { ChoroplethLayers } from "./choropleth-layers";
 import { mapCameraAnimationDuration } from "./map-camera-duration";
-import { localizedMetricName, shortLicense } from "../metrics/metric-presentation";
+import {
+  formatMetricValue,
+  localizedMetricName,
+  localizedUnit,
+  shortLicense,
+} from "../metrics/metric-presentation";
+import { buildLegendStops, LEGEND_SWATCH_CLASSES } from "./choropleth-legend";
 import type { MapDataState } from "./use-map-data";
 import type { NeighborhoodMetricsState } from "./use-neighborhood-metrics";
 import { buildNeighborhoodMetricRows } from "./neighborhood-metric-rows";
 import { NeighborhoodMetricsPanel } from "./neighborhood-metrics-panel";
 import { LensPanel } from "./lens-panel";
 
-const ISTANBUL_MAP_CENTER: [number, number] = [28.97, 41.01];
-const ISTANBUL_MAP_ZOOM = 9.1;
+const CITY_MAP_ZOOM = 10;
 
 const basemapStyleUrl = import.meta.env.VITE_BASEMAP_STYLE_URL;
 const basemapDarkStyleUrl = import.meta.env.VITE_BASEMAP_DARK_STYLE_URL;
@@ -34,6 +40,9 @@ const basemapStyles = basemapStyleUrl
   : undefined;
 
 interface MapViewContentProps {
+  cityName: string;
+  cityCenter: City["center"] | null;
+  metricKey: string;
   criteria: Criteria;
   onRemoveCriterion: (metricKey: string) => void;
   selectedNeighborhoodId: number | null;
@@ -48,6 +57,9 @@ interface MapViewContentProps {
 }
 
 export function MapViewContent({
+  cityName,
+  cityCenter,
+  metricKey,
   criteria,
   onRemoveCriterion,
   selectedNeighborhoodId,
@@ -106,8 +118,10 @@ export function MapViewContent({
   );
 
   const metricName = data === null ? "" : localizedMetricName(data.metric, locale);
+  const legendStops = data === null ? [] : buildLegendStops(data.collection);
+  const legendPrecision = data === null ? 0 : data.metric.displayPrecision;
 
-  function recenterOnIstanbul() {
+  function recenterOnCity() {
     const clearsAnimatedSelection =
       colors !== null && selectedCollection !== null && selectedCollection.features.length > 0;
 
@@ -126,12 +140,6 @@ export function MapViewContent({
     const bounds = collectionBounds(data.collection);
 
     if (bounds === null) {
-      map.flyTo({
-        center: ISTANBUL_MAP_CENTER,
-        zoom: ISTANBUL_MAP_ZOOM,
-        duration: mapCameraAnimationDuration(),
-      });
-
       return;
     }
 
@@ -148,28 +156,31 @@ export function MapViewContent({
         {mapTitle}
       </h1>
 
-      <div className="absolute inset-0">
-        <Map
-          ref={mapRef}
-          center={ISTANBUL_MAP_CENTER}
-          zoom={ISTANBUL_MAP_ZOOM}
-          theme={documentTheme}
-          styles={basemapStyles}
-          blank={basemapStyles === undefined}
-          loading={state.status === "loading"}
-          className="neighborhood-map h-full w-full"
-        >
-          <MapControls position="top-right" showZoom showCompass={false} />
-          {data !== null && colors !== null ? (
-            <ChoroplethLayers
-              collection={data.collection}
-              selectedCollection={selectedCollection}
-              colors={colors}
-              onSelectNeighborhood={onSelectNeighborhood}
-            />
-          ) : null}
-        </Map>
-      </div>
+      {cityCenter !== null ? (
+        <div className="absolute inset-0">
+          <Map
+            ref={mapRef}
+            center={[cityCenter.longitude, cityCenter.latitude]}
+            zoom={CITY_MAP_ZOOM}
+            theme={documentTheme}
+            styles={basemapStyles}
+            blank={basemapStyles === undefined}
+            loading={state.status === "loading"}
+            className="neighborhood-map h-full w-full"
+          >
+            <MapControls position="top-right" showZoom showCompass={false} />
+            {data !== null && colors !== null ? (
+              <ChoroplethLayers
+                collection={data.collection}
+                metricKey={metricKey}
+                selectedCollection={selectedCollection}
+                colors={colors}
+                onSelectNeighborhood={onSelectNeighborhood}
+              />
+            ) : null}
+          </Map>
+        </div>
+      ) : null}
 
       <div className="absolute start-4 top-4 z-20 flex gap-2">
         <Button
@@ -247,14 +258,11 @@ export function MapViewContent({
                 className="pointer-events-none absolute end-3 top-1/2 size-4 -translate-y-1/2 text-text-secondary transition-transform duration-[160ms] ease-out group-has-[select:open]:rotate-180 motion-reduce:transition-none"
               />
             </div>
-            <Button
-              size="sm"
-              variant="outline"
-              className="mt-2 w-full"
-              onClick={recenterOnIstanbul}
-            >
+            <Button size="sm" variant="outline" className="mt-2 w-full" onClick={recenterOnCity}>
               <LocateFixed aria-hidden="true" className="size-4" />
-              <fbt desc="Button that recenters the map on Istanbul">Recentrer sur Istanbul</fbt>
+              <fbt desc="Button that recenters the map on the loaded neighborhoods">
+                Recentrer sur la ville
+              </fbt>
             </Button>
 
             {selectedFeature !== undefined ? (
@@ -307,6 +315,8 @@ export function MapViewContent({
       </aside>
 
       <LensPanel
+        cityName={cityName}
+        observedAt={data?.metric.observedAt ?? null}
         criteria={criteria}
         onRemoveCriterion={onRemoveCriterion}
         metrics={data?.metrics ?? []}
@@ -326,18 +336,44 @@ export function MapViewContent({
             {shortLicense(data.metric.source.license)} · {data.metric.observedAt ?? "—"}
           </p>
         ) : null}
-        <div className="material-panel pointer-events-auto flex flex-wrap items-center gap-x-3 gap-y-1 rounded-2xl border border-border px-3 py-2 text-xs">
+        <div className="material-panel pointer-events-auto flex flex-col gap-2 rounded-2xl border border-border px-3 py-2 text-xs">
+          <div>
+            <div className="grid grid-cols-5 gap-1" aria-hidden="true">
+              {LEGEND_SWATCH_CLASSES.map((swatchClass) => (
+                <span
+                  key={swatchClass}
+                  className={cn("h-2 w-full rounded-sm ring-1 ring-border", swatchClass)}
+                />
+              ))}
+            </div>
+            <div className="mt-1 grid grid-cols-5 gap-1">
+              {LEGEND_SWATCH_CLASSES.map((swatchClass, index) => {
+                const stop = legendStops[index];
+
+                return (
+                  <span
+                    key={swatchClass}
+                    className="text-center text-[10px] leading-tight text-text-secondary tabular-nums"
+                  >
+                    {stop === undefined || stop === null
+                      ? "—"
+                      : formatMetricValue({
+                          value: stop,
+                          locale,
+                          maximumFractionDigits: legendPrecision,
+                        })}
+                  </span>
+                );
+              })}
+            </div>
+            {data !== null ? (
+              <p className="mt-0.5 text-[10px] text-text-secondary">
+                {localizedUnit(data.metric.unit)}
+              </p>
+            ) : null}
+          </div>
           <span className="flex items-center gap-1.5">
-            <fbt desc="Low end of the score ramp legend">Faible</fbt>
-            <span className="h-3 w-5 rounded-sm bg-ramp-1 ring-1 ring-border" />
-            <span className="h-3 w-5 rounded-sm bg-ramp-2 ring-1 ring-border" />
-            <span className="h-3 w-5 rounded-sm bg-ramp-3 ring-1 ring-border" />
-            <span className="h-3 w-5 rounded-sm bg-ramp-4 ring-1 ring-border" />
-            <span className="h-3 w-5 rounded-sm bg-ramp-5 ring-1 ring-border" />
-            <fbt desc="High end of the score ramp legend">Élevé</fbt>
-          </span>
-          <span className="flex items-center gap-1.5">
-            <span className="no-data-pattern h-3 w-5 rounded-sm ring-1 ring-border" />
+            <span className="no-data-pattern h-2 w-4 rounded-sm ring-1 ring-border" />
             <fbt desc="Legend label for neighborhoods without data">Pas de donnée</fbt>
           </span>
         </div>

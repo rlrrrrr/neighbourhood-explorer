@@ -1,10 +1,9 @@
 import { useLocaleContext } from "fbtee";
+import { useCity } from "../metrics/use-city";
 import type { Criteria } from "../criteria/criteria";
 import { DataTableView } from "./data-table-view";
-import { useDataTable } from "./use-data-table";
+import { useDataTable, type DataTableState } from "./use-data-table";
 import type { TableSort } from "./table-sort";
-
-const ISTANBUL_CITY_ID = 34;
 
 interface DataViewProps {
   criteria: Criteria;
@@ -22,18 +21,28 @@ export function DataView({
   onShowOnMap,
 }: DataViewProps) {
   const { locale } = useLocaleContext();
-  const { state, reload } = useDataTable({ cityId: ISTANBUL_CITY_ID });
+  const { state: city, reload: reloadCity } = useCity();
+
+  const { state, reload } = useDataTable({
+    cityId: city.status === "ready" ? city.city.plateCode : null,
+  });
+
+  const viewState: DataTableState =
+    city.status === "error" ? { status: "error", code: city.code } : state;
 
   return (
     <DataTableView
       criteria={criteria}
-      state={state}
+      state={viewState}
       sort={sort}
       locale={locale}
       onRemoveCriterion={onRemoveCriterion}
       onSortChange={onSortChange}
       onShowOnMap={onShowOnMap}
-      onReload={reload}
+      onReload={() => {
+        reloadCity();
+        reload();
+      }}
     />
   );
 }

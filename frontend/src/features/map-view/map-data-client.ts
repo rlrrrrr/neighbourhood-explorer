@@ -1,10 +1,11 @@
 import { buildChoroplethFeatureCollection, type ChoroplethFeatureCollection } from "./choropleth";
-import { ApiRequestError, getApiJson } from "../metrics/api-json";
+import { getApiJson } from "../metrics/api-json";
 import {
-  isMetricValues,
-  isMetricsResponse,
-  isNeighborhoodCollection,
+  metricsResponseSchema,
+  neighborhoodCollectionSchema,
   type MetricDefinition,
+  type MetricValues,
+  type NeighborhoodCollection,
 } from "../metrics/metric-api-schema";
 
 export type MapData = {
@@ -13,67 +14,57 @@ export type MapData = {
   metrics: readonly MetricDefinition[];
 };
 
-export async function fetchMapData({
+export type MapStaticData = {
+  metrics: readonly MetricDefinition[];
+  neighborhoods: NeighborhoodCollection;
+};
+
+export async function fetchMapStatic({
   cityId,
-  metricKey,
-  fallbackMetricKey,
   signal,
 }: {
   cityId: number;
-  metricKey: string;
-  fallbackMetricKey: string;
   signal: AbortSignal;
-}): Promise<MapData> {
-  const requestedMetricKeys = [...new Set([metricKey, fallbackMetricKey])];
-
-  const encodedMetricKeys = requestedMetricKeys
-    .map((requestedKey) => encodeURIComponent(requestedKey))
-    .join(",");
-
-  const [metricsPayload, valuesPayload, neighborhoodsPayload] = await Promise.all([
-    getApiJson("/api/v1/metrics", signal),
-    getApiJson(`/api/v1/cities/${cityId}/metric-values?metrics=${encodedMetricKeys}`, signal),
-    getApiJson(`/api/v1/cities/${cityId}/neighborhoods`, signal),
+}): Promise<MapStaticData> {
+  const [metricsPayload, neighborhoodsPayload] = await Promise.all([
+    getApiJson({ path: "/api/v1/metrics", schema: metricsResponseSchema, signal }),
+    getApiJson({
+      path: `/api/v1/cities/${cityId}/neighborhoods`,
+      schema: neighborhoodCollectionSchema,
+      signal,
+    }),
   ]);
 
-  if (!isMetricsResponse(metricsPayload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse de /api/v1/metrics est invalide.",
-    });
-  }
+  return { metrics: metricsPayload.metrics, neighborhoods: neighborhoodsPayload };
+}
 
+export function createMapData({
+  metrics,
+  neighborhoods,
+  values,
+  metricKey,
+  fallbackMetricKey,
+}: {
+  metrics: readonly MetricDefinition[];
+  neighborhoods: NeighborhoodCollection;
+  values: MetricValues;
+  metricKey: string;
+  fallbackMetricKey: string;
+}): MapData | null {
   const metric =
-    metricsPayload.metrics.find((candidate) => candidate.key === metricKey) ??
-    metricsPayload.metrics.find((candidate) => candidate.key === fallbackMetricKey);
+    metrics.find((candidate) => candidate.key === metricKey) ??
+    metrics.find((candidate) => candidate.key === fallbackMetricKey);
 
   if (metric === undefined) {
-    throw new ApiRequestError({
-      code: "metric_not_found",
-      message: `La métrique ${metricKey} n'est pas publiée par l'API.`,
-    });
-  }
-
-  if (!isMetricValues(valuesPayload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse des valeurs de métriques est invalide.",
-    });
-  }
-
-  if (!isNeighborhoodCollection(neighborhoodsPayload)) {
-    throw new ApiRequestError({
-      code: "invalid_response",
-      message: "La réponse GeoJSON des quartiers est invalide.",
-    });
+    return null;
   }
 
   return {
     metric,
-    metrics: metricsPayload.metrics,
+    metrics,
     collection: buildChoroplethFeatureCollection({
-      neighborhoods: neighborhoodsPayload,
-      metricValues: valuesPayload,
+      neighborhoods,
+      metricValues: values,
       metricKey: metric.key,
     }),
   };
