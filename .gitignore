@@ -31,3 +31,13 @@ docs/
 *.log
 .DS_Store
 Thumbs.db
+
+# Profils Chrome créés par un outil avec un chemin Windows (noms contenant `C:\`)
+C\:\\Users*
+
+# Répertoires de compétences d'agents
+.agents/
+.claude/
+.qoder/
+.rovodev/
+.trae/
