@@ -37,6 +37,12 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
 
   return (
     <div className="interface-enter flex min-h-screen flex-col text-text">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:start-3 focus:top-3 focus:z-50 focus:rounded-lg focus:bg-surface focus:px-3 focus:py-2 focus:text-text"
+      >
+        <fbt desc="Skip link to the main content">Aller au contenu</fbt>
+      </a>
       <header className="grain material-panel sticky top-0 z-10">
         <div className="grid grid-cols-[minmax(0,1fr)_minmax(0,auto)] items-center gap-x-2 gap-y-2 px-3 py-2 sm:grid-cols-[auto_1fr_auto] sm:gap-4 sm:px-8 sm:py-3">
           <button
@@ -68,7 +74,9 @@ export function AppShell({ view, onNavigate, children }: AppShellProps) {
           </div>
         </div>
       </header>
-      <main className="flex flex-1 flex-col">{children}</main>
+      <main id="main" tabIndex={-1} className="flex flex-1 flex-col">
+        {children}
+      </main>
     </div>
   );
 }

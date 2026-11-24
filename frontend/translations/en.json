@@ -2453,6 +2453,94 @@
         }
       ],
       "types": []
+    },
+    "vLGw8Rx7YW3hWqWw9P/JqQ==": {
+      "description": "Label of the observation date in the lens panel",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Observation date:",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "JxtyM5jvNrZ6ni45llwRpg==": {
+      "description": "Button that recenters the map on the loaded neighborhoods",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Recenter on the city",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "0ccRiIPc9uY4xA4/7hboog==": {
+      "description": "Skip link to the main content",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Skip to content",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "iK/aGHiazH22iqikTwltdg==": {
+      "description": "Browser tab title of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Home",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "VG9SH88q30TV5QUwTvAygA==": {
+      "description": "Meta description of the home page",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Explore neighbourhoods with a map, criteria and open data.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "RC4ODBB3d0BVgY4d/tlUlg==": {
+      "description": "Meta description of the chat view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Describe the neighbourhood you are looking for and get explained leads.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "36PvnvONJleMUkMBKXNduw==": {
+      "description": "Meta description of the map view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Colour neighbourhoods by one metric and compare them on the map.",
+          "variations": {}
+        }
+      ],
+      "types": []
+    },
+    "JVgmsV90biFjDLm7if5E0w==": {
+      "description": "Meta description of the data view",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Browse raw values, units and sources for each neighbourhood.",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }
