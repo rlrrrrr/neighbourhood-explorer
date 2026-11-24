@@ -358,7 +358,7 @@
       },
       "City": {
         "type": "object",
-        "required": ["plateCode", "name", "officialCode"],
+        "required": ["plateCode", "name", "officialCode", "center"],
         "properties": {
           "plateCode": {
             "type": "integer",
@@ -368,7 +368,16 @@
             "description": "Code de plaque de la province, utilisé dans les chemins (34 = İstanbul)"
           },
           "name": { "type": "string" },
-          "officialCode": { "type": "string", "example": "TR-34" }
+          "officialCode": { "type": "string", "example": "TR-34" },
+          "center": {
+            "type": "object",
+            "description": "Centre approximatif de la province (centroïde administratif), utilisé pour le cadrage initial de la carte",
+            "required": ["longitude", "latitude"],
+            "properties": {
+              "longitude": { "type": "number", "format": "double" },
+              "latitude": { "type": "number", "format": "double" }
+            }
+          }
         }
       },
       "NeighborhoodFeatureCollection": {
