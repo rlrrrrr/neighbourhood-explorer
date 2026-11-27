@@ -1958,6 +1958,17 @@
         }
       ],
       "types": []
+    },
+    "Gzm6my13QUMGAoMCaL5dhQ==": {
+      "description": "Accessibility label of the header favorites button",
+      "tokens": [],
+      "translations": [
+        {
+          "translation": "Favoriler",
+          "variations": {}
+        }
+      ],
+      "types": []
     }
   }
 }

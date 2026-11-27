@@ -64,4 +64,16 @@ describe("app shell", () => {
     expect(header).toContain("material-panel");
     expect(header).not.toContain("border-b");
   });
+
+  it("renders the favorites slot inside the header controls when provided", () => {
+    const markup = renderToStaticMarkup(
+      <AppShell view="home" onNavigate={() => {}} favoritesSlot={<button aria-label="Favoris" />}>
+        <HomeView onNavigate={() => {}} />
+      </AppShell>,
+    );
+    const header = markup.slice(markup.indexOf("<header"), markup.indexOf("</header>"));
+
+    expect(header).toContain('aria-label="Favoris"');
+    expect(markup.slice(markup.indexOf("</header>"))).not.toContain('aria-label="Favoris"');
+  });
 });

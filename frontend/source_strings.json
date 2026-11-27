@@ -1801,6 +1801,35 @@
     },
     {
       "hashToLeaf": {
+        "Gzm6my13QUMGAoMCaL5dhQ==": {
+          "desc": "Accessibility label of the header favorites button",
+          "text": "Favoris"
+        }
+      },
+      "filename": "src/features/favorites/favorite-widget.tsx",
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 18,
+          "index": 565
+        },
+        "end": {
+          "line": 22,
+          "column": 86,
+          "index": 633
+        }
+      },
+      "project": "",
+      "jsfbt": {
+        "m": [],
+        "t": {
+          "desc": "Accessibility label of the header favorites button",
+          "text": "Favoris"
+        }
+      }
+    },
+    {
+      "hashToLeaf": {
         "WkIvc4ogeZ4mRVI+Z02YjQ==": {
           "desc": "Title of the favorites screen",
           "text": "Favoris"
@@ -3322,9 +3351,9 @@
           "index": 5436
         },
         "end": {
-          "line": 144,
-          "column": 101,
-          "index": 5513
+          "line": 146,
+          "column": 30,
+          "index": 5565
         }
       },
       "project": "",
@@ -3346,14 +3375,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 146,
+          "line": 148,
           "column": 24,
-          "index": 5566
+          "index": 5618
         },
         "end": {
-          "line": 146,
+          "line": 148,
           "column": 95,
-          "index": 5637
+          "index": 5689
         }
       },
       "project": "",
@@ -3375,14 +3404,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 155,
+          "line": 157,
           "column": 22,
-          "index": 5945
+          "index": 5997
         },
         "end": {
-          "line": 155,
+          "line": 157,
           "column": 91,
-          "index": 6014
+          "index": 6066
         }
       },
       "project": "",
@@ -3404,14 +3433,14 @@
       "filename": "src/features/administration/admin-users-page.tsx",
       "loc": {
         "start": {
-          "line": 164,
+          "line": 166,
           "column": 20,
-          "index": 6294
+          "index": 6346
         },
         "end": {
-          "line": 164,
+          "line": 166,
           "column": 87,
-          "index": 6361
+          "index": 6413
         }
       },
       "project": "",
@@ -4941,14 +4970,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 23,
+          "line": 24,
           "column": 13,
-          "index": 764
+          "index": 793
         },
         "end": {
-          "line": 23,
+          "line": 24,
           "column": 62,
-          "index": 813
+          "index": 842
         }
       },
       "project": "",
@@ -4970,14 +4999,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 25,
+          "line": 26,
           "column": 13,
-          "index": 844
+          "index": 873
         },
         "end": {
-          "line": 25,
+          "line": 26,
           "column": 62,
-          "index": 893
+          "index": 922
         }
       },
       "project": "",
@@ -4999,14 +5028,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 27,
+          "line": 28,
           "column": 13,
-          "index": 925
+          "index": 954
         },
         "end": {
-          "line": 27,
+          "line": 28,
           "column": 65,
-          "index": 977
+          "index": 1006
         }
       },
       "project": "",
@@ -5028,14 +5057,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 47,
+          "line": 48,
           "column": 12,
-          "index": 1862
+          "index": 1906
         },
         "end": {
-          "line": 47,
+          "line": 48,
           "column": 85,
-          "index": 1935
+          "index": 1979
         }
       },
       "project": "",
@@ -5057,14 +5086,14 @@
       "filename": "src/app/app-shell.tsx",
       "loc": {
         "start": {
-          "line": 50,
+          "line": 51,
           "column": 24,
-          "index": 1995
+          "index": 2039
         },
         "end": {
-          "line": 50,
+          "line": 51,
           "column": 99,
-          "index": 2070
+          "index": 2114
         }
       },
       "project": "",
@@ -5115,14 +5144,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 282,
+          "line": 284,
           "column": 27,
-          "index": 9021
+          "index": 9134
         },
         "end": {
-          "line": 285,
+          "line": 287,
           "column": 3,
-          "index": 9120
+          "index": 9233
         }
       },
       "project": "",
@@ -5144,14 +5173,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 286,
+          "line": 288,
           "column": 26,
-          "index": 9148
+          "index": 9261
         },
         "end": {
-          "line": 289,
+          "line": 291,
           "column": 3,
-          "index": 9262
+          "index": 9375
         }
       },
       "project": "",

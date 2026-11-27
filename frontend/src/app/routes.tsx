@@ -40,6 +40,7 @@ import { ConfirmEmailPage, type ConfirmEmailStatus } from "../features/accounts/
 import { LoginPage } from "../features/accounts/login-page";
 import { SignupPage } from "../features/accounts/signup-page";
 import { FavoritesPage } from "../features/favorites/favorites-page";
+import { FavoriteWidget } from "../features/favorites/favorite-widget";
 import { AdminUsersPage } from "../features/administration/admin-users-page";
 
 function useOpenView() {
@@ -78,6 +79,7 @@ export function AppLayout() {
     <AppShell
       view={viewForPath(location.pathname)}
       onNavigate={openView}
+      favoritesSlot={<FavoriteWidget />}
       accountSlot={<AccountMenu />}
     >
       <Outlet />

@@ -13,6 +13,7 @@ const NAV_VIEWS: readonly NavigationView[] = ["chat", "map", "data"];
 interface AppShellProps {
   view: ViewName;
   onNavigate: (view: ViewName) => void;
+  favoritesSlot?: ReactNode;
   accountSlot?: ReactNode;
   children: ReactNode;
 }
@@ -28,7 +29,13 @@ function navigationLabel(view: NavigationView): TranslatedString {
   }
 }
 
-export function AppShell({ view, onNavigate, accountSlot, children }: AppShellProps) {
+export function AppShell({
+  view,
+  onNavigate,
+  favoritesSlot,
+  accountSlot,
+  children,
+}: AppShellProps) {
   const [theme, setTheme] = useState<ThemeName>(() => readStoredTheme());
 
   useEffect(() => {
@@ -63,6 +70,7 @@ export function AppShell({ view, onNavigate, accountSlot, children }: AppShellPr
             ))}
           </nav>
           <div className="col-start-2 row-start-1 flex min-w-0 flex-wrap items-center justify-end gap-1 sm:col-start-3 sm:flex-nowrap">
+            {favoritesSlot}
             {accountSlot}
             <LanguageSwitcher />
             <ThemeSwitcher theme={theme} onChange={setTheme} />
