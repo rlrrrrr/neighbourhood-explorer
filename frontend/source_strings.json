@@ -6246,14 +6246,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 119,
+          "line": 122,
           "column": 11,
-          "index": 3802
+          "index": 3805
         },
         "end": {
-          "line": 119,
+          "line": 122,
           "column": 82,
-          "index": 3873
+          "index": 3876
         }
       },
       "project": "",
@@ -6275,14 +6275,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 300,
+          "line": 303,
           "column": 27,
-          "index": 9749
+          "index": 9752
         },
         "end": {
-          "line": 303,
+          "line": 306,
           "column": 3,
-          "index": 9848
+          "index": 9851
         }
       },
       "project": "",
@@ -6304,14 +6304,14 @@
       "filename": "src/app/routes.tsx",
       "loc": {
         "start": {
-          "line": 304,
+          "line": 308,
           "column": 26,
-          "index": 9876
+          "index": 9880
         },
         "end": {
-          "line": 307,
+          "line": 311,
           "column": 3,
-          "index": 9990
+          "index": 9994
         }
       },
       "project": "",

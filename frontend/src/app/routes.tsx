@@ -48,6 +48,7 @@ const MapView = lazy(() =>
 
 function useOpenView() {
   const navigate = useNavigate();
+
   return (view: ViewName) => {
     void navigate({ to: viewPath(view), search: (previous) => previous });
   };
@@ -55,6 +56,7 @@ function useOpenView() {
 
 function useOpenMapAt() {
   const navigate = useNavigate();
+
   return (neighborhoodId: number) => {
     void navigate({
       to: viewPath("map"),
@@ -65,6 +67,7 @@ function useOpenMapAt() {
 
 function useCriterionWriter(to: ViewPath) {
   const navigate = useNavigate();
+
   return (metricKey: string, change: (criteria: Criteria, metricKey: string) => Criteria) => {
     void navigate({
       to,
@@ -301,6 +304,7 @@ export function UnknownPageView() {
     "Cette page n'existe pas",
     "Title of the page shown when the URL matches no view",
   );
+
   const unknownPageHint = fbt(
     "Choisis une vue dans la barre de navigation.",
     "Hint shown under the title of the unknown page",
