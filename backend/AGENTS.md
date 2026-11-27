@@ -123,6 +123,8 @@ Règles transverses :
 | `GET /api/v1/trending?period=7d` | Tendances (croissance, jamais un classement de popularité ; `trends-v1`) |
 | `POST /api/v1/events` | Événement anonyme (avec consentement) |
 | `GET /api/v1/health` | Santé (base, version des données, `ai: disabled \| warming \| ready \| unavailable \| unauthorized`) |
+| `GET /api/v1/admin/users?limit=` | Liste des comptes (rôle `admin`, 100 par défaut, 200 au plus, plus récents d'abord) |
+| `DELETE /api/v1/admin/users/{userId}` | Suppression définitive d'un compte (`admin`, anti-falsification, refus de son propre compte) |
 
 `display_geometry` des mahalles est précalculé par l'ETL (`ST_SimplifyPreserveTopology(geometry, 0.0005)`, ≈55 m) : l'API sert cette colonne, jamais une simplification à la volée. Chaque valeur de métrique expose `qualityFlag` (`ok | estimated | stale | low_coverage | inherited`) ; `inherited` signifie que la valeur vient du district et doit être étiquetée comme telle côté frontend.
 
@@ -167,6 +169,7 @@ Spécification complète dans `../docs/accounts.md` ; ce fichier n'en garde que 
 - `Place.popularity` : `3 × j'aime + 4 × avis visibles` (l'enregistrement n'y entre pas), personnes distinctes, comptes vérifiés, **hors ligne** (jamais dans une requête utilisateur) ; n'entre jamais dans le matching.
 - Dépendances de l'ETL : accord donné le 18 octobre 2026 pour la liste de `../docs/dependencies.md` ; lire la licence de chaque paquet avant de l'ajouter et la consigner.
 - Photo d'un pin : une seule, réencodée côté serveur, EXIF supprimé, contenu reconnu ; **aucune bibliothèque d'image ajoutée sans l'accord de l'humain** (licence à valider).
+- Administrateur : le rôle Identity `admin` est créé au démarrage et attribué aux adresses de `ADMIN_EMAILS` (séparées par des virgules, comparaison insensible à la casse) ainsi qu'à l'inscription si l'adresse y figure. `GET /api/v1/me` et la connexion renvoient `isAdmin`. La suppression d'un compte par un administrateur est **définitive** (`UserManager.DeleteAsync` : profil, favoris, rôles et jetons en cascade) ; supprimer son propre compte renvoie `409 cannot_delete_self`, une cible inconnue `404 user_not_found`. L'action est journalisée avec l'identifiant de l'administrateur et celui du compte retiré.
 
 ## Matching
 
@@ -225,6 +228,7 @@ Détails dans `../docs/data.md`. Impératifs :
 
 ```
 DATABASE_CONNECTION_STRING
+ADMIN_EMAILS          # adresses du rôle admin, séparées par des virgules (vide = aucun administrateur)
 TUIK_API_KEY          # clé d'API TÜİK (ETL uniquement ; vide = arrêt de la source tuik-adnks)
 AI_ENABLED            # false par défaut
 AI_PROVIDER           # fake | clef-server (serveur CLEF distant, voir AI_ENDPOINT)

@@ -34,6 +34,10 @@ services:
       ISOCHRONE_PROVIDER: ${ISOCHRONE_PROVIDER:-fake}
       ISOCHRONE_API_KEY: ${ISOCHRONE_API_KEY:-}
       ISOCHRONE_DAILY_BUDGET: ${ISOCHRONE_DAILY_BUDGET:-1000}
+      FRONTEND_BASE_URL: ${FRONTEND_BASE_URL:-http://localhost:5173}
+      EMAIL_OUTBOX_PATH: /app/data/outbox
+    volumes:
+      - ./data/outbox:/app/data/outbox
     ports:
       - "127.0.0.1:5080:8080"
 

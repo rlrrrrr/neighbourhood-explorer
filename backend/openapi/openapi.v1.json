@@ -3,27 +3,449 @@
   "info": {
     "title": "Neighbourhood Explorer API",
     "version": "1.0.0",
-    "description": "Contrat d'API versionné (source de vérité). Le frontend génère ses types depuis ce fichier."
+    "description": "Versioned API contract (source of truth). The frontend generates its types from this file."
   },
   "servers": [
-    { "url": "http://localhost:5080", "description": "API locale (dotnet run)" },
-    { "url": "http://localhost:5080", "description": "API conteneurisée (docker compose, port hôte 5080)" }
+    { "url": "http://localhost:5080", "description": "Local API (dotnet run)" },
+    { "url": "http://localhost:5080", "description": "Containerized API (Docker Compose, host port 5080)" }
   ],
   "paths": {
+    "/api/v1/auth/csrf": {
+      "get": {
+        "operationId": "getAuthCsrfToken",
+        "summary": "Anti-forgery token for authenticated writes",
+        "responses": {
+          "200": {
+            "description": "Token to send back in the X-CSRF-TOKEN header; the companion cookie is set by the server",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CsrfResponse" }
+              }
+            }
+          },
+          "429": {
+            "description": "Authentication rate limit reached",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/register": {
+      "post": {
+        "operationId": "registerAccount",
+        "summary": "Create an account and send the confirmation email",
+        "parameters": [{ "$ref": "#/components/parameters/CsrfToken" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/RegisterRequest" }
+            }
+          }
+        },
+        "responses": {
+          "202": {
+            "description": "Account created (or still unconfirmed); the confirmation email has been sent",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/RegisterResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid input or rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "429": {
+            "description": "Authentication rate limit reached",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/confirm-email": {
+      "post": {
+        "operationId": "confirmEmailAddress",
+        "summary": "Confirm an account email address with the token from the confirmation link",
+        "parameters": [{ "$ref": "#/components/parameters/CsrfToken" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/ConfirmEmailRequest" }
+            }
+          }
+        },
+        "responses": {
+          "204": { "description": "Email address confirmed" },
+          "400": {
+            "description": "Invalid or expired token, or rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "429": {
+            "description": "Authentication rate limit reached",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/login": {
+      "post": {
+        "operationId": "login",
+        "summary": "Sign in and start the session cookie",
+        "parameters": [{ "$ref": "#/components/parameters/CsrfToken" }],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/LoginRequest" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Authenticated account profile",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MeResponse" }
+              }
+            }
+          },
+          "400": {
+            "description": "Rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "401": {
+            "description": "Invalid credentials",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "403": {
+            "description": "Email address not confirmed",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "423": {
+            "description": "Account temporarily locked after too many attempts",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "429": {
+            "description": "Authentication rate limit reached",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/logout": {
+      "post": {
+        "operationId": "logout",
+        "summary": "End the session",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [{ "$ref": "#/components/parameters/CsrfToken" }],
+        "responses": {
+          "204": { "description": "Signed out" },
+          "400": {
+            "description": "Rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "operationId": "getCurrentAccount",
+        "summary": "Authenticated account profile",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Authenticated account profile",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/MeResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me/favorites": {
+      "get": {
+        "operationId": "listFavorites",
+        "summary": "Authenticated account favorites, from newest to oldest",
+        "security": [{ "cookieAuth": [] }],
+        "responses": {
+          "200": {
+            "description": "Authenticated account favorites, from newest to oldest",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/FavoritesResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me/favorites/{targetType}/{targetId}": {
+      "put": {
+        "operationId": "putFavorite",
+        "summary": "Save a favorite (idempotent)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          {
+            "name": "targetType",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "enum": ["neighborhood"] }
+          },
+          {
+            "name": "targetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/CsrfToken" }
+        ],
+        "responses": {
+          "204": { "description": "Favorite saved" },
+          "400": {
+            "description": "Unknown favorite target or rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "operationId": "deleteFavorite",
+        "summary": "Remove a favorite (idempotent)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          {
+            "name": "targetType",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "enum": ["neighborhood"] }
+          },
+          {
+            "name": "targetId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/CsrfToken" }
+        ],
+        "responses": {
+          "204": { "description": "Favorite removed" },
+          "400": {
+            "description": "Rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users": {
+      "get": {
+        "operationId": "listAdminUsers",
+        "summary": "Accounts known to the service (administrators only)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of accounts returned (default 100, maximum 200)",
+            "schema": { "type": "integer", "minimum": 1, "maximum": 200 }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Accounts sorted from newest to oldest",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/AdminUsersResponse" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "403": {
+            "description": "Signed in without the admin role",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/admin/users/{userId}": {
+      "delete": {
+        "operationId": "deleteAdminUser",
+        "summary": "Remove an account and its profile and favorites (administrators only)",
+        "security": [{ "cookieAuth": [] }],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          { "$ref": "#/components/parameters/CsrfToken" }
+        ],
+        "responses": {
+          "204": { "description": "Account removed" },
+          "400": {
+            "description": "Rejected anti-forgery token",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "401": {
+            "description": "Not signed in",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "403": {
+            "description": "Signed in without the admin role",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "404": {
+            "description": "No account with this identifier",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          },
+          "409": {
+            "description": "An administrator cannot remove their own account",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ApiError" }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/cities": {
       "get": {
         "operationId": "getCities",
         "summary": "Villes disponibles",
         "responses": {
           "200": {
-            "description": "Provinces disponibles, triées par code officiel",
+            "description": "Available provinces, sorted by official code",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -34,7 +456,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -47,13 +469,13 @@
     "/api/v1/cities/{cityId}/neighborhoods": {
       "get": {
         "operationId": "getCityNeighborhoods",
-        "summary": "Géométries simplifiées des quartiers d'une ville (GeoJSON)",
+        "summary": "Simplified geometries of a city's neighborhoods (GeoJSON)",
         "parameters": [
           {
             "name": "cityId",
             "in": "path",
             "required": true,
-            "description": "Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId}",
+            "description": "Province plate code (1 to 81; 34 = Istanbul), resolved through official_code = TR-{cityId}",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -64,14 +486,14 @@
         ],
         "responses": {
           "200": {
-            "description": "FeatureCollection GeoJSON ; chaque géométrie est simplifiée pour l'affichage (COALESCE(display_geometry, geometry))",
+            "description": "GeoJSON FeatureCollection; each geometry is simplified for display (COALESCE(display_geometry, geometry))",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -82,7 +504,7 @@
             }
           },
           "404": {
-            "description": "Ville inconnue",
+            "description": "Unknown city",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -90,7 +512,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -103,26 +525,26 @@
     "/api/v1/neighborhoods/{id}": {
       "get": {
         "operationId": "getNeighborhood",
-        "summary": "Détail d'un quartier : hiérarchie, géométrie complète et centroïde",
+        "summary": "Neighborhood details: hierarchy, complete geometry, and centroid",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "Identifiant interne du quartier (admin_area.id)",
+            "description": "Internal neighborhood identifier (admin_area.id)",
             "schema": { "type": "integer", "format": "int64" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Quartier trouvé",
+            "description": "Neighborhood found",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -141,7 +563,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -154,26 +576,26 @@
     "/api/v1/neighborhoods/{id}/metrics": {
       "get": {
         "operationId": "getNeighborhoodMetrics",
-        "summary": "Toutes les métriques d'un quartier, avec leur date d'observation et leur source",
+        "summary": "All metrics for a neighborhood, with their observation date and source",
         "parameters": [
           {
             "name": "id",
             "in": "path",
             "required": true,
-            "description": "Identifiant interne du quartier (admin_area.id)",
+            "description": "Internal neighborhood identifier (admin_area.id)",
             "schema": { "type": "integer", "format": "int64" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Valeurs les plus récentes du quartier, triées par clé de métrique",
+            "description": "Most recent values for the neighborhood, sorted by metric key",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -184,7 +606,7 @@
             }
           },
           "404": {
-            "description": "Quartier inconnu",
+            "description": "Unknown neighborhood",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -192,7 +614,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -205,10 +627,10 @@
     "/api/v1/health": {
       "get": {
         "operationId": "getHealth",
-        "summary": "Santé du service : base, version des données, état de l'IA",
+        "summary": "Service health: database, data version, and AI status",
         "responses": {
           "200": {
-            "description": "État courant du service",
+            "description": "Current service status",
             "content": {
               "application/json": {
                 "schema": { "$ref": "#/components/schemas/HealthResponse" }
@@ -221,17 +643,17 @@
     "/api/v1/metrics": {
       "get": {
         "operationId": "getMetrics",
-        "summary": "Définitions des métriques avec leur source, leurs traductions et la date de la dernière observation",
+        "summary": "Metric definitions with their source, translations, and latest observation date",
         "responses": {
           "200": {
-            "description": "Définitions des métriques disponibles",
+            "description": "Available metric definitions",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -242,7 +664,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -255,13 +677,13 @@
     "/api/v1/cities/{cityId}/metric-values": {
       "get": {
         "operationId": "getCityMetricValues",
-        "summary": "Dernières valeurs des métriques demandées pour les quartiers d'une ville",
+        "summary": "Latest values of the requested metrics for a city's neighborhoods",
         "parameters": [
           {
             "name": "cityId",
             "in": "path",
             "required": true,
-            "description": "Code de plaque de la province (1 à 81 ; 34 = İstanbul), résolu via official_code = TR-{cityId}",
+            "description": "Province plate code (1 to 81; 34 = Istanbul), resolved through official_code = TR-{cityId}",
             "schema": {
               "type": "integer",
               "format": "int32",
@@ -273,20 +695,20 @@
             "name": "metrics",
             "in": "query",
             "required": true,
-            "description": "Clés de métriques séparées par des virgules (ex. population_density)",
+            "description": "Metric keys separated by commas (e.g. population_density)",
             "schema": { "type": "string" }
           }
         ],
         "responses": {
           "200": {
-            "description": "Valeurs brutes et normalisées, indexées par clé de métrique puis par identifiant de quartier",
+            "description": "Raw and normalized values, indexed first by metric key and then by neighborhood ID",
             "headers": {
               "ETag": {
-                "description": "Empreinte du contenu, utilisable avec If-None-Match",
+                "description": "Content fingerprint, usable with If-None-Match",
                 "schema": { "type": "string" }
               },
               "Cache-Control": {
-                "description": "Durée de mise en cache côté client",
+                "description": "Client-side cache duration",
                 "schema": { "type": "string" }
               }
             },
@@ -297,7 +719,7 @@
             }
           },
           "400": {
-            "description": "Paramètre metrics absent ou clé de métrique inconnue",
+            "description": "Missing metrics parameter or unknown metric key",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -305,7 +727,7 @@
             }
           },
           "404": {
-            "description": "Ville inconnue",
+            "description": "Unknown city",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -313,7 +735,7 @@
             }
           },
           "503": {
-            "description": "Base de données non configurée ou non joignable",
+            "description": "Database is not configured or cannot be reached",
             "content": {
               "application/problem+json": {
                 "schema": { "$ref": "#/components/schemas/ProblemDetails" }
@@ -325,6 +747,23 @@
     }
   },
   "components": {
+    "parameters": {
+      "CsrfToken": {
+        "name": "X-CSRF-TOKEN",
+        "in": "header",
+        "required": true,
+        "description": "Token returned by GET /api/v1/auth/csrf, required for every authenticated write",
+        "schema": { "type": "string" }
+      }
+    },
+    "securitySchemes": {
+      "cookieAuth": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ne.session",
+        "description": "Identity session cookie set by POST /api/v1/auth/login"
+      }
+    },
     "schemas": {
       "HealthResponse": {
         "type": "object",
@@ -333,16 +772,16 @@
           "database": {
             "type": "string",
             "enum": ["ok", "unavailable"],
-            "description": "État de la base PostgreSQL/PostGIS"
+            "description": "PostgreSQL/PostGIS database status"
           },
           "dataVersion": {
             "type": ["string", "null"],
-            "description": "Version des données chargées par l'ETL, null tant que rien n'est chargé"
+            "description": "Version of the data loaded by the ETL, null until data is loaded"
           },
           "ai": {
             "type": "string",
             "enum": ["disabled", "warming", "ready", "unavailable"],
-            "description": "État du modèle de décision (disabled quand AI_ENABLED est désactivé)"
+            "description": "Decision model status (disabled when AI_ENABLED is disabled)"
           }
         }
       },
@@ -365,7 +804,7 @@
             "format": "int32",
             "minimum": 1,
             "maximum": 81,
-            "description": "Code de plaque de la province, utilisé dans les chemins (34 = İstanbul)"
+            "description": "Province plate code used in paths (34 = Istanbul)"
           },
           "name": { "type": "string" },
           "officialCode": { "type": "string", "example": "TR-34" },
@@ -412,7 +851,7 @@
       },
       "GeoJsonGeometry": {
         "type": "object",
-        "description": "Géométrie GeoJSON en WGS 84 (EPSG:4326)",
+        "description": "GeoJSON geometry in WGS 84 (EPSG:4326)",
         "required": ["type", "coordinates"],
         "properties": {
           "type": {
@@ -489,7 +928,7 @@
           "observedAt": {
             "type": ["string", "null"],
             "format": "date",
-            "description": "Date de la dernière observation disponible, null si la métrique n'a aucune valeur"
+            "description": "Date of the latest available observation, null if the metric has no value"
           }
         }
       },
@@ -538,7 +977,7 @@
       },
       "MetricValues": {
         "type": "object",
-        "description": "Clé = metricKey ; valeur = objet dont les clés sont les identifiants de quartier. Une métrique demandée sans valeur renvoie un objet vide.",
+        "description": "Key = metricKey; value = object whose keys are neighborhood IDs. A requested metric without a value returns an empty object.",
         "additionalProperties": {
           "type": "object",
           "additionalProperties": { "$ref": "#/components/schemas/MetricValue" }
@@ -550,18 +989,18 @@
         "properties": {
           "raw": {
             "type": "number",
-            "description": "Valeur brute dans l'unité de la métrique, sans arrondi d'affichage"
+            "description": "Raw value in the metric's unit, without display rounding"
           },
           "normalized": {
             "type": "number",
             "minimum": 0,
             "maximum": 1,
-            "description": "Valeur normalisée (0..1) utilisée par le score"
+            "description": "Normalized value (0..1) used by the score"
           },
           "qualityFlag": {
             "type": "string",
             "enum": ["ok", "estimated", "stale", "low_coverage", "inherited"],
-            "description": "Qualité de la valeur ; inherited signifie que la valeur vient du district parent"
+            "description": "Value quality; inherited means the value comes from the parent district"
           }
         }
       },
@@ -591,18 +1030,18 @@
           "key": { "type": "string" },
           "raw": {
             "type": "number",
-            "description": "Valeur brute dans l'unité de la métrique, sans arrondi d'affichage"
+            "description": "Raw value in the metric's unit, without display rounding"
           },
           "normalized": {
             "type": "number",
             "minimum": 0,
             "maximum": 1,
-            "description": "Valeur normalisée (0..1) utilisée par le score"
+            "description": "Normalized value (0..1) used by the score"
           },
           "qualityFlag": {
             "type": "string",
             "enum": ["ok", "estimated", "stale", "low_coverage", "inherited"],
-            "description": "Qualité de la valeur ; inherited signifie que la valeur vient du district parent"
+            "description": "Value quality; inherited means the value comes from the parent district"
           },
           "observedAt": { "type": "string", "format": "date" },
           "referencePeriod": { "type": "string" },
@@ -618,6 +1057,120 @@
           "organization": { "type": "string" },
           "license": { "type": "string" },
           "attribution": { "type": "string" }
+        }
+      },
+      "ApiError": {
+        "type": "object",
+        "required": ["code", "errors"],
+        "properties": {
+          "code": {
+            "type": "string",
+            "description": "Stable error code: validation_failed, invalid_credentials, email_not_confirmed, account_locked, not_authenticated, invalid_token, favorite_target_unknown, csrf_failed, rate_limited"
+          },
+          "errors": {
+            "type": "array",
+            "items": { "type": "string" }
+          }
+        }
+      },
+      "CsrfResponse": {
+        "type": "object",
+        "required": ["token"],
+        "properties": {
+          "token": { "type": "string" }
+        }
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": ["email", "displayName", "password", "locale"],
+        "properties": {
+          "email": { "type": "string", "format": "email", "maxLength": 256 },
+          "displayName": { "type": "string", "minLength": 1, "maxLength": 80 },
+          "password": { "type": "string", "minLength": 12, "maxLength": 256 },
+          "locale": {
+            "type": ["string", "null"],
+            "enum": ["fr", "en", "tr", "ar", null],
+            "description": "Preferred email language; the API defaults to fr when unknown"
+          }
+        }
+      },
+      "RegisterResponse": {
+        "type": "object",
+        "required": ["status"],
+        "properties": {
+          "status": { "type": "string", "const": "confirmation_sent" }
+        }
+      },
+      "ConfirmEmailRequest": {
+        "type": "object",
+        "required": ["userId", "token"],
+        "properties": {
+          "userId": { "type": "string" },
+          "token": { "type": "string" }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": { "type": "string", "format": "email" },
+          "password": { "type": "string" }
+        }
+      },
+      "MeResponse": {
+        "type": "object",
+        "required": ["userId", "email", "displayName", "locale", "isDemo", "isAdmin"],
+        "properties": {
+          "userId": { "type": "string" },
+          "email": { "type": "string" },
+          "displayName": { "type": "string" },
+          "locale": { "type": "string" },
+          "isDemo": { "type": "boolean" },
+          "isAdmin": { "type": "boolean" }
+        }
+      },
+      "FavoriteResponse": {
+        "type": "object",
+        "required": ["targetType", "targetId", "createdAt"],
+        "properties": {
+          "targetType": { "type": "string", "const": "neighborhood" },
+          "targetId": { "type": "string" },
+          "name": { "type": ["string", "null"] },
+          "district": { "type": ["string", "null"] },
+          "createdAt": { "type": "string", "format": "date-time" }
+        }
+      },
+      "FavoritesResponse": {
+        "type": "object",
+        "required": ["items"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/FavoriteResponse" }
+          }
+        }
+      },
+      "AdminUserResponse": {
+        "type": "object",
+        "required": ["userId", "email", "displayName", "createdAt", "emailConfirmed", "isDemo", "isAdmin"],
+        "properties": {
+          "userId": { "type": "string" },
+          "email": { "type": "string" },
+          "displayName": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "emailConfirmed": { "type": "boolean" },
+          "isDemo": { "type": "boolean" },
+          "isAdmin": { "type": "boolean" }
+        }
+      },
+      "AdminUsersResponse": {
+        "type": "object",
+        "required": ["items"],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/AdminUserResponse" }
+          }
         }
       },
       "ProblemDetails": {

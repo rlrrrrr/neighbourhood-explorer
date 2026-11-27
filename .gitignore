@@ -1,4 +1,4 @@
-# Environnement local (jamais commité ; modèle : .env.example)
+# Local environment (never committed; template: .env.example)
 .env
 mise.local.toml
 
@@ -20,11 +20,14 @@ __pycache__/
 *.pyc
 .venv/
 
-# Données ETL : hors Git sauf les manifestes de data/sources/
+# ETL data: outside Git except manifests in data/sources/
 data/raw/*
 data/processed/*
 data/normalized/*
 !data/**/.gitkeep
+
+# Runtime outbox (FakeEmailSender): confirmation emails contain tokens
+data/outbox/
 
 # Divers
 docs/
