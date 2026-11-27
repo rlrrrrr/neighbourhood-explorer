@@ -109,14 +109,16 @@ public static class UrbanFeatureMetricCatalog
                 "Accessibilité éducative",
                 "Écoles, crèches, collèges, universités et bibliothèques distincts situés " +
                 "à moins de 800 m du quartier. Indicateur de proximité, sans capacité ni " +
-                "qualité des établissements.",
+                "qualité des établissements. La complétude d'OpenStreetMap est inégale " +
+                "selon les quartiers.",
                 "la proximité des écoles et des universités"),
             new MetricTranslation(
                 "en",
                 "Education accessibility",
                 "Distinct schools, kindergartens, colleges, universities and libraries " +
                 "within 800 m of the neighbourhood. A proximity indicator, without " +
-                "capacity or quality of the facilities.",
+                "capacity or quality of the facilities. OpenStreetMap completeness varies " +
+                "between neighbourhoods.",
                 "being close to schools and universities")),
         new(
             "healthcare_accessibility",
@@ -133,13 +135,14 @@ public static class UrbanFeatureMetricCatalog
                 "Accessibilité des soins",
                 "Hôpitaux, cliniques, cabinets médicaux et pharmacies distincts situés à " +
                 "moins de 800 m du quartier. Indicateur de proximité, sans capacité ni " +
-                "horaires.",
+                "horaires. La complétude d'OpenStreetMap est inégale selon les quartiers.",
                 "la proximité des hôpitaux et des pharmacies"),
             new MetricTranslation(
                 "en",
                 "Healthcare accessibility",
                 "Distinct hospitals, clinics, doctors and pharmacies within 800 m of the " +
-                "neighbourhood. A proximity indicator, without capacity or opening hours.",
+                "neighbourhood. A proximity indicator, without capacity or opening hours. " +
+                "OpenStreetMap completeness varies between neighbourhoods.",
                 "being close to hospitals and pharmacies")),
         new(
             "walkability",
@@ -173,22 +176,23 @@ public static class UrbanFeatureMetricCatalog
             MetricPolarity.HigherIsBetter,
             2,
             MetricQualityFlag.Estimated,
-            "Entropie de Shannon normalisée par ln(6) sur les parts de six catégories " +
+            "Entropie de Shannon normalisée par ln(7) sur les parts de sept catégories " +
             "d'usage OpenStreetMap (résidentiel, commerces, restauration, culture, " +
-            "bureaux, vert) intersectant le mahalle.",
+            "bureaux, industrie, vert) intersectant le mahalle.",
             new MetricTranslation(
                 "fr",
                 "Diversité d'usages",
                 "Mélange d'habitations, de commerces, de restauration, de culture, de " +
-                "bureaux et d'espaces verts, mesuré par l'entropie de Shannon normalisée. " +
-                "Dépend de la précision des balises de bâtiments dans OpenStreetMap.",
+                "bureaux, d'industrie et d'espaces verts, mesuré par l'entropie de Shannon " +
+                "normalisée. Dépend de la précision des balises de bâtiments dans " +
+                "OpenStreetMap.",
                 "un mélange d'habitations, de commerces et de services"),
             new MetricTranslation(
                 "en",
                 "Land-use diversity",
-                "Mix of housing, shops, food, culture, offices and green spaces, measured " +
-                "by normalised Shannon entropy. Depends on building-tag precision in " +
-                "OpenStreetMap.",
+                "Mix of housing, shops, food, culture, offices, industry and green spaces, " +
+                "measured by normalised Shannon entropy. Depends on building-tag precision " +
+                "in OpenStreetMap.",
                 "a mix of housing, shops and services")),
     ];
 
@@ -198,6 +202,6 @@ public static class UrbanFeatureMetricCatalog
         "polygone administratif ; accessibilité éducative et sanitaire comptée dans un " +
         "rayon de 800 m. La marchabilité combine les percentiles de densité de carrefours " +
         "et de POI quotidiens ; la diversité d'usages est l'entropie de Shannon " +
-        "normalisée de six catégories d'usage. Les listes de balises sont versionnées " +
+        "normalisée de sept catégories d'usage. Les listes de balises sont versionnées " +
         "dans backend/src/Etl/Osm/UrbanFeatureTagCatalog.cs.";
 }

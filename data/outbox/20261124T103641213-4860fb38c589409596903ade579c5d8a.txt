@@ -1,0 +1,9 @@
+To: test@test.com
+Subject: Confirm your email address
+
+Hello test,
+
+To finish creating your Neighbourhood Explorer account, open this link within 24 hours:
+http://localhost:5173/confirm-email?userId=ad826ea4-9984-4ddf-a5f7-108211303c7b&token=CfDJ8MgpoTJat9VErV2wo180ZkrU%2BYovk84ijVLrDeWZSpgy%2BDbcryDmtdvT7q6asD00eHh3IsK4W9%2FRC5qpzIatfk7V7JdbQFGxeJ1azRW9%2FqgtF3ESVLvVJ5T%2B6baW5gCaPgnEK27TRNjFTztIBIFoYJ2s69AYeCN0xM7QgIeP%2B6NPpP8X%2FjSZQM0VXWsD4pxMkboo0t3JUWT4OAbsq%2Fet6G3CeppOwkZgI427NuPbWM4dLTQhYbnKm9xeS%2BJ6xlgnLA%3D%3D
+
+If you did not make this request, ignore this message.

@@ -81,7 +81,8 @@ public sealed class WorldCoverGreeneryPipeline(
 
         console.WriteLine(
             $"ETL: WorldCover : {counts.Count} mahalles, {districtCount} ilçe, " +
-            $"{counts.Count(count => GreeneryMetricCalculator.Share(count) == 0)} " +
+            $"{counts.Count(count => GreeneryMetricCalculator.Share(count) is null)} " +
+            $"sans donnée, {counts.Count(count => GreeneryMetricCalculator.Share(count) == 0)} " +
             $"part(s) nulle(s).");
 
         var computedAt = timeProvider.GetUtcNow();
@@ -109,21 +110,30 @@ public sealed class WorldCoverGreeneryPipeline(
                 metrics.Series),
             cancellationToken);
 
+        var valuesByNeighborhood = series.Values.ToDictionary(value => value.AdminAreaId);
         var neighborhoods = new List<GreeneryNeighborhoodResult>(counts.Count);
-        for (var index = 0; index < counts.Count; index++)
+        foreach (var count in counts)
         {
-            var count = counts[index];
-            var value = series.Values[index];
+            var share = GreeneryMetricCalculator.Share(count);
+            var normalized = share is null
+                ? (double?)null
+                : valuesByNeighborhood[count.AdminAreaId].NormalizedValue;
             neighborhoods.Add(new GreeneryNeighborhoodResult(
                 count.DistrictName,
                 count.NeighborhoodName,
                 count.GreenPixels,
                 count.ValidPixels,
-                value.RawValue,
-                value.NormalizedValue));
+                share,
+                normalized));
         }
 
         var failures = new List<string>();
+        foreach (var missing in counts.Where(count => count.ValidPixels == 0))
+        {
+            failures.Add(
+                $"greenery : aucune donnée raster pour {missing.DistrictName} / " +
+                $"{missing.NeighborhoodName} (admin_area {missing.AdminAreaId}).");
+        }
         new CoverageScope
         {
             NeighborhoodCount = counts.Count,
@@ -197,6 +207,7 @@ public sealed class WorldCoverGreeneryPipeline(
                 ["metrics"] = 1,
                 ["metric_values"] = series.Values.Count,
                 ["zero_neighborhoods"] = neighborhoods.Count(item => item.Share == 0),
+                ["no_data_neighborhoods"] = neighborhoods.Count(item => item.Share is null),
                 ["metric_id"] = (int)metricWrite.MetricIds[series.Definition.Key],
             },
             success ? null : string.Join(" ; ", failures));

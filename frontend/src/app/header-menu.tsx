@@ -20,19 +20,26 @@ export function HeaderMenu({ id, menuLabel, trigger, panelClassName, children }:
     if (!open) {
       return;
     }
+
     function handlePointerDown(event: PointerEvent): void {
-      if (containerRef.current && !containerRef.current.contains(event.target as Node)) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target instanceof Node ? event.target : null)
+      ) {
         setOpen(false);
       }
     }
+
     function handleKeyDown(event: KeyboardEvent): void {
       if (event.key === "Escape") {
         setOpen(false);
         triggerRef.current?.focus();
       }
     }
+
     document.addEventListener("pointerdown", handlePointerDown);
     document.addEventListener("keydown", handleKeyDown);
+
     return () => {
       document.removeEventListener("pointerdown", handlePointerDown);
       document.removeEventListener("keydown", handleKeyDown);

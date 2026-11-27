@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { Suspense, lazy, useEffect, useRef, useState } from "react";
 import { Outlet, useLocation, useNavigate, useSearch } from "@tanstack/react-router";
 import { fbt, useLocaleContext } from "fbtee";
 import { AppShell } from "./app-shell";
+import { useDocumentMeta } from "./route-meta";
 import {
   criteriaFromSearch,
   searchWithCriteria,
@@ -15,7 +16,6 @@ import {
 } from "./url-state";
 import { HomeView } from "../features/home-view/home-view";
 import { ChatView } from "../features/chat-view/chat-view";
-import { MapView } from "../features/map-view/map-view";
 import { DataView } from "../features/data-view/data-view";
 import { toggleCriterion, withoutCriterion, type Criteria } from "../features/criteria/criteria";
 import { AccountMenu } from "../features/accounts/account-menu";
@@ -43,8 +43,13 @@ import { FavoritesPage } from "../features/favorites/favorites-page";
 import { FavoriteWidget } from "../features/favorites/favorite-widget";
 import { AdminUsersPage } from "../features/administration/admin-users-page";
 
+const MapView = lazy(() =>
+  import("../features/map-view/map-view").then((module) => ({ default: module.MapView })),
+);
+
 function useOpenView() {
   const navigate = useNavigate();
+
   return (view: ViewName) => {
     void navigate({ to: viewPath(view), search: (previous) => previous });
   };
@@ -52,6 +57,7 @@ function useOpenView() {
 
 function useOpenMapAt() {
   const navigate = useNavigate();
+
   return (neighborhoodId: number) => {
     void navigate({
       to: viewPath("map"),
@@ -62,6 +68,7 @@ function useOpenMapAt() {
 
 function useCriterionWriter(to: ViewPath) {
   const navigate = useNavigate();
+
   return (metricKey: string, change: (criteria: Criteria, metricKey: string) => Criteria) => {
     void navigate({
       to,
@@ -74,10 +81,12 @@ function useCriterionWriter(to: ViewPath) {
 export function AppLayout() {
   const location = useLocation();
   const openView = useOpenView();
+  const view = viewForPath(location.pathname);
+  useDocumentMeta(view);
 
   return (
     <AppShell
-      view={viewForPath(location.pathname)}
+      view={view}
       onNavigate={openView}
       favoritesSlot={<FavoriteWidget />}
       accountSlot={<AccountMenu />}
@@ -113,17 +122,33 @@ export function MapRoute() {
   const changeCriterion = useCriterionWriter(viewPath("map"));
 
   return (
-    <MapView
-      criteria={criteriaFromSearch(search)}
-      onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
-      selectedNeighborhoodId={search.neighborhood ?? null}
-      onSelectNeighborhood={(neighborhoodId) => {
-        void navigate({
-          to: viewPath("map"),
-          search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
-        });
-      }}
-    />
+    <Suspense
+      fallback={
+        <div className="flex flex-1 items-center justify-center p-6 text-sm text-text-secondary">
+          {fbt("Chargement des quartiers…", "Shown while the map data is loading")}
+        </div>
+      }
+    >
+      <MapView
+        criteria={criteriaFromSearch(search)}
+        onRemoveCriterion={(metricKey) => changeCriterion(metricKey, withoutCriterion)}
+        selectedNeighborhoodId={search.neighborhood ?? null}
+        rankingMetricKey={search.sort ?? null}
+        onMetricChange={(metricKey) => {
+          void navigate({
+            to: viewPath("map"),
+            search: (previous) =>
+              searchWithTableSort(previous, { key: metricKey, direction: "descending" }),
+          });
+        }}
+        onSelectNeighborhood={(neighborhoodId) => {
+          void navigate({
+            to: viewPath("map"),
+            search: (previous) => searchWithNeighborhood(previous, neighborhoodId),
+          });
+        }}
+      />
+    </Suspense>
   );
 }
 
@@ -285,6 +310,7 @@ export function UnknownPageView() {
     "Cette page n'existe pas",
     "Title of the page shown when the URL matches no view",
   );
+
   const unknownPageHint = fbt(
     "Choisis une vue dans la barre de navigation.",
     "Hint shown under the title of the unknown page",

@@ -324,6 +324,13 @@ export interface components {
             name: string;
             /** @example TR-34 */
             officialCode: string;
+            /** @description Centre approximatif de la province (centroïde administratif), utilisé pour le cadrage initial de la carte */
+            center: {
+                /** Format: double */
+                longitude: number;
+                /** Format: double */
+                latitude: number;
+            };
         };
         NeighborhoodFeatureCollection: {
             /** @constant */

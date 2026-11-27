@@ -34,6 +34,7 @@ public static class UrbanFeatureMetricCalculator
                     neighborhood.FoodCount,
                     neighborhood.LandUseCultureCount,
                     neighborhood.OfficeCount,
+                    neighborhood.IndustryCount,
                     neighborhood.GreenCount,
                 ]));
 

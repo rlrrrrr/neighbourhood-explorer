@@ -2,6 +2,7 @@ using System.Threading.RateLimiting;
 using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.ResponseCompression;
 using Microsoft.EntityFrameworkCore;
 using NeighbourhoodExplorer.Api;
 using NeighbourhoodExplorer.Api.Features.Accounts;
@@ -20,6 +21,12 @@ builder.Services.AddCors(options =>
         .AllowAnyHeader()
         .AllowAnyMethod()
         .AllowCredentials()));
+
+builder.Services.AddResponseCompression(options =>
+{
+    options.EnableForHttps = true;
+    options.MimeTypes = ResponseCompressionDefaults.MimeTypes.Concat(["application/geo+json"]);
+});
 
 var databaseConnectionString = builder.Configuration["DATABASE_CONNECTION_STRING"];
 if (string.IsNullOrWhiteSpace(databaseConnectionString))
@@ -123,6 +130,8 @@ if (databaseConnectionString is not null)
 }
 
 var app = builder.Build();
+
+app.UseResponseCompression();
 
 if (databaseConnectionString is not null)
 {

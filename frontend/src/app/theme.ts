@@ -24,7 +24,9 @@ export function readCurrentTheme(): ThemeName {
   if (typeof document === "undefined") {
     return "moda";
   }
+
   const value = document.documentElement.dataset.theme;
+
   return value !== undefined && isThemeName(value) ? value : "moda";
 }
 
@@ -52,8 +54,10 @@ export function readStoredTheme(): ThemeName {
   if (typeof window === "undefined") {
     return "moda";
   }
+
   try {
     const stored = window.localStorage.getItem(THEME_STORAGE_KEY);
+
     return isThemeName(stored) ? stored : "moda";
   } catch {
     // `localStorage` peut lever (navigation privée, stockage désactivé) : on retombe sur le thème par défaut.
@@ -61,15 +65,24 @@ export function readStoredTheme(): ThemeName {
   }
 }
 
+export function applyStoredTheme(): ThemeName {
+  const theme = readStoredTheme();
+  document.documentElement.dataset.theme = theme;
+
+  return theme;
+}
+
 export function applyTheme(theme: ThemeName): void {
   const root = document.documentElement;
   root.classList.add("theme-switching");
   root.dataset.theme = theme;
+
   try {
     window.localStorage.setItem(THEME_STORAGE_KEY, theme);
   } catch {
     // Même raison : le thème s'applique quand même pour la session en cours.
   }
+
   window.requestAnimationFrame(() => {
     window.requestAnimationFrame(() => {
       root.classList.remove("theme-switching");

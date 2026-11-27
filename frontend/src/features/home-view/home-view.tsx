@@ -1,8 +1,7 @@
-import { fbs, fbt, type TranslatedString } from "fbtee";
+import { fbs, fbt } from "fbtee";
 import { Button } from "../../components/ui/button";
 import { FeatheredImage } from "../../components/ui/feathered-image";
-
-type EntryView = "chat" | "map" | "data";
+import { entryDescription, entryTitle, type EntryView } from "./entry-copy";
 
 interface HomeViewProps {
   onNavigate: (view: EntryView) => void;
@@ -11,7 +10,7 @@ interface HomeViewProps {
 const HOME_PHOTOS = [
   {
     key: "ayasofya",
-    file: "shifan-hassan-C84cP0Q2j3E-unsplash.jpg",
+    file: "shifan-hassan-C84cP0Q2j3E-unsplash.webp",
     credit: "Shifan Hassan · Unsplash",
     alt: () =>
       fbs(
@@ -22,7 +21,7 @@ const HOME_PHOTOS = [
   },
   {
     key: "dolmabahce",
-    file: "meric-dagli-kq6undvTxWE-unsplash.jpg",
+    file: "meric-dagli-kq6undvTxWE-unsplash.webp",
     credit: "Meric Dagli · Unsplash",
     alt: () =>
       fbs(
@@ -33,7 +32,7 @@ const HOME_PHOTOS = [
   },
   {
     key: "bogaz",
-    file: "mehmet-bozgedik-4JilsL1_rrA-unsplash.jpg",
+    file: "mehmet-bozgedik-4JilsL1_rrA-unsplash.webp",
     credit: "Mehmet Bozgedik · Unsplash",
     alt: () =>
       fbs(
@@ -45,37 +44,6 @@ const HOME_PHOTOS = [
 ] as const;
 
 const HOME_ENTRY_VIEWS: readonly EntryView[] = ["chat", "map", "data"];
-
-function entryTitle(view: EntryView): TranslatedString {
-  switch (view) {
-    case "chat":
-      return fbt("Chat", "Title of the chat entry card on the home page");
-    case "map":
-      return fbt("Carte", "Title of the map entry card on the home page");
-    case "data":
-      return fbt("Données", "Title of the data entry card on the home page");
-  }
-}
-
-function entryDescription(view: EntryView): TranslatedString {
-  switch (view) {
-    case "chat":
-      return fbt(
-        "Écris ce que tu cherches, reçois des pistes expliquées.",
-        "Description of the chat entry card on the home page",
-      );
-    case "map":
-      return fbt(
-        "Les quartiers colorés selon tes propres critères.",
-        "Description of the map entry card on the home page",
-      );
-    case "data":
-      return fbt(
-        "Valeurs brutes, unités et sources, colonne par colonne.",
-        "Description of the data entry card on the home page",
-      );
-  }
-}
 
 export function HomeView({ onNavigate }: HomeViewProps) {
   return (
@@ -111,7 +79,7 @@ export function HomeView({ onNavigate }: HomeViewProps) {
         ))}
       </ul>
       <ul className="mt-16 grid w-full gap-3 sm:grid-cols-3">
-        {HOME_PHOTOS.map((photo) => (
+        {HOME_PHOTOS.map((photo, index) => (
           <li
             key={photo.key}
             className="grain overflow-hidden rounded-2xl bg-surface text-left shadow-elevated"
@@ -119,7 +87,8 @@ export function HomeView({ onNavigate }: HomeViewProps) {
             <FeatheredImage
               src={`/assets/${photo.file}`}
               alt={photo.alt()}
-              loading="lazy"
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
               decoding="async"
               className="h-44 w-full sm:h-52"
             />

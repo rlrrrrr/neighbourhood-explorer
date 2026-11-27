@@ -1,86 +1,440 @@
 import { renderToStaticMarkup } from "react-dom/server";
 import { describe, expect, it } from "vite-plus/test";
 import "../../app/locale-runtime";
-import { DataView } from "./data-view";
+import type { components } from "../../generated/api";
+import type { Criteria } from "../criteria/criteria";
+import { DataTableView } from "./data-table-view";
+import type { DataTableData } from "./data-table-client";
+import type { DataTableState } from "./use-data-table";
 
-const MARKUP = renderToStaticMarkup(
-  <DataView
-    criteria={{ weights: [] }}
-    onRemoveCriterion={() => {}}
-    sort={null}
-    onSortChange={() => {}}
-    onShowOnMap={() => {}}
-  />,
-);
+type MetricDefinition = components["schemas"]["MetricDefinition"];
+
+const GREENERY: MetricDefinition = {
+  key: "greenery",
+  category: "Environment",
+  unit: "% de la surface",
+  nativeLevel: "neighborhood",
+  polarity: "higher_is_better",
+  normalization: { method: "percentile", version: "percentile-v1" },
+  displayPrecision: 1,
+  translations: [
+    {
+      locale: "fr",
+      name: "Verdure",
+      description: "Part de la surface verte.",
+      subject: "la verdure",
+    },
+  ],
+  source: {
+    id: "esa-worldcover",
+    name: "ESA WorldCover 2021",
+    organization: "ESA WorldCover consortium",
+    url: "https://esa-worldcover.org/",
+    license: "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/",
+    attribution: "© ESA WorldCover project 2021",
+    methodology: "Part de la surface classée verte dans la tuile.",
+    retrievedAt: "2026-11-09",
+    version: "WorldCover 2021 v200",
+  },
+  observedAt: "2021-12-31",
+};
+
+const CAFES_DENSITY: MetricDefinition = {
+  ...GREENERY,
+  key: "cafes_density",
+  category: "Lifestyle",
+  unit: "cafés/km²",
+  displayPrecision: 1,
+  translations: [
+    {
+      locale: "fr",
+      name: "Densité de cafés",
+      description: "Cafés par kilomètre carré.",
+      subject: "les cafés",
+    },
+  ],
+  source: {
+    id: "osm-geofabrik-istanbul",
+    name: "OpenStreetMap, extrait Geofabrik Turquie",
+    organization: "OpenStreetMap contributors / Geofabrik GmbH",
+    url: "https://download.geofabrik.de/europe/turkey.html",
+    license: "ODbL 1.0 — https://opendatacommons.org/licenses/odbl/1-0/",
+    attribution: "© les contributeurs d'OpenStreetMap, sous licence ODbL",
+    methodology: "Cafés OSM par kilomètre carré.",
+    retrievedAt: "2026-10-31",
+    version: "turkey-261030.osm.pbf",
+  },
+  observedAt: "2026-10-30",
+};
+
+const POPULATION_DENSITY: MetricDefinition = {
+  ...GREENERY,
+  key: "population_density",
+  category: "Demography",
+  unit: "hab/km²",
+  displayPrecision: 0,
+  translations: [
+    {
+      locale: "fr",
+      name: "Densité de population",
+      description: "Habitants par kilomètre carré.",
+      subject: "la densité de population",
+    },
+  ],
+  source: {
+    id: "worldpop",
+    name: "WorldPop",
+    organization: "WorldPop, University of Southampton",
+    url: "https://www.worldpop.org/",
+    license: "CC BY 4.0 — https://creativecommons.org/licenses/by/4.0/",
+    attribution: "© WorldPop",
+    methodology: "Population estimée par maille, ramenée à la surface du quartier.",
+    retrievedAt: "2026-11-09",
+    version: "2025",
+  },
+  observedAt: "2025-12-31",
+};
+
+const DATA: DataTableData = {
+  metrics: [CAFES_DENSITY, GREENERY],
+  rows: [
+    {
+      neighborhoodId: 1570,
+      name: "Caferağa Mahallesi",
+      districtName: "Kadıköy",
+      values: {
+        cafes_density: { raw: 173.4, qualityFlag: "ok" },
+        greenery: { raw: 17.3, qualityFlag: "estimated" },
+      },
+    },
+    {
+      neighborhoodId: 1272,
+      name: "Cihangir Mahallesi",
+      districtName: "Beyoğlu",
+      values: {
+        cafes_density: { raw: 196.2, qualityFlag: "ok" },
+        greenery: { raw: 2, qualityFlag: "estimated" },
+      },
+    },
+    {
+      neighborhoodId: 1049,
+      name: "Asmalı Mescit Mahallesi",
+      districtName: "Beyoğlu",
+      values: {
+        cafes_density: { raw: 383.4, qualityFlag: "ok" },
+      },
+    },
+  ],
+};
+
+const CRITERIA: Criteria = {
+  weights: [
+    { metricKey: "cafes_density", weight: 1 },
+    { metricKey: "greenery", weight: 1 },
+  ],
+};
+
+function renderTable({
+  criteria = CRITERIA,
+  state = { status: "ready", data: DATA } as const,
+  sort = null,
+}: {
+  criteria?: Criteria;
+  state?: DataTableState;
+  sort?: { key: string; direction: "ascending" | "descending" } | null;
+} = {}): string {
+  return renderToStaticMarkup(
+    <DataTableView
+      criteria={criteria}
+      state={state}
+      sort={sort}
+      locale="fr"
+      onRemoveCriterion={() => {}}
+      onSortChange={() => {}}
+      onShowOnMap={() => {}}
+      onReload={() => {}}
+    />,
+  );
+}
+
+function bodyOf(markup: string): string {
+  const start = markup.indexOf("<tbody");
+  const end = markup.lastIndexOf("</tbody>");
+
+  return start === -1 || end === -1 ? "" : markup.slice(start, end);
+}
 
 describe("data view", () => {
-  it("offers a sort control per criterion column", () => {
-    expect(MARKUP.match(/aria-sort="none"/g)).toHaveLength(3);
-    expect(MARKUP).toContain("Cafés");
-    expect(MARKUP).toContain("Métro à pied");
-    expect(MARKUP).toContain("Verdure");
+  it("keeps a single metric column and a map action instead of a row disclosure", () => {
+    const markup = renderTable();
+
+    expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
+    expect(markup).toContain("Verdure");
+    expect(markup.match(/Afficher ou masquer les quartiers du district/g)).toHaveLength(2);
+    expect(markup.match(/aria-controls="district-rows-/g)).toHaveLength(2);
+    expect(markup.match(/aria-label="Voir sur la carte"/g)).toHaveLength(3);
   });
 
-  it("repeats the unit next to every value so it survives a scroll", () => {
-    expect(MARKUP.match(/\/km²/g)).toHaveLength(3);
-    expect(MARKUP.match(/>min</g)).toHaveLength(3);
-    expect(MARKUP.match(/>%</g)).toHaveLength(3);
+  it("keeps the unit and the observation date of the visible metric", () => {
+    const markup = renderTable();
+    const body = bodyOf(markup);
+
+    expect(body.match(/% de la surface/g)).toHaveLength(2);
+    expect(markup).toContain("2026-10-30");
+    expect(markup).toContain("2021-12-31");
   });
 
-  it("freezes the neighborhood column and the units in a header row", () => {
-    expect(MARKUP).toContain("sticky start-0");
-    expect(MARKUP).toContain('scope="row"');
-    expect(MARKUP.match(/scope="col"/g)).toHaveLength(6);
+  it("prints a uniform quality flag once in the header and flags exceptions in the cells", () => {
+    const markup = renderTable();
+    const body = bodyOf(markup);
+
+    expect(markup.match(/Estimation/g)).toHaveLength(1);
+    expect(body).not.toContain("Estimation");
+    expect(markup).toContain("Pas de donnée");
+  });
+
+  it("freezes the neighborhood column and keeps the map action on each row", () => {
+    const markup = renderTable();
+
+    expect(markup).toContain("sticky start-0");
+    expect(markup).toContain('scope="row"');
+    expect(markup.match(/scope="col"/g)).toHaveLength(4);
+    expect(markup.match(/aria-label="Voir sur la carte"/g)).toHaveLength(3);
   });
 
   it("never highlights a row as the best one", () => {
-    const rows = MARKUP.slice(MARKUP.indexOf("<tbody>"), MARKUP.indexOf("</tbody>"));
+    const markup = renderTable();
+    const body = bodyOf(markup);
 
-    expect(rows).not.toContain("bg-highlight");
-    expect(MARKUP).toContain("odd:bg-surface");
+    expect(body).not.toContain("bg-highlight");
+    expect(body).toContain("hover:bg-surface");
   });
 
-  it("shows the active criteria above the table, and nothing when there are none", () => {
-    expect(MARKUP).not.toContain("Critères actifs");
-
-    const markup = renderToStaticMarkup(
-      <DataView
-        criteria={{ weights: [{ metricKey: "cafes", weight: 1 }] }}
-        onRemoveCriterion={() => {}}
-        sort={null}
-        onSortChange={() => {}}
-        onShowOnMap={() => {}}
-      />,
+  it("titles the table according to the shared ranking metric", () => {
+    expect(renderTable()).toContain("Valeurs par quartier");
+    expect(renderTable({ sort: { key: "greenery", direction: "descending" } })).toContain(
+      "Classement des quartiers",
     );
+  });
+
+  it("numbers the rows and marks the first three only when the order rewards the best value", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
+    const body = bodyOf(markup);
+
+    expect(body).toMatch(/data-rank="1" data-merit="true"/);
+    expect(body).toMatch(/data-rank="2" data-merit="true"/);
+    expect(body).toMatch(/data-rank="3" data-merit="true"/);
+    expect(body).toContain("bg-action/[0.04]");
+  });
+
+  it("keeps the rank numerals plain when the order does not put the best value first", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "ascending" } });
+    const body = bodyOf(markup);
+
+    expect(body).not.toContain('data-merit="true"');
+    expect(body).toContain("bg-action/[0.04]");
+  });
+
+  it("badges only the three best values of the sorted column", () => {
+    const manyRows = Array.from({ length: 6 }, (_, index) => ({
+      neighborhoodId: index + 1,
+      name: `Quartier ${index + 1}`,
+      districtName: "Kadıköy",
+      values: { greenery: { raw: index * 10, qualityFlag: "ok" as const } },
+    }));
+
+    const markup = renderTable({
+      state: { status: "ready", data: { ...DATA, rows: manyRows } },
+      sort: { key: "greenery", direction: "descending" },
+    });
+
+    expect(markup.match(/bg-action px-2/g)).toHaveLength(3);
+  });
+
+  it("ranks by the column chosen in the URL and keeps missing values last", () => {
+    const markup = renderTable({
+      sort: { key: "greenery", direction: "descending" },
+    });
+
+    const body = bodyOf(markup);
+
+    expect(body.indexOf("Cihangir")).toBeLessThan(body.indexOf("Asmalı Mescit"));
+    expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Caferağa"));
+    expect(markup).toContain('aria-sort="descending"');
+    expect(markup.match(/aria-sort="none"/g)).toBeNull();
+  });
+
+  it("ignores a sort key that is not an active column", () => {
+    const markup = renderTable({ sort: { key: "nightlife", direction: "descending" } });
+    const body = bodyOf(markup);
+
+    expect(markup).not.toContain('aria-sort="descending"');
+    expect(body.indexOf("Asmalı Mescit")).toBeLessThan(body.indexOf("Cihangir"));
+    expect(body.indexOf("Cihangir")).toBeLessThan(body.indexOf("Caferağa"));
+  });
+
+  it("shows the active criteria and names the ones the API does not publish", () => {
+    const markup = renderTable({
+      criteria: {
+        weights: [
+          { metricKey: "greenery", weight: 1 },
+          { metricKey: "quiet", weight: 1 },
+        ],
+      },
+    });
 
     expect(markup).toContain("Critères actifs");
     expect(markup).toContain("Retirer ce critère");
+    expect(markup).toContain("Critères non publiés par l&#x27;API");
+    expect(markup).toContain("quiet");
   });
 
-  it("sends the row neighborhood to the map", () => {
-    const neighborhoods = ["Moda", "Cihangir", "Yeldeğirmeni"];
-    for (const name of neighborhoods) {
-      expect(MARKUP).toContain(name);
-    }
-    expect(MARKUP.match(/Voir sur la carte/g)).toHaveLength(3);
+  it("shows the source, licence, attribution and method of every column", () => {
+    const markup = renderTable();
+
+    expect(markup).toContain("Sources et dates");
+    expect(markup).toContain("OpenStreetMap contributors / Geofabrik GmbH");
+    expect(markup).toContain("© ESA WorldCover project 2021");
+    expect(markup).toContain("ODbL 1.0");
+    expect(markup).toContain("Part de la surface classée verte dans la tuile.");
+    expect(markup).toContain("2026-10-31");
   });
 
-  it("sorts the column and the rows given by the URL", () => {
-    const markup = renderToStaticMarkup(
-      <DataView
-        criteria={{ weights: [] }}
-        onRemoveCriterion={() => {}}
-        sort={{ key: "cafes", direction: "descending" }}
-        onSortChange={() => {}}
-        onShowOnMap={() => {}}
-      />,
-    );
+  it("still shows every published metric when no criterion is active", () => {
+    const markup = renderTable({ criteria: { weights: [] } });
 
-    expect(markup).toContain('aria-sort="descending"');
-    expect(markup.match(/aria-sort="none"/g)).toHaveLength(2);
+    expect(markup).toContain("<table");
+    expect(markup).toContain("Densité de cafés");
+    expect(markup).toContain("Verdure");
+    expect(markup).not.toContain("Aucun critère actif");
+  });
 
-    const rows = markup.slice(markup.indexOf("<tbody>"), markup.indexOf("</tbody>"));
-    expect(rows.indexOf("Moda")).toBeLessThan(rows.indexOf("Cihangir"));
-    expect(rows.indexOf("Cihangir")).toBeLessThan(rows.indexOf("Yeldeğirmeni"));
+  it("filters the table by neighborhood or district name", () => {
+    const markup = renderTable({ state: { status: "ready", data: DATA } });
+
+    expect(markup).toContain("Rechercher un quartier");
+    expect(markup).toContain("Quartiers affichés");
+  });
+
+  it("lets the reader sort by any published metric from the toolbar", () => {
+    const markup = renderTable({ sort: { key: "cafes_density", direction: "descending" } });
+
+    expect(markup).toContain("Trier par");
+    expect(markup).toContain("Ordre alphabétique");
+    expect(markup).toContain('<option value="cafes_density" selected="">Densité de cafés</option>');
+    expect(markup).toContain('<option value="greenery">Verdure</option>');
+  });
+
+  it("labels the display toggles explicitly", () => {
+    const markup = renderTable();
+
+    expect(markup).toContain("Grouper par district");
+    expect(markup).toContain("Moyenne du district");
+    expect(markup.match(/aria-pressed="true"/g)).toHaveLength(2);
+  });
+
+  it("groups rows by district and collapses each group from its header", () => {
+    const markup = renderTable({ sort: { key: "greenery", direction: "descending" } });
+
+    expect(markup).toContain("Beyoğlu");
+    expect(markup).toContain("Kadıköy");
+    expect(markup).toContain("moy.");
+    expect(markup).toContain('aria-pressed="true"');
+    expect(markup.match(/aria-expanded="true"/g)).toHaveLength(2);
+    expect(markup).toContain('colSpan="4"');
+  });
+
+  it("shows population density alone when no metric is sorted", () => {
+    const densityData: DataTableData = {
+      metrics: [CAFES_DENSITY, POPULATION_DENSITY, GREENERY],
+      rows: [
+        {
+          neighborhoodId: 1570,
+          name: "Caferağa Mahallesi",
+          districtName: "Kadıköy",
+          values: {
+            cafes_density: { raw: 173.4, qualityFlag: "ok" },
+            population_density: { raw: 12000, qualityFlag: "ok" },
+            greenery: { raw: 17.3, qualityFlag: "estimated" },
+          },
+        },
+        {
+          neighborhoodId: 1272,
+          name: "Cihangir Mahallesi",
+          districtName: "Beyoğlu",
+          values: {
+            cafes_density: { raw: 196.2, qualityFlag: "ok" },
+            population_density: { raw: 10000, qualityFlag: "ok" },
+            greenery: { raw: 2, qualityFlag: "estimated" },
+          },
+        },
+      ],
+    };
+
+    const markup = renderTable({ state: { status: "ready", data: densityData } });
+
+    const head = markup.slice(markup.indexOf("<thead"), markup.indexOf("</thead>"));
+
+    expect(head).toContain("Densité de population");
+    expect(head).not.toContain("Verdure");
+    expect(head).not.toContain("Densité de cafés");
+    expect(markup.match(/aria-sort="none"/g)).toHaveLength(1);
+    expect(markup).toContain("moy.");
+  });
+
+  it("replaces the default metric with the one the reader sorts on", () => {
+    const markup = renderTable({
+      state: {
+        status: "ready",
+        data: { ...DATA, metrics: [CAFES_DENSITY, POPULATION_DENSITY, GREENERY] },
+      },
+      sort: { key: "greenery", direction: "descending" },
+    });
+
+    const head = markup.slice(markup.indexOf("<thead"), markup.indexOf("</thead>"));
+
+    expect(head).toContain("Verdure");
+    expect(head).not.toContain("Densité de population");
+    expect(head).not.toContain("Densité de cafés");
+  });
+
+  it("shows the district average of the default metric even without a sort", () => {
+    const markup = renderTable();
+
+    expect(markup.match(/moy\./g)).toHaveLength(2);
+    expect(markup).toContain('moy. <bdi dir="ltr">17,3</bdi>');
+    expect(markup).toContain('moy. <bdi dir="ltr">2</bdi>');
+  });
+
+  it("shows fifty rows per page, numbers ranks across pages and counts the pages", () => {
+    const manyRows = Array.from({ length: 120 }, (_, index) => ({
+      neighborhoodId: index + 1,
+      name: `Quartier ${index + 1}`,
+      districtName: "Kadıköy",
+      values: { greenery: { raw: index, qualityFlag: "ok" as const } },
+    }));
+
+    const markup = renderTable({ state: { status: "ready", data: { ...DATA, rows: manyRows } } });
+
+    expect(markup.match(/data-rank="/g)).toHaveLength(50);
+    expect(markup).toContain('data-rank="50"');
+    expect(markup).not.toContain('data-rank="51"');
+    expect(markup).toContain('aria-label="Pagination du tableau des quartiers"');
+    expect(markup).toContain(">3</span>");
+    expect(markup).toContain("Précédent");
+    expect(markup).toContain("disabled");
+    expect(markup).toContain("Suivant");
+  });
+
+  it("reports a loading state", () => {
+    expect(renderTable({ state: { status: "loading" } })).toContain("Chargement des valeurs");
+  });
+
+  it("explains a failed request and offers a retry", () => {
+    const markup = renderTable({ state: { status: "error", code: "database_unavailable" } });
+
+    expect(markup).toContain("Les valeurs n&#x27;ont pas pu être chargées.");
+    expect(markup).toContain("database_unavailable");
+    expect(markup).toContain("Réessayer");
   });
 });

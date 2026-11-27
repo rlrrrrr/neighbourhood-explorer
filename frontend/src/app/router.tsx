@@ -25,16 +25,19 @@ const homeRoute = createRoute({
   path: "/",
   component: HomeRoute,
 });
+
 const chatRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/chat",
   component: ChatRoute,
 });
+
 const mapRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/map",
   component: MapRoute,
 });
+
 const dataRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/data",

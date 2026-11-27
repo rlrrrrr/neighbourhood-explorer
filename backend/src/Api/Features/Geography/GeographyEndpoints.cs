@@ -31,7 +31,8 @@ public static class GeographyEndpoints
                 .Select(city => new CityResponse(
                     city.PlateCode.Value,
                     city.Name,
-                    city.OfficialCode))
+                    city.OfficialCode,
+                    city.Center))
                 .ToList()));
     }
 

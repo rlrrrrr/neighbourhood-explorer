@@ -46,7 +46,7 @@ public sealed class GreeneryZonalCounterTests : IAsyncLifetime
         Assert.Equal("Test Mahallesi", neighborhood.NeighborhoodName);
         Assert.Equal(2, neighborhood.GreenPixels);
         Assert.Equal(3, neighborhood.ValidPixels);
-        Assert.Equal(66.6667, GreeneryMetricCalculator.Share(neighborhood), 3);
+        Assert.Equal(66.6667, GreeneryMetricCalculator.Share(neighborhood)!.Value, 3);
     }
 
     [Fact]

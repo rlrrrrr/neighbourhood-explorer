@@ -40,6 +40,7 @@ export function useScrollOverflowHint({ axis }: { axis: ScrollAxis }): {
     if (!element) {
       return;
     }
+
     const update = () => {
       const metrics = readMetrics(element, axis);
       const hasMore = hasMoreToScroll(metrics);
@@ -50,13 +51,17 @@ export function useScrollOverflowHint({ axis }: { axis: ScrollAxis }): {
           : { hasMore, overflows },
       );
     };
+
     update();
     const observer = new ResizeObserver(update);
     observer.observe(element);
+
     for (const child of Array.from(element.children)) {
       observer.observe(child);
     }
+
     element.addEventListener("scroll", update, { passive: true });
+
     return () => {
       observer.disconnect();
       element.removeEventListener("scroll", update);

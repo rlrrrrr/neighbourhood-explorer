@@ -57,7 +57,7 @@ name, official_name, official_code (nullable), geometry, display_geometry (nulla
 
 Les tables dérivées (`metric_value`, `worldpop_neighborhood_sum`, `worldpop_district_coefficient`, `staging_ibb_buildings_2017`) référencent `admin_area` avec `ON DELETE CASCADE` : réimporter les limites administratives efface les valeurs dérivées devenues obsolètes, sans bloquer sur une clé étrangère.
 
-La vue matérialisée des dernières valeurs n'est pas retenue : à 964 mahalles, la dernière valeur par couple (métrique, mahalle) se lit avec l'index `(metric_id, admin_area_id, observed_at DESC)` et évite un `REFRESH` à maintenir. La requête `metric-values` part des métriques et utilise un `CROSS JOIN LATERAL … ORDER BY observed_at DESC LIMIT 1` (mesuré à p95 233 ms pour deux métriques, voir `../docs/infrastructure.md`). La normalisation percentile est calculée en C# (`PercentileRank`), pas en SQL, et testée contre `PERCENT_RANK()`.
+La vue matérialisée des dernières valeurs n'est pas retenue : à 964 mahalles, la dernière valeur par couple (métrique, mahalle) se lit avec l'index `(metric_id, admin_area_id, observed_at DESC)` et évite un `REFRESH` à maintenir. La requête `metric-values` part des métriques et utilise un `CROSS JOIN LATERAL … ORDER BY observed_at DESC LIMIT 1` (mesuré à p95 233 ms pour deux métriques, voir `../docs/infrastructure.md`). La normalisation percentile est calculée en C# (`PercentileRank`), pas en SQL, et testée contre `PERCENT_RANK()` pour les jeux sans zéro ; sur une métrique où des quartiers valent exactement `0` (vie nocturne), la version `percentile-v2` épingle les zéros à `0` et classe les positifs entre eux (`1/k` pour le plus petit, `1` pour le plus grand).
 
 MetricDefinition
 ----------------
@@ -108,7 +108,7 @@ Règles transverses :
 
 | Endpoint | Rôle |
 |---|---|
-| `GET /api/v1/cities` | Villes disponibles |
+| `GET /api/v1/cities` | Villes disponibles, avec `center` (`{ longitude, latitude }`, centroïde de la province) pour le cadrage initial de la carte |
 | `GET /api/v1/cities/{cityId}/neighborhoods` | GeoJSON `application/geo+json` des mahalles avec `COALESCE(display_geometry, geometry)`, `ETag` + `Cache-Control: max-age=86400` |
 | `GET /api/v1/metrics` | Définitions de métriques + source + date |
 | `GET /api/v1/cities/{cityId}/metric-values?metrics=a,b` | `{ metricKey: { neighborhoodId: { raw, normalized, qualityFlag } } }` compact |

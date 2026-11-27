@@ -40,4 +40,13 @@ version 3.4.3 ; le client `raster2pgsql` 3.3.2 produit un dump compatible.
 
 ## Frontend (npm)
 
-Voir `frontend/package.json` ; aucune dépendance ajoutée par ce travail.
+Voir `frontend/package.json`. Les licences des paquets déjà présents sont
+celles déclarées par le registre npm. Ajout explicite du 17 novembre 2026,
+demandé par l'humain.
+
+| Paquet | Version | Licence | Usage |
+|---|---|---|---|
+| @fontsource-variable/geist | 5.3.0 | OFL-1.1 | Police Geist Variable, chargée localement dans `frontend/src/index.css` |
+
+Le paquet remplacer `@fontsource-variable/plus-jakarta-sans`, retiré le même
+jour. Aucune police n'est chargée depuis un CDN.

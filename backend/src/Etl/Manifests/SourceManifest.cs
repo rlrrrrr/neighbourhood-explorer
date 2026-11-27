@@ -30,6 +30,8 @@ public sealed record SourceManifest
 
     public required string ReferencePeriod { get; init; }
 
+    public string? ObservedAt { get; init; }
+
     public required string PublishedAt { get; init; }
 
     public string? SourceVersion { get; init; }
